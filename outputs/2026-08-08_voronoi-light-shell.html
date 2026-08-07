@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Voronoi Light Shell / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #040404;
+        --ink: #f4f0e8;
+        --muted: #aaa59a;
+        --warm: #ffb267;
+        --blue: #77dbff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 42%, rgba(122, 84, 46, 0.35), transparent 38%),
+          #040404;
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.78);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(22px, 4.6vw, 58px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 8px 0 0;
+        max-width: 680px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.35vw, 15px);
+        line-height: 1.55;
+      }
+
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(244, 240, 232, 0.28);
+        background: rgba(4, 4, 4, 0.46);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(244, 240, 232, 0.13);
+      }
+
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--warm), var(--blue), #f4f0e8);
+        animation: loop-meter 20s linear infinite;
+      }
+
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+
+      @media (max-width: 720px) {
+        .hud {
+          display: block;
+        }
+
+        a {
+          display: inline-block;
+          margin-top: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Voronoi Light Shell procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Voronoi Light Shell</h1>
+        <p>Blender Generative Lab / perforated shell study / lampshade + object pack candidate</p>
+      </div>
+      <a href="../days/2026-08-08.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setClearColor(0x000000, 0);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x040404, 0.045);
+
+      const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 80);
+      camera.position.set(0, 1.15, 7.1);
+
+      const loopSeconds = 20;
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+      const shell = new THREE.Group();
+      scene.add(shell);
+
+      const outer = createShellMesh(false);
+      const innerGlow = createShellMesh(true);
+      shell.add(outer, innerGlow);
+
+      const holes = new THREE.Group();
+      shell.add(holes);
+      const holeMaterial = new THREE.LineBasicMaterial({ color: 0xffc27b, transparent: true, opacity: 0.42 });
+      for (let i = 0; i < 84; i += 1) {
+        const v = 0.08 + (i % 14) / 13 * 0.84;
+        const band = Math.floor(i / 14);
+        const u = ((i * 0.382 + band * 0.08) % 1 + 1) % 1;
+        const point = shellPoint(u, v, 1.012);
+        const ring = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.TorusGeometry(0.055 + (i % 4) * 0.009, 0.004, 6, 18)), holeMaterial);
+        ring.position.copy(point.position);
+        ring.rotation.set(point.normal.z * 0.7, 0, -point.angle);
+        ring.scale.x = 1.0 + Math.sin(i) * 0.18;
+        holes.add(ring);
+      }
+
+      const floor = new THREE.GridHelper(7, 36, 0x8a5f37, 0x27241f);
+      floor.position.y = -1.95;
+      floor.material.transparent = true;
+      floor.material.opacity = 0.22;
+      scene.add(floor);
+
+      const warmCore = new THREE.PointLight(0xffa85f, 9.0, 9);
+      warmCore.position.set(0, 0.1, 0);
+      scene.add(warmCore);
+
+      const key = new THREE.AreaLight(0xffba78, 4.0, 5, 5);
+      key.position.set(-2.8, -3.4, 4.6);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0x77dbff, 4.8, 14);
+      rim.position.set(3.0, 2.6, 2.8);
+      scene.add(rim);
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+
+      window.addEventListener("click", () => {
+        shell.rotation.y += Math.PI / 5;
+      });
+
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function createShellMesh(isGlow) {
+        const radialSegments = 152;
+        const heightSegments = 88;
+        const vertices = [];
+        const normals = [];
+        const uvs = [];
+        const indices = [];
+
+        for (let yIndex = 0; yIndex <= heightSegments; yIndex += 1) {
+          const v = yIndex / heightSegments;
+          for (let xIndex = 0; xIndex <= radialSegments; xIndex += 1) {
+            const u = xIndex / radialSegments;
+            const point = shellPoint(u, v, isGlow ? 0.94 : 1.0);
+            vertices.push(point.position.x, point.position.y, point.position.z);
+            normals.push(point.normal.x, point.normal.y, point.normal.z);
+            uvs.push(u, v);
+          }
+        }
+
+        for (let yIndex = 0; yIndex < heightSegments; yIndex += 1) {
+          for (let xIndex = 0; xIndex < radialSegments; xIndex += 1) {
+            const a = yIndex * (radialSegments + 1) + xIndex;
+            const b = a + radialSegments + 1;
+            indices.push(a, b, a + 1, b, b + 1, a + 1);
+          }
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setIndex(indices);
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+        geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+        geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+        geometry.computeVertexNormals();
+
+        const material = isGlow
+          ? new THREE.MeshBasicMaterial({ color: 0xff8d45, transparent: true, opacity: 0.18, side: THREE.BackSide })
+          : new THREE.MeshPhysicalMaterial({
+              color: 0xc98554,
+              roughness: 0.58,
+              metalness: 0.02,
+              clearcoat: 0.18,
+              clearcoatRoughness: 0.62,
+              transparent: true,
+              opacity: 0.86,
+              side: THREE.DoubleSide,
+              emissive: 0x120805,
+            });
+
+        return new THREE.Mesh(geometry, material);
+      }
+
+      function shellPoint(u, v, scale) {
+        const angle = u * Math.PI * 2;
+        const profile = Math.sin(v * Math.PI);
+        const y = -1.75 + v * 3.55;
+        const dome = 0.45 + profile * 1.13 + Math.pow(v, 2.2) * 0.25;
+        const noise = Math.sin(angle * 4 + v * 9) * 0.055 + Math.cos(angle * 7 - v * 13) * 0.042;
+        const rib = Math.pow(0.5 + 0.5 * Math.sin(angle * 16 + v * 6), 4) * 0.06;
+        const radius = (dome + (noise + rib) * profile) * scale;
+        const position = new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius * 0.82);
+        const normal = new THREE.Vector3(Math.cos(angle), 0.2, Math.sin(angle)).normalize();
+        return { position, normal, angle };
+      }
+
+      function resize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        const cycle = (elapsed % loopSeconds) / loopSeconds;
+        const phase = cycle * Math.PI * 2;
+
+        pointer.lerp(targetPointer, 0.045);
+        shell.rotation.y = phase + pointer.x * 0.24;
+        shell.rotation.z = Math.sin(phase) * 0.035;
+        shell.position.y = Math.sin(phase * 2) * 0.035;
+        holes.rotation.y = -phase * 0.18;
+
+        camera.position.x = Math.sin(phase) * 0.46 + pointer.x * 0.34;
+        camera.position.y = 1.15 + pointer.y * 0.28;
+        camera.position.z = 6.95 + Math.cos(phase) * 0.2;
+        camera.lookAt(0, 0.08, 0);
+
+        warmCore.intensity = 7.2 + 2.6 * (0.5 + 0.5 * Math.sin(phase * 2));
+        rim.position.x = Math.cos(phase) * 3.2;
+        rim.position.z = Math.sin(phase) * 3.2;
+
+        renderer.render(scene, camera);
+      }
+    </script>
+  </body>
+</html>

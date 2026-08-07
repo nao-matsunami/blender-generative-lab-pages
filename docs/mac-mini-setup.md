@@ -16,6 +16,7 @@ From this project directory:
 
 ```sh
 blender --background --python offline/generate_organic_growth_vessel.py
+blender --background --python offline/generate_voronoi_light_shell.py
 npm run check:assets
 ```
 
@@ -25,6 +26,9 @@ Expected outputs:
 exports/stl/organic-growth-vessel.stl
 exports/glb/organic-growth-vessel.glb
 renders/organic-growth-vessel.png
+exports/stl/voronoi-light-shell.stl
+exports/glb/voronoi-light-shell.glb
+renders/voronoi-light-shell.png
 ```
 
 ## Manual Render Check

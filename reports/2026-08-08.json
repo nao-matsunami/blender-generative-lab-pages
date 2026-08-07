@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-08",
+  "headline": "Voronoi Light Shell",
+  "headlineEn": "Voronoi Light Shell",
+  "summary": "穴あきの有機シェルを、ランプシェード、壁面彫刻、映像用ターンテーブルへ展開する2つ目のBlender Generative Labスタディ。",
+  "summaryEn": "The second Blender Generative Lab study: a perforated organic shell that can become a lampshade, wall sculpture, or rendered turntable object.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-08_voronoi-light-shell.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_voronoi_light_shell.py"
+    },
+    {
+      "label": "Print readiness",
+      "url": "../docs/print-readiness.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "2つ目は花器ではなく、光を通す穴あきシェルにした。VJ素材としては回転する彫刻、3Dプリントとしては小型ランプシェードや壁面オブジェへ展開できるため、映像と物理の両方で使いやすい。",
+      "bodyEn": "The second study moves from a vessel to a perforated light shell. As VJ material it can be a rotating sculpture, and as a 3D print it can become a small lampshade or wall object.",
+      "links": []
+    },
+    {
+      "title": "3Dプリントへの注意",
+      "titleEn": "3D print notes",
+      "body": "穴あき構造は見た目が強い一方、細いブリッジや鋭い端が壊れやすい。最初のSTLは小さくテストし、穴径、リブ幅、厚み、サポート材の量をスライサーで確認する。",
+      "bodyEn": "Perforated structures are visually strong but thin bridges and sharp edges can be fragile. Start with a small test STL and inspect hole size, rib width, thickness, and support needs in the slicer.",
+      "links": []
+    },
+    {
+      "title": "販売データ候補",
+      "titleEn": "Saleable package candidate",
+      "body": "この方向は、STL/GLBに加えて、ライトを内側に置いたレンダー画像、回転MP4、alpha MOV、.blendをまとめると商品として見せやすい。",
+      "bodyEn": "This direction can sell well as a pack containing STL/GLB, lit interior renders, turntable MP4, alpha MOV, and .blend source.",
+      "links": []
+    }
+  ]
+}

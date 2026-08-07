@@ -17,6 +17,18 @@ const expected = [
     label: "Transparent render",
     file: "renders/organic-growth-vessel.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/voronoi-light-shell.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/voronoi-light-shell.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/voronoi-light-shell.png",
+  },
 ];
 
 let failed = false;
@@ -41,6 +53,7 @@ if (failed) {
   console.log("");
   console.log("Run Blender first:");
   console.log("blender --background --python offline/generate_organic_growth_vessel.py");
+  console.log("blender --background --python offline/generate_voronoi_light_shell.py");
   process.exitCode = 1;
 }
 

@@ -13,6 +13,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Organic Growth Vessel` is a procedural vessel form designed for both screen-based visual work and 3D print development.
 
+## Second Study
+
+`Voronoi Light Shell` is a perforated shell direction for lampshade tests, wall objects, and rendered turntables.
+
 ## Local Site
 
 ```sh
@@ -28,6 +32,7 @@ Install Blender on the Mac mini, then run:
 
 ```sh
 blender --background --python offline/generate_organic_growth_vessel.py
+blender --background --python offline/generate_voronoi_light_shell.py
 ```
 
 Expected outputs:
@@ -36,6 +41,9 @@ Expected outputs:
 exports/stl/organic-growth-vessel.stl
 exports/glb/organic-growth-vessel.glb
 renders/organic-growth-vessel.png
+exports/stl/voronoi-light-shell.stl
+exports/glb/voronoi-light-shell.glb
+renders/voronoi-light-shell.png
 ```
 
 Check whether the expected files were created:
