@@ -38,6 +38,12 @@ exports/glb/organic-growth-vessel.glb
 renders/organic-growth-vessel.png
 ```
 
+Check whether the expected files were created:
+
+```sh
+npm run check:assets
+```
+
 ## Print Notes
 
 Start with a small test print before committing to a large object.
@@ -47,3 +53,10 @@ Start with a small test print before committing to a large object.
 - Check manifold status in Blender or the slicer.
 - Expect support material for aggressive overhangs.
 - Treat the first STL as a design study, not a final manufacturing file.
+
+## Docs
+
+- `docs/mac-mini-setup.md`
+- `docs/ai-blender-workflow.md`
+- `docs/print-readiness.md`
+- `docs/pipeline.md`

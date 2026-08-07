@@ -44,6 +44,26 @@
       "body": "このラインは、STL、GLB、.blend、生成Python、レンダー画像、回転動画をまとめたSource/Object Packにしやすい。映像素材だけでなく、物理オブジェクトとしても展開できるのが強み。",
       "bodyEn": "This line can become a Source/Object Pack containing STL, GLB, .blend, generation Python, still renders, and turntable video. Its advantage is that it can become both visual material and a physical object.",
       "links": []
+    },
+    {
+      "title": "Mac miniで確認すること",
+      "titleEn": "Mac mini validation",
+      "body": "Blenderインストール後は、まず生成スクリプトを1回だけ実行し、STL、GLB、PNGが作られるかを npm run check:assets で確認する。形の良し悪しより先に、生成、書き出し、検査の流れが通ることを優先する。",
+      "bodyEn": "After installing Blender on the Mac mini, run the generator once and verify STL, GLB, and PNG output with npm run check:assets. Before judging the form, confirm that generation, export, and validation flow works.",
+      "links": [
+        {
+          "label": "Mac mini setup",
+          "url": "../docs/mac-mini-setup.md"
+        },
+        {
+          "label": "Print readiness",
+          "url": "../docs/print-readiness.md"
+        },
+        {
+          "label": "AI + Blender workflow",
+          "url": "../docs/ai-blender-workflow.md"
+        }
+      ]
     }
   ]
 }

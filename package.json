@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node scripts/build-gallery.mjs",
     "build:gallery": "node scripts/build-gallery.mjs",
+    "check:assets": "node scripts/check-generated-assets.mjs",
     "publish:pages": "node scripts/publish-pages.mjs"
   }
 }
