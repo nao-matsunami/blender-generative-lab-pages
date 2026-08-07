@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-07",
+  "headline": "Organic Growth Vessel",
+  "headlineEn": "Organic Growth Vessel",
+  "summary": "Blender Generative Labの最初のスタディ。有機的な花器/彫刻形状をWebプレビュー、Blenderレンダー、STL/GLB書き出しへ展開する。",
+  "summaryEn": "The first Blender Generative Lab study. It develops an organic vessel/sculpture form into a web preview, Blender render, and STL/GLB exports.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-07_organic-growth-vessel.html"
+    },
+    {
+      "label": "Blender Python API",
+      "url": "https://docs.blender.org/api/current/"
+    },
+    {
+      "label": "Blender Manual",
+      "url": "https://docs.blender.org/manual/en/latest/"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "このプロジェクトはVJ素材サイトから独立させ、アルゴリズミックデザイン、有機造形、3Dプリント、映像レンダーを同じ生成パイプラインで扱う実験場にする。最初の題材は花器/彫刻として成立しやすいOrganic Growth Vesselにした。",
+      "bodyEn": "This project is separated from the VJ material sites and becomes a lab for algorithmic design, organic form, 3D printing, and rendered video from a shared generation pipeline. The first subject is Organic Growth Vessel because it can work as a vessel or sculpture.",
+      "links": []
+    },
+    {
+      "title": "3Dプリントへの展開",
+      "titleEn": "3D print route",
+      "body": "offline/generate_organic_growth_vessel.py でBlender内にノイズ駆動の器形状を生成し、Solidifyで厚みを持たせてSTL/GLBを書き出す。プリント前には壁厚、非多様体、オーバーハング、スケールを必ずスライサーで確認する。",
+      "bodyEn": "offline/generate_organic_growth_vessel.py generates a noise-driven vessel form in Blender, adds thickness with Solidify, and exports STL/GLB. Before printing, wall thickness, manifold state, overhangs, and scale must be checked in a slicer.",
+      "links": [
+        {
+          "label": "Generator script",
+          "url": "../offline/generate_organic_growth_vessel.py"
+        }
+      ]
+    },
+    {
+      "title": "販売データ候補",
+      "titleEn": "Saleable package candidate",
+      "body": "このラインは、STL、GLB、.blend、生成Python、レンダー画像、回転動画をまとめたSource/Object Packにしやすい。映像素材だけでなく、物理オブジェクトとしても展開できるのが強み。",
+      "bodyEn": "This line can become a Source/Object Pack containing STL, GLB, .blend, generation Python, still renders, and turntable video. Its advantage is that it can become both visual material and a physical object.",
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "blender-generative-lab-pages-source",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-gallery.mjs",
+    "build:gallery": "node scripts/build-gallery.mjs",
+    "publish:pages": "node scripts/publish-pages.mjs"
+  }
+}

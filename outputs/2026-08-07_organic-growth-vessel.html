@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Organic Growth Vessel / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #050505;
+        --ink: #f3f0e8;
+        --muted: #aaa79c;
+        --clay: #d8895f;
+        --cyan: #79d8ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 46%, rgba(111, 78, 62, 0.34), transparent 39%),
+          #050505;
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.76);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(22px, 4.6vw, 58px);
+        line-height: 0.96;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 8px 0 0;
+        max-width: 660px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.35vw, 15px);
+        line-height: 1.55;
+      }
+
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(243, 240, 232, 0.28);
+        background: rgba(5, 5, 5, 0.46);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(243, 240, 232, 0.13);
+      }
+
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--clay), var(--cyan), #f3f0e8);
+        animation: loop-meter 18s linear infinite;
+      }
+
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+
+      @media (max-width: 720px) {
+        .hud {
+          display: block;
+        }
+
+        a {
+          display: inline-block;
+          margin-top: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Organic Growth Vessel procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Organic Growth Vessel</h1>
+        <p>Blender Generative Lab / algorithmic vessel study / STL + GLB pipeline candidate</p>
+      </div>
+      <a href="../days/2026-08-07.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setClearColor(0x000000, 0);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.08;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x050505, 0.04);
+
+      const camera = new THREE.PerspectiveCamera(46, 1, 0.1, 80);
+      camera.position.set(0, 1.45, 6.8);
+
+      const loopSeconds = 18;
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+
+      const vessel = createVessel();
+      scene.add(vessel);
+
+      const wire = new THREE.LineSegments(
+        new THREE.WireframeGeometry(vessel.geometry),
+        new THREE.LineBasicMaterial({ color: 0x79d8ff, transparent: true, opacity: 0.18 }),
+      );
+      vessel.add(wire);
+
+      const baseGrid = new THREE.GridHelper(7, 42, 0x8b6048, 0x2b2a26);
+      baseGrid.position.y = -1.85;
+      baseGrid.material.transparent = true;
+      baseGrid.material.opacity = 0.28;
+      scene.add(baseGrid);
+
+      const ringGroup = new THREE.Group();
+      scene.add(ringGroup);
+      for (let i = 0; i < 8; i += 1) {
+        const ring = new THREE.Mesh(
+          new THREE.TorusGeometry(1.1 + i * 0.18, 0.006, 8, 180),
+          new THREE.MeshBasicMaterial({
+            color: i % 2 === 0 ? 0xd8895f : 0x79d8ff,
+            transparent: true,
+            opacity: 0.08 + i * 0.012,
+          }),
+        );
+        ring.rotation.x = Math.PI / 2;
+        ring.position.y = -1.4 + i * 0.34;
+        ring.scale.x = 1.0 + i * 0.035;
+        ring.scale.z = 0.78 + i * 0.028;
+        ringGroup.add(ring);
+      }
+
+      const key = new THREE.AreaLight(0xffb081, 4.4, 5, 5);
+      key.position.set(-2.6, -3.4, 4.2);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0x79d8ff, 5.8, 14);
+      rim.position.set(2.8, 2.6, 2.8);
+      scene.add(rim);
+
+      const fill = new THREE.HemisphereLight(0x536b77, 0x241a13, 1.1);
+      scene.add(fill);
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+
+      window.addEventListener("click", () => {
+        vessel.rotation.y += Math.PI / 4;
+      });
+
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function createVessel() {
+        const radialSegments = 144;
+        const heightSegments = 76;
+        const vertices = [];
+        const normals = [];
+        const uvs = [];
+        const indices = [];
+
+        for (let yIndex = 0; yIndex <= heightSegments; yIndex += 1) {
+          const v = yIndex / heightSegments;
+          const y = -1.7 + v * 3.45;
+          const profile = Math.sin(v * Math.PI);
+          const waist = 0.58 + profile * 0.7;
+          const lip = 0.25 * Math.pow(v, 4);
+          const foot = 0.26 * Math.pow(1 - v, 5);
+          const baseRadius = waist + lip + foot;
+
+          for (let xIndex = 0; xIndex <= radialSegments; xIndex += 1) {
+            const u = xIndex / radialSegments;
+            const angle = u * Math.PI * 2;
+            const growth =
+              Math.sin(angle * 5 + v * 8.5) * 0.075 +
+              Math.sin(angle * 9 - v * 15.0) * 0.035 +
+              Math.cos(angle * 2 + v * 5.0) * 0.05;
+            const rib = Math.pow(0.5 + 0.5 * Math.sin(angle * 14 + v * 4.0), 5) * 0.09;
+            const radius = baseRadius + growth * profile + rib * profile;
+            vertices.push(Math.cos(angle) * radius, y, Math.sin(angle) * radius * 0.82);
+            normals.push(Math.cos(angle), 0.2, Math.sin(angle));
+            uvs.push(u, v);
+          }
+        }
+
+        for (let yIndex = 0; yIndex < heightSegments; yIndex += 1) {
+          for (let xIndex = 0; xIndex < radialSegments; xIndex += 1) {
+            const a = yIndex * (radialSegments + 1) + xIndex;
+            const b = a + radialSegments + 1;
+            indices.push(a, b, a + 1, b, b + 1, a + 1);
+          }
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setIndex(indices);
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+        geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+        geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+        geometry.computeVertexNormals();
+
+        const material = new THREE.MeshPhysicalMaterial({
+          color: 0xd8895f,
+          roughness: 0.42,
+          metalness: 0.02,
+          clearcoat: 0.36,
+          clearcoatRoughness: 0.52,
+          transmission: 0.08,
+          thickness: 0.28,
+          emissive: 0x160805,
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.rotation.x = 0.02;
+        return mesh;
+      }
+
+      function resize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        const cycle = (elapsed % loopSeconds) / loopSeconds;
+        const phase = cycle * Math.PI * 2;
+
+        pointer.lerp(targetPointer, 0.045);
+        vessel.rotation.y = phase + pointer.x * 0.24;
+        vessel.rotation.z = Math.sin(phase) * 0.03;
+        vessel.position.y = Math.sin(phase * 2) * 0.025;
+        ringGroup.rotation.y = -phase * 0.35;
+        ringGroup.position.y = Math.sin(phase) * 0.04;
+
+        camera.position.x = Math.sin(phase) * 0.45 + pointer.x * 0.38;
+        camera.position.y = 1.45 + pointer.y * 0.28;
+        camera.position.z = 6.65 + Math.cos(phase) * 0.18;
+        camera.lookAt(0, 0.1, 0);
+
+        rim.position.x = Math.cos(phase) * 3.0;
+        rim.position.z = Math.sin(phase) * 3.0;
+        wire.material.opacity = 0.12 + 0.08 * (0.5 + 0.5 * Math.sin(phase * 3));
+
+        renderer.render(scene, camera);
+      }
+    </script>
+  </body>
+</html>
