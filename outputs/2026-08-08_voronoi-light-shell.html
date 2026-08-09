@@ -93,6 +93,19 @@
         background: rgba(244, 240, 232, 0.13);
       }
 
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: #77dbff;
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+      }
+
       .meter span {
         display: block;
         width: 100%;
@@ -129,6 +142,7 @@
       <a href="../days/2026-08-08.html">Daily report</a>
     </div>
     <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">web rev 02 / large cutout shell</div>
 
     <script type="module">
       import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
@@ -166,6 +180,13 @@
       const holes = new THREE.Group();
       shell.add(holes);
       const holeMaterial = new THREE.LineBasicMaterial({ color: 0x77dbff, transparent: true, opacity: 0.78 });
+      const voidMaterial = new THREE.MeshBasicMaterial({
+        color: 0x050607,
+        transparent: true,
+        opacity: 0.72,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+      });
       cellWindows.forEach((window, i) => {
         const curve = new THREE.BufferGeometry();
         const points = [];
@@ -179,6 +200,16 @@
         }
         curve.setFromPoints(points);
         holes.add(new THREE.Line(curve, holeMaterial));
+
+        const center = shellPoint(window.u, window.v, 1.035);
+        const voidDisc = new THREE.Mesh(
+          new THREE.CircleGeometry(1, 44),
+          voidMaterial,
+        );
+        voidDisc.position.copy(center.position);
+        voidDisc.rotation.set(Math.PI / 2 - window.v * 0.55, 0, -center.angle + window.twist * 0.18);
+        voidDisc.scale.set(window.w * 6.8, window.h * 8.4, 1);
+        holes.add(voidDisc);
       });
 
       const floor = new THREE.GridHelper(7, 36, 0x8a5f37, 0x27241f);
@@ -288,12 +319,12 @@
 
       function createCellWindows() {
         const windows = [];
-        for (let i = 0; i < 46; i += 1) {
+        for (let i = 0; i < 58; i += 1) {
           windows.push({
             u: wrap01(i * 0.61803398875 + 0.08 * Math.sin(i * 2.17)),
-            v: 0.12 + ((i * 0.379 + 0.04 * Math.cos(i * 1.31)) % 0.76),
-            w: 0.018 + 0.014 * (0.5 + 0.5 * Math.sin(i * 1.83)),
-            h: 0.018 + 0.018 * (0.5 + 0.5 * Math.cos(i * 2.21)),
+            v: 0.1 + ((i * 0.379 + 0.04 * Math.cos(i * 1.31)) % 0.8),
+            w: 0.032 + 0.026 * (0.5 + 0.5 * Math.sin(i * 1.83)),
+            h: 0.028 + 0.03 * (0.5 + 0.5 * Math.cos(i * 2.21)),
             twist: i * 0.73,
           });
         }
