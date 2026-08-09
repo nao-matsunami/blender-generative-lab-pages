@@ -15,8 +15,8 @@ brew install ffmpeg
 From this project directory:
 
 ```sh
-blender --background --python offline/generate_organic_growth_vessel.py
-blender --background --python offline/generate_voronoi_light_shell.py
+npm run blender:organic
+npm run blender:voronoi
 npm run check:assets
 ```
 
@@ -40,6 +40,23 @@ Open Blender normally and inspect:
 - wall thickness
 - camera framing
 - export paths
+
+## Blender Path
+
+The helper scripts look for Blender in this order:
+
+1. `BLENDER_BIN`
+2. `blender` on `PATH`
+3. `/Applications/Blender.app/Contents/MacOS/Blender`
+4. `/Applications/Blender 4.5.app/Contents/MacOS/Blender`
+
+If multiple versions are installed, choose explicitly:
+
+```sh
+BLENDER_BIN="/Applications/Blender 4.5.app/Contents/MacOS/Blender" npm run blender:organic
+```
+
+If Blender 5.2 crashes during startup on this Mac, install Blender 4.5 LTS side-by-side and use `BLENDER_BIN`.
 
 ## Video Expansion
 

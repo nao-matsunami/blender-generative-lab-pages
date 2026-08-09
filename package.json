@@ -7,6 +7,8 @@
     "build": "node scripts/build-gallery.mjs",
     "build:gallery": "node scripts/build-gallery.mjs",
     "check:assets": "node scripts/check-generated-assets.mjs",
+    "blender:organic": "node scripts/run-blender-study.mjs offline/generate_organic_growth_vessel.py",
+    "blender:voronoi": "node scripts/run-blender-study.mjs offline/generate_voronoi_light_shell.py",
     "publish:pages": "node scripts/publish-pages.mjs"
   }
 }

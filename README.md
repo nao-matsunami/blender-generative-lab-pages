@@ -31,8 +31,8 @@ Open `http://localhost:4247/`.
 Install Blender on the Mac mini, then run:
 
 ```sh
-blender --background --python offline/generate_organic_growth_vessel.py
-blender --background --python offline/generate_voronoi_light_shell.py
+npm run blender:organic
+npm run blender:voronoi
 ```
 
 Expected outputs:
@@ -65,6 +65,7 @@ Start with a small test print before committing to a large object.
 ## Docs
 
 - `docs/mac-mini-setup.md`
+- `docs/blender-troubleshooting.md`
 - `docs/ai-blender-workflow.md`
 - `docs/print-readiness.md`
 - `docs/pipeline.md`
