@@ -32,6 +32,8 @@ Then check from Terminal:
 npm run check:assets
 ```
 
+If the render is too close or cropped, rerun this same GUI script after pulling the latest project files. The camera targets are set near the generated object's center and should frame the full object.
+
 ## Why This Exists
 
 On the current Mac mini M4 / macOS 26.5 environment, Blender 4.2, 4.5, and 5.2 all crash during command-line/background startup at Metal backend detection. The normal GUI can still open, so this file runs the same project scripts from inside Blender after the UI has already started.

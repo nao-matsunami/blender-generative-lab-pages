@@ -142,14 +142,16 @@ def setup_scene(obj: bpy.types.Object) -> None:
     scene.world = world
     world.color = (0.0, 0.0, 0.0)
 
-    bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, 18))
+    obj.location.z = HEIGHT_MM * 0.5
+
+    bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, HEIGHT_MM * 0.54))
     target = bpy.context.object
     target.name = "render_target"
 
-    bpy.ops.object.camera_add(location=(0, -250, 68), rotation=(math.radians(76), 0, 0))
+    bpy.ops.object.camera_add(location=(0, -330, HEIGHT_MM * 0.58), rotation=(math.radians(76), 0, 0))
     camera = bpy.context.object
     camera.name = "render_camera"
-    camera.data.lens = 72
+    camera.data.lens = 42
     bpy.context.scene.camera = camera
     constraint = camera.constraints.new(type="TRACK_TO")
     constraint.track_axis = "TRACK_NEGATIVE_Z"
@@ -168,8 +170,6 @@ def setup_scene(obj: bpy.types.Object) -> None:
     rim.data.color = (0.48, 0.84, 1.0)
     rim.data.energy = 260
     rim.data.shadow_soft_size = 80
-
-    obj.location.z = HEIGHT_MM * 0.5
 
 
 def export_stl(obj: bpy.types.Object) -> None:
