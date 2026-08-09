@@ -92,3 +92,17 @@ exports/stl/voronoi-light-shell-fallback.stl
 ```
 
 These fallback files are useful for early slicer inspection, but they do not replace the Blender pipeline because they do not create GLB, renders, materials, modifiers, or `.blend` files.
+
+## GUI Manual Run
+
+Because Blender opens manually on this Mac, use the GUI runner before giving up on Blender:
+
+```txt
+offline/gui_run_all.py
+```
+
+Instructions:
+
+```txt
+docs/gui-manual-run.md
+```

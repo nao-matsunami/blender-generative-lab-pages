@@ -19,6 +19,8 @@ import bpy
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if "BLENDER_LAB_ROOT" in __import__("os").environ:
+    ROOT = Path(__import__("os").environ["BLENDER_LAB_ROOT"]).resolve()
 STL_PATH = ROOT / "exports" / "stl" / "voronoi-light-shell.stl"
 GLB_PATH = ROOT / "exports" / "glb" / "voronoi-light-shell.glb"
 RENDER_PATH = ROOT / "renders" / "voronoi-light-shell.png"

@@ -19,6 +19,8 @@ import bpy
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if "BLENDER_LAB_ROOT" in __import__("os").environ:
+    ROOT = Path(__import__("os").environ["BLENDER_LAB_ROOT"]).resolve()
 STL_PATH = ROOT / "exports" / "stl" / "organic-growth-vessel.stl"
 GLB_PATH = ROOT / "exports" / "glb" / "organic-growth-vessel.glb"
 RENDER_PATH = ROOT / "renders" / "organic-growth-vessel.png"
