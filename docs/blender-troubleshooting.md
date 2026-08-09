@@ -63,3 +63,32 @@ GPU_backend_type_selection_detect
 ## What Not To Debug First
 
 Do not spend time tuning STL geometry, modifiers, or render settings until the minimal startup test works.
+
+## macOS 26.5 / M4 Metal Crash
+
+On this Mac mini M4 with macOS 26.5, Blender 4.5.12 LTS Apple Silicon still crashes at the same Metal backend detection step.
+
+Confirmed:
+
+```txt
+Mac architecture: arm64
+Blender binary: arm64
+Crash: blender::gpu::supports_barycentric_whitelist
+```
+
+This means the architecture mismatch is fixed, but Blender still cannot initialize the Metal backend on this OS/GPU combination.
+
+Until Blender starts successfully, use the fallback STL generator:
+
+```sh
+npm run fallback:stl
+```
+
+This creates STL study files without Blender:
+
+```txt
+exports/stl/organic-growth-vessel-fallback.stl
+exports/stl/voronoi-light-shell-fallback.stl
+```
+
+These fallback files are useful for early slicer inspection, but they do not replace the Blender pipeline because they do not create GLB, renders, materials, modifiers, or `.blend` files.

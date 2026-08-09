@@ -67,6 +67,12 @@ file /Applications/Blender.app/Contents/MacOS/Blender
 
 If the Mac is `arm64` but Blender is `x86_64`, install the Apple Silicon build instead.
 
+If Blender is arm64 but still crashes during Metal initialization, generate fallback STL studies while Blender is blocked:
+
+```sh
+npm run fallback:stl
+```
+
 ## Video Expansion
 
 After the still/object export works, add a turntable script:
