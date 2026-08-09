@@ -14,7 +14,7 @@ The crash happens before the project generator scripts run, so this is not cause
 
 ## Recommended Fix
 
-Install Blender 4.5 LTS side-by-side and point the project to it:
+Install the Apple Silicon / arm64 build of Blender 4.5 LTS side-by-side and point the project to it:
 
 ```sh
 BLENDER_BIN="/Applications/Blender 4.5.app/Contents/MacOS/Blender" npm run blender:organic
@@ -22,6 +22,19 @@ BLENDER_BIN="/Applications/Blender 4.5.app/Contents/MacOS/Blender" npm run blend
 ```
 
 Blender 4.5 LTS is a better production target for this lab until 5.2 startup is stable on this Mac.
+
+## Architecture Mismatch
+
+If this Mac reports `arm64` but `file /Applications/Blender.app/Contents/MacOS/Blender` reports `x86_64`, the Intel build was installed.
+
+Check:
+
+```sh
+uname -m
+file /Applications/Blender.app/Contents/MacOS/Blender
+```
+
+On Apple Silicon, install the Apple Silicon / arm64 Blender build. The Intel build may run through Rosetta for some UI cases, but it is not a good target for this background generation pipeline.
 
 ## Minimal Startup Test
 

@@ -58,6 +58,15 @@ BLENDER_BIN="/Applications/Blender 4.5.app/Contents/MacOS/Blender" npm run blend
 
 If Blender 5.2 crashes during startup on this Mac, install Blender 4.5 LTS side-by-side and use `BLENDER_BIN`.
 
+On Apple Silicon Macs, confirm that the Blender binary is arm64:
+
+```sh
+uname -m
+file /Applications/Blender.app/Contents/MacOS/Blender
+```
+
+If the Mac is `arm64` but Blender is `x86_64`, install the Apple Silicon build instead.
+
 ## Video Expansion
 
 After the still/object export works, add a turntable script:

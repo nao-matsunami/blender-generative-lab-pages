@@ -26,6 +26,12 @@ if (!blender) {
 }
 
 console.log(`Using Blender: ${blender}`);
+const architectureCheck = await checkArchitecture(blender);
+if (!architectureCheck.ok) {
+  console.error(architectureCheck.message);
+  process.exit(1);
+}
+
 const args = ["--background", "--factory-startup", "--python", scriptPath];
 const child = spawn(blender, args, {
   cwd: path.resolve(path.dirname(new URL(import.meta.url).pathname), ".."),
@@ -64,5 +70,39 @@ function commandExists(command) {
   return new Promise((resolve) => {
     const child = spawn("zsh", ["-lc", `command -v ${JSON.stringify(command)}`], { stdio: "ignore" });
     child.on("exit", (code) => resolve(code === 0));
+  });
+}
+
+async function checkArchitecture(blenderPath) {
+  if (!blenderPath.includes("/")) return { ok: true, message: "" };
+
+  const machine = await capture("uname", ["-m"]);
+  const binary = await capture("file", [blenderPath]);
+
+  if (machine.trim() === "arm64" && binary.includes("x86_64") && !binary.includes("arm64")) {
+    return {
+      ok: false,
+      message: [
+        "Blender architecture mismatch detected.",
+        `Mac architecture: ${machine.trim()}`,
+        `Blender binary: ${binary.trim()}`,
+        "",
+        "Install the Apple Silicon / arm64 Blender build, then retry:",
+        "npm run blender:organic",
+      ].join("\n"),
+    };
+  }
+
+  return { ok: true, message: "" };
+}
+
+function capture(command, args) {
+  return new Promise((resolve) => {
+    let stdout = "";
+    const child = spawn(command, args, { stdio: ["ignore", "pipe", "ignore"] });
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk.toString();
+    });
+    child.on("exit", () => resolve(stdout));
   });
 }
