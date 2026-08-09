@@ -12,7 +12,7 @@ From Terminal:
 npm run watcher:start
 ```
 
-This opens/activates Blender, switches to the Python Console, pastes:
+This opens/activates Blender, switches to the Python Console, places this command on the clipboard, pastes it:
 
 ```python
 exec(open("/Users/nao/Documents/Codex/2026-08-03-xr-glsl-vj/blender-generative-lab/offline/gui_job_watcher.py").read())
@@ -21,6 +21,8 @@ exec(open("/Users/nao/Documents/Codex/2026-08-03-xr-glsl-vj/blender-generative-l
 and presses Return.
 
 macOS may ask for Accessibility permission because the script uses System Events to press keys. If it asks, allow Terminal/iTerm/Codex, then run `npm run watcher:start` again.
+
+If UI automation fails, the command is copied to the clipboard. Paste it into Blender's Python Console and press Return.
 
 ### Manual Start
 

@@ -16,11 +16,12 @@ if [ ! -f "$WATCHER" ]; then
   exit 1
 fi
 
-printf "%s" "$PYTHON_CODE" | pbcopy
-
 open "$BLENDER_APP" || true
 
-osascript <<'APPLESCRIPT'
+if osascript <<'APPLESCRIPT'
+set watcherCommand to "exec(open(\"/Users/nao/Documents/Codex/2026-08-03-xr-glsl-vj/blender-generative-lab/offline/gui_job_watcher.py\").read())"
+set the clipboard to watcherCommand
+
 on wait_for_blender()
   repeat 30 times
     tell application "System Events"
@@ -35,13 +36,10 @@ if wait_for_blender() is false then
   error "Blender process did not appear."
 end if
 
-tell application "Blender" to activate
-delay 2
-
 tell application "System Events"
   tell process "Blender"
     set frontmost to true
-    delay 0.5
+    delay 1
     key code 118 using {shift down}
     delay 0.8
     keystroke "v" using {command down}
@@ -50,6 +48,15 @@ tell application "System Events"
   end tell
 end tell
 APPLESCRIPT
-
-echo "Watcher start command was pasted into Blender's Python Console."
-echo "If macOS asks for Accessibility permission, allow Terminal/iTerm/Codex and run this command again."
+then
+  echo "Watcher start command was pasted into Blender's Python Console."
+  echo "If macOS asks for Accessibility permission, allow Terminal/iTerm/Codex and run this command again."
+else
+  osascript -e 'set the clipboard to "exec(open(\"/Users/nao/Documents/Codex/2026-08-03-xr-glsl-vj/blender-generative-lab/offline/gui_job_watcher.py\").read())"' || true
+  echo "Could not automate Blender's UI from this shell."
+  echo "The watcher command has been copied to the clipboard if clipboard access is available."
+  echo "Paste it into Blender's Python Console and press Return:"
+  echo
+  echo 'exec(open("/Users/nao/Documents/Codex/2026-08-03-xr-glsl-vj/blender-generative-lab/offline/gui_job_watcher.py").read())'
+  exit 2
+fi
