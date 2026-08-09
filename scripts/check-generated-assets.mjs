@@ -18,6 +18,10 @@ const expected = [
     file: "renders/organic-growth-vessel.png",
   },
   {
+    label: "Readable preview render",
+    file: "renders/organic-growth-vessel-preview.png",
+  },
+  {
     label: "STL print export",
     file: "exports/stl/voronoi-light-shell.stl",
   },
@@ -28,6 +32,10 @@ const expected = [
   {
     label: "Transparent render",
     file: "renders/voronoi-light-shell.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/voronoi-light-shell-preview.png",
   },
 ];
 

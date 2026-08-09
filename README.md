@@ -45,9 +45,11 @@ Expected outputs:
 exports/stl/organic-growth-vessel.stl
 exports/glb/organic-growth-vessel.glb
 renders/organic-growth-vessel.png
+renders/organic-growth-vessel-preview.png
 exports/stl/voronoi-light-shell.stl
 exports/glb/voronoi-light-shell.glb
 renders/voronoi-light-shell.png
+renders/voronoi-light-shell-preview.png
 ```
 
 Check whether the expected files were created:
@@ -55,6 +57,8 @@ Check whether the expected files were created:
 ```sh
 npm run check:assets
 ```
+
+Use the `*-preview.png` files for visual review. The non-preview PNG files keep a transparent background for compositing, so many image viewers display the transparent area as black.
 
 ## Print Notes
 
