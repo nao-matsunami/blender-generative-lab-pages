@@ -158,24 +158,28 @@
       const shell = new THREE.Group();
       scene.add(shell);
 
+      const cellWindows = createCellWindows();
       const outer = createShellMesh(false);
       const innerGlow = createShellMesh(true);
       shell.add(outer, innerGlow);
 
       const holes = new THREE.Group();
       shell.add(holes);
-      const holeMaterial = new THREE.LineBasicMaterial({ color: 0xffc27b, transparent: true, opacity: 0.42 });
-      for (let i = 0; i < 84; i += 1) {
-        const v = 0.08 + (i % 14) / 13 * 0.84;
-        const band = Math.floor(i / 14);
-        const u = ((i * 0.382 + band * 0.08) % 1 + 1) % 1;
-        const point = shellPoint(u, v, 1.012);
-        const ring = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.TorusGeometry(0.055 + (i % 4) * 0.009, 0.004, 6, 18)), holeMaterial);
-        ring.position.copy(point.position);
-        ring.rotation.set(point.normal.z * 0.7, 0, -point.angle);
-        ring.scale.x = 1.0 + Math.sin(i) * 0.18;
-        holes.add(ring);
-      }
+      const holeMaterial = new THREE.LineBasicMaterial({ color: 0x77dbff, transparent: true, opacity: 0.78 });
+      cellWindows.forEach((window, i) => {
+        const curve = new THREE.BufferGeometry();
+        const points = [];
+        for (let index = 0; index <= 36; index += 1) {
+          const t = (index / 36) * Math.PI * 2;
+          const du = Math.cos(t) * window.w * (1 + 0.22 * Math.sin(t * 3 + i));
+          const dv = Math.sin(t) * window.h;
+          const u = wrap01(window.u + du * Math.cos(window.twist) - dv * Math.sin(window.twist) * 0.42);
+          const v = clamp(window.v + du * Math.sin(window.twist) + dv * Math.cos(window.twist), 0.06, 0.94);
+          points.push(shellPoint(u, v, 1.028).position);
+        }
+        curve.setFromPoints(points);
+        holes.add(new THREE.Line(curve, holeMaterial));
+      });
 
       const floor = new THREE.GridHelper(7, 36, 0x8a5f37, 0x27241f);
       floor.position.y = -1.95;
@@ -187,8 +191,9 @@
       warmCore.position.set(0, 0.1, 0);
       scene.add(warmCore);
 
-      const key = new THREE.AreaLight(0xffba78, 4.0, 5, 5);
+      const key = new THREE.RectAreaLight(0xffba78, 4.0, 5, 5);
       key.position.set(-2.8, -3.4, 4.6);
+      key.lookAt(0, 0.2, 0);
       scene.add(key);
 
       const rim = new THREE.PointLight(0x77dbff, 4.8, 14);
@@ -209,8 +214,8 @@
       renderer.setAnimationLoop(render);
 
       function createShellMesh(isGlow) {
-        const radialSegments = 152;
-        const heightSegments = 88;
+        const radialSegments = 220;
+        const heightSegments = 132;
         const vertices = [];
         const normals = [];
         const uvs = [];
@@ -229,6 +234,9 @@
 
         for (let yIndex = 0; yIndex < heightSegments; yIndex += 1) {
           for (let xIndex = 0; xIndex < radialSegments; xIndex += 1) {
+            const centerU = (xIndex + 0.5) / radialSegments;
+            const centerV = (yIndex + 0.5) / heightSegments;
+            if (isInsideCellWindow(centerU, centerV)) continue;
             const a = yIndex * (radialSegments + 1) + xIndex;
             const b = a + radialSegments + 1;
             indices.push(a, b, a + 1, b, b + 1, a + 1);
@@ -243,17 +251,18 @@
         geometry.computeVertexNormals();
 
         const material = isGlow
-          ? new THREE.MeshBasicMaterial({ color: 0xff8d45, transparent: true, opacity: 0.18, side: THREE.BackSide })
+          ? new THREE.MeshBasicMaterial({ color: 0xff8d45, transparent: true, opacity: 0.2, side: THREE.BackSide })
           : new THREE.MeshPhysicalMaterial({
-              color: 0xc98554,
-              roughness: 0.58,
+              color: 0xd69456,
+              roughness: 0.46,
               metalness: 0.02,
-              clearcoat: 0.18,
-              clearcoatRoughness: 0.62,
+              clearcoat: 0.3,
+              clearcoatRoughness: 0.54,
               transparent: true,
-              opacity: 0.86,
+              opacity: 0.92,
               side: THREE.DoubleSide,
-              emissive: 0x120805,
+              emissive: 0x2c0d04,
+              emissiveIntensity: 0.16,
             });
 
         return new THREE.Mesh(geometry, material);
@@ -263,13 +272,60 @@
         const angle = u * Math.PI * 2;
         const profile = Math.sin(v * Math.PI);
         const y = -1.75 + v * 3.55;
-        const dome = 0.45 + profile * 1.13 + Math.pow(v, 2.2) * 0.25;
-        const noise = Math.sin(angle * 4 + v * 9) * 0.055 + Math.cos(angle * 7 - v * 13) * 0.042;
-        const rib = Math.pow(0.5 + 0.5 * Math.sin(angle * 16 + v * 6), 4) * 0.06;
-        const radius = (dome + (noise + rib) * profile) * scale;
+        const dome = 0.38 + profile * 0.96;
+        const shoulder = 0.36 * Math.exp(-((v - 0.62) / 0.18) ** 2);
+        const crownTaper = -0.23 * Math.exp(-((v - 0.96) / 0.07) ** 2);
+        const footTaper = -0.13 * Math.exp(-((v - 0.04) / 0.06) ** 2);
+        const macro = Math.sin(angle * 4 + v * 9) * 0.096;
+        const micro = Math.cos(angle * 7 - v * 13) * 0.07;
+        const cellular = Math.sin(angle * 11 + Math.sin(v * 11) * 2) * 0.064;
+        const rib = Math.pow(0.5 + 0.5 * Math.sin(angle * 16 + v * 6), 4) * 0.105;
+        const radius = (dome + shoulder + crownTaper + footTaper + (macro + micro + cellular + rib) * profile) * scale;
         const position = new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius * 0.82);
         const normal = new THREE.Vector3(Math.cos(angle), 0.2, Math.sin(angle)).normalize();
         return { position, normal, angle };
+      }
+
+      function createCellWindows() {
+        const windows = [];
+        for (let i = 0; i < 46; i += 1) {
+          windows.push({
+            u: wrap01(i * 0.61803398875 + 0.08 * Math.sin(i * 2.17)),
+            v: 0.12 + ((i * 0.379 + 0.04 * Math.cos(i * 1.31)) % 0.76),
+            w: 0.018 + 0.014 * (0.5 + 0.5 * Math.sin(i * 1.83)),
+            h: 0.018 + 0.018 * (0.5 + 0.5 * Math.cos(i * 2.21)),
+            twist: i * 0.73,
+          });
+        }
+        return windows;
+      }
+
+      function isInsideCellWindow(u, v) {
+        for (const window of cellWindows) {
+          const du = wrappedDelta(u, window.u);
+          const dv = v - window.v;
+          const twist = -window.twist;
+          const localU = du * Math.cos(twist) - dv * Math.sin(twist) * 0.42;
+          const localV = du * Math.sin(twist) + dv * Math.cos(twist);
+          const wobble = 1 + 0.18 * Math.sin((u + v) * Math.PI * 16);
+          if ((localU / (window.w * wobble)) ** 2 + (localV / window.h) ** 2 < 1) return true;
+        }
+        return false;
+      }
+
+      function wrappedDelta(a, b) {
+        let delta = a - b;
+        if (delta > 0.5) delta -= 1;
+        if (delta < -0.5) delta += 1;
+        return delta;
+      }
+
+      function wrap01(value) {
+        return ((value % 1) + 1) % 1;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
       }
 
       function resize() {

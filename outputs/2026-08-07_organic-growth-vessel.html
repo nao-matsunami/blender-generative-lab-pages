@@ -159,11 +159,21 @@
       const vessel = createVessel();
       scene.add(vessel);
 
-      const wire = new THREE.LineSegments(
-        new THREE.WireframeGeometry(vessel.geometry),
-        new THREE.LineBasicMaterial({ color: 0x79d8ff, transparent: true, opacity: 0.18 }),
-      );
-      vessel.add(wire);
+      const readLines = new THREE.Group();
+      scene.add(readLines);
+      const readLineMaterial = new THREE.LineBasicMaterial({ color: 0xffc486, transparent: true, opacity: 0.68 });
+      for (let i = 0; i < 18; i += 1) {
+        const curve = new THREE.BufferGeometry();
+        const points = [];
+        const seed = i / 18;
+        for (let step = 0; step <= 96; step += 1) {
+          const v = 0.08 + (step / 96) * 0.82;
+          const u = wrap01(seed + 0.038 * Math.sin(v * Math.PI * 4.8 + i) + v * 0.055);
+          points.push(vesselPoint(u, v, 1.018));
+        }
+        curve.setFromPoints(points);
+        readLines.add(new THREE.Line(curve, readLineMaterial));
+      }
 
       const baseGrid = new THREE.GridHelper(7, 42, 0x8b6048, 0x2b2a26);
       baseGrid.position.y = -1.85;
@@ -189,8 +199,9 @@
         ringGroup.add(ring);
       }
 
-      const key = new THREE.AreaLight(0xffb081, 4.4, 5, 5);
+      const key = new THREE.RectAreaLight(0xffb081, 4.4, 5, 5);
       key.position.set(-2.6, -3.4, 4.2);
+      key.lookAt(0, 0.2, 0);
       scene.add(key);
 
       const rim = new THREE.PointLight(0x79d8ff, 5.8, 14);
@@ -224,21 +235,11 @@
         for (let yIndex = 0; yIndex <= heightSegments; yIndex += 1) {
           const v = yIndex / heightSegments;
           const y = -1.7 + v * 3.45;
-          const profile = Math.sin(v * Math.PI);
-          const waist = 0.58 + profile * 0.7;
-          const lip = 0.25 * Math.pow(v, 4);
-          const foot = 0.26 * Math.pow(1 - v, 5);
-          const baseRadius = waist + lip + foot;
 
           for (let xIndex = 0; xIndex <= radialSegments; xIndex += 1) {
             const u = xIndex / radialSegments;
             const angle = u * Math.PI * 2;
-            const growth =
-              Math.sin(angle * 5 + v * 8.5) * 0.075 +
-              Math.sin(angle * 9 - v * 15.0) * 0.035 +
-              Math.cos(angle * 2 + v * 5.0) * 0.05;
-            const rib = Math.pow(0.5 + 0.5 * Math.sin(angle * 14 + v * 4.0), 5) * 0.09;
-            const radius = baseRadius + growth * profile + rib * profile;
+            const radius = vesselRadius(u, v);
             vertices.push(Math.cos(angle) * radius, y, Math.sin(angle) * radius * 0.82);
             normals.push(Math.cos(angle), 0.2, Math.sin(angle));
             uvs.push(u, v);
@@ -261,19 +262,50 @@
         geometry.computeVertexNormals();
 
         const material = new THREE.MeshPhysicalMaterial({
-          color: 0xd8895f,
-          roughness: 0.42,
+          color: 0xea7a4d,
+          roughness: 0.38,
           metalness: 0.02,
-          clearcoat: 0.36,
-          clearcoatRoughness: 0.52,
-          transmission: 0.08,
-          thickness: 0.28,
-          emissive: 0x160805,
+          clearcoat: 0.46,
+          clearcoatRoughness: 0.48,
+          transmission: 0.04,
+          thickness: 0.24,
+          emissive: 0x2a0c04,
+          emissiveIntensity: 0.08,
         });
 
         const mesh = new THREE.Mesh(geometry, material);
         mesh.rotation.x = 0.02;
         return mesh;
+      }
+
+      function vesselRadius(u, v) {
+        const angle = u * Math.PI * 2;
+        const profile = Math.sin(v * Math.PI);
+        const waist = 0.5 + profile * 0.62;
+        const shoulder = 0.28 * Math.exp(-((v - 0.68) / 0.16) ** 2);
+        const neckCut = -0.27 * Math.exp(-((v - 0.91) / 0.08) ** 2);
+        const lip = 0.36 * Math.exp(-((v - 0.985) / 0.035) ** 2);
+        const foot = 0.28 * Math.exp(-((v - 0.055) / 0.045) ** 2);
+        const verticalPulse = Math.sin(v * Math.PI * 3 + 0.6) * 0.05;
+        const growth =
+          Math.sin(angle * 5 + v * 8.5) * 0.116 +
+          Math.sin(angle * 9 - v * 15.0) * 0.056 +
+          Math.cos(angle * 2 + v * 5.0) * 0.072;
+        const ribWave = Math.sin(angle * 18 + v * 10);
+        const rib = Math.max(0, ribWave) ** 6 * 0.19;
+        const flute = -(Math.max(0, -ribWave) ** 4) * 0.09;
+        return waist + shoulder + neckCut + lip + foot + verticalPulse + (growth + rib + flute) * profile;
+      }
+
+      function vesselPoint(u, v, scale) {
+        const angle = u * Math.PI * 2;
+        const radius = vesselRadius(u, v) * scale;
+        const y = -1.7 + v * 3.45;
+        return new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius * 0.82);
+      }
+
+      function wrap01(value) {
+        return ((value % 1) + 1) % 1;
       }
 
       function resize() {
@@ -293,6 +325,8 @@
         vessel.rotation.y = phase + pointer.x * 0.24;
         vessel.rotation.z = Math.sin(phase) * 0.03;
         vessel.position.y = Math.sin(phase * 2) * 0.025;
+        readLines.rotation.copy(vessel.rotation);
+        readLines.position.copy(vessel.position);
         ringGroup.rotation.y = -phase * 0.35;
         ringGroup.position.y = Math.sin(phase) * 0.04;
 
@@ -303,7 +337,7 @@
 
         rim.position.x = Math.cos(phase) * 3.0;
         rim.position.z = Math.sin(phase) * 3.0;
-        wire.material.opacity = 0.12 + 0.08 * (0.5 + 0.5 * Math.sin(phase * 3));
+        readLineMaterial.opacity = 0.48 + 0.22 * (0.5 + 0.5 * Math.sin(phase * 3));
 
         renderer.render(scene, camera);
       }
