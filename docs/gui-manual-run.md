@@ -34,7 +34,11 @@ npm run check:assets
 
 If the render is too close or cropped, rerun this same GUI script after pulling the latest project files. The camera targets are set near the generated object's center and should frame the full object.
 
-For repeated work, use `docs/gui-job-watcher.md` instead. It lets Terminal submit jobs while Blender stays open.
+For repeated work, use `docs/gui-job-watcher.md` instead. It lets Terminal submit jobs while Blender stays open. You can start the watcher with:
+
+```sh
+npm run watcher:start
+```
 
 ## Why This Exists
 

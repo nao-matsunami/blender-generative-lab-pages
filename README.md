@@ -31,9 +31,13 @@ Open `http://localhost:4247/`.
 Install Blender on the Mac mini, then run:
 
 ```sh
+npm run watcher:start
+npm run job:all
 npm run blender:organic
 npm run blender:voronoi
 ```
+
+Because this Mac currently crashes on Blender CLI/background startup, prefer `watcher:start` + `job:all`. The `blender:*` commands remain for environments where CLI startup works.
 
 Expected outputs:
 

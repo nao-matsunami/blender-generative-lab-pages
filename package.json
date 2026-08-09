@@ -12,6 +12,7 @@
     "job:organic": "node scripts/submit-blender-job.mjs organic",
     "job:voronoi": "node scripts/submit-blender-job.mjs voronoi",
     "job:all": "node scripts/submit-blender-job.mjs all",
+    "watcher:start": "bash scripts/start-gui-watcher.sh",
     "fallback:stl": "node scripts/generate-fallback-stl.mjs",
     "publish:pages": "node scripts/publish-pages.mjs"
   }

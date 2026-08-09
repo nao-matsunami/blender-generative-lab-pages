@@ -4,6 +4,26 @@ Use this when Blender GUI opens but command-line/background startup crashes.
 
 ## Start Watcher
 
+### Automatic Paste
+
+From Terminal:
+
+```sh
+npm run watcher:start
+```
+
+This opens/activates Blender, switches to the Python Console, pastes:
+
+```python
+exec(open("/Users/nao/Documents/Codex/2026-08-03-xr-glsl-vj/blender-generative-lab/offline/gui_job_watcher.py").read())
+```
+
+and presses Return.
+
+macOS may ask for Accessibility permission because the script uses System Events to press keys. If it asks, allow Terminal/iTerm/Codex, then run `npm run watcher:start` again.
+
+### Manual Start
+
 1. Open Blender normally.
 2. Go to `Scripting`.
 3. `Text > Open`.
@@ -49,3 +69,5 @@ The watcher renames them as it works:
 ```
 
 This is more stable than AppleScript keystrokes because Blender itself runs the Python code through `bpy.app.timers`.
+
+The AppleScript is only used to start the watcher. After that, jobs are file-based and handled inside Blender.
