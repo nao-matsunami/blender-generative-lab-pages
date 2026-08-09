@@ -9,6 +9,9 @@
     "check:assets": "node scripts/check-generated-assets.mjs",
     "blender:organic": "node scripts/run-blender-study.mjs offline/generate_organic_growth_vessel.py",
     "blender:voronoi": "node scripts/run-blender-study.mjs offline/generate_voronoi_light_shell.py",
+    "job:organic": "node scripts/submit-blender-job.mjs organic",
+    "job:voronoi": "node scripts/submit-blender-job.mjs voronoi",
+    "job:all": "node scripts/submit-blender-job.mjs all",
     "fallback:stl": "node scripts/generate-fallback-stl.mjs",
     "publish:pages": "node scripts/publish-pages.mjs"
   }

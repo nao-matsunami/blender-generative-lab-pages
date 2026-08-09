@@ -67,6 +67,7 @@ Start with a small test print before committing to a large object.
 - `docs/mac-mini-setup.md`
 - `docs/blender-troubleshooting.md`
 - `docs/gui-manual-run.md`
+- `docs/gui-job-watcher.md`
 - `docs/ai-blender-workflow.md`
 - `docs/print-readiness.md`
 - `docs/pipeline.md`

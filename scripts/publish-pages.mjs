@@ -8,7 +8,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const sourceDir = path.resolve(scriptDir, "..");
 const targetDir = path.join(sourceDir, "pages-work");
 const repo = "nao-matsunami/blender-generative-lab-pages";
-const excluded = new Set([".git", "node_modules", "pages-work", "renders", "exports"]);
+const excluded = new Set([".git", "node_modules", "pages-work", "renders", "exports", "blender-jobs"]);
 
 async function pathExists(targetPath) {
   try {

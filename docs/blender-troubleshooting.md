@@ -106,3 +106,9 @@ Instructions:
 ```txt
 docs/gui-manual-run.md
 ```
+
+For a more automated route, start the GUI watcher:
+
+```txt
+docs/gui-job-watcher.md
+```
