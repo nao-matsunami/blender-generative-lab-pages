@@ -89,14 +89,14 @@ def create_shell_material() -> bpy.types.Material:
     material.use_nodes = True
     bsdf = material.node_tree.nodes.get("Principled BSDF")
     if bsdf:
-        bsdf.inputs["Base Color"].default_value = (0.88, 0.34, 0.42, 1.0)
-        bsdf.inputs["Roughness"].default_value = 0.34
+        bsdf.inputs["Base Color"].default_value = (1.0, 0.47, 0.55, 1.0)
+        bsdf.inputs["Roughness"].default_value = 0.28
         if "Coat Weight" in bsdf.inputs:
-            bsdf.inputs["Coat Weight"].default_value = 0.32
+            bsdf.inputs["Coat Weight"].default_value = 0.46
         if "Emission Color" in bsdf.inputs:
-            bsdf.inputs["Emission Color"].default_value = (0.18, 0.04, 0.08, 1.0)
+            bsdf.inputs["Emission Color"].default_value = (0.38, 0.08, 0.13, 1.0)
         if "Emission Strength" in bsdf.inputs:
-            bsdf.inputs["Emission Strength"].default_value = 0.1
+            bsdf.inputs["Emission Strength"].default_value = 0.22
     return material
 
 
@@ -190,7 +190,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     scene.render.image_settings.color_mode = "RGBA"
     scene.view_settings.view_transform = "Filmic"
     scene.view_settings.look = "Medium High Contrast"
-    scene.view_settings.exposure = 0.36
+    scene.view_settings.exposure = 0.72
     scene.view_settings.gamma = 1.0
 
     world = scene.world or bpy.data.worlds.new("World")
@@ -203,10 +203,10 @@ def setup_scene(obj: bpy.types.Object) -> None:
     target = bpy.context.object
     target.name = "tidal_render_target"
 
-    bpy.ops.object.camera_add(location=(0, -365, HEIGHT_MM * 0.62), rotation=(math.radians(75), 0, 0))
+    bpy.ops.object.camera_add(location=(0, -455, HEIGHT_MM * 0.62), rotation=(math.radians(75), 0, 0))
     camera = bpy.context.object
     camera.name = "tidal_render_camera"
-    camera.data.lens = 50
+    camera.data.lens = 42
     scene.camera = camera
     constraint = camera.constraints.new(type="TRACK_TO")
     constraint.track_axis = "TRACK_NEGATIVE_Z"
@@ -216,14 +216,14 @@ def setup_scene(obj: bpy.types.Object) -> None:
     bpy.ops.object.light_add(type="POINT", location=(0, 0, 58))
     core = bpy.context.object
     core.name = "tidal_inner_glow"
-    core.data.energy = 520
+    core.data.energy = 820
     core.data.color = (0.25, 0.88, 1.0)
     core.data.shadow_soft_size = 100
 
     bpy.ops.object.light_add(type="AREA", location=(-130, -145, 170))
     key = bpy.context.object
     key.name = "tidal_warm_key"
-    key.data.energy = 900
+    key.data.energy = 1320
     key.data.color = (1.0, 0.54, 0.48)
     key.data.size = 140
 
@@ -231,8 +231,15 @@ def setup_scene(obj: bpy.types.Object) -> None:
     rim = bpy.context.object
     rim.name = "tidal_cyan_rim"
     rim.data.color = (0.45, 0.92, 1.0)
-    rim.data.energy = 500
+    rim.data.energy = 760
     rim.data.shadow_soft_size = 80
+
+    bpy.ops.object.light_add(type="AREA", location=(115, -210, 90))
+    fill = bpy.context.object
+    fill.name = "tidal_soft_front_fill"
+    fill.data.energy = 420
+    fill.data.color = (0.82, 0.95, 1.0)
+    fill.data.size = 210
 
 
 def export_stl(obj: bpy.types.Object) -> None:
@@ -259,7 +266,7 @@ def render_still() -> None:
 
     world = bpy.context.scene.world
     if world:
-        world.color = (0.72, 0.78, 0.82)
+        world.color = (0.08, 0.1, 0.11)
     bpy.context.scene.render.film_transparent = False
     bpy.context.scene.render.filepath = str(PREVIEW_PATH)
     bpy.ops.render.render(write_still=True)

@@ -21,8 +21,8 @@
         margin: 0;
         overflow: hidden;
         background:
-          radial-gradient(circle at 52% 44%, rgba(255, 92, 116, 0.18), transparent 32%),
-          radial-gradient(circle at 46% 76%, rgba(64, 218, 255, 0.14), transparent 30%),
+          radial-gradient(circle at 52% 44%, rgba(255, 92, 116, 0.28), transparent 34%),
+          radial-gradient(circle at 46% 76%, rgba(64, 218, 255, 0.22), transparent 32%),
           var(--bg);
         color: var(--ink);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -142,13 +142,13 @@
       renderer.setClearColor(0x030607, 1);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.16;
+      renderer.toneMappingExposure = 1.42;
 
       const scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0x030607, 0.034);
 
-      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 90);
-      camera.position.set(0, 1.2, 7.4);
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 90);
+      camera.position.set(0, 1.18, 8.4);
 
       const clock = new THREE.Clock();
       const pointer = new THREE.Vector2();
@@ -211,15 +211,15 @@
       key.position.set(-3.0, -2.4, 4.8);
       scene.add(key);
 
-      const rim = new THREE.PointLight(0x7deaff, 6.2, 15);
+      const rim = new THREE.PointLight(0x7deaff, 8.2, 16);
       rim.position.set(3.0, 2.2, 2.8);
       scene.add(rim);
 
-      const core = new THREE.PointLight(0x5be9ff, 5.8, 9);
+      const core = new THREE.PointLight(0x5be9ff, 7.4, 10);
       core.position.set(0, 0.1, 0);
       scene.add(core);
 
-      const fill = new THREE.HemisphereLight(0x9ddce9, 0x33151c, 1.2);
+      const fill = new THREE.HemisphereLight(0xc4f2ff, 0x441822, 1.65);
       scene.add(fill);
 
       window.addEventListener("pointermove", (event) => {
@@ -285,10 +285,10 @@
         geometry.setIndex(indices);
         geometry.computeVertexNormals();
         return new THREE.Mesh(geometry, material || new THREE.MeshStandardMaterial({
-          color: 0xff6f82,
-          emissive: 0x25070e,
-          emissiveIntensity: 0.22,
-          roughness: 0.33,
+          color: 0xff8490,
+          emissive: 0x4a101b,
+          emissiveIntensity: 0.34,
+          roughness: 0.28,
           metalness: 0.0,
         }));
       }
