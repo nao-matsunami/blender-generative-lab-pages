@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-11",
+  "headline": "Tidal Coral Helix",
+  "headlineEn": "Tidal Coral Helix",
+  "summary": "Organic Motion Objectsの4つ目。潮流でねじれた珊瑚状の柱を、VJ向けのゆっくりした回転ループ、透明PNG合成、花器やランプオブジェクトの3Dプリント候補へ展開する。",
+  "summaryEn": "The fourth Organic Motion Objects study: a reef-like column twisted by tidal motion, prepared for slow VJ turntables, transparent PNG compositing, and future vase or lamp-object print tests.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-11_tidal-coral-helix.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_tidal_coral_helix.py"
+    },
+    {
+      "label": "Print readiness",
+      "url": "../docs/print-readiness.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "Luminous Seed Vesselよりも縦方向の動きとねじれを強め、回転したときに輪郭が呼吸するようなVJ素材へ寄せた。Blender側では厚みを持つシェル、光る稜線、小さな珊瑚ノードを分けて生成する。",
+      "bodyEn": "This pushes vertical motion and twist further than Luminous Seed Vessel, aiming for a VJ object whose silhouette breathes during rotation. The Blender generator separates the printable shell, glowing ridges, and small coral nodes.",
+      "links": []
+    },
+    {
+      "title": "次に見ること",
+      "titleEn": "Next checks",
+      "body": "STLはまず小さく出力して、ノード部分の支持、稜線の細さ、底面の安定性を確認する。VJ用途では透明PNGとGLBの見え方を先に評価する。",
+      "bodyEn": "For STL, start with a small print and check node support, ridge thickness, and base stability. For VJ use, evaluate the transparent PNG and GLB preview first.",
+      "links": []
+    }
+  ]
+}

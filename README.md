@@ -23,6 +23,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Luminous Seed Vessel` is a seed, vessel, and lampshade hybrid for the Organic Motion Objects direction.
 
+## Fourth Study
+
+`Tidal Coral Helix` is a twisting reef-like column for slow VJ turntables, translucent PNG compositing, and future vase or lamp-object print tests.
+
 ## Local Site
 
 ```sh
@@ -60,6 +64,10 @@ exports/stl/luminous-seed-vessel.stl
 exports/glb/luminous-seed-vessel.glb
 renders/luminous-seed-vessel.png
 renders/luminous-seed-vessel-preview.png
+exports/stl/tidal-coral-helix.stl
+exports/glb/tidal-coral-helix.glb
+renders/tidal-coral-helix.png
+renders/tidal-coral-helix-preview.png
 ```
 
 Check whether the expected files were created:

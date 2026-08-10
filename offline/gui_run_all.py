@@ -20,6 +20,7 @@ scripts = [
     PROJECT_ROOT / "offline" / "generate_organic_growth_vessel.py",
     PROJECT_ROOT / "offline" / "generate_voronoi_light_shell.py",
     PROJECT_ROOT / "offline" / "generate_luminous_seed_vessel.py",
+    PROJECT_ROOT / "offline" / "generate_tidal_coral_helix.py",
 ]
 
 for script in scripts:
