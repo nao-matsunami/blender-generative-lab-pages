@@ -199,9 +199,8 @@
         ringGroup.add(ring);
       }
 
-      const key = new THREE.RectAreaLight(0xffb081, 4.4, 5, 5);
+      const key = new THREE.DirectionalLight(0xffb081, 3.6);
       key.position.set(-2.6, -3.4, 4.2);
-      key.lookAt(0, 0.2, 0);
       scene.add(key);
 
       const rim = new THREE.PointLight(0x79d8ff, 5.8, 14);
@@ -282,10 +281,10 @@
         const angle = u * Math.PI * 2;
         const profile = Math.sin(v * Math.PI);
         const waist = 0.5 + profile * 0.62;
-        const shoulder = 0.28 * Math.exp(-((v - 0.68) / 0.16) ** 2);
-        const neckCut = -0.27 * Math.exp(-((v - 0.91) / 0.08) ** 2);
-        const lip = 0.36 * Math.exp(-((v - 0.985) / 0.035) ** 2);
-        const foot = 0.28 * Math.exp(-((v - 0.055) / 0.045) ** 2);
+        const shoulder = 0.28 * Math.exp(-Math.pow((v - 0.68) / 0.16, 2));
+        const neckCut = -0.27 * Math.exp(-Math.pow((v - 0.91) / 0.08, 2));
+        const lip = 0.36 * Math.exp(-Math.pow((v - 0.985) / 0.035, 2));
+        const foot = 0.28 * Math.exp(-Math.pow((v - 0.055) / 0.045, 2));
         const verticalPulse = Math.sin(v * Math.PI * 3 + 0.6) * 0.05;
         const growth =
           Math.sin(angle * 5 + v * 8.5) * 0.116 +

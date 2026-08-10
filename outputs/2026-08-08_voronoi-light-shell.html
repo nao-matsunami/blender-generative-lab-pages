@@ -142,7 +142,7 @@
       <a href="../days/2026-08-08.html">Daily report</a>
     </div>
     <div class="meter" aria-hidden="true"><span></span></div>
-    <div class="version">web rev 02 / large cutout shell</div>
+    <div class="version">web rev 03 / visible shell</div>
 
     <script type="module">
       import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
@@ -154,7 +154,7 @@
         alpha: true,
         powerPreference: "high-performance",
       });
-      renderer.setClearColor(0x000000, 0);
+      renderer.setClearColor(0x040404, 1);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.2;
@@ -179,14 +179,7 @@
 
       const holes = new THREE.Group();
       shell.add(holes);
-      const holeMaterial = new THREE.LineBasicMaterial({ color: 0x77dbff, transparent: true, opacity: 0.78 });
-      const voidMaterial = new THREE.MeshBasicMaterial({
-        color: 0x050607,
-        transparent: true,
-        opacity: 0.72,
-        side: THREE.DoubleSide,
-        depthWrite: false,
-      });
+      const holeMaterial = new THREE.LineBasicMaterial({ color: 0x8fe5ff, transparent: true, opacity: 0.92 });
       cellWindows.forEach((window, i) => {
         const curve = new THREE.BufferGeometry();
         const points = [];
@@ -200,16 +193,6 @@
         }
         curve.setFromPoints(points);
         holes.add(new THREE.Line(curve, holeMaterial));
-
-        const center = shellPoint(window.u, window.v, 1.035);
-        const voidDisc = new THREE.Mesh(
-          new THREE.CircleGeometry(1, 44),
-          voidMaterial,
-        );
-        voidDisc.position.copy(center.position);
-        voidDisc.rotation.set(Math.PI / 2 - window.v * 0.55, 0, -center.angle + window.twist * 0.18);
-        voidDisc.scale.set(window.w * 6.8, window.h * 8.4, 1);
-        holes.add(voidDisc);
       });
 
       const floor = new THREE.GridHelper(7, 36, 0x8a5f37, 0x27241f);
@@ -222,14 +205,16 @@
       warmCore.position.set(0, 0.1, 0);
       scene.add(warmCore);
 
-      const key = new THREE.RectAreaLight(0xffba78, 4.0, 5, 5);
+      const key = new THREE.DirectionalLight(0xffc18a, 3.8);
       key.position.set(-2.8, -3.4, 4.6);
-      key.lookAt(0, 0.2, 0);
       scene.add(key);
 
       const rim = new THREE.PointLight(0x77dbff, 4.8, 14);
       rim.position.set(3.0, 2.6, 2.8);
       scene.add(rim);
+
+      const fill = new THREE.HemisphereLight(0x9ccce0, 0x3b2418, 1.45);
+      scene.add(fill);
 
       window.addEventListener("pointermove", (event) => {
         targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
@@ -282,18 +267,18 @@
         geometry.computeVertexNormals();
 
         const material = isGlow
-          ? new THREE.MeshBasicMaterial({ color: 0xff8d45, transparent: true, opacity: 0.2, side: THREE.BackSide })
+          ? new THREE.MeshBasicMaterial({ color: 0xffa15a, transparent: true, opacity: 0.16, side: THREE.BackSide })
           : new THREE.MeshPhysicalMaterial({
-              color: 0xd69456,
-              roughness: 0.46,
+              color: 0xf0a05c,
+              roughness: 0.4,
               metalness: 0.02,
-              clearcoat: 0.3,
-              clearcoatRoughness: 0.54,
-              transparent: true,
-              opacity: 0.92,
+              clearcoat: 0.42,
+              clearcoatRoughness: 0.46,
+              transparent: false,
+              opacity: 1.0,
               side: THREE.DoubleSide,
-              emissive: 0x2c0d04,
-              emissiveIntensity: 0.16,
+              emissive: 0x3a1305,
+              emissiveIntensity: 0.24,
             });
 
         return new THREE.Mesh(geometry, material);
@@ -304,9 +289,9 @@
         const profile = Math.sin(v * Math.PI);
         const y = -1.75 + v * 3.55;
         const dome = 0.38 + profile * 0.96;
-        const shoulder = 0.36 * Math.exp(-((v - 0.62) / 0.18) ** 2);
-        const crownTaper = -0.23 * Math.exp(-((v - 0.96) / 0.07) ** 2);
-        const footTaper = -0.13 * Math.exp(-((v - 0.04) / 0.06) ** 2);
+        const shoulder = 0.36 * Math.exp(-Math.pow((v - 0.62) / 0.18, 2));
+        const crownTaper = -0.23 * Math.exp(-Math.pow((v - 0.96) / 0.07, 2));
+        const footTaper = -0.13 * Math.exp(-Math.pow((v - 0.04) / 0.06, 2));
         const macro = Math.sin(angle * 4 + v * 9) * 0.096;
         const micro = Math.cos(angle * 7 - v * 13) * 0.07;
         const cellular = Math.sin(angle * 11 + Math.sin(v * 11) * 2) * 0.064;
@@ -319,12 +304,12 @@
 
       function createCellWindows() {
         const windows = [];
-        for (let i = 0; i < 58; i += 1) {
+        for (let i = 0; i < 38; i += 1) {
           windows.push({
             u: wrap01(i * 0.61803398875 + 0.08 * Math.sin(i * 2.17)),
             v: 0.1 + ((i * 0.379 + 0.04 * Math.cos(i * 1.31)) % 0.8),
-            w: 0.032 + 0.026 * (0.5 + 0.5 * Math.sin(i * 1.83)),
-            h: 0.028 + 0.03 * (0.5 + 0.5 * Math.cos(i * 2.21)),
+            w: 0.024 + 0.018 * (0.5 + 0.5 * Math.sin(i * 1.83)),
+            h: 0.022 + 0.02 * (0.5 + 0.5 * Math.cos(i * 2.21)),
             twist: i * 0.73,
           });
         }
