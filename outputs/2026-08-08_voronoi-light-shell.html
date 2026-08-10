@@ -53,15 +53,15 @@
 
       h1 {
         margin: 0;
-        font-size: clamp(22px, 4.6vw, 58px);
-        line-height: 0.96;
+        font-size: clamp(19px, 3.1vw, 42px);
+        line-height: 1;
         letter-spacing: 0;
         text-transform: uppercase;
       }
 
       p {
         margin: 8px 0 0;
-        max-width: 680px;
+        max-width: 560px;
         color: var(--muted);
         font-size: clamp(12px, 1.35vw, 15px);
         line-height: 1.55;
@@ -142,7 +142,7 @@
       <a href="../days/2026-08-08.html">Daily report</a>
     </div>
     <div class="meter" aria-hidden="true"><span></span></div>
-    <div class="version">web rev 03 / visible shell</div>
+    <div class="version">web rev 04 / final preview</div>
 
     <script type="module">
       import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
@@ -179,7 +179,15 @@
 
       const holes = new THREE.Group();
       shell.add(holes);
-      const holeMaterial = new THREE.LineBasicMaterial({ color: 0x8fe5ff, transparent: true, opacity: 0.92 });
+      const holeMaterial = new THREE.LineBasicMaterial({ color: 0x8fe5ff, transparent: true, opacity: 0.86 });
+      const windowFillMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffd08a,
+        transparent: true,
+        opacity: 0.16,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      });
       cellWindows.forEach((window, i) => {
         const curve = new THREE.BufferGeometry();
         const points = [];
@@ -193,7 +201,32 @@
         }
         curve.setFromPoints(points);
         holes.add(new THREE.Line(curve, holeMaterial));
+
+        if (i % 3 !== 1) {
+          const center = shellPoint(window.u, window.v, 1.032);
+          const glow = new THREE.Mesh(new THREE.CircleGeometry(1, 40), windowFillMaterial);
+          glow.position.copy(center.position);
+          glow.lookAt(0, center.position.y * 0.35, 0);
+          glow.rotateZ(window.twist * 0.2);
+          glow.scale.set(window.w * 4.2, window.h * 5.2, 1);
+          holes.add(glow);
+        }
       });
+
+      const latitudeLines = new THREE.Group();
+      shell.add(latitudeLines);
+      const latitudeMaterial = new THREE.LineBasicMaterial({ color: 0xffd69a, transparent: true, opacity: 0.22 });
+      for (let band = 0; band < 10; band += 1) {
+        const v = 0.11 + (band / 9) * 0.78;
+        const geometry = new THREE.BufferGeometry();
+        const points = [];
+        for (let i = 0; i <= 220; i += 1) {
+          const u = i / 220;
+          points.push(shellPoint(u, v, 1.018).position);
+        }
+        geometry.setFromPoints(points);
+        latitudeLines.add(new THREE.Line(geometry, latitudeMaterial));
+      }
 
       const floor = new THREE.GridHelper(7, 36, 0x8a5f37, 0x27241f);
       floor.position.y = -1.95;
@@ -250,9 +283,6 @@
 
         for (let yIndex = 0; yIndex < heightSegments; yIndex += 1) {
           for (let xIndex = 0; xIndex < radialSegments; xIndex += 1) {
-            const centerU = (xIndex + 0.5) / radialSegments;
-            const centerV = (yIndex + 0.5) / heightSegments;
-            if (isInsideCellWindow(centerU, centerV)) continue;
             const a = yIndex * (radialSegments + 1) + xIndex;
             const b = a + radialSegments + 1;
             indices.push(a, b, a + 1, b, b + 1, a + 1);
@@ -304,12 +334,12 @@
 
       function createCellWindows() {
         const windows = [];
-        for (let i = 0; i < 38; i += 1) {
+        for (let i = 0; i < 34; i += 1) {
           windows.push({
             u: wrap01(i * 0.61803398875 + 0.08 * Math.sin(i * 2.17)),
-            v: 0.1 + ((i * 0.379 + 0.04 * Math.cos(i * 1.31)) % 0.8),
-            w: 0.024 + 0.018 * (0.5 + 0.5 * Math.sin(i * 1.83)),
-            h: 0.022 + 0.02 * (0.5 + 0.5 * Math.cos(i * 2.21)),
+            v: 0.13 + ((i * 0.379 + 0.04 * Math.cos(i * 1.31)) % 0.72),
+            w: 0.018 + 0.013 * (0.5 + 0.5 * Math.sin(i * 1.83)),
+            h: 0.017 + 0.015 * (0.5 + 0.5 * Math.cos(i * 2.21)),
             twist: i * 0.73,
           });
         }
