@@ -53,6 +53,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/luminous-seed-vessel-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/tidal-coral-helix.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/tidal-coral-helix.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/tidal-coral-helix.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/tidal-coral-helix-preview.png",
+  },
 ];
 
 let failed = false;
@@ -78,6 +94,7 @@ if (failed) {
   console.log("Run Blender first:");
   console.log("blender --background --python offline/generate_organic_growth_vessel.py");
   console.log("blender --background --python offline/generate_voronoi_light_shell.py");
+  console.log("Or, on the Mac mini GUI workflow: npm run watcher:start && npm run job:all");
   process.exitCode = 1;
 }
 
