@@ -9,6 +9,7 @@ const target = process.argv[2] || "all";
 const studies = {
   organic: "offline/generate_organic_growth_vessel.py",
   voronoi: "offline/generate_voronoi_light_shell.py",
+  seed: "offline/generate_luminous_seed_vessel.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

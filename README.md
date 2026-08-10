@@ -2,6 +2,8 @@
 
 Algorithmic design studies for Blender, VJ visuals, and 3D printing.
 
+The main series is **Organic Motion Objects**: looping organic 3D forms for web previews, rendered VJ assets, GLB/STL packs, and future `.blend` source products.
+
 This project is separate from the VJ sample sites. It focuses on forms that can become:
 
 - Web previews for GitHub Pages
@@ -16,6 +18,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 ## Second Study
 
 `Voronoi Light Shell` is a perforated shell direction for lampshade tests, wall objects, and rendered turntables.
+
+## Third Study
+
+`Luminous Seed Vessel` is a seed, vessel, and lampshade hybrid for the Organic Motion Objects direction.
 
 ## Local Site
 
@@ -50,6 +56,10 @@ exports/stl/voronoi-light-shell.stl
 exports/glb/voronoi-light-shell.glb
 renders/voronoi-light-shell.png
 renders/voronoi-light-shell-preview.png
+exports/stl/luminous-seed-vessel.stl
+exports/glb/luminous-seed-vessel.glb
+renders/luminous-seed-vessel.png
+renders/luminous-seed-vessel-preview.png
 ```
 
 Check whether the expected files were created:

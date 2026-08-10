@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-10",
+  "headline": "Luminous Seed Vessel",
+  "headlineEn": "Luminous Seed Vessel",
+  "summary": "Organic Motion Objectsの3つ目。種子、ランプシェード、花器のあいだにある有機的なシェルを、VJ向けの回転ループと3Dプリント候補へ展開する。",
+  "summaryEn": "The third Organic Motion Objects study: an organic shell between a seed, lampshade, and vessel, designed for a rotating VJ loop and future 3D-print development.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-10_luminous-seed-vessel.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_luminous_seed_vessel.py"
+    },
+    {
+      "label": "Pipeline",
+      "url": "../docs/pipeline.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "今日からBlender Generative LabをOrganic Motion Objectsとして明確に扱う。Web版は軽量で壊れにくい完成プレビュー、Blender版は高品質レンダー、GLB、STL、販売データへ展開する役割に分けた。",
+      "bodyEn": "From today, Blender Generative Lab is treated clearly as Organic Motion Objects. The web version is a lightweight finished preview, while the Blender version can grow into high-quality renders, GLB, STL, and saleable source packs.",
+      "links": []
+    },
+    {
+      "title": "なぜこれにしたか",
+      "titleEn": "Why this direction",
+      "body": "前回のVoronoi Light Shellで、有機的な3Dオブジェクトが回転するだけでもVJ素材として伝わりやすいことが見えた。今回は穴抜きの複雑さよりも、形、光、ループの気持ちよさを優先した。",
+      "bodyEn": "The previous Voronoi Light Shell showed that a rotating organic 3D object already works as VJ material. This study prioritizes form, light, and loop feel over complex perforation.",
+      "links": []
+    },
+    {
+      "title": "販売データ候補",
+      "titleEn": "Saleable package candidate",
+      "body": "販売する場合は、Webプレビュー、回転MP4、alpha MOV、透明PNG連番、GLB、STL、.blend、生成スクリプトを1パックにまとめると見せやすい。",
+      "bodyEn": "A saleable pack can include the web preview, turntable MP4, alpha MOV, transparent PNG sequence, GLB, STL, .blend, and generator script.",
+      "links": []
+    }
+  ]
+}
