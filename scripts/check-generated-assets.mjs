@@ -37,6 +37,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/voronoi-light-shell-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/luminous-seed-vessel.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/luminous-seed-vessel.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/luminous-seed-vessel.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/luminous-seed-vessel-preview.png",
+  },
 ];
 
 let failed = false;

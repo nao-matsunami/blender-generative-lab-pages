@@ -115,6 +115,20 @@ def create_vein_material() -> bpy.types.Material:
     return material
 
 
+def create_window_material() -> bpy.types.Material:
+    material = bpy.data.materials.new("cool_seed_window_rims")
+    material.use_nodes = True
+    bsdf = material.node_tree.nodes.get("Principled BSDF")
+    if bsdf:
+        bsdf.inputs["Base Color"].default_value = (0.55, 0.9, 1.0, 1.0)
+        bsdf.inputs["Roughness"].default_value = 0.24
+        if "Emission Color" in bsdf.inputs:
+            bsdf.inputs["Emission Color"].default_value = (0.22, 0.72, 1.0, 1.0)
+        if "Emission Strength" in bsdf.inputs:
+            bsdf.inputs["Emission Strength"].default_value = 0.85
+    return material
+
+
 def add_vein_lines(material: bpy.types.Material) -> None:
     for rib_index in range(24):
         curve = bpy.data.curves.new(f"seed_luminous_vein_{rib_index:02d}", "CURVE")
@@ -137,6 +151,43 @@ def add_vein_lines(material: bpy.types.Material) -> None:
                 (v - 0.5) * HEIGHT_MM + HEIGHT_MM * 0.5,
                 1.0,
             )
+        obj = bpy.data.objects.new(curve.name, curve)
+        bpy.context.collection.objects.link(obj)
+        obj.data.materials.append(material)
+
+
+def add_window_rims(material: bpy.types.Material) -> None:
+    for cell in range(32):
+        center_u = (cell * 0.61803398875 + 0.04 * math.sin(cell)) % 1.0
+        center_v = 0.13 + ((cell * 0.271 + 0.03 * math.cos(cell * 1.7)) % 0.72)
+        width = 0.018 + 0.012 * (0.5 + 0.5 * math.sin(cell * 2.1))
+        height = 0.024 + 0.018 * (0.5 + 0.5 * math.cos(cell * 1.4))
+        twist = cell * 0.57
+
+        curve = bpy.data.curves.new(f"seed_window_rim_{cell:02d}", "CURVE")
+        curve.dimensions = "3D"
+        curve.resolution_u = 3
+        curve.bevel_depth = 0.5
+        curve.bevel_resolution = 3
+        spline = curve.splines.new("POLY")
+        points = 40
+        spline.points.add(points)
+
+        for index in range(points + 1):
+            t = index / points * math.tau
+            du = math.cos(t) * width
+            dv = math.sin(t) * height
+            u = (center_u + du * math.cos(twist) - dv * math.sin(twist) * 0.42) % 1.0
+            v = min(0.94, max(0.06, center_v + du * math.sin(twist) + dv * math.cos(twist)))
+            angle = u * math.tau
+            radius = radius_at(u, v) + 1.55
+            spline.points[index].co = (
+                math.cos(angle) * radius,
+                math.sin(angle) * radius * 0.78,
+                (v - 0.5) * HEIGHT_MM + HEIGHT_MM * 0.5,
+                1.0,
+            )
+
         obj = bpy.data.objects.new(curve.name, curve)
         bpy.context.collection.objects.link(obj)
         obj.data.materials.append(material)
@@ -252,6 +303,7 @@ def main() -> None:
     prepare_for_print(seed)
     setup_scene(seed)
     add_vein_lines(create_vein_material())
+    add_window_rims(create_window_material())
     export_stl(seed)
     export_glb()
     render_still()
