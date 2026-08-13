@@ -161,13 +161,12 @@
       object.rotation.y = -0.58;
       scene.add(object);
 
-      const coralTexture = createCoralTexture();
       const coralMesh = createCoralMesh(new THREE.MeshStandardMaterial({
-        map: coralTexture,
-        color: 0xff9aa3,
-        emissive: 0x2a0710,
-        emissiveIntensity: 0.22,
-        roughness: 0.42,
+        vertexColors: true,
+        color: 0xffffff,
+        emissive: 0x1f050a,
+        emissiveIntensity: 0.18,
+        roughness: 0.48,
         metalness: 0.0,
       }));
       object.add(coralMesh);
@@ -232,7 +231,7 @@
         const vertical = 132;
         const positions = [];
         const normals = [];
-        const uvs = [];
+        const colors = [];
         const indices = [];
         for (let y = 0; y <= vertical; y += 1) {
           const v = y / vertical;
@@ -241,7 +240,8 @@
             const sample = coralPoint(u, v, scale);
             positions.push(sample.position.x, sample.position.y, sample.position.z);
             normals.push(sample.normal.x, sample.normal.y, sample.normal.z);
-            uvs.push(u, 1 - v);
+            const color = coralColor(u, v);
+            colors.push(color.r, color.g, color.b);
           }
         }
         for (let y = 0; y < vertical; y += 1) {
@@ -256,7 +256,7 @@
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
         geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
-        geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
         geometry.setIndex(indices);
         geometry.computeVertexNormals();
         return new THREE.Mesh(geometry, material || new THREE.MeshStandardMaterial({
@@ -268,52 +268,6 @@
         }));
       }
 
-      function createCoralTexture() {
-        const textureCanvas = document.createElement("canvas");
-        textureCanvas.width = 1024;
-        textureCanvas.height = 1024;
-        const context = textureCanvas.getContext("2d");
-        const gradient = context.createLinearGradient(0, 0, 1024, 1024);
-        gradient.addColorStop(0, "#ff8390");
-        gradient.addColorStop(0.42, "#d84f66");
-        gradient.addColorStop(1, "#7d2435");
-        context.fillStyle = gradient;
-        context.fillRect(0, 0, 1024, 1024);
-
-        context.globalAlpha = 0.075;
-        for (let y = -120; y < 1120; y += 54) {
-          context.strokeStyle = y % 108 === 0 ? "#ffb4bd" : "#be354b";
-          context.lineWidth = y % 108 === 0 ? 3 : 2;
-          context.beginPath();
-          context.moveTo(-80, y);
-          for (let x = -80; x <= 1120; x += 80) {
-            context.lineTo(x, y + Math.sin(x * 0.022 + y * 0.01) * 22 + x * 0.18);
-          }
-          context.stroke();
-        }
-
-        context.globalAlpha = 0.045;
-        for (let i = 0; i < 420; i += 1) {
-          const x = (Math.sin(i * 12.9898) * 43758.5453) % 1;
-          const y = (Math.sin(i * 78.233) * 24634.6345) % 1;
-          const px = Math.abs(x) * 1024;
-          const py = Math.abs(y) * 1024;
-          const radius = 0.7 + (i % 7) * 0.22;
-          context.fillStyle = i % 5 === 0 ? "#ffb8c2" : "#7b1f30";
-          context.beginPath();
-          context.arc(px, py, radius, 0, Math.PI * 2);
-          context.fill();
-        }
-
-        const texture = new THREE.CanvasTexture(textureCanvas);
-        texture.colorSpace = THREE.SRGBColorSpace;
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set(2.4, 1.15);
-        texture.anisotropy = 8;
-        return texture;
-      }
-
       function coralPoint(u, v, scale = 1) {
         const angle = u * Math.PI * 2 + v * Math.PI * 2 * 0.82;
         const radius = radiusAt(u, v) * scale;
@@ -321,6 +275,19 @@
         const position = new THREE.Vector3(Math.cos(angle) * radius, (v - 0.5) * 4.15, Math.sin(angle) * radius * oval);
         const normal = new THREE.Vector3(Math.cos(angle), 0.08 * Math.sin(v * Math.PI * 6), Math.sin(angle)).normalize();
         return { position, normal };
+      }
+
+      function coralColor(u, v) {
+        const ridge = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 5 + v * Math.PI * 2 * 2.35);
+        const fine = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 17 - v * 11);
+        const verticalShade = 0.78 + 0.22 * Math.sin(v * Math.PI);
+        const light = (0.72 + ridge * 0.28 + fine * 0.08) * verticalShade;
+        const shadow = 0.22 + (1 - ridge) * 0.18;
+        return {
+          r: Math.min(1, 0.92 * light + 0.18),
+          g: Math.min(1, 0.16 * light + 0.04 * shadow),
+          b: Math.min(1, 0.24 * light + 0.05 * shadow),
+        };
       }
 
       function radiusAt(u, v) {
