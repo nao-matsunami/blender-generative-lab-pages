@@ -32,6 +32,7 @@
         display: block;
         width: 100vw;
         height: 100vh;
+        background: transparent;
       }
 
       .hud {
@@ -139,36 +140,49 @@
 
       const canvas = document.querySelector("#stage");
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
-      renderer.setClearColor(0x030607, 1);
+      renderer.setClearColor(0x050708, 1);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.42;
+      renderer.toneMappingExposure = 1.85;
 
       const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x030607, 0.034);
+      scene.fog = new THREE.FogExp2(0x050708, 0.018);
 
-      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 90);
-      camera.position.set(0, 1.18, 8.4);
+      const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 90);
+      camera.position.set(0, 0.72, 7.2);
+      camera.lookAt(0, 0, 0);
 
       const clock = new THREE.Clock();
       const pointer = new THREE.Vector2();
       const targetPointer = new THREE.Vector2();
 
       const object = new THREE.Group();
+      object.rotation.y = -0.58;
       scene.add(object);
 
-      object.add(createCoralMesh());
+      const coralMesh = createCoralMesh();
+      object.add(coralMesh);
       object.add(createCoralMesh(new THREE.MeshBasicMaterial({
-        color: 0xff6f82,
+        color: 0xff8b9a,
         transparent: true,
-        opacity: 0.16,
+        opacity: 0.34,
         side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
-      }), 0.96));
+      }), 1.08));
+
+      const silhouette = createCoralMesh(new THREE.MeshBasicMaterial({
+        color: 0xcff8ff,
+        transparent: true,
+        opacity: 0.22,
+        wireframe: true,
+        blending: THREE.AdditiveBlending,
+      }), 1.012);
+      object.add(silhouette);
 
       const ridgeGroup = new THREE.Group();
       object.add(ridgeGroup);
-      const ridgeMaterial = new THREE.LineBasicMaterial({ color: 0x8eefff, transparent: true, opacity: 0.68 });
+      const ridgeMaterial = new THREE.LineBasicMaterial({ color: 0xa8f6ff, transparent: true, opacity: 0.94 });
       for (let i = 0; i < 18; i += 1) {
         const geometry = new THREE.BufferGeometry();
         const points = [];
@@ -185,7 +199,7 @@
       const nodeMaterial = new THREE.MeshStandardMaterial({
         color: 0x7deaff,
         emissive: 0x1588aa,
-        emissiveIntensity: 0.52,
+        emissiveIntensity: 1.2,
         roughness: 0.28,
       });
       const nodeGeometry = new THREE.SphereGeometry(0.055, 16, 8);
@@ -207,20 +221,24 @@
       floor.material.opacity = 0.18;
       scene.add(floor);
 
-      const key = new THREE.DirectionalLight(0xff7887, 4.0);
+      const key = new THREE.DirectionalLight(0xffa2aa, 7.2);
       key.position.set(-3.0, -2.4, 4.8);
       scene.add(key);
 
-      const rim = new THREE.PointLight(0x7deaff, 8.2, 16);
+      const rim = new THREE.PointLight(0x7deaff, 12.5, 18);
       rim.position.set(3.0, 2.2, 2.8);
       scene.add(rim);
 
-      const core = new THREE.PointLight(0x5be9ff, 7.4, 10);
+      const core = new THREE.PointLight(0x5be9ff, 10.5, 12);
       core.position.set(0, 0.1, 0);
       scene.add(core);
 
-      const fill = new THREE.HemisphereLight(0xc4f2ff, 0x441822, 1.65);
+      const fill = new THREE.HemisphereLight(0xffffff, 0x5e2330, 3.2);
       scene.add(fill);
+
+      const front = new THREE.PointLight(0xffffff, 4.2, 24);
+      front.position.set(0, 1.1, 5.4);
+      scene.add(front);
 
       window.addEventListener("pointermove", (event) => {
         targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
@@ -238,11 +256,11 @@
       function render() {
         const elapsed = clock.getElapsedTime();
         pointer.lerp(targetPointer, 0.08);
-        object.rotation.y = elapsed * Math.PI * 2 / 24 + pointer.x * 0.18;
+        object.rotation.y = -0.58 + elapsed * Math.PI * 2 / 24 + pointer.x * 0.18;
         object.rotation.x = -0.08 + pointer.y * 0.08 + Math.sin(elapsed * 0.42) * 0.018;
         object.position.y = Math.sin(elapsed * 0.55) * 0.035;
         ridgeGroup.children.forEach((line, index) => {
-          line.material.opacity = 0.45 + 0.25 * Math.sin(elapsed * 1.4 + index * 0.4);
+          line.material.opacity = 0.76 + 0.18 * Math.sin(elapsed * 1.4 + index * 0.4);
         });
         renderer.render(scene, camera);
       }
@@ -285,10 +303,10 @@
         geometry.setIndex(indices);
         geometry.computeVertexNormals();
         return new THREE.Mesh(geometry, material || new THREE.MeshStandardMaterial({
-          color: 0xff8490,
-          emissive: 0x4a101b,
-          emissiveIntensity: 0.34,
-          roughness: 0.28,
+          color: 0xffa0aa,
+          emissive: 0x9b2638,
+          emissiveIntensity: 0.9,
+          roughness: 0.22,
           metalness: 0.0,
         }));
       }
@@ -305,7 +323,7 @@
       function radiusAt(u, v) {
         const profile = Math.pow(Math.sin(v * Math.PI), 0.58);
         const waist = 0.62 + 1.0 * profile;
-        const taper = -0.24 * Math.exp(-((v - 0.92) / 0.08) ** 2) - 0.19 * Math.exp(-((v - 0.06) / 0.06) ** 2);
+        const taper = -0.24 * Math.exp(-(((v - 0.92) / 0.08) ** 2)) - 0.19 * Math.exp(-(((v - 0.06) / 0.06) ** 2));
         const helix = Math.sin(u * Math.PI * 2 * 5 + v * Math.PI * 2 * 2.35) * 0.13;
         const coral = Math.sin(u * Math.PI * 2 * 17 - v * 11) * 0.05;
         const tide = Math.cos(u * Math.PI * 2 * 9 + v * 18) * 0.038;
