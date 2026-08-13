@@ -179,18 +179,9 @@
         blending: THREE.AdditiveBlending,
       }), 1.08));
 
-      const silhouette = createCoralMesh(new THREE.MeshBasicMaterial({
-        color: 0xcff8ff,
-        transparent: true,
-        opacity: 0.08,
-        wireframe: true,
-        blending: THREE.AdditiveBlending,
-      }), 1.012);
-      object.add(silhouette);
-
       const ridgeGroup = new THREE.Group();
       object.add(ridgeGroup);
-      const ridgeMaterial = new THREE.LineBasicMaterial({ color: 0xa8f6ff, transparent: true, opacity: 0.94 });
+      const ridgeMaterial = new THREE.LineBasicMaterial({ color: 0xffc2ca, transparent: true, opacity: 0.42 });
       for (let i = 0; i < 18; i += 1) {
         const geometry = new THREE.BufferGeometry();
         const points = [];
@@ -205,19 +196,19 @@
       }
 
       const nodeMaterial = new THREE.MeshStandardMaterial({
-        color: 0x7deaff,
-        emissive: 0x1588aa,
-        emissiveIntensity: 1.2,
-        roughness: 0.28,
+        color: 0xffb0ba,
+        emissive: 0x6f1827,
+        emissiveIntensity: 0.45,
+        roughness: 0.36,
       });
-      const nodeGeometry = new THREE.SphereGeometry(0.055, 16, 8);
+      const nodeGeometry = new THREE.SphereGeometry(0.032, 14, 7);
       for (let i = 0; i < 42; i += 1) {
         const v = 0.08 + ((i * 0.237 + 0.04 * Math.sin(i)) % 0.84);
         const u = wrap01(i * 0.61803398875 + v * 0.11);
         const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
         const sample = coralPoint(u, v, 1.045);
         node.position.copy(sample.position);
-        node.scale.setScalar(0.72 + 0.42 * (0.5 + 0.5 * Math.sin(i * 1.7)));
+        node.scale.setScalar(0.52 + 0.24 * (0.5 + 0.5 * Math.sin(i * 1.7)));
         node.scale.z *= 0.42;
         node.lookAt(sample.normal.clone().add(sample.position));
         object.add(node);
@@ -268,7 +259,7 @@
         object.rotation.x = -0.08 + pointer.y * 0.08 + Math.sin(elapsed * 0.42) * 0.018;
         object.position.y = Math.sin(elapsed * 0.55) * 0.035;
         ridgeGroup.children.forEach((line, index) => {
-          line.material.opacity = 0.76 + 0.18 * Math.sin(elapsed * 1.4 + index * 0.4);
+          line.material.opacity = 0.3 + 0.12 * Math.sin(elapsed * 1.4 + index * 0.4);
         });
         renderer.render(scene, camera);
       }
@@ -334,10 +325,10 @@
         context.fillStyle = gradient;
         context.fillRect(0, 0, 1024, 1024);
 
-        context.globalAlpha = 0.18;
+        context.globalAlpha = 0.1;
         for (let y = -120; y < 1120; y += 54) {
-          context.strokeStyle = y % 108 === 0 ? "#ffd6dc" : "#6ff1ff";
-          context.lineWidth = y % 108 === 0 ? 7 : 4;
+          context.strokeStyle = y % 108 === 0 ? "#ffadb9" : "#ff6f82";
+          context.lineWidth = y % 108 === 0 ? 5 : 3;
           context.beginPath();
           context.moveTo(-80, y);
           for (let x = -80; x <= 1120; x += 80) {
@@ -346,14 +337,14 @@
           context.stroke();
         }
 
-        context.globalAlpha = 0.2;
+        context.globalAlpha = 0.12;
         for (let i = 0; i < 420; i += 1) {
           const x = (Math.sin(i * 12.9898) * 43758.5453) % 1;
           const y = (Math.sin(i * 78.233) * 24634.6345) % 1;
           const px = Math.abs(x) * 1024;
           const py = Math.abs(y) * 1024;
           const radius = 1 + (i % 7) * 0.38;
-          context.fillStyle = i % 5 === 0 ? "#aaf8ff" : "#ffd1d8";
+          context.fillStyle = i % 5 === 0 ? "#ffccd3" : "#b9354c";
           context.beginPath();
           context.arc(px, py, radius, 0, Math.PI * 2);
           context.fill();
