@@ -7,6 +7,8 @@
     "build": "node scripts/build-gallery.mjs",
     "build:gallery": "node scripts/build-gallery.mjs",
     "check:assets": "node scripts/check-generated-assets.mjs",
+    "check:web": "node scripts/check-web-previews.mjs",
+    "check:quality": "npm run check:web && npm run check:assets",
     "blender:organic": "node scripts/run-blender-study.mjs offline/generate_organic_growth_vessel.py",
     "blender:voronoi": "node scripts/run-blender-study.mjs offline/generate_voronoi_light_shell.py",
     "blender:seed": "node scripts/run-blender-study.mjs offline/generate_luminous_seed_vessel.py",
@@ -18,6 +20,7 @@
     "job:all": "node scripts/submit-blender-job.mjs all",
     "watcher:start": "bash scripts/start-gui-watcher.sh",
     "fallback:stl": "node scripts/generate-fallback-stl.mjs",
-    "publish:pages": "node scripts/publish-pages.mjs"
+    "publish:pages": "node scripts/publish-pages.mjs",
+    "ship": "npm run build && npm run check:quality && npm run publish:pages"
   }
 }

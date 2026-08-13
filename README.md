@@ -97,3 +97,4 @@ Start with a small test print before committing to a large object.
 - `docs/ai-blender-workflow.md`
 - `docs/print-readiness.md`
 - `docs/pipeline.md`
+- `docs/autonomous-production.md`
