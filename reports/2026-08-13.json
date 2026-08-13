@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-13",
+  "headline": "Manta Bloom Shell",
+  "headlineEn": "Manta Bloom Shell",
+  "summary": "Organic Motion Objectsの5つ目。マンタの翼と花弁の中間にある、ゆっくり回転する有機的なシェル。まずはWebプレビューをdraftとして公開し、Blender生成アセットはGUI watcher経由で追加していく。",
+  "summaryEn": "The fifth Organic Motion Objects study: a slowly rotating shell between manta wings and flower petals. The web preview starts as a draft, with Blender-generated assets added through the GUI watcher.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-13_manta-bloom-shell.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_manta_bloom_shell.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "今回は完成度よりも継続性を優先する。見える、壊れていない、形の意図が伝わる、という基準でdraft公開し、後からレンダー、GLB、STL、MP4候補へ育てる。",
+      "bodyEn": "This pass prioritizes continuity over final polish. It can be published as a draft when it is visible, unbroken, and the form direction is legible, then improved later with renders, GLB, STL, and MP4 candidates.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "正解は、余計なデバッグ線や点がない、柔らかい翼状の有機シェル。VJ素材としてはゆっくりした回転で輪郭が変化し、3Dプリント候補としては薄いランプシェードや壁面オブジェクトへ展開できる方向。",
+      "bodyEn": "The target is a soft wing-like organic shell without stray debug lines or dots. As VJ material, its silhouette changes through slow rotation; as a print candidate, it can develop into a thin lampshade or wall object.",
+      "links": []
+    }
+  ]
+}

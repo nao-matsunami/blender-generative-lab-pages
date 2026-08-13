@@ -69,6 +69,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/tidal-coral-helix-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/manta-bloom-shell.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/manta-bloom-shell.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/manta-bloom-shell.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/manta-bloom-shell-preview.png",
+  },
 ];
 
 let failed = false;

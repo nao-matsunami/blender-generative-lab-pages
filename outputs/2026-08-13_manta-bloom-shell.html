@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manta Bloom Shell / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #030506;
+        --ink: #f5f1ea;
+        --muted: #b1aca2;
+        --accent: #ff8f72;
+        --cool: #86e7ff;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 52% 48%, rgba(255, 114, 92, 0.16), transparent 34%),
+          radial-gradient(circle at 44% 75%, rgba(80, 210, 255, 0.09), transparent 30%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.78);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 620px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(245, 241, 234, 0.28);
+        background: rgba(3, 5, 6, 0.46);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--cool); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(245, 241, 234, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--accent), var(--cool), #f5f1ea);
+        animation: loop-meter 26s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--cool);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Manta Bloom Shell procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Manta Bloom Shell</h1>
+        <p>Organic Motion Objects / manta-wing bloom shell / draft VJ and print-form study</p>
+      </div>
+      <a href="../days/2026-08-13.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.13</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x030506, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.12;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x030506, 0.024);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(0, 0.45, 7.6);
+      camera.lookAt(0, 0, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+
+      const object = new THREE.Group();
+      object.rotation.x = -0.18;
+      scene.add(object);
+
+      const shell = createMantaShell();
+      object.add(shell);
+
+      const floor = new THREE.GridHelper(7.5, 42, 0x3d3231, 0x0d1213);
+      floor.position.y = -2.05;
+      floor.material.transparent = true;
+      floor.material.opacity = 0.16;
+      scene.add(floor);
+
+      const key = new THREE.DirectionalLight(0xffaa86, 3.4);
+      key.position.set(-3.2, -2.6, 4.8);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0x86e7ff, 5.8, 16);
+      rim.position.set(3.0, 2.0, 2.8);
+      scene.add(rim);
+
+      const fill = new THREE.HemisphereLight(0xfff1df, 0x241417, 1.45);
+      scene.add(fill);
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 26 + pointer.x * 0.16;
+        object.rotation.x = -0.18 + pointer.y * 0.07 + Math.sin(elapsed * 0.46) * 0.025;
+        object.position.y = Math.sin(elapsed * 0.5) * 0.035;
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      function createMantaShell() {
+        const radial = 176;
+        const vertical = 118;
+        const positions = [];
+        const normals = [];
+        const colors = [];
+        const indices = [];
+        for (let y = 0; y <= vertical; y += 1) {
+          const v = y / vertical;
+          for (let x = 0; x < radial; x += 1) {
+            const u = x / radial;
+            const sample = mantaPoint(u, v);
+            positions.push(sample.position.x, sample.position.y, sample.position.z);
+            normals.push(sample.normal.x, sample.normal.y, sample.normal.z);
+            const color = mantaColor(u, v);
+            colors.push(color.r, color.g, color.b);
+          }
+        }
+        for (let y = 0; y < vertical; y += 1) {
+          for (let x = 0; x < radial; x += 1) {
+            const a = y * radial + x;
+            const b = y * radial + ((x + 1) % radial);
+            const c = (y + 1) * radial + ((x + 1) % radial);
+            const d = (y + 1) * radial + x;
+            indices.push(a, b, d, b, c, d);
+          }
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+          vertexColors: true,
+          color: 0xffffff,
+          emissive: 0x21080b,
+          emissiveIntensity: 0.14,
+          roughness: 0.5,
+          metalness: 0.0,
+          side: THREE.DoubleSide,
+        }));
+      }
+
+      function mantaPoint(u, v) {
+        const angle = u * Math.PI * 2 + Math.sin(v * Math.PI) * 0.52;
+        const profile = Math.sin(v * Math.PI);
+        const wing = 1.0 + 0.28 * Math.cos(angle * 2);
+        const radius = (0.42 + 1.28 * Math.pow(profile, 0.56)) * wing;
+        const ripple = Math.sin(u * Math.PI * 2 * 8 + v * Math.PI * 4) * 0.08 * profile;
+        const petal = Math.sin(u * Math.PI * 2 * 4 - v * 7.5) * 0.12 * profile;
+        const x = Math.cos(angle) * (radius + ripple + petal);
+        const z = Math.sin(angle) * (radius + ripple * 0.6) * (0.58 + 0.16 * profile);
+        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.2 * profile;
+        const normal = new THREE.Vector3(Math.cos(angle), 0.16 * Math.sin(v * Math.PI * 2), Math.sin(angle)).normalize();
+        return { position: new THREE.Vector3(x, y, z), normal };
+      }
+
+      function mantaColor(u, v) {
+        const profile = Math.sin(v * Math.PI);
+        const vein = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 8 + v * Math.PI * 4);
+        const petal = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 4 - v * 7.5);
+        const light = 0.72 + vein * 0.17 + petal * 0.08 + profile * 0.08;
+        return {
+          r: Math.min(1, 0.78 * light + 0.16),
+          g: Math.min(1, 0.22 * light + 0.09),
+          b: Math.min(1, 0.18 * light + 0.1),
+        };
+      }
+    </script>
+  </body>
+</html>

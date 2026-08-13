@@ -27,6 +27,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Tidal Coral Helix` is a twisting reef-like column for slow VJ turntables, translucent PNG compositing, and future vase or lamp-object print tests.
 
+## Fifth Study
+
+`Manta Bloom Shell` is a manta-ray and flower-petal inspired shell for slow VJ loops and print-form exploration.
+
 ## Local Site
 
 ```sh

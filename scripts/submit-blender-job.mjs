@@ -11,6 +11,7 @@ const studies = {
   voronoi: "offline/generate_voronoi_light_shell.py",
   seed: "offline/generate_luminous_seed_vessel.py",
   coral: "offline/generate_tidal_coral_helix.py",
+  bloom: "offline/generate_manta_bloom_shell.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];
