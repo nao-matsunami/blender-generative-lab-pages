@@ -144,7 +144,7 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.85;
+      renderer.toneMappingExposure = 1.08;
 
       const scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0x050708, 0.018);
@@ -161,12 +161,20 @@
       object.rotation.y = -0.58;
       scene.add(object);
 
-      const coralMesh = createCoralMesh();
+      const coralTexture = createCoralTexture();
+      const coralMesh = createCoralMesh(new THREE.MeshStandardMaterial({
+        map: coralTexture,
+        color: 0xff9aa3,
+        emissive: 0x2a0710,
+        emissiveIntensity: 0.22,
+        roughness: 0.42,
+        metalness: 0.0,
+      }));
       object.add(coralMesh);
       object.add(createCoralMesh(new THREE.MeshBasicMaterial({
         color: 0xff8b9a,
         transparent: true,
-        opacity: 0.34,
+        opacity: 0.16,
         side: THREE.BackSide,
         blending: THREE.AdditiveBlending,
       }), 1.08));
@@ -174,7 +182,7 @@
       const silhouette = createCoralMesh(new THREE.MeshBasicMaterial({
         color: 0xcff8ff,
         transparent: true,
-        opacity: 0.22,
+        opacity: 0.08,
         wireframe: true,
         blending: THREE.AdditiveBlending,
       }), 1.012);
@@ -221,22 +229,22 @@
       floor.material.opacity = 0.18;
       scene.add(floor);
 
-      const key = new THREE.DirectionalLight(0xffa2aa, 7.2);
+      const key = new THREE.DirectionalLight(0xffa2aa, 3.6);
       key.position.set(-3.0, -2.4, 4.8);
       scene.add(key);
 
-      const rim = new THREE.PointLight(0x7deaff, 12.5, 18);
+      const rim = new THREE.PointLight(0x7deaff, 6.4, 18);
       rim.position.set(3.0, 2.2, 2.8);
       scene.add(rim);
 
-      const core = new THREE.PointLight(0x5be9ff, 10.5, 12);
+      const core = new THREE.PointLight(0x5be9ff, 4.8, 12);
       core.position.set(0, 0.1, 0);
       scene.add(core);
 
-      const fill = new THREE.HemisphereLight(0xffffff, 0x5e2330, 3.2);
+      const fill = new THREE.HemisphereLight(0xfff2f4, 0x35141c, 1.35);
       scene.add(fill);
 
-      const front = new THREE.PointLight(0xffffff, 4.2, 24);
+      const front = new THREE.PointLight(0xffffff, 1.4, 24);
       front.position.set(0, 1.1, 5.4);
       scene.add(front);
 
@@ -278,6 +286,7 @@
         const vertical = 132;
         const positions = [];
         const normals = [];
+        const uvs = [];
         const indices = [];
         for (let y = 0; y <= vertical; y += 1) {
           const v = y / vertical;
@@ -286,6 +295,7 @@
             const sample = coralPoint(u, v, scale);
             positions.push(sample.position.x, sample.position.y, sample.position.z);
             normals.push(sample.normal.x, sample.normal.y, sample.normal.z);
+            uvs.push(u, 1 - v);
           }
         }
         for (let y = 0; y < vertical; y += 1) {
@@ -300,6 +310,7 @@
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
         geometry.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
+        geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
         geometry.setIndex(indices);
         geometry.computeVertexNormals();
         return new THREE.Mesh(geometry, material || new THREE.MeshStandardMaterial({
@@ -309,6 +320,52 @@
           roughness: 0.22,
           metalness: 0.0,
         }));
+      }
+
+      function createCoralTexture() {
+        const textureCanvas = document.createElement("canvas");
+        textureCanvas.width = 1024;
+        textureCanvas.height = 1024;
+        const context = textureCanvas.getContext("2d");
+        const gradient = context.createLinearGradient(0, 0, 1024, 1024);
+        gradient.addColorStop(0, "#ff8390");
+        gradient.addColorStop(0.42, "#d84f66");
+        gradient.addColorStop(1, "#7d2435");
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, 1024, 1024);
+
+        context.globalAlpha = 0.18;
+        for (let y = -120; y < 1120; y += 54) {
+          context.strokeStyle = y % 108 === 0 ? "#ffd6dc" : "#6ff1ff";
+          context.lineWidth = y % 108 === 0 ? 7 : 4;
+          context.beginPath();
+          context.moveTo(-80, y);
+          for (let x = -80; x <= 1120; x += 80) {
+            context.lineTo(x, y + Math.sin(x * 0.022 + y * 0.01) * 22 + x * 0.18);
+          }
+          context.stroke();
+        }
+
+        context.globalAlpha = 0.2;
+        for (let i = 0; i < 420; i += 1) {
+          const x = (Math.sin(i * 12.9898) * 43758.5453) % 1;
+          const y = (Math.sin(i * 78.233) * 24634.6345) % 1;
+          const px = Math.abs(x) * 1024;
+          const py = Math.abs(y) * 1024;
+          const radius = 1 + (i % 7) * 0.38;
+          context.fillStyle = i % 5 === 0 ? "#aaf8ff" : "#ffd1d8";
+          context.beginPath();
+          context.arc(px, py, radius, 0, Math.PI * 2);
+          context.fill();
+        }
+
+        const texture = new THREE.CanvasTexture(textureCanvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(2.4, 1.15);
+        texture.anisotropy = 8;
+        return texture;
       }
 
       function coralPoint(u, v, scale = 1) {
