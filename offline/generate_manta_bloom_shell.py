@@ -39,21 +39,22 @@ def clear_scene() -> None:
 
 def radius_at(u: float, v: float) -> float:
     profile = math.sin(v * math.pi)
-    angle = u * math.tau + math.sin(v * math.pi) * 0.52
-    wing = 1.0 + 0.28 * math.cos(angle * 2.0)
-    base = 18.0 + 45.0 * (profile ** 0.56)
-    taper = -8.0 * math.exp(-(((v - 0.93) / 0.08) ** 2)) - 6.0 * math.exp(-(((v - 0.06) / 0.06) ** 2))
-    ripple = math.sin(u * math.tau * 8.0 + v * math.tau * 2.0) * 3.2 * profile
-    petal = math.sin(u * math.tau * 4.0 - v * 7.5) * 4.6 * profile
+    angle = u * math.tau
+    wing = 1.0 + 0.46 * abs(math.cos(angle)) ** 1.7
+    base = 16.0 + 42.0 * (profile ** 0.62)
+    taper = -7.5 * math.exp(-(((v - 0.93) / 0.08) ** 2)) - 5.5 * math.exp(-(((v - 0.06) / 0.06) ** 2))
+    ripple = math.sin(u * math.tau * 10.0 + v * math.tau * 2.4) * 3.9 * profile
+    petal = math.sin(u * math.tau * 5.0 - v * 8.5) * 5.8 * profile
     return (base + taper) * wing + ripple + petal
 
 
 def color_at(u: float, v: float) -> tuple[float, float, float, float]:
     profile = math.sin(v * math.pi)
-    vein = 0.5 + 0.5 * math.sin(u * math.tau * 8.0 + v * math.tau * 2.0)
-    petal = 0.5 + 0.5 * math.sin(u * math.tau * 4.0 - v * 7.5)
-    light = 0.68 + vein * 0.16 + petal * 0.09 + profile * 0.08
-    return (min(1.0, 0.82 * light + 0.12), min(1.0, 0.24 * light + 0.07), min(1.0, 0.18 * light + 0.08), 1.0)
+    vein = 0.5 + 0.5 * math.sin(u * math.tau * 10.0 + v * math.tau * 2.4)
+    petal = 0.5 + 0.5 * math.sin(u * math.tau * 5.0 - v * 8.5)
+    wing_glow = abs(math.cos(u * math.tau)) ** 1.4
+    light = 0.62 + vein * 0.2 + petal * 0.1 + profile * 0.08 + wing_glow * 0.08
+    return (min(1.0, 0.9 * light + 0.08), min(1.0, 0.25 * light + 0.08), min(1.0, 0.22 * light + 0.1), 1.0)
 
 
 def create_shell_mesh() -> bpy.types.Object:
@@ -64,15 +65,17 @@ def create_shell_mesh() -> bpy.types.Object:
     for y_index in range(HEIGHT_SEGMENTS + 1):
         v = y_index / HEIGHT_SEGMENTS
         z = (v - 0.5) * HEIGHT_MM
-        twist = math.sin(v * math.pi) * 0.52
+        twist = math.sin(v * math.pi) * 0.34
         profile = math.sin(v * math.pi)
         for x_index in range(RADIAL_SEGMENTS):
             u = x_index / RADIAL_SEGMENTS
             angle = u * math.tau + twist
             radius = radius_at(u, v)
-            oval = 0.58 + 0.16 * profile
-            y_offset = math.cos(u * math.tau * 2.0) * 7.0 * profile
-            vertices.append((math.cos(angle) * radius, math.sin(angle) * radius * oval, z + y_offset))
+            lateral = 1.18 + 0.32 * profile
+            depth = 0.38 + 0.08 * profile
+            y_offset = math.cos(u * math.tau * 2.0) * 11.0 * profile
+            y_offset += math.sin(u * math.tau * 5.0 + v * 9.0) * 4.0 * profile
+            vertices.append((math.cos(angle) * radius * lateral, math.sin(angle) * radius * depth, z + y_offset))
             colors.append(color_at(u, v))
 
     for y_index in range(HEIGHT_SEGMENTS):
@@ -154,16 +157,17 @@ def setup_scene(obj: bpy.types.Object) -> None:
     world.color = (0.0, 0.0, 0.0)
 
     obj.location.z = HEIGHT_MM * 0.5
-    obj.rotation_euler[2] = math.radians(-18)
+    obj.rotation_euler[0] = math.radians(3)
+    obj.rotation_euler[2] = math.radians(-22)
 
     bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, HEIGHT_MM * 0.52))
     target = bpy.context.object
     target.name = "manta_render_target"
 
-    bpy.ops.object.camera_add(location=(0, -405, HEIGHT_MM * 0.57), rotation=(math.radians(76), 0, 0))
+    bpy.ops.object.camera_add(location=(0, -430, HEIGHT_MM * 0.58), rotation=(math.radians(76), 0, 0))
     camera = bpy.context.object
     camera.name = "manta_render_camera"
-    camera.data.lens = 46
+    camera.data.lens = 42
     scene.camera = camera
     constraint = camera.constraints.new(type="TRACK_TO")
     constraint.track_axis = "TRACK_NEGATIVE_Z"

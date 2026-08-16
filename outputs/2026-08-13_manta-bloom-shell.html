@@ -234,28 +234,29 @@
       }
 
       function mantaPoint(u, v) {
-        const angle = u * Math.PI * 2 + Math.sin(v * Math.PI) * 0.52;
+        const angle = u * Math.PI * 2 + Math.sin(v * Math.PI) * 0.34;
         const profile = Math.sin(v * Math.PI);
-        const wing = 1.0 + 0.28 * Math.cos(angle * 2);
-        const radius = (0.42 + 1.28 * Math.pow(profile, 0.56)) * wing;
-        const ripple = Math.sin(u * Math.PI * 2 * 8 + v * Math.PI * 4) * 0.08 * profile;
-        const petal = Math.sin(u * Math.PI * 2 * 4 - v * 7.5) * 0.12 * profile;
-        const x = Math.cos(angle) * (radius + ripple + petal);
-        const z = Math.sin(angle) * (radius + ripple * 0.6) * (0.58 + 0.16 * profile);
-        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.2 * profile;
+        const wing = 1.0 + 0.46 * Math.abs(Math.cos(u * Math.PI * 2)) ** 1.7;
+        const radius = (0.4 + 1.18 * Math.pow(profile, 0.62)) * wing;
+        const ripple = Math.sin(u * Math.PI * 2 * 10 + v * Math.PI * 2 * 2.4) * 0.1 * profile;
+        const petal = Math.sin(u * Math.PI * 2 * 5 - v * 8.5) * 0.15 * profile;
+        const x = Math.cos(angle) * (radius + ripple + petal) * (1.18 + 0.32 * profile);
+        const z = Math.sin(angle) * (radius + ripple * 0.55) * (0.38 + 0.08 * profile);
+        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.3 * profile + Math.sin(u * Math.PI * 2 * 5 + v * 9) * 0.11 * profile;
         const normal = new THREE.Vector3(Math.cos(angle), 0.16 * Math.sin(v * Math.PI * 2), Math.sin(angle)).normalize();
         return { position: new THREE.Vector3(x, y, z), normal };
       }
 
       function mantaColor(u, v) {
         const profile = Math.sin(v * Math.PI);
-        const vein = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 8 + v * Math.PI * 4);
-        const petal = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 4 - v * 7.5);
-        const light = 0.72 + vein * 0.17 + petal * 0.08 + profile * 0.08;
+        const vein = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 10 + v * Math.PI * 2 * 2.4);
+        const petal = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 5 - v * 8.5);
+        const wingGlow = Math.abs(Math.cos(u * Math.PI * 2)) ** 1.4;
+        const light = 0.62 + vein * 0.2 + petal * 0.1 + profile * 0.08 + wingGlow * 0.08;
         return {
-          r: Math.min(1, 0.78 * light + 0.16),
-          g: Math.min(1, 0.22 * light + 0.09),
-          b: Math.min(1, 0.18 * light + 0.1),
+          r: Math.min(1, 0.9 * light + 0.08),
+          g: Math.min(1, 0.25 * light + 0.08),
+          b: Math.min(1, 0.22 * light + 0.1),
         };
       }
     </script>
