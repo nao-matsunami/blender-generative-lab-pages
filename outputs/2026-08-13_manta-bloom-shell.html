@@ -126,7 +126,7 @@
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.12;
+      renderer.toneMappingExposure = 1.24;
 
       const scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0x030506, 0.024);
@@ -152,15 +152,15 @@
       floor.material.opacity = 0.16;
       scene.add(floor);
 
-      const key = new THREE.DirectionalLight(0xffaa86, 3.4);
+      const key = new THREE.DirectionalLight(0xffaa86, 4.4);
       key.position.set(-3.2, -2.6, 4.8);
       scene.add(key);
 
-      const rim = new THREE.PointLight(0x86e7ff, 5.8, 16);
+      const rim = new THREE.PointLight(0x86e7ff, 6.8, 16);
       rim.position.set(3.0, 2.0, 2.8);
       scene.add(rim);
 
-      const fill = new THREE.HemisphereLight(0xfff1df, 0x241417, 1.45);
+      const fill = new THREE.HemisphereLight(0xfff1df, 0x241417, 1.75);
       scene.add(fill);
 
       window.addEventListener("pointermove", (event) => {
@@ -226,37 +226,39 @@
           vertexColors: true,
           color: 0xffffff,
           emissive: 0x21080b,
-          emissiveIntensity: 0.14,
-          roughness: 0.5,
+          emissiveIntensity: 0.2,
+          roughness: 0.46,
           metalness: 0.0,
           side: THREE.DoubleSide,
         }));
       }
 
       function mantaPoint(u, v) {
-        const angle = u * Math.PI * 2 + Math.sin(v * Math.PI) * 0.34;
+        const angle = u * Math.PI * 2 + Math.sin(v * Math.PI) * 0.26;
         const profile = Math.sin(v * Math.PI);
-        const wing = 1.0 + 0.46 * Math.abs(Math.cos(u * Math.PI * 2)) ** 1.7;
-        const radius = (0.4 + 1.18 * Math.pow(profile, 0.62)) * wing;
-        const ripple = Math.sin(u * Math.PI * 2 * 10 + v * Math.PI * 2 * 2.4) * 0.1 * profile;
-        const petal = Math.sin(u * Math.PI * 2 * 5 - v * 8.5) * 0.15 * profile;
-        const x = Math.cos(angle) * (radius + ripple + petal) * (1.18 + 0.32 * profile);
-        const z = Math.sin(angle) * (radius + ripple * 0.55) * (0.38 + 0.08 * profile);
-        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.3 * profile + Math.sin(u * Math.PI * 2 * 5 + v * 9) * 0.11 * profile;
+        const wing = 1.0 + 0.68 * Math.abs(Math.cos(u * Math.PI * 2)) ** 2.2;
+        const radius = (0.36 + 1.08 * Math.pow(profile, 0.72)) * wing;
+        const ripple = Math.sin(u * Math.PI * 2 * 12 + v * Math.PI * 2 * 2.2) * 0.09 * profile;
+        const petal = Math.sin(u * Math.PI * 2 * 6 - v * 9.5) * 0.13 * profile;
+        const wingLift = Math.abs(Math.cos(u * Math.PI * 2)) ** 1.5;
+        const centerScoop = -Math.exp(-(((Math.abs(Math.sin(u * Math.PI * 2)) - 1.0) / 0.42) ** 2));
+        const x = Math.cos(angle) * (radius + ripple + petal) * (1.34 + 0.48 * profile);
+        const z = Math.sin(angle) * (radius + ripple * 0.55) * (0.25 + 0.05 * profile);
+        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.36 * profile + wingLift * 0.38 * profile + centerScoop * 0.3 * profile + Math.sin(u * Math.PI * 2 * 6 + v * 9.5) * 0.08 * profile;
         const normal = new THREE.Vector3(Math.cos(angle), 0.16 * Math.sin(v * Math.PI * 2), Math.sin(angle)).normalize();
         return { position: new THREE.Vector3(x, y, z), normal };
       }
 
       function mantaColor(u, v) {
         const profile = Math.sin(v * Math.PI);
-        const vein = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 10 + v * Math.PI * 2 * 2.4);
-        const petal = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 5 - v * 8.5);
-        const wingGlow = Math.abs(Math.cos(u * Math.PI * 2)) ** 1.4;
-        const light = 0.62 + vein * 0.2 + petal * 0.1 + profile * 0.08 + wingGlow * 0.08;
+        const vein = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 12 + v * Math.PI * 2 * 2.2);
+        const petal = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 6 - v * 9.5);
+        const wingGlow = Math.abs(Math.cos(u * Math.PI * 2)) ** 1.7;
+        const light = 0.68 + vein * 0.22 + petal * 0.09 + profile * 0.08 + wingGlow * 0.1;
         return {
-          r: Math.min(1, 0.9 * light + 0.08),
-          g: Math.min(1, 0.25 * light + 0.08),
-          b: Math.min(1, 0.22 * light + 0.1),
+          r: Math.min(1, 0.96 * light + 0.1),
+          g: Math.min(1, 0.32 * light + 0.1),
+          b: Math.min(1, 0.28 * light + 0.12),
         };
       }
     </script>
