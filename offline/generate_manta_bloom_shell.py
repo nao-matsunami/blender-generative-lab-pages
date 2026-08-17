@@ -40,12 +40,15 @@ def clear_scene() -> None:
 def radius_at(u: float, v: float) -> float:
     profile = math.sin(v * math.pi)
     angle = u * math.tau
-    wing = 1.0 + 0.68 * abs(math.cos(angle)) ** 2.2
-    base = 14.0 + 38.0 * (profile ** 0.72)
+    wing = 1.0 + 0.78 * abs(math.cos(angle)) ** 2.35
+    base = 13.0 + 37.0 * (profile ** 0.74)
     taper = -9.0 * math.exp(-(((v - 0.94) / 0.07) ** 2)) - 7.0 * math.exp(-(((v - 0.05) / 0.06) ** 2))
-    ripple = math.sin(u * math.tau * 12.0 + v * math.tau * 2.2) * 3.6 * profile
-    petal = math.sin(u * math.tau * 6.0 - v * 9.5) * 5.0 * profile
-    return (base + taper) * wing + ripple + petal
+    rib = math.sin(u * math.tau * 12.0 + v * math.tau * 2.2)
+    raised_rib = math.copysign(abs(rib) ** 1.8, rib)
+    ripple = raised_rib * 5.8 * profile
+    petal = math.sin(u * math.tau * 6.0 - v * 9.5) * 6.4 * profile
+    edge_flutter = math.sin(u * math.tau * 9.0 + v * 5.0) * 2.4 * (profile ** 0.8)
+    return (base + taper) * wing + ripple + petal + edge_flutter
 
 
 def color_at(u: float, v: float) -> tuple[float, float, float, float]:
@@ -53,7 +56,7 @@ def color_at(u: float, v: float) -> tuple[float, float, float, float]:
     vein = 0.5 + 0.5 * math.sin(u * math.tau * 12.0 + v * math.tau * 2.2)
     petal = 0.5 + 0.5 * math.sin(u * math.tau * 6.0 - v * 9.5)
     wing_glow = abs(math.cos(u * math.tau)) ** 1.7
-    light = 0.68 + vein * 0.22 + petal * 0.09 + profile * 0.08 + wing_glow * 0.1
+    light = 0.72 + vein * 0.25 + petal * 0.09 + profile * 0.08 + wing_glow * 0.12
     return (min(1.0, 0.96 * light + 0.1), min(1.0, 0.32 * light + 0.1), min(1.0, 0.28 * light + 0.12), 1.0)
 
 
@@ -71,14 +74,16 @@ def create_shell_mesh() -> bpy.types.Object:
             u = x_index / RADIAL_SEGMENTS
             angle = u * math.tau + twist
             radius = radius_at(u, v)
-            lateral = 1.34 + 0.48 * profile
-            depth = 0.25 + 0.05 * profile
+            lateral = 1.42 + 0.54 * profile
+            depth = 0.22 + 0.05 * profile
             wing_lift = abs(math.cos(u * math.tau)) ** 1.5
             center_scoop = -math.exp(-((abs(math.sin(u * math.tau)) - 1.0) / 0.42) ** 2)
-            y_offset = math.cos(u * math.tau * 2.0) * 13.0 * profile
-            y_offset += wing_lift * 14.0 * profile
-            y_offset += center_scoop * 11.0 * profile
-            y_offset += math.sin(u * math.tau * 6.0 + v * 9.5) * 3.2 * profile
+            rib_height = math.sin(u * math.tau * 12.0 + v * math.tau * 2.2) * 4.8 * profile
+            y_offset = math.cos(u * math.tau * 2.0) * 14.0 * profile
+            y_offset += wing_lift * 17.0 * profile
+            y_offset += center_scoop * 13.0 * profile
+            y_offset += math.sin(u * math.tau * 6.0 + v * 9.5) * 3.6 * profile
+            y_offset += rib_height
             vertices.append((math.cos(angle) * radius * lateral, math.sin(angle) * radius * depth, z + y_offset))
             colors.append(color_at(u, v))
 
@@ -153,7 +158,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     scene.render.image_settings.color_mode = "RGBA"
     scene.view_settings.view_transform = "Filmic"
     scene.view_settings.look = "Medium High Contrast"
-    scene.view_settings.exposure = 0.86
+    scene.view_settings.exposure = 1.02
     scene.view_settings.gamma = 1.0
 
     world = scene.world or bpy.data.worlds.new("World")
@@ -161,14 +166,15 @@ def setup_scene(obj: bpy.types.Object) -> None:
     world.color = (0.0, 0.0, 0.0)
 
     obj.location.z = HEIGHT_MM * 0.5
-    obj.rotation_euler[0] = math.radians(12)
-    obj.rotation_euler[2] = math.radians(-24)
+    obj.rotation_euler[0] = math.radians(18)
+    obj.rotation_euler[1] = math.radians(0)
+    obj.rotation_euler[2] = math.radians(-26)
 
     bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, HEIGHT_MM * 0.52))
     target = bpy.context.object
     target.name = "manta_render_target"
 
-    bpy.ops.object.camera_add(location=(0, -455, HEIGHT_MM * 0.56), rotation=(math.radians(76), 0, 0))
+    bpy.ops.object.camera_add(location=(0, -470, HEIGHT_MM * 0.62), rotation=(math.radians(74), 0, 0))
     camera = bpy.context.object
     camera.name = "manta_render_camera"
     camera.data.lens = 42
@@ -181,7 +187,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     bpy.ops.object.light_add(type="AREA", location=(-125, -145, 160))
     key = bpy.context.object
     key.name = "manta_warm_key"
-    key.data.energy = 1780
+    key.data.energy = 2100
     key.data.color = (1.0, 0.58, 0.42)
     key.data.size = 150
 
@@ -189,7 +195,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     rim = bpy.context.object
     rim.name = "manta_cool_rim"
     rim.data.color = (0.55, 0.9, 1.0)
-    rim.data.energy = 880
+    rim.data.energy = 1040
     rim.data.shadow_soft_size = 80
 
 
