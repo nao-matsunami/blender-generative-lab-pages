@@ -45,9 +45,9 @@ def radius_at(u: float, v: float) -> float:
     taper = -9.0 * math.exp(-(((v - 0.94) / 0.07) ** 2)) - 7.0 * math.exp(-(((v - 0.05) / 0.06) ** 2))
     rib = math.sin(u * math.tau * 12.0 + v * math.tau * 2.2)
     raised_rib = math.copysign(abs(rib) ** 1.8, rib)
-    ripple = raised_rib * 5.8 * profile
-    petal = math.sin(u * math.tau * 6.0 - v * 9.5) * 6.4 * profile
-    edge_flutter = math.sin(u * math.tau * 9.0 + v * 5.0) * 2.4 * (profile ** 0.8)
+    ripple = raised_rib * 7.2 * profile
+    petal = math.sin(u * math.tau * 6.0 - v * 9.5) * 7.0 * profile
+    edge_flutter = math.sin(u * math.tau * 9.0 + v * 5.0) * 3.0 * (profile ** 0.8)
     return (base + taper) * wing + ripple + petal + edge_flutter
 
 
@@ -57,8 +57,8 @@ def color_at(u: float, v: float) -> tuple[float, float, float, float]:
     petal = 0.5 + 0.5 * math.sin(u * math.tau * 6.0 - v * 9.5)
     wing_glow = abs(math.cos(u * math.tau)) ** 1.7
     groove_shadow = (1.0 - vein) ** 1.4
-    light = 0.66 + vein * 0.34 + petal * 0.1 + profile * 0.08 + wing_glow * 0.1 - groove_shadow * 0.16
-    return (min(1.0, 0.98 * light + 0.08), min(1.0, 0.3 * light + 0.08), min(1.0, 0.25 * light + 0.1), 1.0)
+    light = 0.7 + vein * 0.38 + petal * 0.1 + profile * 0.08 + wing_glow * 0.1 - groove_shadow * 0.2
+    return (min(1.0, 1.0 * light + 0.08), min(1.0, 0.32 * light + 0.08), min(1.0, 0.26 * light + 0.1), 1.0)
 
 
 def create_shell_mesh() -> bpy.types.Object:
@@ -79,11 +79,11 @@ def create_shell_mesh() -> bpy.types.Object:
             depth = 0.22 + 0.05 * profile
             wing_lift = abs(math.cos(u * math.tau)) ** 1.5
             center_scoop = -math.exp(-((abs(math.sin(u * math.tau)) - 1.0) / 0.42) ** 2)
-            rib_height = math.sin(u * math.tau * 12.0 + v * math.tau * 2.2) * 4.8 * profile
-            y_offset = math.cos(u * math.tau * 2.0) * 14.0 * profile
-            y_offset += wing_lift * 17.0 * profile
-            y_offset += center_scoop * 13.0 * profile
-            y_offset += math.sin(u * math.tau * 6.0 + v * 9.5) * 3.6 * profile
+            rib_height = math.sin(u * math.tau * 12.0 + v * math.tau * 2.2) * 6.2 * profile
+            y_offset = math.cos(u * math.tau * 2.0) * 15.0 * profile
+            y_offset += wing_lift * 18.5 * profile
+            y_offset += center_scoop * 14.0 * profile
+            y_offset += math.sin(u * math.tau * 6.0 + v * 9.5) * 4.2 * profile
             y_offset += rib_height
             vertices.append((math.cos(angle) * radius * lateral, math.sin(angle) * radius * depth, z + y_offset))
             colors.append(color_at(u, v))
@@ -167,7 +167,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     world.color = (0.0, 0.0, 0.0)
 
     obj.location.z = HEIGHT_MM * 0.5
-    obj.rotation_euler[0] = math.radians(10)
+    obj.rotation_euler[0] = math.radians(16)
     obj.rotation_euler[1] = math.radians(0)
     obj.rotation_euler[2] = math.radians(-34)
 
@@ -175,10 +175,10 @@ def setup_scene(obj: bpy.types.Object) -> None:
     target = bpy.context.object
     target.name = "manta_render_target"
 
-    bpy.ops.object.camera_add(location=(0, -390, HEIGHT_MM * 1.05), rotation=(math.radians(64), 0, 0))
+    bpy.ops.object.camera_add(location=(0, -420, HEIGHT_MM * 0.95), rotation=(math.radians(68), 0, 0))
     camera = bpy.context.object
     camera.name = "manta_render_camera"
-    camera.data.lens = 38
+    camera.data.lens = 36
     scene.camera = camera
     constraint = camera.constraints.new(type="TRACK_TO")
     constraint.track_axis = "TRACK_NEGATIVE_Z"

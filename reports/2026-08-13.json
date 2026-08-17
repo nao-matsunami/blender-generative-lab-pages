@@ -32,6 +32,13 @@
       "body": "正解は、余計なデバッグ線や点がない、柔らかい翼状の有機シェル。VJ素材としてはゆっくりした回転で輪郭が変化し、3Dプリント候補としては薄いランプシェードや壁面オブジェクトへ展開できる方向。",
       "bodyEn": "The target is a soft wing-like organic shell without stray debug lines or dots. As VJ material, its silhouette changes through slow rotation; as a print candidate, it can develop into a thin lampshade or wall object.",
       "links": []
+    },
+    {
+      "title": "Polish更新",
+      "titleEn": "Polish update",
+      "body": "2026-08-18の更新で、丸い塊に見えやすかった初期形状から、薄い翼状シェルへ寄せた。表面リブ、縁の波、頂点カラーの陰影を強め、BlenderプレビューとWebプレビューの形状式を揃えている。",
+      "bodyEn": "The 2026-08-18 update moves the initial rounded mass toward a thin wing-like shell. Surface ribs, edge waves, and vertex-color shading were strengthened, while the Blender and web preview shape formulas were kept aligned.",
+      "links": []
     }
   ]
 }

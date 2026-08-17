@@ -140,8 +140,8 @@
       const targetPointer = new THREE.Vector2();
 
       const object = new THREE.Group();
-      object.rotation.x = -0.02;
-      object.rotation.z = -0.08;
+      object.rotation.x = 0.08;
+      object.rotation.z = -0.12;
       scene.add(object);
 
       const shell = createMantaShell();
@@ -177,7 +177,7 @@
         const elapsed = clock.getElapsedTime();
         pointer.lerp(targetPointer, 0.08);
         object.rotation.y = elapsed * Math.PI * 2 / 26 + pointer.x * 0.16;
-        object.rotation.x = -0.02 + pointer.y * 0.07 + Math.sin(elapsed * 0.46) * 0.025;
+        object.rotation.x = 0.08 + pointer.y * 0.07 + Math.sin(elapsed * 0.46) * 0.025;
         object.position.y = Math.sin(elapsed * 0.5) * 0.035;
         renderer.render(scene, camera);
       }
@@ -241,14 +241,14 @@
         const radius = (0.34 + 1.04 * Math.pow(profile, 0.74)) * wing;
         const rib = Math.sin(u * Math.PI * 2 * 12 + v * Math.PI * 2 * 2.2);
         const raisedRib = Math.sign(rib) * Math.abs(rib) ** 1.8;
-        const ripple = raisedRib * 0.145 * profile;
-        const petal = Math.sin(u * Math.PI * 2 * 6 - v * 9.5) * 0.17 * profile;
+        const ripple = raisedRib * 0.18 * profile;
+        const petal = Math.sin(u * Math.PI * 2 * 6 - v * 9.5) * 0.185 * profile;
         const wingLift = Math.abs(Math.cos(u * Math.PI * 2)) ** 1.5;
         const centerScoop = -Math.exp(-(((Math.abs(Math.sin(u * Math.PI * 2)) - 1.0) / 0.42) ** 2));
-        const ribHeight = Math.sin(u * Math.PI * 2 * 12 + v * Math.PI * 2 * 2.2) * 0.13 * profile;
+        const ribHeight = Math.sin(u * Math.PI * 2 * 12 + v * Math.PI * 2 * 2.2) * 0.17 * profile;
         const x = Math.cos(angle) * (radius + ripple + petal) * (1.42 + 0.54 * profile);
         const z = Math.sin(angle) * (radius + ripple * 0.55) * (0.22 + 0.05 * profile);
-        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.38 * profile + wingLift * 0.46 * profile + centerScoop * 0.34 * profile + Math.sin(u * Math.PI * 2 * 6 + v * 9.5) * 0.09 * profile + ribHeight;
+        const y = (v - 0.5) * 3.7 + Math.cos(u * Math.PI * 2 * 2) * 0.41 * profile + wingLift * 0.5 * profile + centerScoop * 0.37 * profile + Math.sin(u * Math.PI * 2 * 6 + v * 9.5) * 0.11 * profile + ribHeight;
         const normal = new THREE.Vector3(Math.cos(angle), 0.16 * Math.sin(v * Math.PI * 2), Math.sin(angle)).normalize();
         return { position: new THREE.Vector3(x, y, z), normal };
       }
@@ -259,11 +259,11 @@
         const petal = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 6 - v * 9.5);
         const wingGlow = Math.abs(Math.cos(u * Math.PI * 2)) ** 1.7;
         const grooveShadow = (1 - vein) ** 1.4;
-        const light = 0.66 + vein * 0.34 + petal * 0.1 + profile * 0.08 + wingGlow * 0.1 - grooveShadow * 0.16;
+        const light = 0.7 + vein * 0.38 + petal * 0.1 + profile * 0.08 + wingGlow * 0.1 - grooveShadow * 0.2;
         return {
-          r: Math.min(1, 0.98 * light + 0.08),
-          g: Math.min(1, 0.3 * light + 0.08),
-          b: Math.min(1, 0.25 * light + 0.1),
+          r: Math.min(1, 1.0 * light + 0.08),
+          g: Math.min(1, 0.32 * light + 0.08),
+          b: Math.min(1, 0.26 * light + 0.1),
         };
       }
     </script>
