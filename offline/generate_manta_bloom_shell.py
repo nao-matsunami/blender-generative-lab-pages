@@ -56,8 +56,9 @@ def color_at(u: float, v: float) -> tuple[float, float, float, float]:
     vein = 0.5 + 0.5 * math.sin(u * math.tau * 12.0 + v * math.tau * 2.2)
     petal = 0.5 + 0.5 * math.sin(u * math.tau * 6.0 - v * 9.5)
     wing_glow = abs(math.cos(u * math.tau)) ** 1.7
-    light = 0.72 + vein * 0.25 + petal * 0.09 + profile * 0.08 + wing_glow * 0.12
-    return (min(1.0, 0.96 * light + 0.1), min(1.0, 0.32 * light + 0.1), min(1.0, 0.28 * light + 0.12), 1.0)
+    groove_shadow = (1.0 - vein) ** 1.4
+    light = 0.66 + vein * 0.34 + petal * 0.1 + profile * 0.08 + wing_glow * 0.1 - groove_shadow * 0.16
+    return (min(1.0, 0.98 * light + 0.08), min(1.0, 0.3 * light + 0.08), min(1.0, 0.25 * light + 0.1), 1.0)
 
 
 def create_shell_mesh() -> bpy.types.Object:
@@ -121,11 +122,11 @@ def create_material() -> bpy.types.Material:
         attribute = nodes.new("ShaderNodeAttribute")
         attribute.attribute_name = "manta_bloom_color"
         node_tree.links.new(attribute.outputs["Color"], bsdf.inputs["Base Color"])
-        bsdf.inputs["Roughness"].default_value = 0.34
+        bsdf.inputs["Roughness"].default_value = 0.3
         if "Emission Color" in bsdf.inputs:
             bsdf.inputs["Emission Color"].default_value = (0.18, 0.04, 0.03, 1.0)
         if "Emission Strength" in bsdf.inputs:
-            bsdf.inputs["Emission Strength"].default_value = 0.22
+            bsdf.inputs["Emission Strength"].default_value = 0.18
     return material
 
 
@@ -158,7 +159,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     scene.render.image_settings.color_mode = "RGBA"
     scene.view_settings.view_transform = "Filmic"
     scene.view_settings.look = "Medium High Contrast"
-    scene.view_settings.exposure = 1.02
+    scene.view_settings.exposure = 1.12
     scene.view_settings.gamma = 1.0
 
     world = scene.world or bpy.data.worlds.new("World")
@@ -166,37 +167,44 @@ def setup_scene(obj: bpy.types.Object) -> None:
     world.color = (0.0, 0.0, 0.0)
 
     obj.location.z = HEIGHT_MM * 0.5
-    obj.rotation_euler[0] = math.radians(18)
+    obj.rotation_euler[0] = math.radians(10)
     obj.rotation_euler[1] = math.radians(0)
-    obj.rotation_euler[2] = math.radians(-26)
+    obj.rotation_euler[2] = math.radians(-34)
 
-    bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, HEIGHT_MM * 0.52))
+    bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, HEIGHT_MM * 0.5))
     target = bpy.context.object
     target.name = "manta_render_target"
 
-    bpy.ops.object.camera_add(location=(0, -470, HEIGHT_MM * 0.62), rotation=(math.radians(74), 0, 0))
+    bpy.ops.object.camera_add(location=(0, -390, HEIGHT_MM * 1.05), rotation=(math.radians(64), 0, 0))
     camera = bpy.context.object
     camera.name = "manta_render_camera"
-    camera.data.lens = 42
+    camera.data.lens = 38
     scene.camera = camera
     constraint = camera.constraints.new(type="TRACK_TO")
     constraint.track_axis = "TRACK_NEGATIVE_Z"
     constraint.up_axis = "UP_Y"
     constraint.target = target
 
-    bpy.ops.object.light_add(type="AREA", location=(-125, -145, 160))
+    bpy.ops.object.light_add(type="AREA", location=(-145, -135, 175))
     key = bpy.context.object
     key.name = "manta_warm_key"
-    key.data.energy = 2100
+    key.data.energy = 2360
     key.data.color = (1.0, 0.58, 0.42)
     key.data.size = 150
 
-    bpy.ops.object.light_add(type="POINT", location=(120, 80, 130))
+    bpy.ops.object.light_add(type="POINT", location=(150, 90, 145))
     rim = bpy.context.object
     rim.name = "manta_cool_rim"
     rim.data.color = (0.55, 0.9, 1.0)
-    rim.data.energy = 1040
+    rim.data.energy = 1280
     rim.data.shadow_soft_size = 80
+
+    bpy.ops.object.light_add(type="AREA", location=(0, -220, 135))
+    front = bpy.context.object
+    front.name = "manta_front_shape_fill"
+    front.data.energy = 760
+    front.data.color = (1.0, 0.82, 0.72)
+    front.data.size = 210
 
 
 def export_stl(obj: bpy.types.Object) -> None:
