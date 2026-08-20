@@ -12,6 +12,7 @@ const studies = {
   seed: "offline/generate_luminous_seed_vessel.py",
   coral: "offline/generate_tidal_coral_helix.py",
   bloom: "offline/generate_manta_bloom_shell.py",
+  spore: "offline/generate_spore_current_lantern.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

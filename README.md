@@ -31,6 +31,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Manta Bloom Shell` is a manta-ray and flower-petal inspired shell for slow VJ loops and print-form exploration.
 
+## Sixth Study
+
+`Spore Current Lantern` is a spore-pod and current-carved lantern form for VJ loops and hollow print-form exploration.
+
 ## Local Site
 
 ```sh
@@ -72,6 +76,10 @@ exports/stl/tidal-coral-helix.stl
 exports/glb/tidal-coral-helix.glb
 renders/tidal-coral-helix.png
 renders/tidal-coral-helix-preview.png
+exports/stl/spore-current-lantern.stl
+exports/glb/spore-current-lantern.glb
+renders/spore-current-lantern.png
+renders/spore-current-lantern-preview.png
 ```
 
 Check whether the expected files were created:

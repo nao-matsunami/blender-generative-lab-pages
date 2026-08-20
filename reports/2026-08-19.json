@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-19",
+  "headline": "Spore Current Lantern",
+  "headlineEn": "Spore Current Lantern",
+  "summary": "Organic Motion Objectsの6つ目。胞子ポッドと水流を合わせたような縦長のランタン形状。Webプレビュー、Blenderレンダー、GLB、STLを同じ形状式で育てる。",
+  "summaryEn": "The sixth Organic Motion Objects study: a vertical lantern form between a spore pod and a current-carved vessel. The web preview, Blender render, GLB, and STL share the same procedural direction.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-19_spore-current-lantern.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_spore_current_lantern.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "今回は別作品として、翼状ではなく縦方向のランタン/花器候補に寄せた。丸い点や白線の演出ではなく、表面リブ、ねじれ、楕円断面、暖色と青緑の頂点カラーで流れを作る。",
+      "bodyEn": "This is a separate study from the wing-like shell direction: a vertical lantern or vessel candidate. Instead of dots or white guide lines, the motion comes from surface ribs, twist, oval cross-sections, and warm-to-teal vertex color.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "正解は、胞子の殻のように閉じすぎず、ランタンや花器として成立しそうな中空形状。VJ素材としては低速回転で縦の流れが読め、3Dプリント候補としては厚み付きシェルで検証できる状態を目指す。",
+      "bodyEn": "The target is a hollow form that is not fully closed: a spore-like shell that could develop into a lantern or vessel. As VJ material, slow rotation should reveal vertical flow; as a print candidate, it has a thickened shell for tests.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次の段階では、口縁の処理、内部の見え方、ランタン用途向けの穴あけ、MP4ループ化を検証する。",
+      "bodyEn": "Next passes should evaluate rim treatment, interior visibility, perforation for lantern use, and MP4 loop output.",
+      "links": []
+    }
+  ]
+}

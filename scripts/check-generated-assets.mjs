@@ -85,6 +85,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/manta-bloom-shell-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/spore-current-lantern.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/spore-current-lantern.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/spore-current-lantern.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/spore-current-lantern-preview.png",
+  },
 ];
 
 let failed = false;
