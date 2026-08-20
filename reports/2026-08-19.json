@@ -39,6 +39,13 @@
       "body": "次の段階では、口縁の処理、内部の見え方、ランタン用途向けの穴あけ、MP4ループ化を検証する。",
       "bodyEn": "Next passes should evaluate rim treatment, interior visibility, perforation for lantern use, and MP4 loop output.",
       "links": []
+    },
+    {
+      "title": "Polish更新",
+      "titleEn": "Polish update",
+      "body": "2026-08-20の更新で、プレビューPNGだけに暗い背面板を追加した。透明PNG、GLB、STLには含めず、公開ページや日々の確認で形状と流線が読みやすい状態にしている。",
+      "bodyEn": "The 2026-08-20 update adds a dark backdrop only for the preview PNG. The transparent PNG, GLB, and STL stay clean while the published review image is easier to read.",
+      "links": []
     }
   ]
 }

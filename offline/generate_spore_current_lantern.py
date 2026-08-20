@@ -237,12 +237,29 @@ def render_still() -> None:
     bpy.context.scene.render.filepath = str(RENDER_PATH)
     bpy.ops.render.render(write_still=True)
 
+    add_preview_backdrop()
     world = bpy.context.scene.world
     if world:
         world.color = (0.01, 0.014, 0.015)
     bpy.context.scene.render.film_transparent = False
     bpy.context.scene.render.filepath = str(PREVIEW_PATH)
     bpy.ops.render.render(write_still=True)
+
+
+def add_preview_backdrop() -> None:
+    material = bpy.data.materials.new("spore_preview_dark_backdrop")
+    material.diffuse_color = (0.006, 0.01, 0.011, 1.0)
+    material.use_nodes = True
+    bsdf = material.node_tree.nodes.get("Principled BSDF")
+    if bsdf:
+        bsdf.inputs["Base Color"].default_value = (0.006, 0.01, 0.011, 1.0)
+        bsdf.inputs["Roughness"].default_value = 0.92
+
+    bpy.ops.mesh.primitive_plane_add(size=1.0, location=(0, 170, HEIGHT_MM * 0.5), rotation=(math.radians(90), 0, 0))
+    backdrop = bpy.context.object
+    backdrop.name = "spore_preview_dark_backdrop"
+    backdrop.dimensions = (900, 900, 1)
+    backdrop.data.materials.append(material)
 
 
 def main() -> None:
