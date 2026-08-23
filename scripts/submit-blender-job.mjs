@@ -15,6 +15,7 @@ const studies = {
   spore: "offline/generate_spore_current_lantern.py",
   kelp: "offline/generate_kelp_pulse_torus.py",
   viscera: "offline/generate_visceral_tide_knot.py",
+  neural: "offline/generate_neural_gut_bloom.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

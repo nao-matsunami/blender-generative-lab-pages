@@ -1,9 +1,9 @@
 {
   "date": "2026-08-23",
-  "headline": "Kelp Pulse Torus / Visceral Tide Knot",
-  "headlineEn": "Kelp Pulse Torus / Visceral Tide Knot",
-  "summary": "Organic Motion Objectsの7日目。海藻リングのKelp Pulse Torusに加えて、少しグロテスクな内臓的チューブ造形のVisceral Tide Knotを追加した。VJ素材と3Dプリント候補の幅を意図的に広げる。",
-  "summaryEn": "The seventh Organic Motion Objects day adds Kelp Pulse Torus and the more grotesque, organ-like Visceral Tide Knot. The goal is to widen the range of VJ material and print-form candidates.",
+  "headline": "Kelp Pulse / Visceral / Neural Gut",
+  "headlineEn": "Kelp Pulse / Visceral / Neural Gut",
+  "summary": "Organic Motion Objectsの7日目。海藻リング、内臓的チューブ、神経束コロニーを同日に追加し、VJ素材と3Dプリント候補の幅を意図的に広げた。",
+  "summaryEn": "The seventh Organic Motion Objects day adds a kelp ring, a visceral tube knot, and a neural gut colony to widen the range of VJ material and print-form candidates.",
   "links": [
     {
       "label": "Today's sample",
@@ -14,12 +14,20 @@
       "url": "../outputs/2026-08-23_visceral-tide-knot.html"
     },
     {
+      "label": "Neural sample",
+      "url": "../outputs/2026-08-23_neural-gut-bloom.html"
+    },
+    {
       "label": "Kelp generator",
       "url": "../offline/generate_kelp_pulse_torus.py"
     },
     {
       "label": "Visceral generator",
       "url": "../offline/generate_visceral_tide_knot.py"
+    },
+    {
+      "label": "Neural generator",
+      "url": "../offline/generate_neural_gut_bloom.py"
     },
     {
       "label": "Autonomous production",
@@ -64,6 +72,18 @@
         {
           "label": "Visceral Tide Knot",
           "url": "../outputs/2026-08-23_visceral-tide-knot.html"
+        }
+      ]
+    },
+    {
+      "title": "Neural追加",
+      "titleEn": "Neural addition",
+      "body": "さらに、中央の袋状コアに複数の管が絡むNeural Gut Bloomを追加した。内臓というより、神経束、腫れた袋、深海の群体が混ざった抽象造形として扱い、VJで見た時の密度と不穏さを強めている。",
+      "bodyEn": "Neural Gut Bloom extends the grotesque direction with looping tendrils around a swollen core. It reads less as literal anatomy and more as a hybrid of nerve bundles, sacs, and deep-sea colonies.",
+      "links": [
+        {
+          "label": "Neural Gut Bloom",
+          "url": "../outputs/2026-08-23_neural-gut-bloom.html"
         }
       ]
     }

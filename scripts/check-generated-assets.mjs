@@ -133,6 +133,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/visceral-tide-knot-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/neural-gut-bloom.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/neural-gut-bloom.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/neural-gut-bloom.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/neural-gut-bloom-preview.png",
+  },
 ];
 
 let failed = false;

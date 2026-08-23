@@ -43,6 +43,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Visceral Tide Knot` is a grotesque organ-like tube knot for darker VJ loops and continuous printable form studies.
 
+## Ninth Study
+
+`Neural Gut Bloom` is a grotesque nerve-and-gut colony with a swollen core and looping tendrils.
+
 ## Local Site
 
 ```sh
@@ -96,6 +100,10 @@ exports/stl/visceral-tide-knot.stl
 exports/glb/visceral-tide-knot.glb
 renders/visceral-tide-knot.png
 renders/visceral-tide-knot-preview.png
+exports/stl/neural-gut-bloom.stl
+exports/glb/neural-gut-bloom.glb
+renders/neural-gut-bloom.png
+renders/neural-gut-bloom-preview.png
 ```
 
 Check whether the expected files were created:
