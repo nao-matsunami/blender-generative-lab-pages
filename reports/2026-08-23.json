@@ -86,6 +86,13 @@
           "url": "../outputs/2026-08-23_neural-gut-bloom.html"
         }
       ]
+    },
+    {
+      "title": "色調整",
+      "titleEn": "Color correction",
+      "body": "Neural Gut Bloomは初期版の青みが造形の方向と合っていなかったため、シアン系のリムライトと青緑の神経色を外した。赤紫、臙脂、暗い肉色に寄せ、グロテスクな素材感が一貫するように調整している。",
+      "bodyEn": "The initial Neural Gut Bloom palette used too much blue, which did not fit the grotesque material direction. Cyan rim light and blue-green nerve color were removed in favor of red-purple, dark crimson, and flesh tones.",
+      "links": []
     }
   ]
 }

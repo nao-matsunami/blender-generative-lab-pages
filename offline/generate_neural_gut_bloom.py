@@ -76,8 +76,8 @@ def cross(a, b):
 def color_at(u: float, v: float, layer: float) -> tuple[float, float, float, float]:
     vein = smoothstep(0.62, 0.98, 0.5 + 0.5 * math.sin(u * math.tau * 12.0 + v * math.tau * 1.7))
     wet = 0.5 + 0.5 * math.sin(u * math.tau * 5.0 - layer * 0.8)
-    base = (0.72 + wet * 0.16, 0.23 + layer * 0.08, 0.36 + wet * 0.1)
-    nerve = (0.1, 0.38, 0.5)
+    base = (0.74 + wet * 0.16, 0.22 + layer * 0.055, 0.31 + wet * 0.08)
+    nerve = (0.28, 0.055, 0.16)
     return (
         base[0] * (1.0 - vein) + nerve[0] * vein,
         base[1] * (1.0 - vein) + nerve[1] * vein,
@@ -263,9 +263,9 @@ def setup_scene(obj: bpy.types.Object) -> None:
 
     bpy.ops.object.light_add(type="POINT", location=(150, 85, 130))
     rim = bpy.context.object
-    rim.name = "neural_cyan_rim"
-    rim.data.color = (0.42, 0.9, 1.0)
-    rim.data.energy = 1500
+    rim.name = "neural_bruise_rim"
+    rim.data.color = (0.72, 0.12, 0.28)
+    rim.data.energy = 1200
     rim.data.shadow_soft_size = 80
 
     bpy.ops.object.light_add(type="AREA", location=(0, -225, 112))
