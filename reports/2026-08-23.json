@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-23",
+  "headline": "Kelp Pulse Torus",
+  "headlineEn": "Kelp Pulse Torus",
+  "summary": "Organic Motion Objectsの7つ目。海藻の葉脈と脈動するリングを合わせた、有機的なトーラス形状。VJループでは回転で内外の輪郭が変化し、3Dプリントでは小型オブジェクトや吊り下げパーツへ展開できる。",
+  "summaryEn": "The seventh Organic Motion Objects study: an organic torus between kelp veins and a pulsing ring. Slow rotation changes the inner and outer silhouette for VJ use, while the form can develop into a small printed object or hanging part.",
+  "links": [
+    {
+      "label": "Today's sample",
+      "url": "../outputs/2026-08-23_kelp-pulse-torus.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_kelp_pulse_torus.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "今回は縦長シェルから離れて、穴のあるリング形状へ振った。形状の正解は、完全な数学的トーラスではなく、海藻のような非対称な厚み、波打つ輪郭、緑と琥珀色の流線が読める状態。",
+      "bodyEn": "This pass moves away from vertical shells into a ring form with a clear opening. The target is not a mathematically perfect torus, but an asymmetric kelp-like mass with changing thickness, a wavy silhouette, and green-to-amber flow lines.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "VJ素材としては、中央の穴が回転中に視線の抜けになる。3Dプリント候補としては、ペンダント、壁面小物、ランプ周辺の装飾パーツに展開できる形を狙う。",
+      "bodyEn": "For VJ material, the central opening gives the rotation a readable void. For print-form development, this can move toward pendants, wall objects, or decorative lamp-adjacent parts.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は内側の穴の強度、吊り下げ用の接続点、輪郭の薄い部分の厚みを検証する。",
+      "bodyEn": "Next passes should test inner-ring strength, hanging attachment points, and minimum thickness around the thinner silhouette areas.",
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kelp Pulse Torus / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #020807;
+        --ink: #f4f1e8;
+        --muted: #b5b2a6;
+        --accent: #d8a447;
+        --cool: #6fffc5;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 52% 48%, rgba(89, 255, 191, 0.13), transparent 34%),
+          radial-gradient(circle at 45% 74%, rgba(216, 164, 71, 0.12), transparent 30%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.78);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 650px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(244, 241, 232, 0.28);
+        background: rgba(2, 8, 7, 0.5);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--cool); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(244, 241, 232, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--cool), var(--accent), #f4f1e8);
+        animation: loop-meter 24s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--cool);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Kelp Pulse Torus procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Kelp Pulse Torus</h1>
+        <p>Organic Motion Objects / kelp-ring pulse torus / VJ loop and print-form study</p>
+      </div>
+      <a href="../days/2026-08-23.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.23</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x020807, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.28;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x020807, 0.028);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(0, 0.25, 6.8);
+      camera.lookAt(0, 0, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+
+      const object = new THREE.Group();
+      object.rotation.x = 0.75;
+      object.rotation.z = -0.16;
+      scene.add(object);
+
+      const torus = createKelpTorus();
+      object.add(torus);
+
+      const floor = new THREE.GridHelper(7, 40, 0x243c35, 0x0a1210);
+      floor.position.y = -1.95;
+      floor.material.transparent = true;
+      floor.material.opacity = 0.16;
+      scene.add(floor);
+
+      const key = new THREE.DirectionalLight(0x98ffd2, 5.8);
+      key.position.set(-3, -2.5, 4.5);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0xffa24d, 6.8, 14);
+      rim.position.set(2.8, 1.8, 2.6);
+      scene.add(rim);
+
+      const fill = new THREE.HemisphereLight(0xbfffe6, 0x15100b, 2.05);
+      scene.add(fill);
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 24 + pointer.x * 0.16;
+        object.rotation.x = 0.75 + pointer.y * 0.08 + Math.sin(elapsed * 0.5) * 0.035;
+        object.position.y = Math.sin(elapsed * 0.54) * 0.035;
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      function createKelpTorus() {
+        const major = 192;
+        const minor = 48;
+        const positions = [];
+        const colors = [];
+        const indices = [];
+        for (let i = 0; i < major; i += 1) {
+          const u = i / major;
+          const majorAngle = u * Math.PI * 2;
+          const twist = Math.sin(u * Math.PI * 2 * 3) * 0.28;
+          const ringWobble = Math.sin(u * Math.PI * 2 * 5) * 0.13 + Math.sin(u * Math.PI * 2 * 2 + 0.8) * 0.085;
+          const majorRadius = 1.45 + ringWobble;
+          const verticalDrift = Math.sin(u * Math.PI * 2 * 4 - 0.4) * 0.18;
+          const center = new THREE.Vector3(Math.cos(majorAngle) * majorRadius * 1.08, Math.sin(majorAngle) * majorRadius * 0.86, verticalDrift);
+          const radial = new THREE.Vector3(Math.cos(majorAngle), Math.sin(majorAngle), 0);
+          const tangent = new THREE.Vector3(-Math.sin(majorAngle), Math.cos(majorAngle), 0);
+          for (let j = 0; j < minor; j += 1) {
+            const v = j / minor;
+            const minorAngle = v * Math.PI * 2 + twist + Math.sin(u * Math.PI * 2 * 2) * 0.18;
+            const tubeRadius = 0.36 + pulseAt(u, v);
+            const blade = 1 + 0.38 * Math.max(0, Math.sin(minorAngle)) ** 1.9;
+            const crossX = Math.cos(minorAngle) * tubeRadius * blade;
+            const crossZ = Math.sin(minorAngle) * tubeRadius * (0.72 + 0.1 * Math.sin(u * Math.PI * 2 * 6));
+            const lift = Math.sin(u * Math.PI * 2 * 7 + v * Math.PI * 2 * 2) * 0.045;
+            const p = center.clone().add(radial.clone().multiplyScalar(crossX)).add(tangent.clone().multiplyScalar(lift));
+            positions.push(p.x, p.y, p.z + crossZ);
+            const c = colorAt(u, v);
+            colors.push(c.r, c.g, c.b);
+          }
+        }
+        for (let i = 0; i < major; i += 1) {
+          for (let j = 0; j < minor; j += 1) {
+            const a = i * minor + j;
+            const b = i * minor + ((j + 1) % minor);
+            const c = ((i + 1) % major) * minor + ((j + 1) % minor);
+            const d = ((i + 1) % major) * minor + j;
+            indices.push(a, b, d, b, c, d);
+          }
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+          vertexColors: true,
+          color: 0xffffff,
+          emissive: 0x071e17,
+          emissiveIntensity: 0.16,
+          roughness: 0.42,
+          metalness: 0.0,
+          side: THREE.DoubleSide,
+        }));
+      }
+
+      function pulseAt(u, v) {
+        const frond = Math.sin(u * Math.PI * 2 * 9 + v * Math.PI * 2 * 1.2);
+        const slow = Math.sin(u * Math.PI * 2 * 4 - v * Math.PI * 2 * 0.75);
+        const ridge = Math.sign(frond) * Math.abs(frond) ** 1.7;
+        return ridge * 0.12 + slow * 0.055;
+      }
+
+      function colorAt(u, v) {
+        const pulse = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 9 + v * Math.PI * 2 * 1.2);
+        const groove = smoothstep(0.55, 0.96, 1 - pulse);
+        const glow = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 3 - 0.6);
+        const base = {
+          r: 0.18 + 0.16 * glow,
+          g: 0.48 + 0.22 * pulse,
+          b: 0.42 + 0.18 * glow,
+        };
+        const amber = { r: 0.92, g: 0.54, b: 0.22 };
+        return {
+          r: base.r * (1 - groove) + amber.r * groove,
+          g: base.g * (1 - groove) + amber.g * groove,
+          b: base.b * (1 - groove) + amber.b * groove,
+        };
+      }
+
+      function smoothstep(edge0, edge1, x) {
+        const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
+        return t * t * (3 - 2 * t);
+      }
+    </script>
+  </body>
+</html>

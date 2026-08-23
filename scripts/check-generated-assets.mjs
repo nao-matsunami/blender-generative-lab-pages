@@ -101,6 +101,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/spore-current-lantern-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/kelp-pulse-torus.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/kelp-pulse-torus.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/kelp-pulse-torus.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/kelp-pulse-torus-preview.png",
+  },
 ];
 
 let failed = false;

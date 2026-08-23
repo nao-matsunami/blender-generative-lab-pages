@@ -35,6 +35,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Spore Current Lantern` is a spore-pod and current-carved lantern form for VJ loops and hollow print-form exploration.
 
+## Seventh Study
+
+`Kelp Pulse Torus` is a kelp-vein ring form for slow VJ loops, pendant-like print objects, and hanging part studies.
+
 ## Local Site
 
 ```sh
@@ -80,6 +84,10 @@ exports/stl/spore-current-lantern.stl
 exports/glb/spore-current-lantern.glb
 renders/spore-current-lantern.png
 renders/spore-current-lantern-preview.png
+exports/stl/kelp-pulse-torus.stl
+exports/glb/kelp-pulse-torus.glb
+renders/kelp-pulse-torus.png
+renders/kelp-pulse-torus-preview.png
 ```
 
 Check whether the expected files were created:

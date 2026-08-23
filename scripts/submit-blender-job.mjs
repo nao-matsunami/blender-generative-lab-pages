@@ -13,6 +13,7 @@ const studies = {
   coral: "offline/generate_tidal_coral_helix.py",
   bloom: "offline/generate_manta_bloom_shell.py",
   spore: "offline/generate_spore_current_lantern.py",
+  kelp: "offline/generate_kelp_pulse_torus.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];
