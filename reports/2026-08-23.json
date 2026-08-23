@@ -39,6 +39,13 @@
       "body": "次は内側の穴の強度、吊り下げ用の接続点、輪郭の薄い部分の厚みを検証する。",
       "bodyEn": "Next passes should test inner-ring strength, hanging attachment points, and minimum thickness around the thinner silhouette areas.",
       "links": []
+    },
+    {
+      "title": "Polish更新",
+      "titleEn": "Polish update",
+      "body": "2026-08-23の追加更新で、全体が暗く沈みすぎていた初期レンダーから、発光する海藻リングに寄せた。表面リブ、緑の発色、琥珀色の流線、ライト量を上げ、VJ素材として回転時の輪郭と色の変化が読みやすい状態にした。",
+      "bodyEn": "A later 2026-08-23 polish pass moves the initial dark render toward a luminous kelp ring. Surface ribs, green saturation, amber flow lines, and lighting were strengthened so the rotating VJ silhouette reads more clearly.",
+      "links": []
     }
   ]
 }

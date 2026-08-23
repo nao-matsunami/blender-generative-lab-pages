@@ -46,19 +46,21 @@ def pulse_at(u: float, v: float) -> float:
     frond = math.sin(u * math.tau * 9.0 + v * math.tau * 1.2)
     slow = math.sin(u * math.tau * 4.0 - v * math.tau * 0.75)
     ridge = math.copysign(abs(frond) ** 1.7, frond)
-    return ridge * 4.8 + slow * 2.2
+    fine = math.sin(u * math.tau * 17.0 - v * math.tau * 2.4) * 1.1
+    return ridge * 6.4 + slow * 2.7 + fine
 
 
 def color_at(u: float, v: float) -> tuple[float, float, float, float]:
     pulse = 0.5 + 0.5 * math.sin(u * math.tau * 9.0 + v * math.tau * 1.2)
-    groove = smoothstep(0.55, 0.96, 1.0 - pulse)
+    groove = smoothstep(0.46, 0.92, 1.0 - pulse)
     glow = 0.5 + 0.5 * math.sin(u * math.tau * 3.0 - 0.6)
+    edge_light = 0.5 + 0.5 * math.sin(v * math.tau + 0.35)
     base = (
-        0.18 + 0.16 * glow,
-        0.48 + 0.22 * pulse,
-        0.42 + 0.18 * glow,
+        0.12 + 0.22 * glow,
+        0.62 + 0.3 * pulse + 0.08 * edge_light,
+        0.48 + 0.24 * glow + 0.08 * edge_light,
     )
-    amber = (0.92, 0.54, 0.22)
+    amber = (1.0, 0.72, 0.28)
     return (
         base[0] * (1.0 - groove) + amber[0] * groove,
         base[1] * (1.0 - groove) + amber[1] * groove,
@@ -76,7 +78,7 @@ def create_torus_mesh() -> bpy.types.Object:
         u = major_index / MAJOR_SEGMENTS
         twist = math.sin(u * math.tau * 3.0) * 0.28
         major_angle = u * math.tau
-        ring_wobble = math.sin(u * math.tau * 5.0) * 5.2 + math.sin(u * math.tau * 2.0 + 0.8) * 3.4
+        ring_wobble = math.sin(u * math.tau * 5.0) * 6.4 + math.sin(u * math.tau * 2.0 + 0.8) * 4.1
         major_radius = MAJOR_RADIUS_MM + ring_wobble
         vertical_drift = math.sin(u * math.tau * 4.0 - 0.4) * 7.5
 
@@ -93,7 +95,7 @@ def create_torus_mesh() -> bpy.types.Object:
             minor_angle = v * math.tau + twist + math.sin(u * math.tau * 2.0) * 0.18
             pulse = pulse_at(u, v)
             tube_radius = MINOR_RADIUS_MM + pulse
-            blade = 1.0 + 0.38 * max(0.0, math.sin(minor_angle)) ** 1.9
+            blade = 1.0 + 0.5 * max(0.0, math.sin(minor_angle)) ** 1.9
             cross_x = math.cos(minor_angle) * tube_radius * blade
             cross_z = math.sin(minor_angle) * tube_radius * (0.72 + 0.1 * math.sin(u * math.tau * 6.0))
             lift = math.sin(u * math.tau * 7.0 + v * math.tau * 2.0) * 1.8
@@ -140,9 +142,9 @@ def create_material() -> bpy.types.Material:
         node_tree.links.new(attribute.outputs["Color"], bsdf.inputs["Base Color"])
         bsdf.inputs["Roughness"].default_value = 0.38
         if "Emission Color" in bsdf.inputs:
-            bsdf.inputs["Emission Color"].default_value = (0.04, 0.18, 0.13, 1.0)
+            bsdf.inputs["Emission Color"].default_value = (0.08, 0.42, 0.28, 1.0)
         if "Emission Strength" in bsdf.inputs:
-            bsdf.inputs["Emission Strength"].default_value = 0.12
+            bsdf.inputs["Emission Strength"].default_value = 0.22
     return material
 
 
@@ -170,7 +172,7 @@ def setup_scene(obj: bpy.types.Object) -> None:
     scene.render.image_settings.color_mode = "RGBA"
     scene.view_settings.view_transform = "Standard"
     scene.view_settings.look = "Medium High Contrast"
-    scene.view_settings.exposure = 1.08
+    scene.view_settings.exposure = 1.28
     scene.view_settings.gamma = 1.0
 
     world = scene.world or bpy.data.worlds.new("World")
@@ -199,21 +201,21 @@ def setup_scene(obj: bpy.types.Object) -> None:
     bpy.ops.object.light_add(type="AREA", location=(-130, -135, 170))
     key = bpy.context.object
     key.name = "kelp_green_key"
-    key.data.energy = 2400
-    key.data.color = (0.62, 1.0, 0.82)
+    key.data.energy = 3600
+    key.data.color = (0.58, 1.0, 0.76)
     key.data.size = 150
 
     bpy.ops.object.light_add(type="POINT", location=(150, 70, 110))
     rim = bpy.context.object
     rim.name = "kelp_amber_rim"
     rim.data.color = (1.0, 0.62, 0.28)
-    rim.data.energy = 1100
+    rim.data.energy = 1800
     rim.data.shadow_soft_size = 80
 
     bpy.ops.object.light_add(type="AREA", location=(0, -210, 100))
     front = bpy.context.object
     front.name = "kelp_front_fill"
-    front.data.energy = 520
+    front.data.energy = 880
     front.data.color = (0.72, 0.95, 1.0)
     front.data.size = 220
 
