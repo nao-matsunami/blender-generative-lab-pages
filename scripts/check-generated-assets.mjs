@@ -117,6 +117,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/kelp-pulse-torus-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/visceral-tide-knot.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/visceral-tide-knot.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/visceral-tide-knot.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/visceral-tide-knot-preview.png",
+  },
 ];
 
 let failed = false;

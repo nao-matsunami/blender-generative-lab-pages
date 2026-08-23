@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visceral Tide Knot / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080306;
+        --ink: #f5eeee;
+        --muted: #b9a8ad;
+        --accent: #f07f91;
+        --cool: #7bcfff;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 52% 48%, rgba(217, 66, 98, 0.16), transparent 34%),
+          radial-gradient(circle at 42% 75%, rgba(123, 207, 255, 0.09), transparent 30%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 650px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(245, 238, 238, 0.28);
+        background: rgba(8, 3, 6, 0.52);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--cool); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(245, 238, 238, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, var(--accent), var(--cool), #f5eeee);
+        animation: loop-meter 23s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--cool);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Visceral Tide Knot procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Visceral Tide Knot</h1>
+        <p>Organic Motion Objects / visceral tube knot / grotesque VJ and print-form study</p>
+      </div>
+      <a href="../days/2026-08-23.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.23</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x080306, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.32;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x080306, 0.028);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(0, 0.24, 6.7);
+      camera.lookAt(0, 0, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+
+      const object = new THREE.Group();
+      object.rotation.x = 0.72;
+      object.rotation.z = 0.18;
+      scene.add(object);
+
+      object.add(createVisceralKnot());
+
+      const floor = new THREE.GridHelper(7, 40, 0x352128, 0x12070c);
+      floor.position.y = -1.95;
+      floor.material.transparent = true;
+      floor.material.opacity = 0.12;
+      scene.add(floor);
+
+      const key = new THREE.DirectionalLight(0xff8c9a, 5.8);
+      key.position.set(-3.0, -2.4, 4.5);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0x7bcfff, 6.0, 14);
+      rim.position.set(2.8, 1.8, 2.6);
+      scene.add(rim);
+
+      const fill = new THREE.HemisphereLight(0xffc8d0, 0x12070c, 1.8);
+      scene.add(fill);
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 23 + pointer.x * 0.16;
+        object.rotation.x = 0.72 + pointer.y * 0.08 + Math.sin(elapsed * 0.46) * 0.035;
+        object.position.y = Math.sin(elapsed * 0.52) * 0.035;
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      function createVisceralKnot() {
+        const pathSegments = 224;
+        const tubeSegments = 42;
+        const positions = [];
+        const colors = [];
+        const indices = [];
+        for (let i = 0; i < pathSegments; i += 1) {
+          const u = i / pathSegments;
+          const center = centerAt(u);
+          const prev = centerAt((u - 1 / pathSegments + 1) % 1);
+          const next = centerAt((u + 1 / pathSegments) % 1);
+          const tangent = next.clone().sub(prev).normalize();
+          let normal = tangent.clone().cross(new THREE.Vector3(0, 0, 1)).normalize();
+          if (normal.length() < 0.001) normal = new THREE.Vector3(1, 0, 0);
+          const binormal = normal.clone().cross(tangent).normalize();
+          const frameTwist = Math.sin(u * Math.PI * 2 * 3) * 0.42 + u * Math.PI * 2;
+          for (let j = 0; j < tubeSegments; j += 1) {
+            const v = j / tubeSegments;
+            const angle = v * Math.PI * 2 + frameTwist;
+            const radius = radiusAt(u, v);
+            const oval = 1 + 0.22 * Math.max(0, Math.sin(angle + u * Math.PI * 2 * 2)) ** 1.8;
+            const cross = normal.clone().multiplyScalar(Math.cos(angle) * radius * oval)
+              .add(binormal.clone().multiplyScalar(Math.sin(angle) * radius * (0.82 + 0.08 * Math.sin(u * Math.PI * 2 * 8))));
+            const p = center.clone().add(cross);
+            positions.push(p.x, p.y, p.z);
+            const c = colorAt(u, v);
+            colors.push(c.r, c.g, c.b);
+          }
+        }
+        for (let i = 0; i < pathSegments; i += 1) {
+          for (let j = 0; j < tubeSegments; j += 1) {
+            const a = i * tubeSegments + j;
+            const b = i * tubeSegments + ((j + 1) % tubeSegments);
+            const c = ((i + 1) % pathSegments) * tubeSegments + ((j + 1) % tubeSegments);
+            const d = ((i + 1) % pathSegments) * tubeSegments + j;
+            indices.push(a, b, d, b, c, d);
+          }
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+          vertexColors: true,
+          color: 0xffffff,
+          emissive: 0x2d0712,
+          emissiveIntensity: 0.14,
+          roughness: 0.36,
+          metalness: 0.0,
+          side: THREE.DoubleSide,
+        }));
+      }
+
+      function centerAt(t) {
+        const angle = t * Math.PI * 2;
+        const major = 1.2 + 0.21 * Math.sin(angle * 3 + 0.35) + 0.14 * Math.sin(angle * 7 - 0.7);
+        return new THREE.Vector3(
+          Math.cos(angle) * major + 0.44 * Math.sin(angle * 2 + 0.4),
+          Math.sin(angle) * major * 0.8 + 0.25 * Math.sin(angle * 4 - 0.8),
+          0.54 * Math.sin(angle * 2 + 0.7) + 0.27 * Math.sin(angle * 5),
+        );
+      }
+
+      function radiusAt(u, v) {
+        const fold = Math.sin(u * Math.PI * 2 * 11 + v * Math.PI * 2 * 2.2);
+        const slow = Math.sin(u * Math.PI * 2 * 5 - v * Math.PI * 2 * 0.8);
+        const membrane = smoothstep(0.62, 0.98, 0.5 + 0.5 * Math.sin(v * Math.PI * 2 + u * Math.PI * 2 * 3));
+        return 0.24 + Math.sign(fold) * Math.abs(fold) ** 1.65 * 0.07 + slow * 0.042 + membrane * 0.03;
+      }
+
+      function colorAt(u, v) {
+        const fold = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 11 + v * Math.PI * 2 * 2.2);
+        const vein = smoothstep(0.62, 0.95, 1 - fold);
+        const tide = 0.5 + 0.5 * Math.sin(u * Math.PI * 2 * 4 - 0.5);
+        const base = { r: 0.62 + 0.18 * tide, g: 0.22 + 0.08 * fold, b: 0.34 + 0.16 * tide };
+        const bruise = { r: 0.18, g: 0.12, b: 0.28 };
+        const gloss = smoothstep(0.72, 1, fold);
+        return {
+          r: Math.min(1, base.r * (1 - vein) + bruise.r * vein + gloss * 0.08),
+          g: Math.min(1, base.g * (1 - vein) + bruise.g * vein + gloss * 0.04),
+          b: Math.min(1, base.b * (1 - vein) + bruise.b * vein + gloss * 0.1),
+        };
+      }
+
+      function smoothstep(edge0, edge1, x) {
+        const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
+        return t * t * (3 - 2 * t);
+      }
+    </script>
+  </body>
+</html>

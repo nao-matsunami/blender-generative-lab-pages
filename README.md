@@ -39,6 +39,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Kelp Pulse Torus` is a kelp-vein ring form for slow VJ loops, pendant-like print objects, and hanging part studies.
 
+## Eighth Study
+
+`Visceral Tide Knot` is a grotesque organ-like tube knot for darker VJ loops and continuous printable form studies.
+
 ## Local Site
 
 ```sh
@@ -88,6 +92,10 @@ exports/stl/kelp-pulse-torus.stl
 exports/glb/kelp-pulse-torus.glb
 renders/kelp-pulse-torus.png
 renders/kelp-pulse-torus-preview.png
+exports/stl/visceral-tide-knot.stl
+exports/glb/visceral-tide-knot.glb
+renders/visceral-tide-knot.png
+renders/visceral-tide-knot-preview.png
 ```
 
 Check whether the expected files were created:

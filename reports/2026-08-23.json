@@ -1,17 +1,25 @@
 {
   "date": "2026-08-23",
-  "headline": "Kelp Pulse Torus",
-  "headlineEn": "Kelp Pulse Torus",
-  "summary": "Organic Motion Objectsの7つ目。海藻の葉脈と脈動するリングを合わせた、有機的なトーラス形状。VJループでは回転で内外の輪郭が変化し、3Dプリントでは小型オブジェクトや吊り下げパーツへ展開できる。",
-  "summaryEn": "The seventh Organic Motion Objects study: an organic torus between kelp veins and a pulsing ring. Slow rotation changes the inner and outer silhouette for VJ use, while the form can develop into a small printed object or hanging part.",
+  "headline": "Kelp Pulse Torus / Visceral Tide Knot",
+  "headlineEn": "Kelp Pulse Torus / Visceral Tide Knot",
+  "summary": "Organic Motion Objectsの7日目。海藻リングのKelp Pulse Torusに加えて、少しグロテスクな内臓的チューブ造形のVisceral Tide Knotを追加した。VJ素材と3Dプリント候補の幅を意図的に広げる。",
+  "summaryEn": "The seventh Organic Motion Objects day adds Kelp Pulse Torus and the more grotesque, organ-like Visceral Tide Knot. The goal is to widen the range of VJ material and print-form candidates.",
   "links": [
     {
       "label": "Today's sample",
       "url": "../outputs/2026-08-23_kelp-pulse-torus.html"
     },
     {
-      "label": "Generator script",
+      "label": "Visceral sample",
+      "url": "../outputs/2026-08-23_visceral-tide-knot.html"
+    },
+    {
+      "label": "Kelp generator",
       "url": "../offline/generate_kelp_pulse_torus.py"
+    },
+    {
+      "label": "Visceral generator",
+      "url": "../offline/generate_visceral_tide_knot.py"
     },
     {
       "label": "Autonomous production",
@@ -46,6 +54,18 @@
       "body": "2026-08-23の追加更新で、全体が暗く沈みすぎていた初期レンダーから、発光する海藻リングに寄せた。表面リブ、緑の発色、琥珀色の流線、ライト量を上げ、VJ素材として回転時の輪郭と色の変化が読みやすい状態にした。",
       "bodyEn": "A later 2026-08-23 polish pass moves the initial dark render toward a luminous kelp ring. Surface ribs, green saturation, amber flow lines, and lighting were strengthened so the rotating VJ silhouette reads more clearly.",
       "links": []
+    },
+    {
+      "title": "Visceral追加",
+      "titleEn": "Visceral addition",
+      "body": "追加リクエストに合わせて、内臓や腸を直接写実化するのではなく、管状の結び目、膜、うねり、紫がかった陰影で少しグロテスクな抽象造形を作った。3Dプリントでは連続した閉じたチューブとして扱える方向にしている。",
+      "bodyEn": "Responding to the added grotesque direction, the visceral study avoids literal anatomy and instead uses a closed tube knot, membrane-like folds, undulation, and bruised purple shadows. It remains suitable as a continuous printable form.",
+      "links": [
+        {
+          "label": "Visceral Tide Knot",
+          "url": "../outputs/2026-08-23_visceral-tide-knot.html"
+        }
+      ]
     }
   ]
 }
