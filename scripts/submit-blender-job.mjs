@@ -16,6 +16,8 @@ const studies = {
   kelp: "offline/generate_kelp_pulse_torus.py",
   viscera: "offline/generate_visceral_tide_knot.py",
   neural: "offline/generate_neural_gut_bloom.py",
+  maw: "offline/generate_membrane_maw_cluster.py",
+  arterial: "offline/generate_arterial_fold_nest.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

@@ -47,6 +47,14 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Neural Gut Bloom` is a grotesque nerve-and-gut colony with a swollen core and looping tendrils.
 
+## Tenth Study
+
+`Membrane Maw Cluster` is a red-purple grotesque membrane shell with mouth-like openings.
+
+## Eleventh Study
+
+`Arterial Fold Nest` is a red grotesque membrane study with heavier folds and artery-like dark channels.
+
 ## Local Site
 
 ```sh
@@ -104,6 +112,14 @@ exports/stl/neural-gut-bloom.stl
 exports/glb/neural-gut-bloom.glb
 renders/neural-gut-bloom.png
 renders/neural-gut-bloom-preview.png
+exports/stl/membrane-maw-cluster.stl
+exports/glb/membrane-maw-cluster.glb
+renders/membrane-maw-cluster.png
+renders/membrane-maw-cluster-preview.png
+exports/stl/arterial-fold-nest.stl
+exports/glb/arterial-fold-nest.glb
+renders/arterial-fold-nest.png
+renders/arterial-fold-nest-preview.png
 ```
 
 Check whether the expected files were created:

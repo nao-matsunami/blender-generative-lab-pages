@@ -1,0 +1,52 @@
+{
+  "date": "2026-08-24",
+  "headline": "Membrane Maw Cluster / Arterial Fold Nest",
+  "headlineEn": "Membrane Maw Cluster / Arterial Fold Nest",
+  "summary": "Organic Motion Objectsのグロテスク系列を2点追加。赤紫系の色味を維持し、袋、膜、口のような穴、動脈状の襞を中心にした中空の有機造形にした。",
+  "summaryEn": "Two grotesque Organic Motion Objects studies that keep the red-purple palette and focus on sacs, membranes, mouth-like openings, and arterial folds.",
+  "links": [
+    {
+      "label": "Membrane Maw Cluster",
+      "url": "../outputs/2026-08-24_membrane-maw-cluster.html"
+    },
+    {
+      "label": "Arterial Fold Nest",
+      "url": "../outputs/2026-08-24_arterial-fold-nest.html"
+    },
+    {
+      "label": "Maw generator script",
+      "url": "../offline/generate_membrane_maw_cluster.py"
+    },
+    {
+      "label": "Arterial generator script",
+      "url": "../offline/generate_arterial_fold_nest.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "Neural Gut Bloomの色味が合ってきたので、その赤紫系を引き継いだ。Membrane Maw Clusterは袋状の膜と口のような穴、Arterial Fold Nestは太い襞と赤黒い筋を中心にして、同じ系列の中で表情を変えた。",
+      "bodyEn": "After the Neural Gut Bloom palette started working, this pass keeps that red-purple direction. Membrane Maw Cluster emphasizes sacs and mouth-like openings, while Arterial Fold Nest leans into heavy folds and dark red channels.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な内臓ではなく、内臓の不穏さを抽象化した造形。袋、膜、襞、穴、筋の組み合わせで、少し気持ち悪いがオブジェクトとして成立するラインを狙う。",
+      "bodyEn": "This avoids literal anatomy and abstracts the unease of internal organs through sacs, membranes, folds, openings, and channels.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は口縁の細かい襞、穴の内側の見え方、筋の密度、プリント時の膜厚を検証する。",
+      "bodyEn": "Next passes should test finer rim folds, the visibility inside openings, channel density, and membrane wall thickness for printing.",
+      "links": []
+    }
+  ]
+}

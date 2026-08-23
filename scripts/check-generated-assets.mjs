@@ -149,6 +149,38 @@ const expected = [
     label: "Readable preview render",
     file: "renders/neural-gut-bloom-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/membrane-maw-cluster.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/membrane-maw-cluster.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/membrane-maw-cluster.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/membrane-maw-cluster-preview.png",
+  },
+  {
+    label: "STL print export",
+    file: "exports/stl/arterial-fold-nest.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/arterial-fold-nest.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/arterial-fold-nest.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/arterial-fold-nest-preview.png",
+  },
 ];
 
 let failed = false;

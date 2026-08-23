@@ -26,6 +26,8 @@ scripts = [
     PROJECT_ROOT / "offline" / "generate_kelp_pulse_torus.py",
     PROJECT_ROOT / "offline" / "generate_visceral_tide_knot.py",
     PROJECT_ROOT / "offline" / "generate_neural_gut_bloom.py",
+    PROJECT_ROOT / "offline" / "generate_membrane_maw_cluster.py",
+    PROJECT_ROOT / "offline" / "generate_arterial_fold_nest.py",
 ]
 
 for script in scripts:
