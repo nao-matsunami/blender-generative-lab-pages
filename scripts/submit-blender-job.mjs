@@ -18,6 +18,7 @@ const studies = {
   neural: "offline/generate_neural_gut_bloom.py",
   maw: "offline/generate_membrane_maw_cluster.py",
   arterial: "offline/generate_arterial_fold_nest.py",
+  coilwomb: "offline/generate_peristaltic_coil_womb.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

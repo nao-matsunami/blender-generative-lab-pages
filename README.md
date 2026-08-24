@@ -55,6 +55,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Arterial Fold Nest` is a red grotesque membrane study with heavier folds and artery-like dark channels.
 
+## Twelfth Study
+
+`Peristaltic Coil Womb` is a continuous red intestinal coil for darker VJ loops and compact printable forms.
+
 ## Local Site
 
 ```sh
@@ -120,6 +124,10 @@ exports/stl/arterial-fold-nest.stl
 exports/glb/arterial-fold-nest.glb
 renders/arterial-fold-nest.png
 renders/arterial-fold-nest-preview.png
+exports/stl/peristaltic-coil-womb.stl
+exports/glb/peristaltic-coil-womb.glb
+renders/peristaltic-coil-womb.png
+renders/peristaltic-coil-womb-preview.png
 ```
 
 Check whether the expected files were created:

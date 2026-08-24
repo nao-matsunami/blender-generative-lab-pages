@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peristaltic Coil Womb / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080104;
+        --ink: #f7eeee;
+        --muted: #bea6aa;
+        --accent: #ff7080;
+        --deep: #8f102a;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 52%, rgba(198, 35, 66, 0.2), transparent 33%),
+          radial-gradient(circle at 42% 72%, rgba(85, 5, 24, 0.22), transparent 29%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.82);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 720px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(247, 238, 238, 0.28);
+        background: rgba(8, 1, 4, 0.56);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--deep); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(247, 238, 238, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, #4f0618, var(--accent), #f7eeee);
+        animation: loop-meter 18s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--accent);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Peristaltic Coil Womb procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Peristaltic Coil Womb</h1>
+        <p>Organic Motion Objects / intestinal coil loop / red grotesque VJ and continuous print-form study</p>
+      </div>
+      <a href="../days/2026-08-24.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.24</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x080104, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.38;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x080104, 0.027);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(0, 0.14, 7.0);
+      camera.lookAt(0, 0, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+      const object = new THREE.Group();
+      object.rotation.x = 0.8;
+      object.rotation.z = -0.24;
+      scene.add(object);
+      object.add(createCoilWomb());
+
+      const key = new THREE.DirectionalLight(0xff828c, 6.0);
+      key.position.set(-3.2, -2.3, 4.8);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0x94102a, 6.5, 15);
+      rim.position.set(3.0, 1.8, 2.8);
+      scene.add(rim);
+
+      scene.add(new THREE.HemisphereLight(0xffc1bd, 0x100206, 1.8));
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 18 + pointer.x * 0.15;
+        object.rotation.x = 0.8 + pointer.y * 0.08 + Math.sin(elapsed * 0.52) * 0.035;
+        object.scale.setScalar(1 + Math.sin(elapsed * 0.9) * 0.012);
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      }
+
+      function createCoilWomb() {
+        const positions = [];
+        const colors = [];
+        const indices = [];
+        const rings = 168;
+        const sides = 22;
+        const centers = Array.from({ length: rings }, (_, i) => centerAt(i / rings));
+        for (let i = 0; i < rings; i += 1) {
+          const t = i / rings;
+          const prev = centers[(i - 1 + rings) % rings];
+          const next = centers[(i + 1) % rings];
+          const tangent = next.clone().sub(prev).normalize();
+          const center = centers[i];
+          let normal = new THREE.Vector3(center.x, center.y, 0);
+          if (normal.length() < 0.001) normal.set(1, 0, 0);
+          normal.normalize();
+          let binormal = new THREE.Vector3().crossVectors(tangent, normal).normalize();
+          normal = new THREE.Vector3().crossVectors(binormal, tangent).normalize();
+          for (let j = 0; j < sides; j += 1) {
+            const s = j / sides;
+            const angle = s * Math.PI * 2;
+            const radius = tubeRadius(t, s);
+            const wrinkle = 1 + 0.035 * Math.sin(t * Math.PI * 2 * 29 + s * Math.PI * 2 * 3);
+            const offset = normal.clone().multiplyScalar(Math.cos(angle)).add(binormal.clone().multiplyScalar(Math.sin(angle))).multiplyScalar(radius * wrinkle);
+            positions.push(center.x + offset.x, center.y + offset.y, center.z + offset.z);
+            const color = colorAt(t, s);
+            colors.push(color.r, color.g, color.b);
+          }
+        }
+        for (let i = 0; i < rings; i += 1) {
+          const nextI = (i + 1) % rings;
+          for (let j = 0; j < sides; j += 1) {
+            const a = i * sides + j;
+            const b = i * sides + ((j + 1) % sides);
+            const c = nextI * sides + ((j + 1) % sides);
+            const d = nextI * sides + j;
+            indices.push(a, b, d, b, c, d);
+          }
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+          vertexColors: true,
+          color: 0xffffff,
+          emissive: 0x26040e,
+          emissiveIntensity: 0.13,
+          roughness: 0.34,
+          metalness: 0,
+          side: THREE.DoubleSide,
+        }));
+      }
+
+      function centerAt(t) {
+        const angle = t * Math.PI * 2;
+        const orbit = 1.0 + 0.16 * Math.sin(angle * 3 + 0.8) + 0.09 * Math.sin(angle * 7);
+        return new THREE.Vector3(
+          Math.cos(angle) * orbit,
+          Math.sin(angle) * orbit * 0.82,
+          0.48 * Math.sin(angle * 2 + 0.4) + 0.18 * Math.sin(angle * 5)
+        );
+      }
+
+      function tubeRadius(t, s) {
+        const angle = t * Math.PI * 2;
+        const pulse = 0.5 + 0.5 * Math.sin(angle * 9 + 0.7);
+        const lobe = 0.5 + 0.5 * Math.sin(s * Math.PI * 2 * 3 + angle * 2.4);
+        const vein = 0.5 + 0.5 * Math.sin(s * Math.PI * 2 * 7 - angle * 4);
+        return 0.23 + 0.07 * pulse + 0.024 * lobe + 0.014 * vein;
+      }
+
+      function colorAt(t, s) {
+        const angle = t * Math.PI * 2;
+        const pulse = 0.5 + 0.5 * Math.sin(angle * 9 + 0.7);
+        const stripe = 0.5 + 0.5 * Math.sin(s * Math.PI * 2 * 5 - angle * 6);
+        const bruise = Math.max(0, stripe - 0.62) / 0.38;
+        const base = { r: 0.72 + pulse * 0.15, g: 0.2 + pulse * 0.05, b: 0.27 + pulse * 0.04 };
+        const dark = { r: 0.18, g: 0.018, b: 0.06 };
+        const pale = { r: 1.0, g: 0.48, b: 0.42 };
+        const rim = Math.max(0, Math.sin(s * Math.PI * 2 + 0.35));
+        const mixed = {
+          r: base.r * (1 - bruise) + dark.r * bruise,
+          g: base.g * (1 - bruise) + dark.g * bruise,
+          b: base.b * (1 - bruise) + dark.b * bruise,
+        };
+        return {
+          r: mixed.r * (1 - rim * 0.12) + pale.r * rim * 0.12,
+          g: mixed.g * (1 - rim * 0.12) + pale.g * rim * 0.12,
+          b: mixed.b * (1 - rim * 0.12) + pale.b * rim * 0.12,
+        };
+      }
+    </script>
+  </body>
+</html>

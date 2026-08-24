@@ -181,6 +181,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/arterial-fold-nest-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/peristaltic-coil-womb.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/peristaltic-coil-womb.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/peristaltic-coil-womb.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/peristaltic-coil-womb-preview.png",
+  },
 ];
 
 let failed = false;
