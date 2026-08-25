@@ -197,6 +197,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/peristaltic-coil-womb-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/adhesion-gut-wreath.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/adhesion-gut-wreath.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/adhesion-gut-wreath.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/adhesion-gut-wreath-preview.png",
+  },
 ];
 
 let failed = false;

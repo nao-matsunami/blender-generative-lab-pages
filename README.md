@@ -59,6 +59,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Peristaltic Coil Womb` is a continuous red intestinal coil for darker VJ loops and compact printable forms.
 
+## Thirteenth Study
+
+`Adhesion Gut Wreath` is a self-pressing gut loop with wet grooves and dark inner contact zones.
+
 ## Local Site
 
 ```sh
@@ -128,6 +132,10 @@ exports/stl/peristaltic-coil-womb.stl
 exports/glb/peristaltic-coil-womb.glb
 renders/peristaltic-coil-womb.png
 renders/peristaltic-coil-womb-preview.png
+exports/stl/adhesion-gut-wreath.stl
+exports/glb/adhesion-gut-wreath.glb
+renders/adhesion-gut-wreath.png
+renders/adhesion-gut-wreath-preview.png
 ```
 
 Check whether the expected files were created:

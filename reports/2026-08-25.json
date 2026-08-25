@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-25",
+  "headline": "Adhesion Gut Wreath",
+  "headlineEn": "Adhesion Gut Wreath",
+  "summary": "Organic Motion Objectsのグロテスク系列を継続。前回の腸管ループを発展させ、管同士が押し合う接触感、湿った筋、内側の暗さを強めた。",
+  "summaryEn": "A continuation of the grotesque Organic Motion Objects line, extending the previous intestinal loop with stronger tube contact, wet grooves, and darker inner pressure zones.",
+  "links": [
+    {
+      "label": "Adhesion Gut Wreath",
+      "url": "../outputs/2026-08-25_adhesion-gut-wreath.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_adhesion_gut_wreath.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "Peristaltic Coil Wombで出た連続チューブの方向を引き継ぎ、今回は自己接触して押し潰れた輪にした。接触側を暗く沈ませ、外側には薄い湿ったハイライトを残して、単なる管ではなく圧力のある有機物に寄せた。",
+      "bodyEn": "This extends the continuous-tube direction from Peristaltic Coil Womb into a self-pressing wreath. The contact side is darkened while the outer surface keeps wet pale highlights.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な内臓ではなく、管同士が癒着しそうな不穏さを抽象化する。VJではゆっくり回すと内側の暗い接触溝が見え隠れし、3Dプリントでは小さな輪状オブジェクトとして検証しやすい。",
+      "bodyEn": "The intent is not literal anatomy, but an abstract unease of tubes about to adhere. As a VJ object, the dark inner grooves appear and disappear during rotation; as a print study, it remains a compact wreath form.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は接触部を実際に融合したように見せる造形、粘膜の細かい筋、より深い内部穴、プリント時に置きやすい底面を検証する。",
+      "bodyEn": "Next passes should test more fused contact zones, finer mucosal striations, deeper internal openings, and a more printable resting base.",
+      "links": []
+    }
+  ]
+}

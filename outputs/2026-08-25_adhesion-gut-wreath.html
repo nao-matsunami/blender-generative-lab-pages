@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adhesion Gut Wreath / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #070103;
+        --ink: #f7eeee;
+        --muted: #bea5aa;
+        --accent: #ff6b7b;
+        --deep: #7f0d25;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 52%, rgba(190, 31, 62, 0.2), transparent 33%),
+          radial-gradient(circle at 48% 69%, rgba(55, 2, 18, 0.28), transparent 30%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.84);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 730px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(247, 238, 238, 0.28);
+        background: rgba(7, 1, 3, 0.56);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--deep); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(247, 238, 238, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, #4d0515, var(--accent), #f7eeee);
+        animation: loop-meter 17s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--accent);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Adhesion Gut Wreath procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Adhesion Gut Wreath</h1>
+        <p>Organic Motion Objects / self-pressing gut loop / wet grooves and dark inner contact study</p>
+      </div>
+      <a href="../days/2026-08-25.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.25</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x070103, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.4;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x070103, 0.027);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(0, 0.16, 7.0);
+      camera.lookAt(0, 0, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+      const object = new THREE.Group();
+      object.rotation.x = 0.82;
+      object.rotation.z = 0.18;
+      scene.add(object);
+      object.add(createWreath());
+
+      const key = new THREE.DirectionalLight(0xff7d86, 6.1);
+      key.position.set(-3.2, -2.4, 4.8);
+      scene.add(key);
+
+      const rim = new THREE.PointLight(0x850c24, 6.6, 15);
+      rim.position.set(3.0, 1.8, 2.8);
+      scene.add(rim);
+
+      scene.add(new THREE.HemisphereLight(0xffbdb7, 0x0c0104, 1.7));
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 17 + pointer.x * 0.15;
+        object.rotation.x = 0.82 + pointer.y * 0.08 + Math.sin(elapsed * 0.5) * 0.032;
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      }
+
+      function createWreath() {
+        const positions = [];
+        const colors = [];
+        const indices = [];
+        const rings = 180;
+        const sides = 24;
+        const centers = Array.from({ length: rings }, (_, i) => centerAt(i / rings));
+        for (let i = 0; i < rings; i += 1) {
+          const t = i / rings;
+          const prev = centers[(i - 1 + rings) % rings];
+          const next = centers[(i + 1) % rings];
+          const tangent = next.clone().sub(prev).normalize();
+          const center = centers[i];
+          let inward = new THREE.Vector3(-center.x, -center.y, 0);
+          if (inward.length() < 0.001) inward.set(1, 0, 0);
+          inward.normalize();
+          const binormal = new THREE.Vector3().crossVectors(tangent, inward).normalize();
+          const normal = new THREE.Vector3().crossVectors(binormal, tangent).normalize();
+          for (let j = 0; j < sides; j += 1) {
+            const s = j / sides;
+            const angle = s * Math.PI * 2;
+            const contact = contactField(t, s);
+            const radius = tubeRadius(t, s);
+            const oval = 1 - 0.22 * contact;
+            const local = normal.clone().multiplyScalar(Math.cos(angle) * oval).add(binormal.clone().multiplyScalar(Math.sin(angle)));
+            const point = center.clone().add(local.multiplyScalar(radius)).add(inward.clone().multiplyScalar(contact * 0.09));
+            positions.push(point.x, point.y, point.z);
+            const color = colorAt(t, s);
+            colors.push(color.r, color.g, color.b);
+          }
+        }
+        for (let i = 0; i < rings; i += 1) {
+          const nextI = (i + 1) % rings;
+          for (let j = 0; j < sides; j += 1) {
+            const a = i * sides + j;
+            const b = i * sides + ((j + 1) % sides);
+            const c = nextI * sides + ((j + 1) % sides);
+            const d = nextI * sides + j;
+            indices.push(a, b, d, b, c, d);
+          }
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+          vertexColors: true,
+          color: 0xffffff,
+          emissive: 0x23030c,
+          emissiveIntensity: 0.14,
+          roughness: 0.32,
+          metalness: 0,
+          side: THREE.DoubleSide,
+        }));
+      }
+
+      function centerAt(t) {
+        const angle = t * Math.PI * 2;
+        const orbit = 0.98 + 0.2 * Math.sin(angle * 3 + 0.6) + 0.11 * Math.sin(angle * 6 - 0.4);
+        return new THREE.Vector3(
+          Math.cos(angle) * orbit + 0.18 * Math.sin(angle * 2),
+          Math.sin(angle) * orbit * 0.76 + 0.13 * Math.sin(angle * 4 + 1.2),
+          0.42 * Math.sin(angle * 2 + 0.8) + 0.22 * Math.sin(angle * 5 - 0.5)
+        );
+      }
+
+      function contactField(t, s) {
+        const angle = t * Math.PI * 2;
+        const innerSide = Math.max(0, Math.cos(s * Math.PI * 2 + 0.1));
+        const belt = 0.5 + 0.5 * Math.sin(angle * 6 - 0.9);
+        const pressure = Math.max(0, belt - 0.42) / 0.58;
+        return Math.min(1, innerSide ** 2.4 * pressure);
+      }
+
+      function tubeRadius(t, s) {
+        const angle = t * Math.PI * 2;
+        const pulse = 0.5 + 0.5 * Math.sin(angle * 8 + 0.4);
+        const fold = 0.5 + 0.5 * Math.sin(s * Math.PI * 2 * 4 - angle * 5);
+        const wrinkle = 0.5 + 0.5 * Math.sin(s * Math.PI * 2 * 9 + angle * 13);
+        const contact = contactField(t, s);
+        return (0.23 + 0.07 * pulse + 0.026 * fold + 0.011 * wrinkle) * (1 - 0.2 * contact);
+      }
+
+      function colorAt(t, s) {
+        const angle = t * Math.PI * 2;
+        const pulse = 0.5 + 0.5 * Math.sin(angle * 8 + 0.4);
+        const vein = 0.5 + 0.5 * Math.sin(s * Math.PI * 2 * 6 - angle * 7);
+        const groove = Math.max(0, vein - 0.58) / 0.42;
+        const contact = contactField(t, s);
+        const wet = 0.5 + 0.5 * Math.sin(angle * 3 + s * Math.PI * 2 * 2);
+        const base = { r: 0.7 + pulse * 0.18, g: 0.18 + wet * 0.07, b: 0.25 + wet * 0.06 };
+        const dark = { r: 0.09, g: 0.006, b: 0.03 };
+        const bruise = { r: 0.24, g: 0.02, b: 0.07 };
+        const pale = { r: 1.0, g: 0.5, b: 0.42 };
+        const darkMix = Math.min(0.92, groove * 0.38 + contact * 0.72);
+        const bruiseMix = Math.min(0.45, (1 - contact) * groove * 0.28);
+        const rim = Math.max(0, Math.sin(s * Math.PI * 2 - 1.1)) * (1 - contact);
+        const mixed = {
+          r: base.r * (1 - bruiseMix) + bruise.r * bruiseMix,
+          g: base.g * (1 - bruiseMix) + bruise.g * bruiseMix,
+          b: base.b * (1 - bruiseMix) + bruise.b * bruiseMix,
+        };
+        const darkened = {
+          r: mixed.r * (1 - darkMix) + dark.r * darkMix,
+          g: mixed.g * (1 - darkMix) + dark.g * darkMix,
+          b: mixed.b * (1 - darkMix) + dark.b * darkMix,
+        };
+        return {
+          r: darkened.r * (1 - rim * 0.11) + pale.r * rim * 0.11,
+          g: darkened.g * (1 - rim * 0.11) + pale.g * rim * 0.11,
+          b: darkened.b * (1 - rim * 0.11) + pale.b * rim * 0.11,
+        };
+      }
+    </script>
+  </body>
+</html>

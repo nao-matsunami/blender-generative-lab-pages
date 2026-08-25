@@ -29,6 +29,7 @@ scripts = [
     PROJECT_ROOT / "offline" / "generate_membrane_maw_cluster.py",
     PROJECT_ROOT / "offline" / "generate_arterial_fold_nest.py",
     PROJECT_ROOT / "offline" / "generate_peristaltic_coil_womb.py",
+    PROJECT_ROOT / "offline" / "generate_adhesion_gut_wreath.py",
 ]
 
 for script in scripts:
