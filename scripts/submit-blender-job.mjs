@@ -20,6 +20,7 @@ const studies = {
   arterial: "offline/generate_arterial_fold_nest.py",
   coilwomb: "offline/generate_peristaltic_coil_womb.py",
   adhesion: "offline/generate_adhesion_gut_wreath.py",
+  hepatic: "offline/generate_hepatic_vessel_bloom.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

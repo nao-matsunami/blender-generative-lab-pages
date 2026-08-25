@@ -63,6 +63,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Adhesion Gut Wreath` is a self-pressing gut loop with wet grooves and dark inner contact zones.
 
+## Fourteenth Study
+
+`Hepatic Vessel Bloom` shifts the grotesque line from intestine-like loops to a liver-like asymmetric mass with raised vessel striations.
+
 ## Local Site
 
 ```sh
@@ -136,6 +140,10 @@ exports/stl/adhesion-gut-wreath.stl
 exports/glb/adhesion-gut-wreath.glb
 renders/adhesion-gut-wreath.png
 renders/adhesion-gut-wreath-preview.png
+exports/stl/hepatic-vessel-bloom.stl
+exports/glb/hepatic-vessel-bloom.glb
+renders/hepatic-vessel-bloom.png
+renders/hepatic-vessel-bloom-preview.png
 ```
 
 Check whether the expected files were created:

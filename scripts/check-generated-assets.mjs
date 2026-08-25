@@ -213,6 +213,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/adhesion-gut-wreath-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/hepatic-vessel-bloom.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/hepatic-vessel-bloom.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/hepatic-vessel-bloom.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/hepatic-vessel-bloom-preview.png",
+  },
 ];
 
 let failed = false;
