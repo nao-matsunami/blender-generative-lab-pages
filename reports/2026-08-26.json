@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-26",
+  "headline": "Valvular Chamber Bloom",
+  "headlineEn": "Valvular Chamber Bloom",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は腸管や肝臓風の塊から離れ、心臓弁、心室の袋、根元の太い血管を抽象化した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study that moves away from intestinal loops and liver-like masses into an abstraction of heart valves, chamber sacs, and root vessels.",
+  "links": [
+    {
+      "label": "Valvular Chamber Bloom",
+      "url": "../outputs/2026-08-26_valvular-chamber-bloom.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_valvular_chamber_bloom.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前回の課題は、内臓表現が腸管に偏り、血管が本体に載って見えやすいことだった。今回は心臓弁の花弁状の隆起、心室の非対称な袋、根元から伸びる太い血管を組み合わせ、臓器ごとの形状語彙を増やした。",
+      "bodyEn": "The previous issue was that the visceral direction leaned too heavily on intestinal tubes and vessels could read as placed on top. This pass adds heart-valve petal relief, an asymmetric chamber sac, and thicker root vessels.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な心臓ではなく、弁、心室、血管根元の構造をVJ素材と3Dプリント向けの抽象オブジェクトへ変換する。回転時に弁の膜と暗い溝が見え隠れすることを狙う。",
+      "bodyEn": "This is not a literal heart model; it translates valves, chambers, and root vessels into an abstract VJ and print-form object where membrane petals and dark grooves appear during rotation.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は肺胞、腎臓、血管網などへモチーフを広げる。心臓系を続ける場合は、弁の内側をもっと深くし、血管根元を本体へ自然に融合させる。",
+      "bodyEn": "Next passes should move into alveoli, kidneys, or vascular networks. If continuing the heart direction, deepen the valve interior and fuse the vessel roots more naturally into the body.",
+      "links": []
+    }
+  ]
+}

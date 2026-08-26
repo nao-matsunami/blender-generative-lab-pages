@@ -67,6 +67,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Hepatic Vessel Bloom` shifts the grotesque line from intestine-like loops to a liver-like asymmetric mass with raised vessel striations.
 
+## Fifteenth Study
+
+`Valvular Chamber Bloom` abstracts heart valves, an asymmetric chamber sac, and thick root vessels for the organ-motif series.
+
 ## Local Site
 
 ```sh
@@ -144,6 +148,10 @@ exports/stl/hepatic-vessel-bloom.stl
 exports/glb/hepatic-vessel-bloom.glb
 renders/hepatic-vessel-bloom.png
 renders/hepatic-vessel-bloom-preview.png
+exports/stl/valvular-chamber-bloom.stl
+exports/glb/valvular-chamber-bloom.glb
+renders/valvular-chamber-bloom.png
+renders/valvular-chamber-bloom-preview.png
 ```
 
 Check whether the expected files were created:

@@ -229,6 +229,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/hepatic-vessel-bloom-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/valvular-chamber-bloom.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/valvular-chamber-bloom.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/valvular-chamber-bloom.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/valvular-chamber-bloom-preview.png",
+  },
 ];
 
 let failed = false;
