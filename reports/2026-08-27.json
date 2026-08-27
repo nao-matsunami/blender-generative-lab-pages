@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-27",
+  "headline": "Alveolar Sac Cluster",
+  "headlineEn": "Alveolar Sac Cluster",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は心臓弁から離れ、肺胞と気管支を抽象化し、小さな嚢の集合、暗い口、分岐管を組み合わせた。",
+  "summaryEn": "An organ-motif Organic Motion Objects study that moves from heart-valve language into lung alveoli and bronchial branching, combining clustered sacs, dark mouths, and branching tubes.",
+  "links": [
+    {
+      "label": "Alveolar Sac Cluster",
+      "url": "../outputs/2026-08-27_alveolar-sac-cluster.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_alveolar_sac_cluster.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前回は心臓弁と心室の袋を扱った。今回は肺胞をモチーフにして、単体の大きな臓器塊ではなく、小さな嚢が密集し、気管支状の管でつながる構成にした。腸管ループとの差を出すため、輪ではなく粒状集合を優先した。",
+      "bodyEn": "The previous pass worked with heart-valve and chamber forms. This pass uses lung alveoli as the motif, replacing a single large organ mass with clustered sacs connected by bronchial tubes.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な肺ではなく、肺胞の『小さな袋が集まる構造』と『分岐管』をVJ素材・3Dプリント向けの抽象形状に変換する。黒く沈む口を入れ、膜の薄さと内部の暗さを出す。",
+      "bodyEn": "This is not a literal lung model; it translates alveolar sac clustering and bronchial branching into an abstract VJ and print-form object, using dark mouths to suggest thin membranes and internal depth.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は腎臓、胃、血管網などへ展開する。肺胞系を続ける場合は、嚢同士の接合部をより自然に融合させ、穴をブーリアンで実際に開ける方向を検証する。",
+      "bodyEn": "Next passes should move into kidneys, stomach, or vascular networks. If continuing the alveolar direction, fuse sac junctions more naturally and test actual boolean openings.",
+      "links": []
+    }
+  ]
+}

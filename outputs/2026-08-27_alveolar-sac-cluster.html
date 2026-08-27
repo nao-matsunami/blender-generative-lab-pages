@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alveolar Sac Cluster / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #070103;
+        --ink: #f7eeee;
+        --muted: #bfa5aa;
+        --accent: #ff6d78;
+        --deep: #781022;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 52%, rgba(184, 26, 55, 0.22), transparent 34%),
+          radial-gradient(circle at 45% 72%, rgba(54, 2, 17, 0.3), transparent 30%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.84);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 740px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(247, 238, 238, 0.28);
+        background: rgba(7, 1, 3, 0.56);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--deep); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(247, 238, 238, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, #4a0614, var(--accent), #f7eeee);
+        animation: loop-meter 18s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--accent);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Alveolar Sac Cluster procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Alveolar Sac Cluster</h1>
+        <p>Organic Motion Objects / lung-alveoli abstraction / clustered sacs, dark mouths, branching bronchial tubes</p>
+      </div>
+      <a href="../days/2026-08-27.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.27</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x070103, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.42;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x070103, 0.027);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(0, 0.04, 5.7);
+      camera.lookAt(0, 0.08, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+      const object = new THREE.Group();
+      object.rotation.x = 0.86;
+      object.rotation.z = -0.14;
+      scene.add(object);
+
+      const sacMaterial = new THREE.MeshStandardMaterial({ color: 0xdb4d5f, emissive: 0x2d040c, emissiveIntensity: 0.14, roughness: 0.22, metalness: 0.0 });
+      const tubeMaterial = new THREE.MeshStandardMaterial({ color: 0x4c0511, emissive: 0x160004, emissiveIntensity: 0.1, roughness: 0.22, metalness: 0.0 });
+      const darkMaterial = new THREE.MeshStandardMaterial({ color: 0x090005, roughness: 0.5 });
+      const sacs = createSacPositions();
+      sacs.forEach((item, index) => {
+        const sac = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 20), sacMaterial);
+        sac.position.copy(item.center);
+        sac.scale.set(item.scale.x, item.scale.y, item.scale.z);
+        sac.rotation.set(index * 0.23, index * 0.17, index * 0.41);
+        object.add(sac);
+        const mouth = new THREE.Mesh(new THREE.SphereGeometry(1, 22, 10), darkMaterial);
+        const inward = item.center.clone().multiplyScalar(-1).normalize();
+        mouth.position.copy(item.center.clone().add(inward.multiplyScalar(item.scale.x * 0.74)));
+        mouth.scale.set(item.scale.x * 0.22, item.scale.y * 0.16, item.scale.z * 0.12);
+        object.add(mouth);
+      });
+
+      const root = new THREE.Vector3(0, -1.38, 0.14);
+      const branchA = new THREE.Vector3(-0.38, -0.68, 0.14);
+      const branchB = new THREE.Vector3(0.42, -0.62, 0.0);
+      addTube(root, branchA, 0.1);
+      addTube(root, branchB, 0.09);
+      sacs.slice(0, 18).forEach((item, index) => {
+        addTube(index % 2 === 0 ? branchA : branchB, item.center.clone().multiplyScalar(0.72), 0.03 + (index % 3) * 0.005);
+      });
+
+      const key = new THREE.DirectionalLight(0xff8e88, 7.2);
+      key.position.set(-3.2, -2.4, 4.8);
+      scene.add(key);
+      const rim = new THREE.PointLight(0x850c24, 6.0, 15);
+      rim.position.set(3.0, 1.8, 2.8);
+      scene.add(rim);
+      scene.add(new THREE.HemisphereLight(0xffc3bd, 0x0c0104, 2.05));
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 18 + pointer.x * 0.16;
+        object.rotation.x = 0.86 + pointer.y * 0.08 + Math.sin(elapsed * 0.5) * 0.025;
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      }
+
+      function addTube(start, end, radius) {
+        const mid = start.clone().add(end).multiplyScalar(0.5);
+        mid.z += Math.sin(start.x * 2.1) * 0.16;
+        const curve = new THREE.CatmullRomCurve3([start, mid, end]);
+        object.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 30, radius, 10, false), tubeMaterial));
+      }
+
+      function createSacPositions() {
+        const data = [];
+        for (let i = 0; i < 18; i += 1) {
+          const angle = i / 18 * Math.PI * 2;
+          const ring = 0.82 + 0.18 * Math.sin(i * 1.7);
+          data.push({
+            center: new THREE.Vector3(Math.cos(angle) * ring + 0.2 * Math.sin(i * 0.9), Math.sin(angle) * ring * 0.72 + 0.13 * Math.cos(i * 1.4), 0.3 * Math.sin(i * 1.31) + (i % 3 - 1) * 0.18),
+            scale: new THREE.Vector3(0.3 + (i % 4) * 0.032, 0.24 + ((i + 2) % 5) * 0.026, 0.22 + ((i + 1) % 4) * 0.028),
+          });
+        }
+        data.push({ center: new THREE.Vector3(0, 0, -0.08), scale: new THREE.Vector3(0.42, 0.34, 0.3) });
+        data.push({ center: new THREE.Vector3(0.3, -0.18, 0.32), scale: new THREE.Vector3(0.36, 0.27, 0.24) });
+        return data;
+      }
+    </script>
+  </body>
+</html>

@@ -71,6 +71,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Valvular Chamber Bloom` abstracts heart valves, an asymmetric chamber sac, and thick root vessels for the organ-motif series.
 
+## Sixteenth Study
+
+`Alveolar Sac Cluster` abstracts lung alveoli as clustered sacs with dark mouths and bronchial branching.
+
 ## Local Site
 
 ```sh
@@ -152,6 +156,10 @@ exports/stl/valvular-chamber-bloom.stl
 exports/glb/valvular-chamber-bloom.glb
 renders/valvular-chamber-bloom.png
 renders/valvular-chamber-bloom-preview.png
+exports/stl/alveolar-sac-cluster.stl
+exports/glb/alveolar-sac-cluster.glb
+renders/alveolar-sac-cluster.png
+renders/alveolar-sac-cluster-preview.png
 ```
 
 Check whether the expected files were created:

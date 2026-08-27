@@ -245,6 +245,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/valvular-chamber-bloom-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/alveolar-sac-cluster.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/alveolar-sac-cluster.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/alveolar-sac-cluster.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/alveolar-sac-cluster-preview.png",
+  },
 ];
 
 let failed = false;

@@ -22,6 +22,7 @@ const studies = {
   adhesion: "offline/generate_adhesion_gut_wreath.py",
   hepatic: "offline/generate_hepatic_vessel_bloom.py",
   valvular: "offline/generate_valvular_chamber_bloom.py",
+  alveolar: "offline/generate_alveolar_sac_cluster.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];
