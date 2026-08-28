@@ -11,6 +11,10 @@ Codex can publish a study when all of these are true:
 - The object is visible within the first viewport.
 - The preview has no obvious debug artifacts: stray white dots, wireframes,
   accidental transparent shells, or texture seams that dominate the object.
+- Thin vessel-like tubes must not be used as surface decoration. They read as
+  cheap visual noise unless they are large enough to work as primary structural
+  objects, physically fused into the form, or clearly responsible for the
+  silhouette.
 - The daily report exists and links back to the preview.
 - Blender assets exist when the study is past draft state: PNG preview,
   transparent PNG, GLB, and STL.
@@ -28,6 +32,11 @@ When the user leaves judgment to Codex, Codex should choose one clear visual
 intention, make the page match it, run the quality checks, and publish if the
 checks pass. The user can still redirect taste, but should not need to approve
 every micro-adjustment.
+
+For the organ series, prefer folds, cavities, membranes, mass asymmetry, dark
+openings, compression, and fused contact zones over decorative vein overlays.
+If a tube appears, it should be treated as an object with weight: thick,
+integrated, and compositionally necessary.
 
 ## Commands
 
