@@ -33,6 +33,7 @@ scripts = [
     PROJECT_ROOT / "offline" / "generate_hepatic_vessel_bloom.py",
     PROJECT_ROOT / "offline" / "generate_valvular_chamber_bloom.py",
     PROJECT_ROOT / "offline" / "generate_alveolar_sac_cluster.py",
+    PROJECT_ROOT / "offline" / "generate_renal_pelvis_vessel.py",
 ]
 
 for script in scripts:

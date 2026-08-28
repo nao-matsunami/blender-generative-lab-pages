@@ -261,6 +261,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/alveolar-sac-cluster-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/renal-pelvis-vessel.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/renal-pelvis-vessel.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/renal-pelvis-vessel.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/renal-pelvis-vessel-preview.png",
+  },
 ];
 
 let failed = false;

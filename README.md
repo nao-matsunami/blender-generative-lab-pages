@@ -75,6 +75,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Alveolar Sac Cluster` abstracts lung alveoli as clustered sacs with dark mouths and bronchial branching.
 
+## Seventeenth Study
+
+`Renal Pelvis Vessel` abstracts a kidney-like hilum, dark renal pelvis, and branching vessel bundle as a wet organ-form study.
+
 ## Local Site
 
 ```sh
@@ -160,6 +164,10 @@ exports/stl/alveolar-sac-cluster.stl
 exports/glb/alveolar-sac-cluster.glb
 renders/alveolar-sac-cluster.png
 renders/alveolar-sac-cluster-preview.png
+exports/stl/renal-pelvis-vessel.stl
+exports/glb/renal-pelvis-vessel.glb
+renders/renal-pelvis-vessel.png
+renders/renal-pelvis-vessel-preview.png
 ```
 
 Check whether the expected files were created:

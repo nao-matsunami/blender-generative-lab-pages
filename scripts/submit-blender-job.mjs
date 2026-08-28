@@ -23,6 +23,7 @@ const studies = {
   hepatic: "offline/generate_hepatic_vessel_bloom.py",
   valvular: "offline/generate_valvular_chamber_bloom.py",
   alveolar: "offline/generate_alveolar_sac_cluster.py",
+  renal: "offline/generate_renal_pelvis_vessel.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

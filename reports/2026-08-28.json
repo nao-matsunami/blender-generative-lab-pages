@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-28",
+  "headline": "Renal Pelvis Vessel",
+  "headlineEn": "Renal Pelvis Vessel",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は肺胞の粒状集合から離れ、腎臓の非対称な嚢、腎門のくびれ、暗い腎盂、枝分かれする血管束を抽象化した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study that moves away from clustered lung sacs into a kidney-like asymmetric pouch, hilum notch, dark renal pelvis, and branching vessel bundle.",
+  "links": [
+    {
+      "label": "Renal Pelvis Vessel",
+      "url": "../outputs/2026-08-28_renal-pelvis-vessel.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_renal_pelvis_vessel.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前回のAlveolar Sac Clusterは小さな嚢と気管支分岐で構成した。今回は腎臓をモチーフにし、粒の集合ではなく、片側がえぐれた一体の臓器塊、中央の暗い穴、そこから伸びる太い血管束を中心にした。",
+      "bodyEn": "The previous Alveolar Sac Cluster used small sacs and bronchial branching. This pass uses a kidney motif: a single notched organ mass, a dark central pelvis, and thick branching vessels.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な腎臓モデルではなく、腎門のくびれ、腎盂の暗さ、血管が内側へ入り込む接触感をVJ素材・3Dプリント向けの抽象形状に変換する。色は青を避け、暗紅、肉色、黒い内部穴に限定した。",
+      "bodyEn": "This is not a literal kidney model; it translates the hilum notch, dark pelvis, and inward vessel contact into an abstract VJ and print-form object, keeping the palette to dark crimson, flesh tones, and black internal depth.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は胃や膵臓、または毛細血管網へ展開する。腎臓系を続ける場合は、血管が表面に乗っている印象を減らし、腎門へ食い込む融合部と実際の開口を強める。",
+      "bodyEn": "Next passes should move into stomach, pancreas, or capillary networks. If continuing the kidney direction, reduce the sense of vessels sitting on the surface and deepen the fused hilum opening.",
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Renal Pelvis Vessel / Blender Generative Lab</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #070103;
+        --ink: #f7eeee;
+        --muted: #bfa6aa;
+        --accent: #ff6b75;
+        --deep: #681021;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 46% 50%, rgba(146, 16, 43, 0.28), transparent 34%),
+          radial-gradient(circle at 28% 64%, rgba(48, 2, 14, 0.38), transparent 28%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      .hud {
+        position: fixed;
+        inset: 18px 18px auto;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.84);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(20px, 3vw, 42px);
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 8px 0 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(12px, 1.3vw, 15px);
+        line-height: 1.55;
+      }
+      a {
+        pointer-events: auto;
+        align-self: flex-start;
+        min-width: 112px;
+        padding: 10px 13px;
+        border: 1px solid rgba(247, 238, 238, 0.28);
+        background: rgba(7, 1, 3, 0.56);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+      }
+      a:hover { border-color: var(--deep); }
+      .meter {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        height: 2px;
+        overflow: hidden;
+        background: rgba(247, 238, 238, 0.12);
+      }
+      .meter span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform-origin: left center;
+        background: linear-gradient(90deg, #3f0513, var(--accent), #f7eeee);
+        animation: loop-meter 20s linear infinite;
+      }
+      .version {
+        position: fixed;
+        left: 18px;
+        bottom: 26px;
+        z-index: 2;
+        color: var(--accent);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        pointer-events: none;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.82);
+      }
+      @keyframes loop-meter {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @media (max-width: 720px) {
+        .hud { display: block; }
+        a { display: inline-block; margin-top: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Renal Pelvis Vessel procedural preview"></canvas>
+    <div class="hud">
+      <div>
+        <h1>Renal Pelvis Vessel</h1>
+        <p>Organic Motion Objects / kidney-hilum abstraction / dark renal pelvis, raised vessels, wet grooves</p>
+      </div>
+      <a href="../days/2026-08-28.html">Daily report</a>
+    </div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.08.28</div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
+      renderer.setClearColor(0x070103, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.38;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x070103, 0.024);
+
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 90);
+      camera.position.set(-0.35, 0.02, 5.85);
+      camera.lookAt(-0.12, 0.02, 0);
+
+      const clock = new THREE.Clock();
+      const pointer = new THREE.Vector2();
+      const targetPointer = new THREE.Vector2();
+      const object = new THREE.Group();
+      object.rotation.x = 0.1;
+      object.rotation.z = 0.18;
+      scene.add(object);
+
+      const skinMaterial = new THREE.MeshStandardMaterial({
+        color: 0xc94c5d,
+        emissive: 0x2a030b,
+        emissiveIntensity: 0.11,
+        roughness: 0.24,
+        metalness: 0.0,
+      });
+      const vesselMaterial = new THREE.MeshStandardMaterial({
+        color: 0x520713,
+        emissive: 0x170004,
+        emissiveIntensity: 0.12,
+        roughness: 0.2,
+        metalness: 0.0,
+      });
+      const darkMaterial = new THREE.MeshStandardMaterial({ color: 0x080004, roughness: 0.52 });
+
+      const kidney = new THREE.Mesh(createKidneyGeometry(), skinMaterial);
+      object.add(kidney);
+
+      const pelvis = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 20), darkMaterial);
+      pelvis.position.set(-0.84, -0.14, 0);
+      pelvis.scale.set(0.18, 0.08, 0.4);
+      object.add(pelvis);
+
+      const root = new THREE.Vector3(-1.38, -0.46, -0.1);
+      const fork = new THREE.Vector3(-0.86, -0.28, -0.04);
+      addTube(root, fork, 0.112);
+      [
+        new THREE.Vector3(-0.46, -0.34, 0.8),
+        new THREE.Vector3(-0.28, -0.38, 0.42),
+        new THREE.Vector3(-0.24, -0.38, -0.04),
+        new THREE.Vector3(-0.36, -0.34, -0.5),
+        new THREE.Vector3(-0.58, -0.3, -0.88),
+      ].forEach((target, index) => addTube(fork, target, 0.064 - index * 0.004));
+
+      const key = new THREE.DirectionalLight(0xff8c85, 7.0);
+      key.position.set(-3.2, -2.6, 4.8);
+      scene.add(key);
+      const rim = new THREE.PointLight(0x8a0d22, 6.4, 14);
+      rim.position.set(2.7, 1.6, 2.5);
+      scene.add(rim);
+      scene.add(new THREE.HemisphereLight(0xffb7b0, 0x0b0104, 1.9));
+
+      window.addEventListener("pointermove", (event) => {
+        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
+        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
+      });
+      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function render() {
+        const elapsed = clock.getElapsedTime();
+        pointer.lerp(targetPointer, 0.08);
+        object.rotation.y = elapsed * Math.PI * 2 / 20 + pointer.x * 0.18;
+        object.rotation.x = 0.1 + pointer.y * 0.07 + Math.sin(elapsed * 0.54) * 0.025;
+        renderer.render(scene, camera);
+      }
+
+      function resize() {
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      }
+
+      function addTube(start, end, radius) {
+        const mid = start.clone().add(end).multiplyScalar(0.5);
+        mid.y -= 0.08;
+        mid.z += Math.sin(end.z * 2.1) * 0.08;
+        const curve = new THREE.CatmullRomCurve3([start, mid, end]);
+        object.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 34, radius, 12, false), vesselMaterial));
+      }
+
+      function createKidneyGeometry() {
+        const uSegments = 128;
+        const vSegments = 70;
+        const positions = [];
+        const colors = [];
+        const indices = [];
+        const color = new THREE.Color();
+        for (let y = 0; y <= vSegments; y += 1) {
+          const v = y / vSegments;
+          const phi = -Math.PI / 2 + v * Math.PI;
+          const dome = Math.max(0, Math.cos(phi));
+          for (let x = 0; x < uSegments; x += 1) {
+            const u = x / uSegments;
+            const theta = u * Math.PI * 2;
+            const hilum = Math.exp(-1 * (((Math.cos(theta) + 1) / 0.42) ** 2 + ((v - 0.52) / 0.28) ** 2));
+            const groove = grooveField(u, v);
+            const rx = 1.05 * (1 - hilum * 0.42 - groove * 0.035) * (1 + 0.08 * Math.sin(theta * 3 + v * 2));
+            const ry = 0.66 * (1 - hilum * 0.72 - groove * 0.055) * (1 + 0.12 * Math.sin(theta * 2 - 0.8));
+            const rz = 1.42 * (1 + 0.04 * Math.sin(theta * 4));
+            positions.push(Math.cos(theta) * dome * rx, Math.sin(theta) * dome * ry, Math.sin(phi) * rz + 0.12 * Math.sin(theta + 0.4) * dome);
+            const wet = 0.5 + 0.5 * Math.sin(theta * 2 + v * Math.PI * 5.2);
+            color.setRGB(0.62 + wet * 0.18 - groove * 0.34, 0.18 + wet * 0.08 - groove * 0.16, 0.25 + wet * 0.08 - groove * 0.2);
+            colors.push(color.r, color.g, color.b);
+          }
+        }
+        for (let y = 0; y < vSegments; y += 1) {
+          for (let x = 0; x < uSegments; x += 1) {
+            const a = y * uSegments + x;
+            const b = y * uSegments + ((x + 1) % uSegments);
+            const c = (y + 1) * uSegments + ((x + 1) % uSegments);
+            const d = (y + 1) * uSegments + x;
+            indices.push(a, b, d, b, c, d);
+          }
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        skinMaterial.vertexColors = true;
+        return geometry;
+      }
+
+      function grooveField(u, v) {
+        const theta = u * Math.PI * 2;
+        const waist = Math.exp(-1 * (((v - 0.53) / 0.2) ** 2));
+        const hilum = Math.exp(-1 * (((Math.cos(theta) + 1) / 0.34) ** 2 + ((v - 0.5) / 0.36) ** 2));
+        let radial = 0;
+        [0.2, 0.38, 0.57, 0.76].forEach((offset, i) => {
+          const center = (offset + 0.08 * Math.sin(v * Math.PI * 3.6)) % 1;
+          const distance = Math.abs(((u - center + 0.5) % 1) - 0.5);
+          radial += Math.max(0, 1 - distance / 0.035) ** 2.2 * (1 - i * 0.12) * smoothstep(0.12, 0.72, v);
+        });
+        return Math.min(1, hilum * 1.25 + radial * 0.42 + waist * 0.18);
+      }
+
+      function smoothstep(edge0, edge1, value) {
+        const t = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
+        return t * t * (3 - 2 * t);
+      }
+    </script>
+  </body>
+</html>
