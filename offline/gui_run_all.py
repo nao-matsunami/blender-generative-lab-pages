@@ -34,6 +34,7 @@ scripts = [
     PROJECT_ROOT / "offline" / "generate_valvular_chamber_bloom.py",
     PROJECT_ROOT / "offline" / "generate_alveolar_sac_cluster.py",
     PROJECT_ROOT / "offline" / "generate_renal_pelvis_vessel.py",
+    PROJECT_ROOT / "offline" / "generate_gastric_rugae_maw.py",
 ]
 
 for script in scripts:

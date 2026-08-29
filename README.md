@@ -79,6 +79,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Renal Pelvis Vessel` abstracts a kidney-like hilum, dark renal pelvis, and branching vessel bundle as a wet organ-form study.
 
+## Eighteenth Study
+
+`Gastric Rugae Maw` abstracts a stomach-like pouch, compressed rugae folds, and a dark inner maw without decorative vessel overlays.
+
 ## Local Site
 
 ```sh
@@ -168,6 +172,10 @@ exports/stl/renal-pelvis-vessel.stl
 exports/glb/renal-pelvis-vessel.glb
 renders/renal-pelvis-vessel.png
 renders/renal-pelvis-vessel-preview.png
+exports/stl/gastric-rugae-maw.stl
+exports/glb/gastric-rugae-maw.glb
+renders/gastric-rugae-maw.png
+renders/gastric-rugae-maw-preview.png
 ```
 
 Check whether the expected files were created:

@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-29",
+  "headline": "Gastric Rugae Maw",
+  "headlineEn": "Gastric Rugae Maw",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は胃の袋状の塊、圧縮された襞、暗い内腔を抽象化し、細い血管装飾は使わない方向に切り替えた。",
+  "summaryEn": "An organ-motif Organic Motion Objects study using a stomach-like pouch, compressed rugae folds, and a dark inner maw while deliberately avoiding thin decorative vessel overlays.",
+  "links": [
+    {
+      "label": "Gastric Rugae Maw",
+      "url": "../outputs/2026-08-29_gastric-rugae-maw.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_gastric_rugae_maw.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前回のRenal Pelvis Vesselでは血管束が主構造としては弱く、細い管が装飾に見える問題が残った。今回はその反省を反映し、血管を排除して、胃壁の襞、袋の非対称な膨らみ、黒く沈む開口だけで成立する造形にした。",
+      "bodyEn": "The previous Renal Pelvis Vessel left a problem: the vessel bundle was not strong enough as primary structure and could read as decoration. This pass removes vessels and builds the form from stomach-wall folds, asymmetric pouch mass, and a dark opening.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な胃ではなく、内側の襞が外形に押し出ているような抽象物を作る。管ではなく、連続した膜、圧縮された溝、厚い唇状の縁、暗い内腔を主役にする。",
+      "bodyEn": "This is not a literal stomach model; it abstracts internal rugae as outward pressure on the body. Continuous membrane, compressed grooves, a thick lip, and internal darkness are the primary elements.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は膵臓や脾臓のような薄く偏った塊、または膜同士の癒着へ展開する。管を使う場合は細い線を避け、オブジェクト全体を支配する太い構造として扱う。",
+      "bodyEn": "Next passes should explore flattened pancreatic or splenic masses, or fused membranes. If tubes return, they should be thick structural elements rather than thin lines.",
+      "links": []
+    }
+  ]
+}

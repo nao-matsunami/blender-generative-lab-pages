@@ -5,7 +5,7 @@
       <p class="date">2026.08.07</p>
       <h1>Organic Growth Vessel</h1>
       <p>Blender Generative Labの最初のスタディ。有機的な花器/彫刻形状をWebプレビュー、Blenderレンダー、STL/GLB書き出しへ展開する。</p>
-      <div class="actions"><a href="../index.html">Back</a></div>
+      <div class="actions"><a href="../pages/2.html">Back</a></div>
     </section>
     <section class="content"><h2>この日のサンプル / Samples</h2><ul><li><a href="../outputs/2026-08-07_organic-growth-vessel.html">Organic Growth Vessel / Blender Generative Lab</a><p>Blender Generative Lab / algorithmic vessel study / STL + GLB pipeline candidate</p></li></ul></section>
     <section class="content"><h2>今日の制作メモ</h2><p>このプロジェクトはVJ素材サイトから独立させ、アルゴリズミックデザイン、有機造形、3Dプリント、映像レンダーを同じ生成パイプラインで扱う実験場にする。最初の題材は花器/彫刻として成立しやすいOrganic Growth Vesselにした。</p></section><section class="content"><h2>3Dプリントへの展開</h2><p>offline/generate_organic_growth_vessel.py でBlender内にノイズ駆動の器形状を生成し、Solidifyで厚みを持たせてSTL/GLBを書き出す。プリント前には壁厚、非多様体、オーバーハング、スケールを必ずスライサーで確認する。</p><ul><li><a href="../offline/generate_organic_growth_vessel.py" target="_blank" rel="noreferrer">Generator script</a></li></ul></section><section class="content"><h2>販売データ候補</h2><p>このラインは、STL、GLB、.blend、生成Python、レンダー画像、回転動画をまとめたSource/Object Packにしやすい。映像素材だけでなく、物理オブジェクトとしても展開できるのが強み。</p></section><section class="content"><h2>Mac miniで確認すること</h2><p>Blenderインストール後は、まず生成スクリプトを1回だけ実行し、STL、GLB、PNGが作られるかを npm run check:assets で確認する。形の良し悪しより先に、生成、書き出し、検査の流れが通ることを優先する。</p><ul><li><a href="../docs/mac-mini-setup.md" target="_blank" rel="noreferrer">Mac mini setup</a></li><li><a href="../docs/print-readiness.md" target="_blank" rel="noreferrer">Print readiness</a></li><li><a href="../docs/ai-blender-workflow.md" target="_blank" rel="noreferrer">AI + Blender workflow</a></li></ul></section>

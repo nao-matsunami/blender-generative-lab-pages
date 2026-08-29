@@ -277,6 +277,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/renal-pelvis-vessel-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/gastric-rugae-maw.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/gastric-rugae-maw.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/gastric-rugae-maw.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/gastric-rugae-maw-preview.png",
+  },
 ];
 
 let failed = false;
