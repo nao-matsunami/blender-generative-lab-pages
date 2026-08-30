@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-30",
+  "headline": "Pancreatic Membrane Slab",
+  "headlineEn": "Pancreatic Membrane Slab",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は膵臓/脾臓のような薄く偏った塊を抽象化し、細い血管装飾ではなく、癒着した膜リブと暗い裂け目で構成した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting a flattened pancreatic or splenic mass, built from fused membrane ribs and dark clefts rather than thin decorative vessels.",
+  "links": [
+    {
+      "label": "Pancreatic Membrane Slab",
+      "url": "../outputs/2026-08-30_pancreatic-membrane-slab.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_pancreatic_membrane_slab.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前回のGastric Rugae Mawは胃の袋と暗い開口を主題にした。今回は丸い袋から離れ、横に伸びる偏平な臓器塊にした。ユーザー指摘を反映し、血管状の細い装飾は使わず、厚みのある膜の重なり、分葉、黒い裂け目だけで見せる。",
+      "bodyEn": "The previous Gastric Rugae Maw focused on a stomach pouch and dark opening. This pass moves away from a rounded sac into a horizontally stretched, flattened organ mass, avoiding thin vessel decoration and relying on membrane overlap, lobulation, and black clefts.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な膵臓ではなく、薄い臓器片が癒着して厚みを持ったような抽象形状にする。管や線を足さず、表面の折れ、圧縮された縁、内部へ沈む裂け目を主構造として扱う。",
+      "bodyEn": "This is not a literal pancreas model; it treats a thin organ fragment as if fused membranes have thickened into a printable mass. Surface folds, compressed edges, and inward dark clefts are the primary structure.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は膜同士の癒着をさらに強め、複数の塊が押し合って一体化した状態を試す。管を戻す場合は、細い血管ではなく、作品の輪郭を決める太い連続構造として扱う。",
+      "bodyEn": "Next passes should strengthen fused membrane contact, testing multiple masses pressed into one body. If tubes return, they should be thick silhouette-defining structures, not thin vessels.",
+      "links": []
+    }
+  ]
+}

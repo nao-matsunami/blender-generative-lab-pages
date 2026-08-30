@@ -25,6 +25,7 @@ const studies = {
   alveolar: "offline/generate_alveolar_sac_cluster.py",
   renal: "offline/generate_renal_pelvis_vessel.py",
   gastric: "offline/generate_gastric_rugae_maw.py",
+  pancreatic: "offline/generate_pancreatic_membrane_slab.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

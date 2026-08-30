@@ -293,6 +293,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/gastric-rugae-maw-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/pancreatic-membrane-slab.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/pancreatic-membrane-slab.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/pancreatic-membrane-slab.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/pancreatic-membrane-slab-preview.png",
+  },
 ];
 
 let failed = false;

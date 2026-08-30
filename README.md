@@ -83,6 +83,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Gastric Rugae Maw` abstracts a stomach-like pouch, compressed rugae folds, and a dark inner maw without decorative vessel overlays.
 
+## Nineteenth Study
+
+`Pancreatic Membrane Slab` abstracts a flattened pancreatic or splenic mass with fused membrane folds and dark clefts, avoiding thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -176,6 +180,10 @@ exports/stl/gastric-rugae-maw.stl
 exports/glb/gastric-rugae-maw.glb
 renders/gastric-rugae-maw.png
 renders/gastric-rugae-maw-preview.png
+exports/stl/pancreatic-membrane-slab.stl
+exports/glb/pancreatic-membrane-slab.glb
+renders/pancreatic-membrane-slab.png
+renders/pancreatic-membrane-slab-preview.png
 ```
 
 Check whether the expected files were created:
