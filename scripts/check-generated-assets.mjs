@@ -309,6 +309,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/pancreatic-membrane-slab-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/adhesive-spleen-fold.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/adhesive-spleen-fold.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/adhesive-spleen-fold.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/adhesive-spleen-fold-preview.png",
+  },
 ];
 
 let failed = false;

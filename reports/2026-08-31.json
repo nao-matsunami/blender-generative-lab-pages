@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-31",
+  "headline": "Adhesive Spleen Fold",
+  "headlineEn": "Adhesive Spleen Fold",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は脾臓的な複数の楕円塊を圧着し、細い血管装飾を使わず、癒着した膜、暗い接触裂け目、押し合う塊のシルエットで構成した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study that compresses multiple spleen-like lobes into fused membrane masses, using dark contact slits and pressed silhouettes instead of thin vessel decoration.",
+  "links": [
+    {
+      "label": "Adhesive Spleen Fold",
+      "url": "../outputs/2026-08-31_adhesive-spleen-fold.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_adhesive_spleen_fold.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前回のPancreatic Membrane Slabは薄い偏平塊と裂け目が中心だった。今回はそれを複数の楕円塊へ分け、互いに押し合って癒着したような構造にした。血管を線として足すのではなく、接触面そのものを暗い裂け目として扱う。",
+      "bodyEn": "The previous Pancreatic Membrane Slab focused on a flattened mass and clefts. This pass splits that direction into multiple oval lobes pressed into each other, treating the contact zone itself as a dark slit rather than adding vessel lines.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "写実的な脾臓ではなく、柔らかい臓器片が圧縮され、膜同士がくっついた抽象オブジェクトにする。主役は太い塊、癒着線、黒い接触裂け目で、細い血管状の装飾は入れない。",
+      "bodyEn": "This is not a literal spleen model; it turns soft organ fragments into an abstract object of compressed, fused membranes. The primary elements are large masses, adhesion seams, and black contact slits, with no thin vessel decoration.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は癒着面の実穴化、または膜が折り返して内部へ沈む形を強める。管を使う場合は、細線ではなく、作品の大きな輪郭を決める太い中空構造に限定する。",
+      "bodyEn": "Next passes should deepen the adhesion seams into real openings or fold membranes inward. If tubes return, they should be thick hollow structures that define the object silhouette, not thin lines.",
+      "links": []
+    }
+  ]
+}

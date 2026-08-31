@@ -87,6 +87,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Pancreatic Membrane Slab` abstracts a flattened pancreatic or splenic mass with fused membrane folds and dark clefts, avoiding thin vessel decoration.
 
+## Twentieth Study
+
+`Adhesive Spleen Fold` abstracts pressed spleen-like lobes with fused membrane seams and dark contact slits, avoiding thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -184,6 +188,10 @@ exports/stl/pancreatic-membrane-slab.stl
 exports/glb/pancreatic-membrane-slab.glb
 renders/pancreatic-membrane-slab.png
 renders/pancreatic-membrane-slab-preview.png
+exports/stl/adhesive-spleen-fold.stl
+exports/glb/adhesive-spleen-fold.glb
+renders/adhesive-spleen-fold.png
+renders/adhesive-spleen-fold-preview.png
 ```
 
 Check whether the expected files were created:
