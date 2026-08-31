@@ -25,7 +25,14 @@
         color: var(--ink);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
-      canvas { display: block; width: 100vw; height: 100vh; }
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        cursor: grab;
+        touch-action: none;
+      }
+      canvas:active { cursor: grabbing; }
       .hud {
         position: fixed;
         inset: 18px 18px auto;
@@ -136,12 +143,25 @@
       camera.lookAt(0, -0.03, 0);
 
       const clock = new THREE.Clock();
-      const pointer = new THREE.Vector2();
-      const targetPointer = new THREE.Vector2();
       const object = new THREE.Group();
       object.rotation.x = 0.66;
       object.rotation.z = -0.18;
       scene.add(object);
+      const controls = {
+        baseX: 0.66,
+        rotationX: 0.66,
+        rotationY: 0,
+        targetRotationX: 0.66,
+        targetRotationY: 0,
+        pan: new THREE.Vector2(0, 0),
+        targetPan: new THREE.Vector2(0, 0),
+        distance: 5.9,
+        targetDistance: 5.9,
+        pointers: new Map(),
+        lastCenter: null,
+        lastDistance: 0,
+        dragMode: "rotate",
+      };
 
       const skinMaterial = new THREE.MeshStandardMaterial({
         color: 0xc6465b,
@@ -182,20 +202,26 @@
       scene.add(rim);
       scene.add(new THREE.HemisphereLight(0xffbab4, 0x0b0104, 1.9));
 
-      window.addEventListener("pointermove", (event) => {
-        targetPointer.x = (event.clientX / window.innerWidth - 0.5) * 2;
-        targetPointer.y = (event.clientY / window.innerHeight - 0.5) * -2;
-      });
-      window.addEventListener("click", () => { object.rotation.y += Math.PI / 6; });
+      canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+      canvas.addEventListener("wheel", onWheel, { passive: false });
+      canvas.addEventListener("pointerdown", onPointerDown);
+      canvas.addEventListener("pointermove", onPointerMove);
+      canvas.addEventListener("pointerup", onPointerUp);
+      canvas.addEventListener("pointercancel", onPointerUp);
       window.addEventListener("resize", resize);
       resize();
       renderer.setAnimationLoop(render);
 
       function render() {
         const elapsed = clock.getElapsedTime();
-        pointer.lerp(targetPointer, 0.08);
-        object.rotation.y = elapsed * Math.PI * 2 / 22 + pointer.x * 0.18;
-        object.rotation.x = 0.66 + pointer.y * 0.07 + Math.sin(elapsed * 0.46) * 0.025;
+        controls.rotationX += (controls.targetRotationX - controls.rotationX) * 0.14;
+        controls.rotationY += (controls.targetRotationY - controls.rotationY) * 0.14;
+        controls.pan.lerp(controls.targetPan, 0.16);
+        controls.distance += (controls.targetDistance - controls.distance) * 0.16;
+        object.rotation.y = elapsed * Math.PI * 2 / 70 + controls.rotationY;
+        object.rotation.x = controls.rotationX + Math.sin(elapsed * 0.46) * 0.015;
+        camera.position.set(controls.pan.x - 0.06, controls.pan.y + 0.02, controls.distance);
+        camera.lookAt(controls.pan.x, controls.pan.y - 0.03, 0);
         renderer.render(scene, camera);
       }
 
@@ -203,6 +229,90 @@
         renderer.setSize(window.innerWidth, window.innerHeight, false);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
+      }
+
+      function onWheel(event) {
+        event.preventDefault();
+        controls.targetDistance = clamp(controls.targetDistance + event.deltaY * 0.0028, 3.4, 9.0);
+      }
+
+      function onPointerDown(event) {
+        canvas.setPointerCapture(event.pointerId);
+        controls.pointers.set(event.pointerId, pointerInfo(event));
+        controls.dragMode = event.button === 2 || event.shiftKey ? "pan" : "rotate";
+        updateGestureMemory();
+      }
+
+      function onPointerMove(event) {
+        if (!controls.pointers.has(event.pointerId)) return;
+        const previous = controls.pointers.get(event.pointerId);
+        const current = pointerInfo(event);
+        controls.pointers.set(event.pointerId, current);
+        if (controls.pointers.size >= 2) {
+          updatePinchPan();
+          return;
+        }
+        const dx = current.x - previous.x;
+        const dy = current.y - previous.y;
+        if (controls.dragMode === "pan") {
+          panBy(dx, dy);
+        } else {
+          controls.targetRotationY += dx * 0.008;
+          controls.targetRotationX = clamp(controls.targetRotationX + dy * 0.006, -0.9, 1.55);
+        }
+      }
+
+      function onPointerUp(event) {
+        controls.pointers.delete(event.pointerId);
+        try { canvas.releasePointerCapture(event.pointerId); } catch {}
+        updateGestureMemory();
+      }
+
+      function pointerInfo(event) {
+        return { x: event.clientX, y: event.clientY };
+      }
+
+      function updateGestureMemory() {
+        const points = [...controls.pointers.values()];
+        if (points.length >= 2) {
+          controls.lastCenter = centerOf(points[0], points[1]);
+          controls.lastDistance = distanceOf(points[0], points[1]);
+        } else {
+          controls.lastCenter = null;
+          controls.lastDistance = 0;
+        }
+      }
+
+      function updatePinchPan() {
+        const points = [...controls.pointers.values()];
+        const center = centerOf(points[0], points[1]);
+        const distance = distanceOf(points[0], points[1]);
+        if (controls.lastCenter) {
+          panBy(center.x - controls.lastCenter.x, center.y - controls.lastCenter.y);
+        }
+        if (controls.lastDistance > 0) {
+          controls.targetDistance = clamp(controls.targetDistance * (controls.lastDistance / Math.max(40, distance)), 3.4, 9.0);
+        }
+        controls.lastCenter = center;
+        controls.lastDistance = distance;
+      }
+
+      function panBy(dx, dy) {
+        const scale = controls.targetDistance * 0.0015;
+        controls.targetPan.x = clamp(controls.targetPan.x - dx * scale, -1.2, 1.2);
+        controls.targetPan.y = clamp(controls.targetPan.y + dy * scale, -0.8, 0.8);
+      }
+
+      function centerOf(a, b) {
+        return { x: (a.x + b.x) * 0.5, y: (a.y + b.y) * 0.5 };
+      }
+
+      function distanceOf(a, b) {
+        return Math.hypot(a.x - b.x, a.y - b.y);
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
       }
 
       function createLobeGeometry(lobeIndex) {

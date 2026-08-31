@@ -9,6 +9,9 @@ Codex can publish a study when all of these are true:
 
 - The web preview loads without JavaScript syntax errors.
 - The object is visible within the first viewport.
+- Current and future web previews should support direct inspection: drag to
+  rotate, wheel or pinch to zoom, and right-drag, Shift-drag, or two-finger
+  movement to pan when the preview is a 3D object.
 - The preview has no obvious debug artifacts: stray white dots, wireframes,
   accidental transparent shells, or texture seams that dominate the object.
 - Thin vessel-like tubes must not be used as surface decoration. They read as
