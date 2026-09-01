@@ -27,6 +27,7 @@ const studies = {
   gastric: "offline/generate_gastric_rugae_maw.py",
   pancreatic: "offline/generate_pancreatic_membrane_slab.py",
   spleen: "offline/generate_adhesive_spleen_fold.py",
+  cavity: "offline/generate_inverted_membrane_cavity.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

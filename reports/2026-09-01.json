@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-01",
+  "headline": "Inverted Membrane Cavity",
+  "headlineEn": "Inverted Membrane Cavity",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は細い血管装飾を避け、膜が内側へ折り返して暗い穴を作る構造に絞った。操作はマウスとスマホのドラッグ、ピンチ、パンに対応した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study focused on an inward-folding membrane and a dark cavity, avoiding thin vessel decoration. The preview supports mouse and mobile drag, pinch zoom, and pan controls.",
+  "links": [
+    {
+      "label": "Inverted Membrane Cavity",
+      "url": "../outputs/2026-09-01_inverted-membrane-cavity.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_inverted_membrane_cavity.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のAdhesive Spleen Foldは複数の塊が押し合う癒着感を中心にした。今回は塊の数を増やす方向ではなく、膜の折り返し、厚い縁、黒い内部穴を主役にして、胃・嚢・裂け目の中間のような抽象物にした。",
+      "bodyEn": "The previous Adhesive Spleen Fold centered on fused lobes pressing into each other. This pass shifts away from adding more lobes and makes the inward fold, thick rim, and dark inner opening the primary vocabulary, somewhere between stomach, sac, and cleft.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "安っぽく見えやすい細い血管線は使わない。管や筋は表面の飾りではなく、膜そのものの盛り上がり、ねじれ、圧縮された厚みとして扱う。Webプレビューは最初から回転・ズーム・移動できる状態にした。",
+      "bodyEn": "Thin vessel-line decoration is intentionally excluded. Tubes and striations are treated as raised membrane mass, twist, and compressed thickness rather than surface garnish. The web preview is directly controllable from the start.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は暗い内部の奥行きをもう一段増やし、穴の縁に内外の厚み差を出す。管を使う場合は細線ではなく、穴へ巻き込まれる太い構造として扱う。",
+      "bodyEn": "Next work should deepen the inner darkness and make the rim thickness vary more clearly between inside and outside. If tubes return, they should be substantial structures pulled into the cavity, not thin lines.",
+      "links": []
+    }
+  ]
+}

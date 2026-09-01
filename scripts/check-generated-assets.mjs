@@ -325,6 +325,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/adhesive-spleen-fold-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/inverted-membrane-cavity.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/inverted-membrane-cavity.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/inverted-membrane-cavity.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/inverted-membrane-cavity-preview.png",
+  },
 ];
 
 let failed = false;

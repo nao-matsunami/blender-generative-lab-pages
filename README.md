@@ -91,6 +91,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Adhesive Spleen Fold` abstracts pressed spleen-like lobes with fused membrane seams and dark contact slits, avoiding thin vessel decoration.
 
+## Twenty-first Study
+
+`Inverted Membrane Cavity` abstracts an inward-folding organ membrane with a thick lip and dark inner void. The web preview supports mouse and mobile rotate, zoom, and pan controls.
+
 ## Local Site
 
 ```sh
@@ -192,6 +196,10 @@ exports/stl/adhesive-spleen-fold.stl
 exports/glb/adhesive-spleen-fold.glb
 renders/adhesive-spleen-fold.png
 renders/adhesive-spleen-fold-preview.png
+exports/stl/inverted-membrane-cavity.stl
+exports/glb/inverted-membrane-cavity.glb
+renders/inverted-membrane-cavity.png
+renders/inverted-membrane-cavity-preview.png
 ```
 
 Check whether the expected files were created:
