@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-02",
+  "headline": "Valve Cusp Maw",
+  "headlineEn": "Valve Cusp Maw",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は心臓弁の三枚の弁尖と暗い心室穴を抽象化し、細い血管線ではなく、厚い環、重なる膜、押された外側の塊で構成した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting three cardiac valve cusps around a dark chamber opening, built from a thick annulus, overlapping membranes, and pressed outer masses rather than thin vessel lines.",
+  "links": [
+    {
+      "label": "Valve Cusp Maw",
+      "url": "../outputs/2026-09-02_valve-cusp-maw.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_valve_cusp_maw.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のInverted Membrane Cavityは単一の膜が内側へ折り返す構造だった。今回は心臓弁をモチーフにして、三方向から膜が穴へかぶさる構造へ変えた。臓器的な方向は維持しつつ、腸管ループや細い血管装飾には戻していない。",
+      "bodyEn": "The previous Inverted Membrane Cavity used a single inward-folding membrane. This pass shifts to a cardiac valve motif, with three membrane cusps folding over a central opening while avoiding intestinal loops and thin vessel decoration.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "中心の黒い穴、厚い環、三枚の弁尖が主役。管を足すのではなく、膜同士が重なって入り口を塞ぎかける接触感を作る。Webプレビューは前回と同じくマウス・スマホで回転、ズーム、移動できる。",
+      "bodyEn": "The primary elements are the black central opening, thick ring, and three valve cusps. Instead of adding tubes, the form creates contact through membranes overlapping and partly closing the aperture. The web preview keeps mouse and mobile rotate, zoom, and pan controls.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は弁尖の裏側に暗い層を増やし、重なりの境界をもっと深い裂け目として見せる。血管を扱う場合も、線ではなく太い構造体として輪郭に関与させる。",
+      "bodyEn": "Next work should add darker underside layers to the cusps and make the overlap boundaries read as deeper clefts. If vessel-like forms return, they should be thick structural elements that affect silhouette, not lines.",
+      "links": []
+    }
+  ]
+}

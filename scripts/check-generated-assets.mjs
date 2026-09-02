@@ -341,6 +341,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/inverted-membrane-cavity-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/valve-cusp-maw.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/valve-cusp-maw.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/valve-cusp-maw.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/valve-cusp-maw-preview.png",
+  },
 ];
 
 let failed = false;

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Valve Cusp Maw / Blender Generative Lab</title>
+    <style>
+      :root { color-scheme: dark; --bg:#060102; --ink:#f8eeee; --muted:#c8a3a4; --accent:#ff5964; }
+      * { box-sizing:border-box; }
+      html, body { width:100%; height:100%; }
+      body {
+        margin:0; overflow:hidden; color:var(--ink);
+        background:radial-gradient(circle at 50% 48%, rgba(122,10,24,.3), transparent 31%),
+          radial-gradient(circle at 50% 68%, rgba(34,1,10,.45), transparent 33%), var(--bg);
+        font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      canvas { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none; }
+      canvas:active { cursor:grabbing; }
+      .hud { position:fixed; inset:18px 18px auto; z-index:2; display:flex; justify-content:space-between; gap:18px; pointer-events:none; text-shadow:0 2px 18px rgba(0,0,0,.84); }
+      h1 { margin:0; font-size:clamp(20px,3vw,42px); line-height:1; letter-spacing:0; text-transform:uppercase; }
+      p { margin:8px 0 0; max-width:780px; color:var(--muted); font-size:clamp(12px,1.3vw,15px); line-height:1.55; }
+      a { pointer-events:auto; align-self:flex-start; min-width:112px; padding:10px 13px; border:1px solid rgba(248,238,238,.28); background:rgba(6,1,2,.58); color:var(--ink); font-size:12px; line-height:1; text-align:center; text-decoration:none; backdrop-filter:blur(12px); }
+      .meter { position:fixed; right:18px; bottom:18px; left:18px; z-index:2; height:2px; overflow:hidden; background:rgba(248,238,238,.12); }
+      .meter span { display:block; width:100%; height:100%; transform-origin:left center; background:linear-gradient(90deg,#34030b,var(--accent),#f8eeee); animation:loop-meter 24s linear infinite; }
+      .version { position:fixed; left:18px; bottom:26px; z-index:2; color:var(--accent); font-size:11px; letter-spacing:0; text-transform:uppercase; pointer-events:none; text-shadow:0 2px 14px rgba(0,0,0,.82); }
+      @keyframes loop-meter { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+      @media (max-width:720px) { .hud{display:block} a{display:inline-block;margin-top:12px} }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Valve Cusp Maw procedural preview"></canvas>
+    <div class="hud"><div><h1>Valve Cusp Maw</h1><p>Organic Motion Objects / heart-valve cusp abstraction / thick annulus, dark chamber, no thin vessel decoration</p></div><a href="../days/2026-09-02.html">Daily report</a></div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">organic motion objects / 2026.09.02</div>
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false, powerPreference:"high-performance" });
+      renderer.setClearColor(0x060102, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.35;
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x060102, 0.024);
+      const camera = new THREE.PerspectiveCamera(39, 1, 0.1, 90);
+      const object = new THREE.Group();
+      object.rotation.x = 0.34;
+      object.rotation.z = -0.16;
+      scene.add(object);
+      const controls = { rx:0.34, ry:0, trx:0.34, try:0, pan:new THREE.Vector2(), tpan:new THREE.Vector2(), dist:5.6, tdist:5.6, pointers:new Map(), lastCenter:null, lastDistance:0, dragMode:"rotate" };
+      const cuspMat = new THREE.MeshStandardMaterial({ color:0x9f1b2f, emissive:0x220007, emissiveIntensity:.1, roughness:.17, metalness:0, side:THREE.DoubleSide });
+      const annulusMat = new THREE.MeshStandardMaterial({ color:0xe4515c, emissive:0x2c0108, emissiveIntensity:.08, roughness:.2, metalness:0 });
+      const lobeMat = new THREE.MeshStandardMaterial({ color:0xb42e3d, emissive:0x1d0006, emissiveIntensity:.06, roughness:.25, metalness:0 });
+      const darkMat = new THREE.MeshStandardMaterial({ color:0x050002, roughness:.6 });
+      const annulus = new THREE.Mesh(new THREE.TorusGeometry(.76, .15, 24, 160), annulusMat);
+      annulus.rotation.x = Math.PI / 2;
+      annulus.scale.set(1.08, 1, .82);
+      object.add(annulus);
+      const chamber = new THREE.Mesh(new THREE.SphereGeometry(1, 80, 28), darkMat);
+      chamber.position.set(0, -.43, 0);
+      chamber.scale.set(.44, .15, .32);
+      object.add(chamber);
+      for (let i = 0; i < 3; i += 1) {
+        const theta = i * Math.PI * 2 / 3 + .76;
+        const lobe = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 20), lobeMat);
+        lobe.position.set(Math.cos(theta) * .82, .08, Math.sin(theta) * .62);
+        lobe.scale.set(.34, .14, .24);
+        lobe.rotation.z = theta;
+        object.add(lobe);
+        object.add(new THREE.Mesh(createCuspGeometry(i), cuspMat));
+      }
+      const key = new THREE.DirectionalLight(0xff7b70, 7.2);
+      key.position.set(-3, -2.5, 4.8);
+      scene.add(key);
+      const rim = new THREE.PointLight(0x8a0b1c, 6.8, 14);
+      rim.position.set(2.7, 1.6, 2.8);
+      scene.add(rim);
+      scene.add(new THREE.HemisphereLight(0xffbab0, 0x090103, 1.85));
+      canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+      canvas.addEventListener("wheel", onWheel, { passive:false });
+      canvas.addEventListener("pointerdown", onPointerDown);
+      canvas.addEventListener("pointermove", onPointerMove);
+      canvas.addEventListener("pointerup", onPointerUp);
+      canvas.addEventListener("pointercancel", onPointerUp);
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+      function render() {
+        const elapsed = performance.now() / 1000;
+        controls.rx += (controls.trx - controls.rx) * .14;
+        controls.ry += (controls.try - controls.ry) * .14;
+        controls.pan.lerp(controls.tpan, .16);
+        controls.dist += (controls.tdist - controls.dist) * .16;
+        object.rotation.x = controls.rx + Math.sin(elapsed * .5) * .014;
+        object.rotation.y = elapsed * Math.PI * 2 / 72 + controls.ry;
+        camera.position.set(controls.pan.x - .06, controls.pan.y + .01, controls.dist);
+        camera.lookAt(controls.pan.x, controls.pan.y - .03, 0);
+        renderer.render(scene, camera);
+      }
+      function resize() { renderer.setSize(window.innerWidth, window.innerHeight, false); camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); }
+      function onWheel(event) { event.preventDefault(); controls.tdist = clamp(controls.tdist + event.deltaY * .0028, 3.2, 9); }
+      function onPointerDown(event) { canvas.setPointerCapture(event.pointerId); controls.pointers.set(event.pointerId, point(event)); controls.dragMode = event.button === 2 || event.shiftKey ? "pan" : "rotate"; updateMemory(); }
+      function onPointerMove(event) {
+        if (!controls.pointers.has(event.pointerId)) return;
+        const prev = controls.pointers.get(event.pointerId);
+        const cur = point(event);
+        controls.pointers.set(event.pointerId, cur);
+        if (controls.pointers.size >= 2) { pinchPan(); return; }
+        const dx = cur.x - prev.x, dy = cur.y - prev.y;
+        if (controls.dragMode === "pan") panBy(dx, dy);
+        else { controls.try += dx * .008; controls.trx = clamp(controls.trx + dy * .006, -.9, 1.55); }
+      }
+      function onPointerUp(event) { controls.pointers.delete(event.pointerId); try { canvas.releasePointerCapture(event.pointerId); } catch {} updateMemory(); }
+      function point(event) { return { x:event.clientX, y:event.clientY }; }
+      function updateMemory() { const p = [...controls.pointers.values()]; controls.lastCenter = p.length >= 2 ? center(p[0], p[1]) : null; controls.lastDistance = p.length >= 2 ? distance(p[0], p[1]) : 0; }
+      function pinchPan() { const p = [...controls.pointers.values()]; const c = center(p[0], p[1]); const d = distance(p[0], p[1]); if (controls.lastCenter) panBy(c.x - controls.lastCenter.x, c.y - controls.lastCenter.y); if (controls.lastDistance > 0) controls.tdist = clamp(controls.tdist * (controls.lastDistance / Math.max(40, d)), 3.2, 9); controls.lastCenter = c; controls.lastDistance = d; }
+      function panBy(dx, dy) { const scale = controls.tdist * .0015; controls.tpan.x = clamp(controls.tpan.x - dx * scale, -1.2, 1.2); controls.tpan.y = clamp(controls.tpan.y + dy * scale, -.8, .8); }
+      function center(a, b) { return { x:(a.x + b.x) * .5, y:(a.y + b.y) * .5 }; }
+      function distance(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+      function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+      function createCuspGeometry(index) {
+        const radial = 30, angular = 58, positions = [], indices = [];
+        const centerAngle = index * Math.PI * 2 / 3 + .31;
+        for (let r = 0; r <= radial; r += 1) {
+          const t = r / radial;
+          for (let a = 0; a <= angular; a += 1) {
+            const side = (a / angular - .5) * 2;
+            const edge = Math.max(0, 1 - Math.abs(side) ** 2.8);
+            const theta = centerAngle + side * 1.03;
+            const inner = .34 + .05 * Math.sin(index + side * Math.PI);
+            const outer = 1.08 + .06 * Math.sin(index * 1.7 + side * 2.1);
+            const radius = inner + (outer - inner) * t;
+            const fold = Math.sin(t * Math.PI) * edge;
+            const crease = Math.sin(side * Math.PI * 2 + index * .8) * (1 - t) * .09;
+            positions.push(Math.cos(theta) * (radius + fold * .08), -.34 * (1 - t) ** 1.7 - .08 * fold + crease, Math.sin(theta) * (radius * .82 + fold * .13));
+          }
+        }
+        const row = angular + 1;
+        for (let r = 0; r < radial; r += 1) for (let a = 0; a < angular; a += 1) {
+          const p = r * row + a;
+          indices.push(p, p + 1, p + row, p + 1, p + row + 1, p + row);
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return geometry;
+      }
+    </script>
+  </body>
+</html>

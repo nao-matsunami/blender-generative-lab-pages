@@ -95,6 +95,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Inverted Membrane Cavity` abstracts an inward-folding organ membrane with a thick lip and dark inner void. The web preview supports mouse and mobile rotate, zoom, and pan controls.
 
+## Twenty-second Study
+
+`Valve Cusp Maw` abstracts cardiac valve cusps as three overlapping membranes around a dark chamber opening, using a thick annulus instead of thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -200,6 +204,10 @@ exports/stl/inverted-membrane-cavity.stl
 exports/glb/inverted-membrane-cavity.glb
 renders/inverted-membrane-cavity.png
 renders/inverted-membrane-cavity-preview.png
+exports/stl/valve-cusp-maw.stl
+exports/glb/valve-cusp-maw.glb
+renders/valve-cusp-maw.png
+renders/valve-cusp-maw-preview.png
 ```
 
 Check whether the expected files were created:
