@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-03",
+  "headline": "Pleural Fissure Bloom",
+  "headlineEn": "Pleural Fissure Bloom",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は肺胸膜と気管支分岐を抽象化し、左右の柔らかい葉、中央の暗い分岐裂け目、厚い接触隆起で構成した。細い血管線は使っていない。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting pleural lung lobes and a bronchial split as paired soft lobes, a dark branching fissure, and thick contact ridges without thin vessel lines.",
+  "links": [
+    {
+      "label": "Pleural Fissure Bloom",
+      "url": "../outputs/2026-09-03_pleural-fissure-bloom.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_pleural_fissure_bloom.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のValve Cusp Mawは心臓弁の三枚構造だった。今回は肺側に移し、対になった葉と中央の気管支的な暗いY字裂け目を主役にした。血管網を線で足すのではなく、接触する厚い隆起と暗い溝で内部感を作る。",
+      "bodyEn": "The previous Valve Cusp Maw used a three-cusp cardiac valve structure. This pass moves toward the lung: paired lobes and a dark Y-like bronchial fissure are the core vocabulary. Instead of drawing vessel networks, it uses thick contact ridges and dark grooves to create interior depth.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "医学モデルではなく、肺葉、胸膜、気管支分岐の印象だけを抽象化する。安っぽく見えやすい細線装飾は避け、太い塊、湿った襞、黒い分岐穴を優先した。Webプレビューはマウスとスマホの回転、ズーム、移動に対応する。",
+      "bodyEn": "This is not a medical model; it abstracts the impression of lung lobes, pleura, and bronchial branching. Thin decorative lines are avoided in favor of large masses, wet folds, and a black branching opening. The web preview supports mouse and mobile rotation, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は分岐裂け目をより奥へ沈ませ、左右の葉が押し合っている接触面をもっと強くする。管を出す場合は外側に細く貼るのではなく、全体のシルエットを決める太い構造体に限定する。",
+      "bodyEn": "Next work should sink the branching fissure deeper and strengthen the pressed contact between the paired lobes. If tubes are used, they should be thick structural forms that define the silhouette rather than thin exterior lines.",
+      "links": []
+    }
+  ]
+}

@@ -29,6 +29,7 @@ const studies = {
   spleen: "offline/generate_adhesive_spleen_fold.py",
   cavity: "offline/generate_inverted_membrane_cavity.py",
   valvecusp: "offline/generate_valve_cusp_maw.py",
+  pleural: "offline/generate_pleural_fissure_bloom.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

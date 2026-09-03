@@ -357,6 +357,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/valve-cusp-maw-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/pleural-fissure-bloom.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/pleural-fissure-bloom.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/pleural-fissure-bloom.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/pleural-fissure-bloom-preview.png",
+  },
 ];
 
 let failed = false;

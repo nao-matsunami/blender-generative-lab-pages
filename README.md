@@ -99,6 +99,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Valve Cusp Maw` abstracts cardiac valve cusps as three overlapping membranes around a dark chamber opening, using a thick annulus instead of thin vessel decoration.
 
+## Twenty-third Study
+
+`Pleural Fissure Bloom` abstracts paired pleural lung lobes and a dark bronchial split, using thick contact ridges instead of thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -208,6 +212,10 @@ exports/stl/valve-cusp-maw.stl
 exports/glb/valve-cusp-maw.glb
 renders/valve-cusp-maw.png
 renders/valve-cusp-maw-preview.png
+exports/stl/pleural-fissure-bloom.stl
+exports/glb/pleural-fissure-bloom.glb
+renders/pleural-fissure-bloom.png
+renders/pleural-fissure-bloom-preview.png
 ```
 
 Check whether the expected files were created:
