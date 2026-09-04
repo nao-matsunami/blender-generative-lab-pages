@@ -373,6 +373,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/pleural-fissure-bloom-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/pyloric-fold-gate.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/pyloric-fold-gate.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/pyloric-fold-gate.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/pyloric-fold-gate-preview.png",
+  },
 ];
 
 let failed = false;

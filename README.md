@@ -103,6 +103,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Pleural Fissure Bloom` abstracts paired pleural lung lobes and a dark bronchial split, using thick contact ridges instead of thin vessel decoration.
 
+## Twenty-fourth Study
+
+`Pyloric Fold Gate` abstracts a stomach pyloric gate as compressed wet folds, a thick aperture lip, and a dark inward opening.
+
 ## Local Site
 
 ```sh
@@ -216,6 +220,10 @@ exports/stl/pleural-fissure-bloom.stl
 exports/glb/pleural-fissure-bloom.glb
 renders/pleural-fissure-bloom.png
 renders/pleural-fissure-bloom-preview.png
+exports/stl/pyloric-fold-gate.stl
+exports/glb/pyloric-fold-gate.glb
+renders/pyloric-fold-gate.png
+renders/pyloric-fold-gate-preview.png
 ```
 
 Check whether the expected files were created:

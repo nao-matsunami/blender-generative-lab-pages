@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-04",
+  "headline": "Pyloric Fold Gate",
+  "headlineEn": "Pyloric Fold Gate",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は胃の幽門・括約部を抽象化し、圧縮された襞、厚い入口の縁、暗い内側の穴で構成した。細い血管装飾は使っていない。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting a stomach pyloric gate as compressed folds, a thick aperture lip, and a dark inward opening without thin vessel decoration.",
+  "links": [
+    {
+      "label": "Pyloric Fold Gate",
+      "url": "../outputs/2026-09-04_pyloric-fold-gate.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_pyloric_fold_gate.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のPleural Fissure Bloomは左右の肺葉とY字裂け目が中心だった。今回は胃の幽門側へ移し、単なる丸穴ではなく、周囲の膜が押し込まれて厚い括約部のように見える構造を狙った。",
+      "bodyEn": "The previous Pleural Fissure Bloom focused on paired lung lobes and a Y-shaped cleft. This pass shifts toward the stomach pylorus, aiming for a compressed sphincter-like aperture rather than a simple round hole.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "血管を線で貼る方向は避ける。湿った筋は表面の色線ではなく、膜が穴へ巻き込まれる盛り上がりと暗い溝として扱った。Webプレビューはマウスとスマホの回転、ズーム、移動に対応する。",
+      "bodyEn": "The piece avoids drawing vessel lines. Wet striations are treated as raised membrane folds and dark grooves being pulled into the aperture. The web preview supports mouse and mobile rotation, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は穴の内部にもう一段奥の暗い層を作り、入口の縁に非対称な厚み差を増やす。管を扱う場合は、外装線ではなく太い器官構造として成立させる。",
+      "bodyEn": "Next work should add a second darker inner layer and make the rim thickness more asymmetric. Any tube motif should function as a substantial organ structure, not as exterior linework.",
+      "links": []
+    }
+  ]
+}
