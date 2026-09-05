@@ -389,6 +389,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/pyloric-fold-gate-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/biliary-duct-cleft.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/biliary-duct-cleft.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/biliary-duct-cleft.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/biliary-duct-cleft-preview.png",
+  },
 ];
 
 let failed = false;

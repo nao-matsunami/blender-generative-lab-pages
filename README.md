@@ -107,6 +107,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Pyloric Fold Gate` abstracts a stomach pyloric gate as compressed wet folds, a thick aperture lip, and a dark inward opening.
 
+## Twenty-fifth Study
+
+`Biliary Duct Cleft` abstracts a hepatobiliary pocket and thick contacting ducts, using tubes as structural organs rather than thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -224,6 +228,10 @@ exports/stl/pyloric-fold-gate.stl
 exports/glb/pyloric-fold-gate.glb
 renders/pyloric-fold-gate.png
 renders/pyloric-fold-gate-preview.png
+exports/stl/biliary-duct-cleft.stl
+exports/glb/biliary-duct-cleft.glb
+renders/biliary-duct-cleft.png
+renders/biliary-duct-cleft-preview.png
 ```
 
 Check whether the expected files were created:

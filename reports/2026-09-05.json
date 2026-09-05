@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-05",
+  "headline": "Biliary Duct Cleft",
+  "headlineEn": "Biliary Duct Cleft",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は肝胆道系を抽象化し、暗い胆嚢的ポケットと、互いに接触して裂け目へ入る太い管を主役にした。細い血管線は使っていない。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting the hepatobiliary system as a dark gallbladder-like pocket and thick contacting ducts entering a cleft, with no thin vessel linework.",
+  "links": [
+    {
+      "label": "Biliary Duct Cleft",
+      "url": "../outputs/2026-09-05_biliary-duct-cleft.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_biliary_duct_cleft.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のPyloric Fold Gateは胃の括約部と暗い入口が中心だった。今回は肝臓・胆嚢・胆管の語彙に移し、管を使う場合の条件を明確にした。表面に細く貼る装飾ではなく、太い管が接触しながら暗いポケットへ巻き込まれる構造として扱う。",
+      "bodyEn": "The previous Pyloric Fold Gate focused on a stomach sphincter aperture. This pass moves to liver, gallbladder, and bile-duct vocabulary, using tubes only as substantial forms that contact each other and enter a dark pocket rather than as thin surface decoration.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "ユーザー指摘の通り、細い血管は安っぽく見えやすいため排除した。今回は管を太く、黒い裂け目と同じ造形単位として扱い、器官の一部として存在感を持たせる。色は暗紅、赤紫、肉色寄りで、青・シアンは使わない。",
+      "bodyEn": "Following the critique that thin vessel decoration reads cheaply, this piece excludes it. The ducts are thick and treated as part of the same sculptural system as the black cleft, with dark crimson, red-purple, and flesh tones and no blue or cyan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は太い管同士の接触部に押し潰された変形を入れ、暗いポケットの縁にも非対称な厚みを増やす。管が単独パーツに見えないよう、母体の膜へ食い込む部分を強める。",
+      "bodyEn": "Next work should add compressed deformation where the thick ducts touch and increase asymmetric rim thickness around the dark pocket, making the ducts feel more embedded in the parent membrane.",
+      "links": []
+    }
+  ]
+}
