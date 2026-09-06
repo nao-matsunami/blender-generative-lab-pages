@@ -111,6 +111,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Biliary Duct Cleft` abstracts a hepatobiliary pocket and thick contacting ducts, using tubes as structural organs rather than thin vessel decoration.
 
+## Twenty-sixth Study
+
+`Aortic Root Clamp` abstracts the heart's aortic root as thick structural tubes pressed into a dark chamber socket.
+
 ## Local Site
 
 ```sh
@@ -232,6 +236,10 @@ exports/stl/biliary-duct-cleft.stl
 exports/glb/biliary-duct-cleft.glb
 renders/biliary-duct-cleft.png
 renders/biliary-duct-cleft-preview.png
+exports/stl/aortic-root-clamp.stl
+exports/glb/aortic-root-clamp.glb
+renders/aortic-root-clamp.png
+renders/aortic-root-clamp-preview.png
 ```
 
 Check whether the expected files were created:

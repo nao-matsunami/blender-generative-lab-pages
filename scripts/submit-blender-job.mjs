@@ -32,6 +32,7 @@ const studies = {
   pleural: "offline/generate_pleural_fissure_bloom.py",
   pyloric: "offline/generate_pyloric_fold_gate.py",
   biliary: "offline/generate_biliary_duct_cleft.py",
+  aortic: "offline/generate_aortic_root_clamp.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

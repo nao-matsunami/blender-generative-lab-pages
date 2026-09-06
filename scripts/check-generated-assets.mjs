@@ -405,6 +405,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/biliary-duct-cleft-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/aortic-root-clamp.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/aortic-root-clamp.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/aortic-root-clamp.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/aortic-root-clamp-preview.png",
+  },
 ];
 
 let failed = false;

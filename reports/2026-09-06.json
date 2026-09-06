@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-06",
+  "headline": "Aortic Root Clamp",
+  "headlineEn": "Aortic Root Clamp",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は心臓の大動脈根を抽象化し、暗い根元の穴へ太い管が圧着して入る構造にした。細い血管装飾は使っていない。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting the aortic root as thick structural tubes pressed into a dark chamber socket, with no thin vessel linework.",
+  "links": [
+    {
+      "label": "Aortic Root Clamp",
+      "url": "../outputs/2026-09-06_aortic-root-clamp.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_aortic_root_clamp.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のBiliary Duct Cleftは肝胆道系の暗いポケットと太い管だった。今回は心臓側へ戻し、大動脈根のような三方向の太い管を、黒い根元の穴へ押し込む構造にした。管は表面線ではなく、全体のシルエットを決める主構造として扱う。",
+      "bodyEn": "The previous Biliary Duct Cleft used a hepatobiliary pocket and thick ducts. This pass returns to the heart side, using three substantial aortic-root-like tubes pressed into a black socket. The tubes are not surface lines; they define the object silhouette.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "ユーザー指摘の安っぽい血管表現を避けるため、細い枝や線は入れない。代わりに、太い根管、圧迫パッド、暗い接続穴で、管同士の接触感と湿った緊張を作る。色は暗紅、赤紫、黒背景に限定した。",
+      "bodyEn": "To avoid the cheap thin-vessel issue, this piece excludes small branches and linework. Instead it uses thick root tubes, compression pads, and a dark connection socket to create contact pressure and wet tension in dark crimson and red-purple against black.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は管の根元をさらに母体へ食い込ませ、接触部の押し潰れをメッシュ側にも反映する。穴の内側に二段目の影を作ると、奥行きが増す。",
+      "bodyEn": "Next work should push the tube roots deeper into the parent mass and express compression in the mesh itself. A second inner shadow layer inside the socket would add depth.",
+      "links": []
+    }
+  ]
+}
