@@ -421,6 +421,22 @@ const expected = [
     label: "Readable preview render",
     file: "renders/aortic-root-clamp-preview.png",
   },
+  {
+    label: "STL print export",
+    file: "exports/stl/pericardial-root-adhesion.stl",
+  },
+  {
+    label: "GLB web/object export",
+    file: "exports/glb/pericardial-root-adhesion.glb",
+  },
+  {
+    label: "Transparent render",
+    file: "renders/pericardial-root-adhesion.png",
+  },
+  {
+    label: "Readable preview render",
+    file: "renders/pericardial-root-adhesion-preview.png",
+  },
 ];
 
 let failed = false;

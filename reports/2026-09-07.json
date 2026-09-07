@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-07",
+  "headline": "Pericardial Root Adhesion",
+  "headlineEn": "Pericardial Root Adhesion",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は心膜の癒着を抽象化し、暗いソケットへ太い根管が食い込み、押し潰れた接触パッドで膜と管の圧着感を作った。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting pericardial adhesion as thick root tubes embedded into a dark socket with compressed contact pads.",
+  "links": [
+    {
+      "label": "Pericardial Root Adhesion",
+      "url": "../outputs/2026-09-07_pericardial-root-adhesion.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_pericardial_root_adhesion.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のAortic Root Clampは大動脈根の太い管と黒い接続穴だった。今回は心膜の癒着へ寄せ、母体膜へ管が潜り込む部分と、周囲の押し潰れた接触面を主役にした。腸状ループや細い血管線は使っていない。",
+      "bodyEn": "The previous Aortic Root Clamp focused on thick aortic-root tubes and a black socket. This pass shifts toward pericardial adhesion, making tube penetration and compressed contact pads the main structure. It avoids intestinal loops and thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "安っぽく見える細い血管装飾を避け、管はシルエットと接触圧を作る太い部材として扱った。赤紫、暗紅、肉色、黒だけに絞り、湿った筋と暗い内側を強めた。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "To avoid cheap thin-vessel decoration, tubes are treated as heavy structural forms that define silhouette and contact pressure. The palette stays in red-purple, dark crimson, flesh tones, and black, with wetter ridges and a darker interior. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は根管が母体膜へさらに食い込む変形を強め、内側の黒い穴を二層化して奥行きを出す。接触パッドも左右非対称に増やす。",
+      "bodyEn": "Next work should deepen the root penetration deformation, add a second dark inner layer to the socket, and make the compression pads more asymmetric.",
+      "links": []
+    }
+  ]
+}

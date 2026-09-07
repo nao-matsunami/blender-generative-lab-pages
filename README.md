@@ -115,6 +115,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Aortic Root Clamp` abstracts the heart's aortic root as thick structural tubes pressed into a dark chamber socket.
 
+## Twenty-seventh Study
+
+`Pericardial Root Adhesion` abstracts pericardial adhesion as thick roots embedded into a dark socket with compressed contact pads and no thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -240,6 +244,10 @@ exports/stl/aortic-root-clamp.stl
 exports/glb/aortic-root-clamp.glb
 renders/aortic-root-clamp.png
 renders/aortic-root-clamp-preview.png
+exports/stl/pericardial-root-adhesion.stl
+exports/glb/pericardial-root-adhesion.glb
+renders/pericardial-root-adhesion.png
+renders/pericardial-root-adhesion-preview.png
 ```
 
 Check whether the expected files were created:
