@@ -119,6 +119,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Pericardial Root Adhesion` abstracts pericardial adhesion as thick roots embedded into a dark socket with compressed contact pads and no thin vessel decoration.
 
+## Twenty-eighth Study
+
+`Septal Valve Burrow` abstracts ventricular septum and valve cusps as thick wet membranes pressing around a dark vertical burrow, reducing tube count and avoiding surface vessel linework.
+
 ## Local Site
 
 ```sh
@@ -248,6 +252,10 @@ exports/stl/pericardial-root-adhesion.stl
 exports/glb/pericardial-root-adhesion.glb
 renders/pericardial-root-adhesion.png
 renders/pericardial-root-adhesion-preview.png
+exports/stl/septal-valve-burrow.stl
+exports/glb/septal-valve-burrow.glb
+renders/septal-valve-burrow.png
+renders/septal-valve-burrow-preview.png
 ```
 
 Check whether the expected files were created:

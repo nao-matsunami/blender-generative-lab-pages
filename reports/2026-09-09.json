@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-09",
+  "headline": "Septal Valve Burrow",
+  "headlineEn": "Septal Valve Burrow",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は心室中隔と弁尖の圧着を抽象化し、暗い縦穴を湿った厚い弁膜が塞ぎかける構造にした。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting ventricular septum and valve cusp pressure as thick wet membranes partly closing a dark vertical burrow.",
+  "links": [
+    {
+      "label": "Septal Valve Burrow",
+      "url": "../outputs/2026-09-09_septal-valve-burrow.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_septal_valve_burrow.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のPericardial Root Adhesionは心膜癒着と太い根管の食い込みだった。今回は管を減らし、心室中隔のような厚い壁、暗い縦穴、押し込まれた弁尖を主語にした。細い血管線は入れていない。",
+      "bodyEn": "The previous Pericardial Root Adhesion focused on pericardial adhesion and embedded thick roots. This pass reduces tubes and centers the vocabulary on a thick septum-like wall, a dark vertical burrow, and pressed valve cusps. It uses no thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "安っぽく見える血管装飾を避けるため、表面の細線ではなく、暗い穴を塞ぐ大きな膜と圧迫された厚い縁で臓器感を作った。赤紫、暗紅、肉色、黒背景に限定し、青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "To avoid cheap vessel decoration, the organ quality comes from large membranes closing over a dark burrow and thick compressed rims rather than surface lines. The palette is limited to red-purple, dark crimson, flesh tones, and black, with no blue or cyan. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は穴の奥をさらに暗く二層化し、弁膜の重なりを非対称に増やす。厚い管を使う場合は、表面装飾ではなく構造物として輪郭を決める扱いに限定する。",
+      "bodyEn": "Next work should deepen the socket with a second shadow layer and add more asymmetric overlap between valve membranes. If tubes are used, they should remain silhouette-defining structure rather than decoration.",
+      "links": []
+    }
+  ]
+}
