@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-10",
+  "headline": "Renal Hilum Cleft",
+  "headlineEn": "Renal Hilum Cleft",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は腎門を抽象化し、暗い裂け目、押し潰れた厚い唇、一本だけ構造として目立つ管で構成した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting the renal hilum as a dark cleft with compressed thick lips and one structural tube.",
+  "links": [
+    {
+      "label": "Renal Hilum Cleft",
+      "url": "../outputs/2026-09-10_renal-hilum-cleft.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_renal_hilum_cleft.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のSeptal Valve Burrowは心室中隔と弁尖の暗い縦穴だった。今回は腎臓の腎門に寄せ、左右から肉厚な葉が押し合い、中心に暗い裂け目が残る形にした。管は一本だけに絞り、表面の細い血管装飾は入れていない。",
+      "bodyEn": "The previous Septal Valve Burrow used a dark vertical hole and valve cusps. This pass shifts to the renal hilum: thick lobes press from both sides and leave a dark central cleft. It uses only one structural tube and no thin vessel decoration.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "血管がゴミのように見える問題を避けるため、線状の枝を全て排除した。臓器らしさは、湿った溝、厚い接触縁、暗い内側、非対称な腎臓形の圧迫で作る。青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "To avoid vessel clutter, all thin branches are removed. The organ quality comes from wet grooves, thick contact lips, a dark interior, and asymmetric kidney-like pressure. No blue or cyan is used. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は暗い裂け目の奥を二層化し、唇の接触面をもっと潰して、管が裂け目から出入りしている説得力を上げる。",
+      "bodyEn": "Next work should add a second shadow layer inside the cleft, flatten the contact lips more strongly, and make the structural tube feel more embedded.",
+      "links": []
+    }
+  ]
+}

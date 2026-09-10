@@ -35,6 +35,7 @@ const studies = {
   aortic: "offline/generate_aortic_root_clamp.py",
   pericardial: "offline/generate_pericardial_root_adhesion.py",
   septal: "offline/generate_septal_valve_burrow.py",
+  renalhilum: "offline/generate_renal_hilum_cleft.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

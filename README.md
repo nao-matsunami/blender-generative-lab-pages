@@ -123,6 +123,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Septal Valve Burrow` abstracts ventricular septum and valve cusps as thick wet membranes pressing around a dark vertical burrow, reducing tube count and avoiding surface vessel linework.
 
+## Twenty-ninth Study
+
+`Renal Hilum Cleft` abstracts the kidney hilum as asymmetric lobes pressing around a dark cleft with one structural tube, avoiding thin vessel decoration.
+
 ## Local Site
 
 ```sh
@@ -256,6 +260,10 @@ exports/stl/septal-valve-burrow.stl
 exports/glb/septal-valve-burrow.glb
 renders/septal-valve-burrow.png
 renders/septal-valve-burrow-preview.png
+exports/stl/renal-hilum-cleft.stl
+exports/glb/renal-hilum-cleft.glb
+renders/renal-hilum-cleft.png
+renders/renal-hilum-cleft-preview.png
 ```
 
 Check whether the expected files were created:

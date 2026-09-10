@@ -45,6 +45,7 @@ scripts = [
     PROJECT_ROOT / "offline" / "generate_aortic_root_clamp.py",
     PROJECT_ROOT / "offline" / "generate_pericardial_root_adhesion.py",
     PROJECT_ROOT / "offline" / "generate_septal_valve_burrow.py",
+    PROJECT_ROOT / "offline" / "generate_renal_hilum_cleft.py",
 ]
 
 for script in scripts:
