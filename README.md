@@ -127,6 +127,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Renal Hilum Cleft` abstracts the kidney hilum as asymmetric lobes pressing around a dark cleft with one structural tube, avoiding thin vessel decoration.
 
+## Thirtieth Study
+
+`Splenic Pulp Lacuna` abstracts splenic red pulp as thick soft tissue with multiple dark recessed cavities, using no tubes or thin vessel linework.
+
 ## Local Site
 
 ```sh
@@ -264,6 +268,10 @@ exports/stl/renal-hilum-cleft.stl
 exports/glb/renal-hilum-cleft.glb
 renders/renal-hilum-cleft.png
 renders/renal-hilum-cleft-preview.png
+exports/stl/splenic-pulp-lacuna.stl
+exports/glb/splenic-pulp-lacuna.glb
+renders/splenic-pulp-lacuna.png
+renders/splenic-pulp-lacuna-preview.png
 ```
 
 Check whether the expected files were created:

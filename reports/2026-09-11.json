@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-11",
+  "headline": "Splenic Pulp Lacuna",
+  "headlineEn": "Splenic Pulp Lacuna",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は脾臓の赤脾髄と小腔を抽象化し、厚い柔組織に複数の暗い窪みが沈む構造にした。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting splenic red pulp and lacunae as thick soft tissue with multiple dark recessed cavities.",
+  "links": [
+    {
+      "label": "Splenic Pulp Lacuna",
+      "url": "../outputs/2026-09-11_splenic-pulp-lacuna.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_splenic_pulp_lacuna.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のRenal Hilum Cleftは腎門の暗い裂け目と一本の構造管だった。今回は管を完全に外し、脾臓の赤脾髄のような柔らかい塊と、内部へ沈む複数の黒い小腔を主役にした。腸状ループや細い血管線は使っていない。",
+      "bodyEn": "The previous Renal Hilum Cleft used a dark renal cleft and one structural tube. This pass removes tubes entirely and centers on a soft splenic red-pulp mass with multiple black recessed lacunae. It uses no intestinal loops or thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "血管が安っぽく見える問題への対応として、今回は管を使わず、暗い穴、潰れた縁、湿った厚い襞だけで臓器感を作る。色は暗紅、赤紫、黒背景に限定し、青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "In response to the cheap-vessel issue, this piece uses no tubes. The organ quality comes from dark holes, compressed rims, and wet thick folds. The palette stays in dark crimson, red-purple, and black, with no blue or cyan. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は小腔の内側に二層目の影を加え、窪み同士の間により強い圧迫筋を作る。3Dプリント向けには小腔の開口幅と縁の厚みを検証する。",
+      "bodyEn": "Next work should add a second shadow layer inside the lacunae and stronger pressure ridges between cavities. For print use, the opening width and rim thickness should be checked.",
+      "links": []
+    }
+  ]
+}
