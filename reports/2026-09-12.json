@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-12",
+  "headline": "Alveolar Crypt Cluster",
+  "headlineEn": "Alveolar Crypt Cluster",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は肺胞を抽象化し、薄い嚢が押し合いながら中央の暗い気道穴へ集まる構造にした。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting alveoli as thin sacs pressing together around a dark shared airway crypt.",
+  "links": [
+    {
+      "label": "Alveolar Crypt Cluster",
+      "url": "../outputs/2026-09-12_alveolar-crypt-cluster.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_alveolar_crypt_cluster.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のSplenic Pulp Lacunaは脾臓の柔組織と複数の小腔だった。今回は肺胞へ移り、丸い小腔ではなく、薄い嚢同士が押し合って中央の暗い気道穴へ寄る構造にした。管は一本だけ太い気道幹として扱い、細い血管線は使っていない。",
+      "bodyEn": "The previous Splenic Pulp Lacuna used splenic soft tissue with multiple cavities. This pass shifts to alveoli: thin sacs press into each other and converge toward a dark shared airway crypt. It uses one thick airway stem and no thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "単調な腸ループや安っぽい血管装飾を避け、臓器語彙を嚢、圧着縁、暗い共有穴に寄せた。色は薄桃、暗紅、赤紫、黒背景に限定し、青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "To avoid intestinal repetition and cheap vessel decoration, the vocabulary is focused on sacs, compressed rims, and a dark shared crypt. The palette stays in pale pink, dark crimson, red-purple, and black, with no blue or cyan. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は嚢同士の接触面をさらに潰し、中央穴の奥に二層目の黒い影を入れる。肺胞らしさを保ちつつ、プリント時に薄膜が破綻しない厚みを検証する。",
+      "bodyEn": "Next work should flatten the contact surfaces between sacs more strongly and add a second black shadow layer inside the central crypt. The membrane thickness should be checked for print robustness.",
+      "links": []
+    }
+  ]
+}

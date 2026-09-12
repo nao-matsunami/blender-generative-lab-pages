@@ -37,6 +37,7 @@ const studies = {
   septal: "offline/generate_septal_valve_burrow.py",
   renalhilum: "offline/generate_renal_hilum_cleft.py",
   splenicpulp: "offline/generate_splenic_pulp_lacuna.py",
+  alveolarcrypt: "offline/generate_alveolar_crypt_cluster.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

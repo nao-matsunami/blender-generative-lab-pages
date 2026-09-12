@@ -131,6 +131,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Splenic Pulp Lacuna` abstracts splenic red pulp as thick soft tissue with multiple dark recessed cavities, using no tubes or thin vessel linework.
 
+## Thirty-first Study
+
+`Alveolar Crypt Cluster` abstracts alveoli as pressed thin sacs around a dark shared airway crypt, with a single thick bronchial stem and no thin vessel linework.
+
 ## Local Site
 
 ```sh
@@ -272,6 +276,10 @@ exports/stl/splenic-pulp-lacuna.stl
 exports/glb/splenic-pulp-lacuna.glb
 renders/splenic-pulp-lacuna.png
 renders/splenic-pulp-lacuna-preview.png
+exports/stl/alveolar-crypt-cluster.stl
+exports/glb/alveolar-crypt-cluster.glb
+renders/alveolar-crypt-cluster.png
+renders/alveolar-crypt-cluster-preview.png
 ```
 
 Check whether the expected files were created:
