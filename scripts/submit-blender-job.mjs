@@ -38,6 +38,7 @@ const studies = {
   renalhilum: "offline/generate_renal_hilum_cleft.py",
   splenicpulp: "offline/generate_splenic_pulp_lacuna.py",
   alveolarcrypt: "offline/generate_alveolar_crypt_cluster.py",
+  pancreaticacinar: "offline/generate_pancreatic_acinar_cleft.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

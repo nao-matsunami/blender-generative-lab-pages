@@ -135,6 +135,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Alveolar Crypt Cluster` abstracts alveoli as pressed thin sacs around a dark shared airway crypt, with a single thick bronchial stem and no thin vessel linework.
 
+## Thirty-second Study
+
+`Pancreatic Acinar Cleft` abstracts pancreatic acini as thick wet lobules pressing into a dark central cleft, with one structural duct and no thin vessel linework.
+
 ## Local Site
 
 ```sh
@@ -280,6 +284,10 @@ exports/stl/alveolar-crypt-cluster.stl
 exports/glb/alveolar-crypt-cluster.glb
 renders/alveolar-crypt-cluster.png
 renders/alveolar-crypt-cluster-preview.png
+exports/stl/pancreatic-acinar-cleft.stl
+exports/glb/pancreatic-acinar-cleft.glb
+renders/pancreatic-acinar-cleft.png
+renders/pancreatic-acinar-cleft-preview.png
 ```
 
 Check whether the expected files were created:

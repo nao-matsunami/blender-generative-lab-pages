@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-13",
+  "headline": "Pancreatic Acinar Cleft",
+  "headlineEn": "Pancreatic Acinar Cleft",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は膵臓の腺房小葉を抽象化し、複数の厚い小葉が暗い裂け目へ圧着する構造にした。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting pancreatic acini as thick lobules pressing into a dark cleft.",
+  "links": [
+    {
+      "label": "Pancreatic Acinar Cleft",
+      "url": "../outputs/2026-09-13_pancreatic-acinar-cleft.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_pancreatic_acinar_cleft.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のAlveolar Crypt Clusterは肺胞の薄い嚢と共有気道穴だった。今回は膵臓の腺房へ移り、薄膜ではなく、湿った厚い小葉が暗い裂け目へ押し込まれる構造にした。管は一本だけ太い導管として扱い、細い血管線は使っていない。",
+      "bodyEn": "The previous Alveolar Crypt Cluster used thin alveolar sacs and a shared airway hole. This pass shifts to pancreatic acini: thick wet lobules press into a dark cleft. It uses one thick duct and no thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "臓器語彙を肺胞の嚢から膵臓の小葉へ変えた。細い枝ではなく、圧着する小葉、潰れた接触縁、暗い中心裂け目で構成する。色は薄桃、暗紅、赤紫、黒背景に限定し、青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "The vocabulary changes from alveolar sacs to pancreatic lobules. Instead of thin branches, it uses pressing lobules, flattened contact rims, and a dark central cleft. The palette stays in pale pink, dark crimson, red-purple, and black, with no blue or cyan. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は小葉同士の接触部をより不均一にし、暗い裂け目の奥に二層影を追加する。導管は表面装飾に見えないよう、さらに母体へ食い込ませる。",
+      "bodyEn": "Next work should make the lobule contacts more uneven, add a second shadow layer inside the cleft, and embed the duct deeper so it reads as structure rather than decoration.",
+      "links": []
+    }
+  ]
+}
