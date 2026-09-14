@@ -139,6 +139,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Pancreatic Acinar Cleft` abstracts pancreatic acini as thick wet lobules pressing into a dark central cleft, with one structural duct and no thin vessel linework.
 
+## Thirty-third Study
+
+`Hepatic Fissure Duct` abstracts a liver fissure as thick lobes clamping a dark central cleft with embedded structural bile ducts, avoiding thin vessel linework.
+
 ## Local Site
 
 ```sh
@@ -288,6 +292,10 @@ exports/stl/pancreatic-acinar-cleft.stl
 exports/glb/pancreatic-acinar-cleft.glb
 renders/pancreatic-acinar-cleft.png
 renders/pancreatic-acinar-cleft-preview.png
+exports/stl/hepatic-fissure-duct.stl
+exports/glb/hepatic-fissure-duct.glb
+renders/hepatic-fissure-duct.png
+renders/hepatic-fissure-duct-preview.png
 ```
 
 Check whether the expected files were created:

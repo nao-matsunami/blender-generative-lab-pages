@@ -39,6 +39,7 @@ const studies = {
   splenicpulp: "offline/generate_splenic_pulp_lacuna.py",
   alveolarcrypt: "offline/generate_alveolar_crypt_cluster.py",
   pancreaticacinar: "offline/generate_pancreatic_acinar_cleft.py",
+  hepaticfissure: "offline/generate_hepatic_fissure_duct.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

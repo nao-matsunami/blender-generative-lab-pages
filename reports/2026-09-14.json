@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-14",
+  "headline": "Hepatic Fissure Duct",
+  "headlineEn": "Hepatic Fissure Duct",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は肝臓の裂隙と胆管接触を抽象化し、厚い肝葉が暗い中心裂け目を挟み、太い管が構造として食い込む形にした。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting a hepatic fissure and bile duct contact as thick liver lobes around a dark central cleft with embedded structural ducts.",
+  "links": [
+    {
+      "label": "Hepatic Fissure Duct",
+      "url": "../outputs/2026-09-14_hepatic-fissure-duct.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_hepatic_fissure_duct.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のPancreatic Acinar Cleftは膵臓の小葉が暗い裂け目へ圧着する構造だった。今回は肝臓へ移り、左右の厚い肝葉が中心裂隙を挟み、胆管のような太い管が裂け目へ食い込む構成にした。細い血管線は使っていない。",
+      "bodyEn": "The previous Pancreatic Acinar Cleft used pancreatic lobules pressing into a dark cleft. This pass shifts to the liver: thick lobes clamp around a central fissure while bile-duct-like thick tubes embed into the cleft. It uses no thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "血管装飾ではなく、肝葉の圧迫、暗い裂隙、太い管の食い込みを主構造にした。色は暗紅、赤紫、黒背景に限定し、青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "The structure is built from lobe compression, a dark fissure, and embedded thick ducts rather than vessel decoration. The palette stays in dark crimson, red-purple, and black, with no blue or cyan. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は裂隙の奥行きを二層にし、管の根元で肝葉が押し潰れる変形を強める。管の数は増やしすぎず、シルエットに効く太い構造だけに限定する。",
+      "bodyEn": "Next work should add a second shadow layer inside the fissure and strengthen lobe deformation where the ducts enter. Tube count should remain low and limited to silhouette-defining structures.",
+      "links": []
+    }
+  ]
+}
