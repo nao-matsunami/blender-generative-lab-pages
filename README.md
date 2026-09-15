@@ -4,6 +4,10 @@ Algorithmic design studies for Blender, VJ visuals, and 3D printing.
 
 The main series is **Organic Motion Objects**: looping organic 3D forms for web previews, rendered VJ assets, GLB/STL packs, and future `.blend` source products.
 
+## Direction Reset
+
+Recent organ-motif studies became too similar, so the series now follows a stricter variation gate: each new work must change silhouette, topology, construction method, or composition enough to read as a distinct object. See [Visual Direction Reset](docs/visual-direction-reset.md).
+
 This project is separate from the VJ sample sites. It focuses on forms that can become:
 
 - Web previews for GitHub Pages
