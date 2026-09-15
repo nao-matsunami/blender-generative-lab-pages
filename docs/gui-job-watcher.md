@@ -4,6 +4,12 @@ Use this when Blender GUI opens but command-line/background startup crashes.
 
 ## Start Watcher
 
+## Current Symptom To Check
+
+If `blender-jobs/` contains old `*.job.py` files and no matching `*.running`, `*.done`, or `*.failed` files are appearing, Blender may be open but the watcher is not running.
+
+As of the 2026-09-15 check, Blender was open, but `gui_job_watcher.py` was not running, and jobs from 2026-09-09 onward were still pending. In that state, public web sketches can continue to appear, but Blender PNG/GLB/STL outputs will not be generated.
+
 ### Automatic Paste
 
 From Terminal:

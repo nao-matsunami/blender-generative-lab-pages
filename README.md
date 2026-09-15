@@ -8,6 +8,8 @@ The main series is **Organic Motion Objects**: looping organic 3D forms for web 
 
 Recent organ-motif studies became too similar, so the series now follows a stricter variation gate: each new work must change silhouette, topology, construction method, or composition enough to read as a distinct object. See [Visual Direction Reset](docs/visual-direction-reset.md).
 
+The project should not stay locked to organs. It now rotates across several creative lanes: visceral architecture, mineral/fossil/bone forms, textile membranes, ritual-machine objects, marine/plant growth, VJ motion forms, and print-object candidates. See [Creative Program](docs/creative-program.md).
+
 This project is separate from the VJ sample sites. It focuses on forms that can become:
 
 - Web previews for GitHub Pages
