@@ -30,6 +30,16 @@ macOS may ask for Accessibility permission because the script uses System Events
 
 If UI automation fails, the command is copied to the clipboard. Paste it into Blender's Python Console and press Return.
 
+After it starts, check that jobs are moving:
+
+```sh
+find blender-jobs -maxdepth 1 -type f -name '*.job.py' | sort
+find blender-jobs -maxdepth 1 -type f -name '*.running' -o -name '*.done' -o -name '*.failed' | sort | tail
+cat blender-jobs/watcher.status.txt
+```
+
+If Blender says `watcher is already running` but `*.job.py` files are not moving, paste the same `exec(open(...).read())` command again. The watcher now performs one immediate poll on every run, so rerunning it also works as a manual drain trigger.
+
 ### Manual Start
 
 1. Open Blender normally.
