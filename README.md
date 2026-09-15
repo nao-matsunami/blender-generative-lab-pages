@@ -143,6 +143,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Hepatic Fissure Duct` abstracts a liver fissure as thick lobes clamping a dark central cleft with embedded structural bile ducts, avoiding thin vessel linework.
 
+## Thirty-fourth Study
+
+`Ventricular Valve Annulus` abstracts a heart valve annulus as thick ring muscle, folded cusps, a dark ventricular cavity, and one structural outflow root.
+
 ## Local Site
 
 ```sh
@@ -296,6 +300,10 @@ exports/stl/hepatic-fissure-duct.stl
 exports/glb/hepatic-fissure-duct.glb
 renders/hepatic-fissure-duct.png
 renders/hepatic-fissure-duct-preview.png
+exports/stl/ventricular-valve-annulus.stl
+exports/glb/ventricular-valve-annulus.glb
+renders/ventricular-valve-annulus.png
+renders/ventricular-valve-annulus-preview.png
 ```
 
 Check whether the expected files were created:

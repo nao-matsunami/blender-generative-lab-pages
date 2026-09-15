@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-15",
+  "headline": "Ventricular Valve Annulus",
+  "headlineEn": "Ventricular Valve Annulus",
+  "summary": "Organic Motion Objectsの臓器モチーフ系列。今回は心室弁輪を抽象化し、厚い環状筋、折れた弁尖、暗い心室穴、一本の太い流出根で構成した。",
+  "summaryEn": "An organ-motif Organic Motion Objects study abstracting a ventricular valve annulus as thick ring muscle, folded cusps, a dark ventricular cavity, and one structural outflow root.",
+  "links": [
+    {
+      "label": "Ventricular Valve Annulus",
+      "url": "../outputs/2026-09-15_ventricular-valve-annulus.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_ventricular_valve_annulus.py"
+    },
+    {
+      "label": "Autonomous production",
+      "url": "../docs/autonomous-production.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今日の制作メモ",
+      "titleEn": "Production note",
+      "body": "前作のHepatic Fissure Ductは肝葉が裂隙を挟む構造だった。今回は心臓側へ戻し、弁輪の厚い環、暗い心室穴、折れた弁尖を主役にした。管は一本だけ流出根として扱い、細い血管線は使っていない。",
+      "bodyEn": "The previous Hepatic Fissure Duct used liver lobes clamping a fissure. This pass returns to the heart, using a thick valve annulus, a dark ventricular cavity, and folded cusps as the main structure. It uses one outflow root and no thin vessel linework.",
+      "links": []
+    },
+    {
+      "title": "意図",
+      "titleEn": "Intent",
+      "body": "臓器感を細い血管ではなく、環状の圧着、暗い内部穴、湿った弁膜の重なりで出す。色は暗紅、赤紫、薄桃、黒背景に限定し、青やシアンは使っていない。Webプレビューはマウスとスマホで回転、ズーム、パンできる。",
+      "bodyEn": "The organ quality comes from annular compression, a dark internal hole, and overlapping wet valve membranes rather than thin vessels. The palette stays in dark crimson, red-purple, pale pink, and black, with no blue or cyan. The web preview supports mouse and mobile rotate, zoom, and pan.",
+      "links": []
+    },
+    {
+      "title": "次の改善点",
+      "titleEn": "Next polish",
+      "body": "次は弁尖の重なりをさらに非対称にし、暗い心室穴を二層化する。流出根は母体へもっと食い込ませ、接触部の潰れを強める。",
+      "bodyEn": "Next work should make the cusp overlap more asymmetric, add a second dark layer inside the ventricular cavity, and embed the outflow root deeper with stronger compression.",
+      "links": []
+    }
+  ]
+}
