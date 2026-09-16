@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-16",
+  "headline": "Ossuary Reef Lattice",
+  "headlineEn": "Ossuary Reef Lattice",
+  "summary": "Organic Motion Objectsのmineral/fossil/boneレーン。臓器塊から離れ、骨白と黄土の開いたラティス、抜け穴、暗い骨髄影を持つ多孔質リーフ構造にした。",
+  "summaryEn": "A mineral/fossil/bone lane Organic Motion Objects study that moves away from organ masses into an open bone-white and ochre porous reef lattice with dark marrow shadows.",
+  "links": [
+    {
+      "label": "Ossuary Reef Lattice",
+      "url": "../outputs/2026-09-16_ossuary-reef-lattice.html"
+    },
+    {
+      "label": "Generator script",
+      "url": "../offline/generate_ossuary_reef_lattice.py"
+    },
+    {
+      "label": "Creative Program",
+      "url": "../docs/creative-program.md"
+    }
+  ],
+  "sections": [
+    {
+      "title": "今回の制作レーン",
+      "titleEn": "Creative lane",
+      "body": "今回はvisceral architectureを止め、mineral/fossil/boneレーンへ移した。前作のVentricular Valve Annulusは赤い弁輪と暗い穴だったが、今回は骨、化石、珊瑚礁、抜けのある印刷構造を抽象化している。",
+      "bodyEn": "This pass leaves the visceral architecture lane and moves into the mineral/fossil/bone lane. The previous Ventricular Valve Annulus used a red valve ring and dark cavity; this piece abstracts bone, fossil, reef, and open printable structure.",
+      "links": []
+    },
+    {
+      "title": "構造的な差分",
+      "titleEn": "Structural difference",
+      "body": "赤い楕円塊、黒い中心穴、一本の管という文法を捨てた。主役は中身の詰まった肉塊ではなく、楕円リング、接続リブ、斜めストラット、骨髄のような暗い小孔でできたラティスで、シルエットの内側に空間が抜けている。",
+      "bodyEn": "This rejects the red ellipsoid mass, black central hole, and single tube formula. The main form is not a filled soft mass but a lattice of elliptical rings, bridge ribs, diagonal struts, and marrow-like dark pores, leaving visible negative space inside the silhouette.",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "titleEn": "Remaining weakness",
+      "body": "現状はラティスの抜けが見える一方、実際のboolean穿孔ではなくリングとリブの組み合わせで多孔質感を出している。次は骨表面に小さな孔を実際に削るか、薄い石化膜を部分的に張って硬さと壊れやすさの対比を強める。",
+      "bodyEn": "The current lattice shows negative space, but the porous quality comes from rings and ribs rather than actual boolean perforations. Next work should cut smaller holes into the bone surface or add partial calcified membranes to strengthen the contrast between hardness and fragility.",
+      "links": []
+    }
+  ]
+}

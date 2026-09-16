@@ -41,6 +41,7 @@ const studies = {
   pancreaticacinar: "offline/generate_pancreatic_acinar_cleft.py",
   hepaticfissure: "offline/generate_hepatic_fissure_duct.py",
   valveannulus: "offline/generate_ventricular_valve_annulus.py",
+  ossuary: "offline/generate_ossuary_reef_lattice.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

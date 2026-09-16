@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ossuary Reef Lattice / Blender Generative Lab</title>
+    <style>
+      :root { color-scheme:dark; --bg:#050403; --ink:#f4ead9; --muted:#c8b89d; --accent:#d4a65f; }
+      * { box-sizing:border-box; }
+      html,body { width:100%; height:100%; }
+      body { margin:0; overflow:hidden; color:var(--ink); background:radial-gradient(circle at 50% 46%, rgba(126,86,31,.18), transparent 31%), radial-gradient(circle at 52% 70%, rgba(54,5,9,.28), transparent 35%), var(--bg); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      canvas { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none; }
+      canvas:active { cursor:grabbing; }
+      .hud { position:fixed; inset:18px 18px auto; z-index:2; display:flex; justify-content:space-between; gap:18px; pointer-events:none; text-shadow:0 2px 18px rgba(0,0,0,.86); }
+      h1 { margin:0; font-size:clamp(20px,3vw,42px); line-height:1; letter-spacing:0; text-transform:uppercase; }
+      p { margin:8px 0 0; max-width:830px; color:var(--muted); font-size:clamp(12px,1.3vw,15px); line-height:1.55; }
+      a { pointer-events:auto; align-self:flex-start; min-width:112px; padding:10px 13px; border:1px solid rgba(244,234,217,.28); background:rgba(5,4,3,.6); color:var(--ink); font-size:12px; line-height:1; text-align:center; text-decoration:none; backdrop-filter:blur(12px); }
+      .meter { position:fixed; right:18px; bottom:18px; left:18px; z-index:2; height:2px; overflow:hidden; background:rgba(244,234,217,.12); }
+      .meter span { display:block; width:100%; height:100%; transform-origin:left center; background:linear-gradient(90deg,#120b05,var(--accent),#f4ead9); animation:loop-meter 28s linear infinite; }
+      .version { position:fixed; left:18px; bottom:26px; z-index:2; color:var(--accent); font-size:11px; letter-spacing:0; text-transform:uppercase; pointer-events:none; text-shadow:0 2px 14px rgba(0,0,0,.82); }
+      @keyframes loop-meter { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+      @media (max-width:720px) { .hud{display:block} a{display:inline-block;margin-top:12px} }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Ossuary Reef Lattice procedural preview"></canvas>
+    <div class="hud"><div><h1>Ossuary Reef Lattice</h1><p>Organic Motion Objects / mineral fossil lane / open bone-white reef lattice with ochre ribs, dark marrow pores, and printable negative space</p></div><a href="../days/2026-09-16.html">Daily report</a></div>
+    <div class="meter" aria-hidden="true"><span></span></div>
+    <div class="version">mineral / fossil / bone lane / 2026.09.16</div>
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false, powerPreference:"high-performance" });
+      renderer.setClearColor(0x050403, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.28;
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x050403, .021);
+      const camera = new THREE.PerspectiveCamera(38, 1, .1, 100);
+      const object = new THREE.Group();
+      object.rotation.x = .28;
+      object.rotation.z = -.28;
+      scene.add(object);
+      const controls = { rx:.28, ry:0, trx:.28, try:0, pan:new THREE.Vector2(), tpan:new THREE.Vector2(), dist:6.1, tdist:6.1, pointers:new Map(), lastCenter:null, lastDistance:0, dragMode:"rotate" };
+      const boneMat = new THREE.MeshStandardMaterial({ color:0xc7aa78, emissive:0x1b1005, emissiveIntensity:.07, roughness:.52, metalness:0 });
+      const ochreMat = new THREE.MeshStandardMaterial({ color:0x94622e, emissive:0x150a03, emissiveIntensity:.06, roughness:.58, metalness:0 });
+      const darkMat = new THREE.MeshStandardMaterial({ color:0x070305, roughness:.78, metalness:0 });
+      const marrowMat = new THREE.MeshStandardMaterial({ color:0x4b0710, emissive:0x150002, emissiveIntensity:.08, roughness:.45, metalness:0 });
+      const levels = [];
+      for (let level = 0; level < 6; level++) {
+        const z = -1.15 + level * .44;
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(.72 + Math.sin(level * 1.1) * .09, .055 + (level % 2) * .012, 18, 128), level % 2 ? boneMat : ochreMat);
+        ring.position.z = z;
+        ring.scale.set(1.18 + Math.sin(level) * .13, .76 + Math.cos(level * .7) * .08, 1);
+        ring.rotation.set(.1 + level * .07, -.14 + level * .05, level * .4);
+        object.add(ring);
+        levels.push(z);
+      }
+      const angles = Array.from({ length:9 }, (_, i) => i * Math.PI * 2 / 9);
+      for (let level = 0; level < 5; level++) {
+        for (let i = 0; i < angles.length; i++) {
+          if ((i + level) % 3 === 1) continue;
+          addTube(point(level, angles[i]), point(level + 1, angles[i] + .24), .035, boneMat);
+        }
+      }
+      for (let i = 0; i < angles.length; i += 2) addTube(point(0, angles[i]), point(5, angles[i] + .72), .024, ochreMat);
+      for (let level = 0; level < 6; level++) {
+        for (const angle of [.4,1.8,3.2,4.6]) {
+          const p = point(level, angle + level * .19);
+          const pore = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 14), (Math.floor(angle * 10) % 2) ? marrowMat : darkMat);
+          pore.position.set(p.x * .74, p.y * .74, p.z + Math.sin(angle) * .08);
+          pore.scale.set(.075,.033,.055);
+          object.add(pore);
+        }
+      }
+      const core = new THREE.Mesh(new THREE.SphereGeometry(1, 40, 20), darkMat);
+      core.scale.set(.32,.22,.96);
+      object.add(core);
+      const key = new THREE.DirectionalLight(0xffbf80, 7.2);
+      key.position.set(-3.2,-3,5);
+      scene.add(key);
+      const rim = new THREE.PointLight(0x7c1018, 5.8, 13);
+      rim.position.set(2.4, 1.4, 2.8);
+      scene.add(rim);
+      scene.add(new THREE.HemisphereLight(0xf4d2a0, 0x070303, 1.55));
+      canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+      canvas.addEventListener("wheel", onWheel, { passive:false });
+      canvas.addEventListener("pointerdown", onPointerDown);
+      canvas.addEventListener("pointermove", onPointerMove);
+      canvas.addEventListener("pointerup", onPointerUp);
+      canvas.addEventListener("pointercancel", onPointerUp);
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+      function render() { const elapsed = performance.now() / 1000; controls.rx += (controls.trx - controls.rx) * .14; controls.ry += (controls.try - controls.ry) * .14; controls.pan.lerp(controls.tpan, .16); controls.dist += (controls.tdist - controls.dist) * .16; object.rotation.x = controls.rx + Math.sin(elapsed * .47) * .018; object.rotation.y = elapsed * Math.PI * 2 / 104 + controls.ry; camera.position.set(controls.pan.x - .08, controls.pan.y, controls.dist); camera.lookAt(controls.pan.x, controls.pan.y, 0); renderer.render(scene, camera); }
+      function point(level, angle) { const z = -1.15 + level * .44; const rx = .82 + Math.sin(level * 1.3) * .14; const ry = .53 + Math.cos(level * 1.7) * .12; const twist = level * .38; return new THREE.Vector3(Math.cos(angle + twist) * rx, Math.sin(angle + twist) * ry, z); }
+      function addTube(start, end, radius, material) { const curve = new THREE.LineCurve3(start, end); object.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 1, radius, 18, false), material)); }
+      function resize() { renderer.setSize(window.innerWidth, window.innerHeight, false); camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); }
+      function onWheel(event) { event.preventDefault(); controls.tdist = clamp(controls.tdist + event.deltaY * .003, 3.4, 9.6); }
+      function onPointerDown(event) { canvas.setPointerCapture(event.pointerId); controls.pointers.set(event.pointerId, point2(event)); controls.dragMode = event.button === 2 || event.shiftKey ? "pan" : "rotate"; updateMemory(); }
+      function onPointerMove(event) { if (!controls.pointers.has(event.pointerId)) return; const prev = controls.pointers.get(event.pointerId); const cur = point2(event); controls.pointers.set(event.pointerId, cur); if (controls.pointers.size >= 2) { pinchPan(); return; } const dx = cur.x - prev.x, dy = cur.y - prev.y; if (controls.dragMode === "pan") panBy(dx, dy); else { controls.try += dx * .008; controls.trx = clamp(controls.trx + dy * .006, -1, 1.45); } }
+      function onPointerUp(event) { controls.pointers.delete(event.pointerId); try { canvas.releasePointerCapture(event.pointerId); } catch {} updateMemory(); }
+      function point2(event) { return { x:event.clientX, y:event.clientY }; }
+      function updateMemory() { const p = [...controls.pointers.values()]; controls.lastCenter = p.length >= 2 ? center(p[0], p[1]) : null; controls.lastDistance = p.length >= 2 ? distance(p[0], p[1]) : 0; }
+      function pinchPan() { const p = [...controls.pointers.values()]; const c = center(p[0], p[1]); const d = distance(p[0], p[1]); if (controls.lastCenter) panBy(c.x - controls.lastCenter.x, c.y - controls.lastCenter.y); if (controls.lastDistance > 0) controls.tdist = clamp(controls.tdist * (controls.lastDistance / Math.max(40, d)), 3.4, 9.6); controls.lastCenter = c; controls.lastDistance = d; }
+      function panBy(dx, dy) { const scale = controls.tdist * .0015; controls.tpan.x = clamp(controls.tpan.x - dx * scale, -1.2, 1.2); controls.tpan.y = clamp(controls.tpan.y + dy * scale, -.8, .8); }
+      function center(a, b) { return { x:(a.x + b.x) * .5, y:(a.y + b.y) * .5 }; }
+      function distance(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+      function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+    </script>
+  </body>
+</html>

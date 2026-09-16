@@ -153,6 +153,10 @@ This project is separate from the VJ sample sites. It focuses on forms that can 
 
 `Ventricular Valve Annulus` abstracts a heart valve annulus as thick ring muscle, folded cusps, a dark ventricular cavity, and one structural outflow root.
 
+## Thirty-fifth Study
+
+`Ossuary Reef Lattice` shifts away from the organ lane into a bone, fossil, and reef-like open lattice with printable negative space.
+
 ## Local Site
 
 ```sh
@@ -310,6 +314,10 @@ exports/stl/ventricular-valve-annulus.stl
 exports/glb/ventricular-valve-annulus.glb
 renders/ventricular-valve-annulus.png
 renders/ventricular-valve-annulus-preview.png
+exports/stl/ossuary-reef-lattice.stl
+exports/glb/ossuary-reef-lattice.glb
+renders/ossuary-reef-lattice.png
+renders/ossuary-reef-lattice-preview.png
 ```
 
 Check whether the expected files were created:
