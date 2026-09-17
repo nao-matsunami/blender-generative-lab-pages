@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sepulture Pleat Veil / Blender Generative Lab</title>
+    <style>
+      :root { color-scheme:dark; --bg:#050305; --ink:#f6e8e5; --muted:#c7aeb1; --accent:#bd6a72; }
+      * { box-sizing:border-box; }
+      html,body { width:100%; height:100%; }
+      body { margin:0; overflow:hidden; color:var(--ink); background:var(--bg); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+      canvas { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none; }
+      canvas:active { cursor:grabbing; }
+      .hud { position:fixed; inset:18px 18px auto; z-index:2; display:flex; justify-content:space-between; gap:18px; pointer-events:none; text-shadow:0 2px 18px rgba(0,0,0,.88); }
+      h1 { margin:0; font-size:clamp(20px,3vw,42px); line-height:1; letter-spacing:0; text-transform:uppercase; }
+      p { margin:8px 0 0; max-width:820px; color:var(--muted); font-size:clamp(12px,1.3vw,15px); line-height:1.55; }
+      a { pointer-events:auto; align-self:flex-start; min-width:112px; padding:10px 13px; border:1px solid rgba(246,232,229,.28); background:rgba(5,3,5,.62); color:var(--ink); font-size:12px; line-height:1; text-align:center; text-decoration:none; backdrop-filter:blur(12px); }
+      .version { position:fixed; left:18px; bottom:18px; z-index:2; color:var(--accent); font-size:11px; text-transform:uppercase; pointer-events:none; }
+      .rule { position:fixed; right:18px; bottom:21px; left:280px; z-index:2; height:1px; background:linear-gradient(90deg,transparent,rgba(189,106,114,.72),transparent); pointer-events:none; }
+      @media (max-width:720px) { .hud{display:block} a{display:inline-block;margin-top:12px}.rule{left:18px;bottom:44px} }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-label="Sepulture Pleat Veil interactive procedural preview"></canvas>
+    <div class="hud"><div><h1>Sepulture Pleat Veil</h1><p>Organic Motion Objects / textile membrane skin lane / four suspended perforated skins with sagging pleats and layered darkness</p></div><a href="../days/2026-09-17.html">Daily report</a></div>
+    <div class="version">suspended membrane sheet / 2026.09.17</div><div class="rule" aria-hidden="true"></div>
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+      const canvas = document.querySelector("#stage");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:false, powerPreference:"high-performance" });
+      renderer.setClearColor(0x050305, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x050305, .055);
+      const camera = new THREE.PerspectiveCamera(37, 1, .1, 100);
+      const work = new THREE.Group();
+      work.rotation.x = -.05;
+      scene.add(work);
+      const controls = { rx:-.05, ry:0, trx:-.05, try:0, pan:new THREE.Vector2(), tpan:new THREE.Vector2(), dist:7.6, tdist:7.6, pointers:new Map(), lastCenter:null, lastDistance:0, dragMode:"rotate" };
+      const materials = [
+        new THREE.MeshPhysicalMaterial({ color:0x2d0817, roughness:.34, transmission:.18, transparent:true, opacity:.80, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0x6b2413, roughness:.40, transmission:.16, transparent:true, opacity:.76, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0x9d2f48, roughness:.27, transmission:.28, transparent:true, opacity:.70, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0xdf676d, roughness:.23, transmission:.24, transparent:true, opacity:.72, side:THREE.DoubleSide, depthWrite:false }),
+      ];
+      const sheets = [];
+      for (let layer = 0; layer < 4; layer++) {
+        const sheet = new THREE.Mesh(makeSheet(layer), materials[layer]);
+        sheet.position.y = (layer - 1.5) * .13;
+        sheet.position.x = (layer - 1.5) * .12;
+        sheet.renderOrder = layer;
+        work.add(sheet);
+        sheets.push(sheet);
+      }
+      const clampMat = new THREE.MeshStandardMaterial({ color:0x100710, roughness:.72 });
+      for (const x of [-1.48, 1.48]) {
+        const clamp = new THREE.Mesh(new THREE.BoxGeometry(.56,.18,.18,4,1,1), clampMat);
+        clamp.position.set(x,1.62,.1);
+        clamp.rotation.z = x > 0 ? -.06 : .06;
+        work.add(clamp);
+      }
+      scene.add(new THREE.HemisphereLight(0xffc2b0,0x080307,1.5));
+      const key = new THREE.DirectionalLight(0xff735b,6.3); key.position.set(-4,-4,5); scene.add(key);
+      const rim = new THREE.PointLight(0x8c183c,7.0,13); rim.position.set(3,1,2); scene.add(rim);
+      const low = new THREE.PointLight(0x8d3817,3.2,9); low.position.set(0,-2,-2); scene.add(low);
+      canvas.addEventListener("contextmenu", event => event.preventDefault());
+      canvas.addEventListener("wheel", onWheel, { passive:false });
+      canvas.addEventListener("pointerdown", onPointerDown);
+      canvas.addEventListener("pointermove", onPointerMove);
+      canvas.addEventListener("pointerup", onPointerUp);
+      canvas.addEventListener("pointercancel", onPointerUp);
+      window.addEventListener("resize", resize);
+      resize();
+      renderer.setAnimationLoop(render);
+
+      function makeSheet(layer) {
+        const cols = 64, rows = 50, width = 3.8, height = 3.15;
+        const positions = [], indices = [];
+        for (let row = 0; row <= rows; row++) {
+          const v = row / rows;
+          for (let col = 0; col <= cols; col++) {
+            const u = col / cols;
+            const x = (u - .5) * width;
+            const sag = (1 - Math.pow(2 * u - 1, 2)) * (.34 + layer * .04) * v;
+            const pleat = Math.sin(u * Math.PI * 2 * (7 + layer)) * (.17 - v * .055);
+            const cross = Math.sin(v * Math.PI * 2 * 1.35 + u * 5 + layer) * .075;
+            const fray = v > .82 ? (v - .82) * .55 * (.45 + .55 * Math.pow(Math.sin(u * 31 + layer),2)) : 0;
+            positions.push(x, 1.5 - v * height + sag - fray, pleat + cross + sag * .18);
+          }
+        }
+        const stride = cols + 1;
+        for (let row = 0; row < rows; row++) for (let col = 0; col < cols; col++) {
+          const u = (col + .5) / cols, v = (row + .5) / rows;
+          const x = (u - .5) * width, z = 1.5 - v * height;
+          if (insideHole(x,z,layer)) continue;
+          const a = row * stride + col;
+          indices.push(a,a+1,a+stride+1,a,a+stride+1,a+stride);
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position",new THREE.Float32BufferAttribute(positions,3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+        return geometry;
+      }
+      function insideHole(x,z,layer) {
+        const holes = [[-1.15+layer*.19,.35-layer*.12,.31,.52],[.22-layer*.12,-.24+layer*.16,.25,.39],[1.2-layer*.18,.62-layer*.19,.34,.46]];
+        return holes.some(([cx,cz,rx,rz]) => Math.pow((x-cx)/rx,2)+Math.pow((z-cz)/rz,2)<1);
+      }
+      function render() {
+        const t = performance.now() / 1000;
+        controls.rx += (controls.trx-controls.rx)*.14; controls.ry += (controls.try-controls.ry)*.14;
+        controls.pan.lerp(controls.tpan,.16); controls.dist += (controls.tdist-controls.dist)*.16;
+        work.rotation.x = controls.rx + Math.sin(t*.31)*.012;
+        work.rotation.y = controls.ry + Math.sin(t*.18)*.16;
+        sheets.forEach((sheet,i) => { sheet.position.y = (i-1.5)*.13 + Math.sin(t*.52+i*.9)*.018; sheet.rotation.z = Math.sin(t*.29+i)*.01; });
+        camera.position.set(controls.pan.x,controls.pan.y-.22,controls.dist); camera.lookAt(controls.pan.x,controls.pan.y,0);
+        renderer.render(scene,camera);
+      }
+      function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
+      function onWheel(event){event.preventDefault();controls.tdist=clamp(controls.tdist+event.deltaY*.0035,4.5,11);}
+      function onPointerDown(event){canvas.setPointerCapture(event.pointerId);controls.pointers.set(event.pointerId,p2(event));controls.dragMode=event.button===2||event.shiftKey?"pan":"rotate";remember();}
+      function onPointerMove(event){if(!controls.pointers.has(event.pointerId))return;const prev=controls.pointers.get(event.pointerId),cur=p2(event);controls.pointers.set(event.pointerId,cur);if(controls.pointers.size>=2){pinchPan();return;}const dx=cur.x-prev.x,dy=cur.y-prev.y;if(controls.dragMode==="pan")panBy(dx,dy);else{controls.try+=dx*.006;controls.trx=clamp(controls.trx+dy*.005,-.75,.75);}}
+      function onPointerUp(event){controls.pointers.delete(event.pointerId);try{canvas.releasePointerCapture(event.pointerId);}catch{}remember();}
+      function p2(event){return{x:event.clientX,y:event.clientY};}
+      function remember(){const p=[...controls.pointers.values()];controls.lastCenter=p.length>=2?center(p[0],p[1]):null;controls.lastDistance=p.length>=2?distance(p[0],p[1]):0;}
+      function pinchPan(){const p=[...controls.pointers.values()],c=center(p[0],p[1]),d=distance(p[0],p[1]);if(controls.lastCenter)panBy(c.x-controls.lastCenter.x,c.y-controls.lastCenter.y);if(controls.lastDistance>0)controls.tdist=clamp(controls.tdist*(controls.lastDistance/Math.max(40,d)),4.5,11);controls.lastCenter=c;controls.lastDistance=d;}
+      function panBy(dx,dy){const scale=controls.tdist*.0015;controls.tpan.x=clamp(controls.tpan.x-dx*scale,-1.6,1.6);controls.tpan.y=clamp(controls.tpan.y+dy*scale,-1,1);}
+      function center(a,b){return{x:(a.x+b.x)*.5,y:(a.y+b.y)*.5};} function distance(a,b){return Math.hypot(a.x-b.x,a.y-b.y);} function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+    </script>
+  </body>
+</html>

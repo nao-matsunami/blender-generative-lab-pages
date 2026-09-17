@@ -318,6 +318,10 @@ exports/stl/ossuary-reef-lattice.stl
 exports/glb/ossuary-reef-lattice.glb
 renders/ossuary-reef-lattice.png
 renders/ossuary-reef-lattice-preview.png
+exports/stl/sepulture-pleat-veil.stl
+exports/glb/sepulture-pleat-veil.glb
+renders/sepulture-pleat-veil.png
+renders/sepulture-pleat-veil-preview.png
 ```
 
 Check whether the expected files were created:

@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-17",
+  "headline": "Sepulture Pleat Veil",
+  "headlineEn": "Sepulture Pleat Veil",
+  "summary": "Organic Motion Objectsのtextile/membrane/skinレーン。4枚の穿孔膜を横長に吊り、襞、たるみ、透過層、重なりの暗さを主役にした空間的な作品。",
+  "summaryEn": "A textile, membrane, and skin lane study built from four suspended perforated sheets, with pleats, sag, translucency, and layered darkness as the main spatial language.",
+  "links": [
+    { "label": "Sepulture Pleat Veil", "url": "../outputs/2026-09-17_sepulture-pleat-veil.html" },
+    { "label": "Generator script", "url": "../offline/generate_sepulture_pleat_veil.py" },
+    { "label": "Creative Program", "url": "../docs/creative-program.md" }
+  ],
+  "sections": [
+    {
+      "title": "今回の制作レーン",
+      "titleEn": "Creative lane",
+      "body": "textile/membrane/skinレーン。一次アーキタイプはsuspended membrane sheet、中心技法はstacked membranesとprocedural pleat displacement。内臓の写実ではなく、空間に吊られた皮膚と舞台幕の中間を狙った。",
+      "bodyEn": "Textile, membrane, and skin lane. The primary archetype is the suspended membrane sheet, centered on stacked membranes and procedural pleat displacement. It sits between suspended skin and a stage curtain rather than literal anatomy.",
+      "links": []
+    },
+    {
+      "title": "前作との差分と捨てたもの",
+      "titleEn": "Difference and rejection",
+      "body": "前作の閉じた縦型骨ラティス、硬いリング、中心軸を捨てた。今回は横長の画面を4枚の薄膜が横断し、物体の輪郭より層間の空気と透ける穴が構図を決める。赤い塊、中心の黒穴、表面の血管線も使っていない。",
+      "bodyEn": "This rejects the previous closed vertical bone lattice, rigid rings, and central axis. Four thin sheets cross a wide frame, making air between layers and perforations more important than a single object outline. There is no red mass, central black hole, or surface vessel decoration.",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "titleEn": "Remaining weakness",
+      "body": "薄膜同士は視覚的には接触しているが、単体の3Dプリントとしてはまだ別パーツで、下端の破れも規則性が残る。次は数点だけ膜を縫合する厚い橋を入れ、VJ用の軽さを保ったまま一体構造へ寄せる。",
+      "bodyEn": "The membranes make visual contact but remain separate parts for printing, and the torn lower edges still retain some procedural regularity. A next pass should add a few thick stitched bridges to unify the structure while preserving its light VJ character.",
+      "links": []
+    }
+  ]
+}
