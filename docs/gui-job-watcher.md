@@ -38,7 +38,13 @@ find blender-jobs -maxdepth 1 -type f -name '*.running' -o -name '*.done' -o -na
 cat blender-jobs/watcher.status.txt
 ```
 
-If Blender says `watcher is already running` but `*.job.py` files are not moving, paste the same `exec(open(...).read())` command again. The watcher now performs one immediate poll on every run, so rerunning it also works as a manual drain trigger.
+Or run the concise diagnostic:
+
+```sh
+npm run watcher:status
+```
+
+If `*.job.py` files are not moving, paste the same `exec(open(...).read())` command again. Every execution now replaces the previous timer, performs one immediate queue drain, and then writes a heartbeat every two seconds. This also repairs the state where Blender retained an old "started" flag after its timer had stopped.
 
 ### Manual Start
 

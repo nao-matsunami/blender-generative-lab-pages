@@ -9,7 +9,7 @@
       * { box-sizing:border-box; }
       html,body { width:100%; height:100%; }
       body { margin:0; overflow:hidden; color:var(--ink); background:var(--bg); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-      canvas { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none; }
+      canvas { position:fixed; inset:0; z-index:0; display:block; width:100vw; height:100vh; cursor:grab; touch-action:none; }
       canvas:active { cursor:grabbing; }
       .hud { position:fixed; inset:18px 18px auto; z-index:2; display:flex; justify-content:space-between; gap:18px; pointer-events:none; text-shadow:0 2px 18px rgba(0,0,0,.88); }
       h1 { margin:0; font-size:clamp(20px,3vw,42px); line-height:1; letter-spacing:0; text-transform:uppercase; }
@@ -41,16 +41,17 @@
       scene.add(work);
       const controls = { rx:-.05, ry:0, trx:-.05, try:0, pan:new THREE.Vector2(), tpan:new THREE.Vector2(), dist:7.6, tdist:7.6, pointers:new Map(), lastCenter:null, lastDistance:0, dragMode:"rotate" };
       const materials = [
-        new THREE.MeshPhysicalMaterial({ color:0x2d0817, roughness:.34, transmission:.18, transparent:true, opacity:.80, side:THREE.DoubleSide, depthWrite:false }),
-        new THREE.MeshPhysicalMaterial({ color:0x6b2413, roughness:.40, transmission:.16, transparent:true, opacity:.76, side:THREE.DoubleSide, depthWrite:false }),
-        new THREE.MeshPhysicalMaterial({ color:0x9d2f48, roughness:.27, transmission:.28, transparent:true, opacity:.70, side:THREE.DoubleSide, depthWrite:false }),
-        new THREE.MeshPhysicalMaterial({ color:0xdf676d, roughness:.23, transmission:.24, transparent:true, opacity:.72, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0x2d0817, roughness:.34, transmission:.20, transparent:true, opacity:.72, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0x6b2413, roughness:.40, transmission:.20, transparent:true, opacity:.64, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0x9d2f48, roughness:.27, transmission:.34, transparent:true, opacity:.56, side:THREE.DoubleSide, depthWrite:false }),
+        new THREE.MeshPhysicalMaterial({ color:0xdf676d, roughness:.23, transmission:.30, transparent:true, opacity:.58, side:THREE.DoubleSide, depthWrite:false }),
       ];
       const sheets = [];
       for (let layer = 0; layer < 4; layer++) {
         const sheet = new THREE.Mesh(makeSheet(layer), materials[layer]);
         sheet.position.y = (layer - 1.5) * .13;
         sheet.position.x = (layer - 1.5) * .12;
+        sheet.rotation.y = (layer - 1.5) * .035;
         sheet.renderOrder = layer;
         work.add(sheet);
         sheets.push(sheet);
@@ -77,7 +78,7 @@
       renderer.setAnimationLoop(render);
 
       function makeSheet(layer) {
-        const cols = 64, rows = 50, width = 3.8, height = 3.15;
+        const cols = 160, rows = 120, width = 3.8, height = 3.15;
         const positions = [], indices = [];
         for (let row = 0; row <= rows; row++) {
           const v = row / rows;

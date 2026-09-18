@@ -81,3 +81,14 @@ const scriptLines = [
 await fs.writeFile(jobPath, scriptLines.join("\n"), "utf8");
 console.log(`Submitted ${jobPath}`);
 console.log("Keep Blender open with offline/gui_job_watcher.py running.");
+
+try {
+  const statusPath = path.join(jobsDir, "watcher.status.txt");
+  const status = await fs.stat(statusPath);
+  const ageSeconds = Math.floor((Date.now() - status.mtimeMs) / 1000);
+  if (ageSeconds > 15) {
+    console.log(`WARNING: watcher status is stale (${ageSeconds}s old). Run npm run watcher:status.`);
+  }
+} catch {
+  console.log("WARNING: watcher status is missing. Run npm run watcher:status.");
+}

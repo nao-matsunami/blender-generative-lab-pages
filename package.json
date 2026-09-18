@@ -83,6 +83,7 @@
     "job:veil": "node scripts/submit-blender-job.mjs veil",
     "job:all": "node scripts/submit-blender-job.mjs all",
     "watcher:start": "bash scripts/start-gui-watcher.sh",
+    "watcher:status": "node scripts/check-watcher-status.mjs",
     "fallback:stl": "node scripts/generate-fallback-stl.mjs",
     "publish:pages": "node scripts/publish-pages.mjs",
     "ship": "npm run build && npm run check:quality && npm run publish:pages"
