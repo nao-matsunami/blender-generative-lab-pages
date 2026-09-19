@@ -47,10 +47,27 @@ async function loadSamples() {
   return Promise.all(files.map(async (file) => {
     const html = await fs.readFile(path.join(outputsDir, file), "utf8");
     const date = file.slice(0, 10);
+    const slug = file.replace(/^\d{4}-\d{2}-\d{2}_/, "").replace(/\.html$/, "");
     const title = html.match(/<title>(.*?)<\/title>/i)?.[1] || file;
     const description = html.match(/<p>([\s\S]*?)<\/p>/i)?.[1]?.replace(/<[^>]*>/g, "") || "";
-    return { date, file, title, description };
+    const expectedAssets = [
+      path.join(rootDir, "exports", "stl", `${slug}.stl`),
+      path.join(rootDir, "exports", "glb", `${slug}.glb`),
+      path.join(rootDir, "renders", `${slug}.png`),
+      path.join(rootDir, "renders", `${slug}-preview.png`),
+    ];
+    const assetChecks = await Promise.all(expectedAssets.map(fileExists));
+    return { date, file, title, description, assetState: assetChecks.every(Boolean) ? "complete" : "pending" };
   }));
+}
+
+async function fileExists(file) {
+  try {
+    const stat = await fs.stat(file);
+    return stat.isFile() && stat.size > 0;
+  } catch {
+    return false;
+  }
 }
 
 async function cleanHtmlDir(dir) {
@@ -71,11 +88,13 @@ function renderList(days, currentPage, totalPages, basePath, totalItems) {
     <section class="grid">
       ${days.map((day) => {
         const sample = day.samples[0];
+        const assetState = sample?.assetState === "complete" ? "Blender assets ready" : "Web draft / Blender pending";
+        const assetClass = sample?.assetState === "complete" ? "ready" : "pending";
         return `<article class="card">
           <p class="date">${formatDate(day.date)}</p>
           <h2>${escapeHtml(day.report.headline)}</h2>
           <p class="description">${escapeHtml(day.report.summary)}</p>
-          <p class="card-subtitle">samples: ${day.samples.length}</p>
+          <p class="card-subtitle">samples: ${day.samples.length} <span class="status ${assetClass}">${assetState}</span></p>
           <div class="actions"><a class="primary" href="${basePath}days/${day.date}.html">Study note</a>${sample ? `<a href="${basePath}outputs/${sample.file}">Web preview</a>` : ""}</div>
         </article>`;
       }).join("")}
@@ -87,7 +106,11 @@ function renderList(days, currentPage, totalPages, basePath, totalItems) {
 function renderDay(day, page) {
   const listHref = page === 1 ? "../index.html" : "../pages/" + page + ".html";
   const links = [...(day.report.links || [])];
-  const samples = day.samples.map((sample) => `<li><a href="../outputs/${sample.file}">${escapeHtml(sample.title)}</a><p>${escapeHtml(sample.description)}</p></li>`).join("");
+  const samples = day.samples.map((sample) => {
+    const assetState = sample.assetState === "complete" ? "Blender assets ready" : "Web draft / Blender pending";
+    const assetClass = sample.assetState === "complete" ? "ready" : "pending";
+    return `<li><a href="../outputs/${sample.file}">${escapeHtml(sample.title)}</a> <span class="status ${assetClass}">${assetState}</span><p>${escapeHtml(sample.description)}</p></li>`;
+  }).join("");
   return htmlShell(day.report.headline, `
     <section class="hero">
       <p class="date">${formatDate(day.date)}</p>
@@ -104,7 +127,7 @@ function renderDay(day, page) {
 function htmlShell(title, body) {
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escapeHtml(title)}</title><style>
   :root{color-scheme:dark;--bg0:#050505;--bg1:#171411;--panel:rgba(18,15,12,.88);--line:rgba(243,224,191,.16);--ink:#f3f0e8;--muted:#aaa79c;--accent:#d8895f;--accent2:#79d8ff}
-  *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg1),var(--bg0));color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.shell{max-width:1180px;margin:0 auto;padding:24px 18px 44px}.hero,.card,.content{border:1px solid var(--line);background:var(--panel);padding:18px;border-radius:8px}.kicker{color:var(--accent);font-size:12px;font-weight:800;text-transform:uppercase}.hero h1{margin:0 0 10px;font-size:clamp(34px,6vw,78px);line-height:.95;letter-spacing:0}.hero p,.description,.content p,li p{color:var(--muted);line-height:1.65}.meta,.actions,.pager{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.meta span,a{border:1px solid var(--line);border-radius:6px;padding:8px 10px;color:var(--ink);text-decoration:none;background:rgba(255,255,255,.04)}a:hover{border-color:var(--accent2)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}.date{color:var(--accent2);font-size:13px;letter-spacing:.04em}.card h2,.content h2{margin:0 0 10px}.card-subtitle{color:var(--muted);font-size:13px}.content{margin-top:16px}ul{padding-left:20px}.pager{justify-content:center}</style></head><body><main class="shell">${body}</main></body></html>`;
+  *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg1),var(--bg0));color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.shell{max-width:1180px;margin:0 auto;padding:24px 18px 44px}.hero,.card,.content{border:1px solid var(--line);background:var(--panel);padding:18px;border-radius:8px}.kicker{color:var(--accent);font-size:12px;font-weight:800;text-transform:uppercase}.hero h1{margin:0 0 10px;font-size:clamp(34px,6vw,78px);line-height:.95;letter-spacing:0}.hero p,.description,.content p,li p{color:var(--muted);line-height:1.65}.meta,.actions,.pager{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.meta span,a{border:1px solid var(--line);border-radius:6px;padding:8px 10px;color:var(--ink);text-decoration:none;background:rgba(255,255,255,.04)}a:hover{border-color:var(--accent2)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}.date{color:var(--accent2);font-size:13px;letter-spacing:.04em}.card h2,.content h2{margin:0 0 10px}.card-subtitle{display:flex;flex-wrap:wrap;align-items:center;gap:8px;color:var(--muted);font-size:13px}.status{display:inline-block;border:1px solid;padding:4px 7px;border-radius:4px;font-size:10px;font-weight:800;line-height:1;text-transform:uppercase}.status.ready{border-color:rgba(128,190,145,.45);color:#9fd6aa;background:rgba(44,103,58,.15)}.status.pending{border-color:rgba(215,139,91,.5);color:#e1a173;background:rgba(121,65,29,.18)}.content{margin-top:16px}ul{padding-left:20px}.pager{justify-content:center}</style></head><body><main class="shell">${body}</main></body></html>`;
 }
 
 function renderLinks(links = []) {
