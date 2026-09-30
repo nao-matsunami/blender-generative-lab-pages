@@ -41,8 +41,35 @@ async function copyRecursive(from, to) {
 async function emptyTargetDir(targetPath) {
   const entries = await fs.readdir(targetPath, { withFileTypes: true });
   for (const entry of entries) {
-    if (entry.name === ".git") continue;
+    if ([".git", "exports", "renders"].includes(entry.name)) continue;
     await fs.rm(path.join(targetPath, entry.name), { recursive: true, force: true });
+  }
+}
+
+async function copyLatestGeneratedAssets() {
+  const reportFiles = (await fs.readdir(path.join(sourceDir, "reports")))
+    .filter((file) => /^\d{4}-\d{2}-\d{2}\.json$/.test(file))
+    .sort()
+    .reverse();
+  const latestDate = reportFiles[0]?.slice(0, 10);
+  if (!latestDate) return;
+
+  const outputFiles = (await fs.readdir(path.join(sourceDir, "outputs")))
+    .filter((file) => file.startsWith(`${latestDate}_`) && file.endsWith(".html"));
+  for (const outputFile of outputFiles) {
+    const slug = outputFile.slice(11, -5);
+    const assets = [
+      ["exports", "glb", `${slug}.glb`],
+      ["exports", "stl", `${slug}.stl`],
+      ["renders", `${slug}.png`],
+      ["renders", `${slug}-preview.png`],
+    ];
+    for (const parts of assets) {
+      const sourcePath = path.join(sourceDir, ...parts);
+      if (await pathExists(sourcePath)) {
+        await copyRecursive(sourcePath, path.join(targetDir, ...parts));
+      }
+    }
   }
 }
 
@@ -105,6 +132,7 @@ async function copyProject() {
     if (excluded.has(entry.name)) continue;
     await copyRecursive(path.join(sourceDir, entry.name), path.join(targetDir, entry.name));
   }
+  await copyLatestGeneratedAssets();
 }
 
 async function main() {

@@ -6,6 +6,10 @@
   "summaryEn": "A machine, instrument, and ritual-object study built as an unknown ceremonial tool with six radial valves, counter-rotating rings, weighted side handles, and a dark biological cavity confined to its center.",
   "links": [
     { "label": "Sixfold Reliquary Rotor", "url": "../outputs/2026-09-30_sixfold-reliquary-rotor.html" },
+    { "label": "GLB", "url": "../exports/glb/sixfold-reliquary-rotor.glb" },
+    { "label": "STL", "url": "../exports/stl/sixfold-reliquary-rotor.stl" },
+    { "label": "Preview PNG", "url": "../renders/sixfold-reliquary-rotor-preview.png" },
+    { "label": "Transparent PNG", "url": "../renders/sixfold-reliquary-rotor.png" },
     { "label": "Generator script", "url": "../offline/generate_sixfold_reliquary_rotor.py" },
     { "label": "Creative Program", "url": "../docs/creative-program.md" }
   ],
@@ -27,8 +31,8 @@
     {
       "title": "何を捨てたか / 残る弱点",
       "titleEn": "Rejection and remaining weakness",
-      "body": "赤い楕円塊、中心穴だけに頼る構図、細い血管線を捨てた。現状はWeb上で機構と動きが確認できるドラフトで、Blender watcher停止中のためGLB/STL/PNGは生成待ち。3Dプリントでは複数部品を一体化する橋か、可動部品として分割する設計判断が残る。",
-      "bodyEn": "This rejects red ellipsoid masses, hole-only compositions, and thin vessel decoration. It is currently a web-verifiable motion draft; GLB, STL, and PNG output remain queued while the Blender watcher is stopped. Print production still needs a decision between structural bridges and intentionally separate moving parts.",
+      "body": "赤い楕円塊、中心穴だけに頼る構図、細い血管線を捨てた。GLB/STL/PNGを生成し、中央核を奥へ沈めて空洞を確保した。3Dプリントでは複数部品を一体化する橋か、可動部品として分割する設計判断が残る。",
+      "bodyEn": "This rejects red ellipsoid masses, hole-only compositions, and thin vessel decoration. GLB, STL, and PNG assets are generated, with the central core recessed to preserve the cavity. Print production still needs a decision between structural bridges and intentionally separate moving parts.",
       "links": []
     }
   ]
