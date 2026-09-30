@@ -170,7 +170,8 @@ def add_parts():
     objects = [outer_rotor, inner_rotor]
     objects.append(add_torus("reliquary_outer_counterweight_ring", 61, 7.5, 3, soot, outer_rotor))
     objects.append(add_torus("reliquary_inner_bone_race", 43, 5.0, -1, bone, outer_rotor, math.radians(7)))
-    objects.append(add_cylinder("reliquary_deep_inner_cavity", 29, 10, -11, wet, inner_rotor))
+    # Keep the wet core recessed so the central void reads before the tissue.
+    objects.append(add_cylinder("reliquary_deep_inner_cavity", 17, 5, 6, wet, inner_rotor))
 
     for index in range(6):
         angle = index * math.tau / 6
@@ -231,9 +232,9 @@ def setup_scene():
 
     bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, 0))
     target = bpy.context.object
-    bpy.ops.object.camera_add(location=(6, -255, 18))
+    bpy.ops.object.camera_add(location=(6, -340, 18))
     camera = bpy.context.object
-    camera.data.lens = 60
+    camera.data.lens = 55
     scene.camera = camera
     track = camera.constraints.new(type="TRACK_TO")
     track.track_axis = "TRACK_NEGATIVE_Z"
