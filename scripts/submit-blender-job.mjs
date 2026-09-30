@@ -43,6 +43,7 @@ const studies = {
   valveannulus: "offline/generate_ventricular_valve_annulus.py",
   ossuary: "offline/generate_ossuary_reef_lattice.py",
   veil: "offline/generate_sepulture_pleat_veil.py",
+  reliquary: "offline/generate_sixfold_reliquary_rotor.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

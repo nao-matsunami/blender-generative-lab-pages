@@ -322,6 +322,10 @@ exports/stl/sepulture-pleat-veil.stl
 exports/glb/sepulture-pleat-veil.glb
 renders/sepulture-pleat-veil.png
 renders/sepulture-pleat-veil-preview.png
+exports/stl/sixfold-reliquary-rotor.stl
+exports/glb/sixfold-reliquary-rotor.glb
+renders/sixfold-reliquary-rotor.png
+renders/sixfold-reliquary-rotor-preview.png
 ```
 
 Check whether the expected files were created:

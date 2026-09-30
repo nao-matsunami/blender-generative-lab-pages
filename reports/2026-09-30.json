@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-30",
+  "headline": "Sixfold Reliquary Rotor",
+  "headlineEn": "Sixfold Reliquary Rotor",
+  "summary": "machine/instrument/ritual objectレーン。六枚の放射弁、二重回転環、左右の重量把手、中央の暗い生体内腔を持つ、用途不明の祭具として構成した。",
+  "summaryEn": "A machine, instrument, and ritual-object study built as an unknown ceremonial tool with six radial valves, counter-rotating rings, weighted side handles, and a dark biological cavity confined to its center.",
+  "links": [
+    { "label": "Sixfold Reliquary Rotor", "url": "../outputs/2026-09-30_sixfold-reliquary-rotor.html" },
+    { "label": "Generator script", "url": "../offline/generate_sixfold_reliquary_rotor.py" },
+    { "label": "Creative Program", "url": "../docs/creative-program.md" }
+  ],
+  "sections": [
+    {
+      "title": "今回の制作レーン",
+      "titleEn": "Creative lane",
+      "body": "machine/instrument/ritual objectレーン。一次アーキタイプはradial valve machine。骨白の外装弁、煤色の回転環、暗い琥珀の固定具を先に読み取らせ、生物感は中央の赤紫の内弁と湿った内腔だけに閉じ込めた。",
+      "bodyEn": "Machine, instrument, and ritual-object lane using a radial valve machine archetype. The calcified outer valves, soot-black rotor, and dark amber fasteners read first; biological material is confined to the bruised inner iris and wet cavity.",
+      "links": []
+    },
+    {
+      "title": "前作と何が構造的に違うか",
+      "titleEn": "Structural difference",
+      "body": "前作の吊られた矩形膜と柔らかい縦襞から、正面性の強い円形機構へ転換した。外環と内弁は逆方向に回転し、左右の太い把手が輪郭を横へ拡張する。単一の肉塊ではなく、外装、固定具、回転部、内腔という階層でできている。",
+      "bodyEn": "This moves from the previous hanging rectangular membranes and soft vertical pleats to a strongly frontal circular mechanism. The outer rotor and inner iris counter-rotate, while thick side handles extend the silhouette. It is organized as housing, fasteners, moving parts, and cavity rather than a single mass.",
+      "links": []
+    },
+    {
+      "title": "何を捨てたか / 残る弱点",
+      "titleEn": "Rejection and remaining weakness",
+      "body": "赤い楕円塊、中心穴だけに頼る構図、細い血管線を捨てた。現状はWeb上で機構と動きが確認できるドラフトで、Blender watcher停止中のためGLB/STL/PNGは生成待ち。3Dプリントでは複数部品を一体化する橋か、可動部品として分割する設計判断が残る。",
+      "bodyEn": "This rejects red ellipsoid masses, hole-only compositions, and thin vessel decoration. It is currently a web-verifiable motion draft; GLB, STL, and PNG output remain queued while the Blender watcher is stopped. Print production still needs a decision between structural bridges and intentionally separate moving parts.",
+      "links": []
+    }
+  ]
+}
