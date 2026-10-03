@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-03",
+  "headline": "Processional Aperture Engine",
+  "headlineEn": "Processional Aperture Engine",
+  "summary": "制作停止と品質低下を受けた再始動作。欠けた鋳造外殻、傾いた二重ジンバル、非対称の重量把手、奥に沈む二枚の閉鎖膜で、行列に運ばれる用途不明の開口装置を構成した。",
+  "summaryEn": "A restart after the production gap: an unknown processional aperture device built from a broken cast shell, offset gimbals, asymmetric weighted grips, and two recessed closure membranes.",
+  "links": [
+    {"label":"Interactive Blender GLB","url":"../outputs/2026-10-03_processional-aperture-engine.html"},
+    {"label":"GLB","url":"../exports/glb/processional-aperture-engine.glb"},
+    {"label":"STL","url":"../exports/stl/processional-aperture-engine.stl"},
+    {"label":"Preview PNG","url":"../renders/processional-aperture-engine-preview.png"},
+    {"label":"Transparent PNG","url":"../renders/processional-aperture-engine.png"},
+    {"label":"Generator","url":"../offline/generate_processional_aperture_engine.py"}
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた三点",
+      "titleEn": "Three structural changes",
+      "body": "六分割の正面対称を捨てて欠損した非対称輪郭へ変更した。単純な一枚ローターから傾いた複数ジンバルと固定外殻へ変更した。正面カメラから斜めの立体構成へ変え、左右の把手に異なる重量と長さを与えた。",
+      "bodyEn": "It replaces sixfold frontal symmetry with a broken asymmetric silhouette, a single rotor with offset gimbals inside a fixed shell, and the frontal camera with an oblique composition whose grips carry different weight and length.",
+      "links": []
+    },
+    {
+      "title": "品質確認",
+      "titleEn": "Quality review",
+      "body": "Blenderで三回レンダーした。初稿の管状内部と切れた把手を不採用にし、二稿の平板な滑面を再調整した。公開版はBlender生成GLBを直接表示するため、Webだけの別造形ではない。",
+      "bodyEn": "Three Blender renders were reviewed. The tubular interior and clipped grips from the first pass were rejected, then the flat surface treatment of the second pass was revised. The public viewer loads the generated Blender GLB directly rather than substituting a separate web model.",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "titleEn": "Remaining weakness",
+      "body": "外環の曲率はまだ均一で、近接時の細部密度が足りない。次作では刻印を足すのではなく、部品の接合、摩耗、異なる厚みで情報量を上げる。",
+      "bodyEn": "The outer arcs remain too uniform and close-range detail is still limited. The next piece should gain density through joints, wear, and varied thickness rather than decorative markings.",
+      "links": []
+    }
+  ]
+}

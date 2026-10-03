@@ -326,6 +326,10 @@ exports/stl/sixfold-reliquary-rotor.stl
 exports/glb/sixfold-reliquary-rotor.glb
 renders/sixfold-reliquary-rotor.png
 renders/sixfold-reliquary-rotor-preview.png
+exports/stl/processional-aperture-engine.stl
+exports/glb/processional-aperture-engine.glb
+renders/processional-aperture-engine.png
+renders/processional-aperture-engine-preview.png
 ```
 
 Check whether the expected files were created:
