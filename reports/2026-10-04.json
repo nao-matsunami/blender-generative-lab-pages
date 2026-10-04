@@ -1,0 +1,20 @@
+{
+  "date":"2026-10-04",
+  "headline":"Tidal Ossicle Canopy",
+  "headlineEn":"Tidal Ossicle Canopy",
+  "summary":"growth / marineレーン。塩に漂白された三本の構造枝、広い赤紫の膜葉、中央に吊られた暗い種殻を持つ、潮流で揺れる骨質の林冠を制作した。",
+  "summaryEn":"Growth and marine lane: a swaying ossicle canopy made from three salt-bleached structural fronds, broad bruised membrane leaves, and a suspended dark seed pod.",
+  "links":[
+    {"label":"Interactive Blender GLB","url":"../outputs/2026-10-04_tidal-ossicle-canopy.html"},
+    {"label":"GLB","url":"../exports/glb/tidal-ossicle-canopy.glb"},
+    {"label":"STL","url":"../exports/stl/tidal-ossicle-canopy.stl"},
+    {"label":"Preview PNG","url":"../renders/tidal-ossicle-canopy-preview.png"},
+    {"label":"Transparent PNG","url":"../renders/tidal-ossicle-canopy.png"},
+    {"label":"Generator","url":"../offline/generate_tidal_ossicle_canopy.py"}
+  ],
+  "sections":[
+    {"title":"前作から変えた三点","titleEn":"Three changes","body":"円環主体の横長祭具から縦長の分岐シルエットへ変更した。金属ジンバルから先細りする曲線骨格と実体のある膜葉へ変更した。機械的な回転から潮流のような全体スウェイへ動きを変えた。","bodyEn":"The wide ring-based instrument becomes a vertical branching silhouette; metal gimbals become tapered structural curves and solid membrane leaves; mechanical rotation becomes a slow current-like sway.","links":[]},
+    {"title":"品質確認","titleEn":"Quality review","body":"初稿の細く疎な骨格と小さな平面葉を不採用にし、枝の奥行き、先細り、交差支持、膜葉の曲面と大きさを修正して再レンダーした。公開画面はBlender生成GLBを直接表示する。","bodyEn":"The sparse first pass with small flat leaves was rejected. Branch depth, taper, cross-bracing, and curved membrane scale were revised and re-rendered. The public viewer displays the generated Blender GLB directly.","links":[]},
+    {"title":"残る弱点","titleEn":"Remaining weakness","body":"枝と膜の接合部はまだ単純で、近接時には人工的に見える。次回は節、巻き込み、厚みの遷移を形状そのものへ入れる。","bodyEn":"The branch-to-membrane joints remain simple and look artificial at close range. The next pass should build nodes, wrapping, and thickness transitions into the geometry itself.","links":[]}
+  ]
+}

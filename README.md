@@ -330,6 +330,10 @@ exports/stl/processional-aperture-engine.stl
 exports/glb/processional-aperture-engine.glb
 renders/processional-aperture-engine.png
 renders/processional-aperture-engine-preview.png
+exports/stl/tidal-ossicle-canopy.stl
+exports/glb/tidal-ossicle-canopy.glb
+renders/tidal-ossicle-canopy.png
+renders/tidal-ossicle-canopy-preview.png
 ```
 
 Check whether the expected files were created:

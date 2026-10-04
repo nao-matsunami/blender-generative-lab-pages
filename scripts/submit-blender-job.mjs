@@ -45,6 +45,7 @@ const studies = {
   veil: "offline/generate_sepulture_pleat_veil.py",
   reliquary: "offline/generate_sixfold_reliquary_rotor.py",
   aperture: "offline/generate_processional_aperture_engine.py",
+  canopy: "offline/generate_tidal_ossicle_canopy.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];
