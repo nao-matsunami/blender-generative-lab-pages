@@ -36,6 +36,10 @@ for (const file of outputFiles) {
     fail(`${label}: missing reports/${date}.json`);
   }
 
+  if (html.includes("GLTFLoader") && !html.includes('location.protocol==="file:"')) {
+    fail(`${label}: GLB preview must redirect file:// opens to its public URL`);
+  }
+
   await checkModuleScripts(html, file, label);
 }
 
