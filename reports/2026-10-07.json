@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-07",
+  "headline": "Umbra Slip Shutter",
+  "headlineEn": "Umbra Slip Shutter",
+  "summary": "VJ motion formレーン。一体の折れた板が横方向に流れ、三つの貫通スリットと縁の厚みが往復する傾きの中で現れる。",
+  "summaryEn": "VJ motion form lane: a single folded casting sweeps sideways, exposing three cut-through slots and rolled edges as it tilts in a reversible loop.",
+  "links": [
+    {"label": "Interactive Blender GLB", "url": "../outputs/2026-10-07_umbra-slip-shutter.html"},
+    {"label": "GLB", "url": "../exports/glb/umbra-slip-shutter.glb"},
+    {"label": "STL", "url": "../exports/stl/umbra-slip-shutter.stl"},
+    {"label": "Preview PNG", "url": "../renders/umbra-slip-shutter-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/umbra-slip-shutter.png"},
+    {"label": "Generator", "url": "../offline/generate_umbra_slip_shutter.py"}
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた構造",
+      "titleEn": "Changes from the previous work",
+      "body": "縦に分岐する林冠を横に流れる一枚のS字シルエットへ変更した。曲線骨格と別体の膜葉を一体の厚みある折れ板へ変更し、ブーリアンで実際に開いた三つの穴を設けた。骨白と赤紫の組合せから暗いプラム色の鋳物と琥珀色の切断面へ変え、縦構図を斜め上からの横構図へ移した。",
+      "bodyEn": "A vertical branching canopy becomes one horizontal S-shaped silhouette. Curved bone branches and separate membrane leaves become a single thick folded casting with three boolean cut-through holes. Bone and red-purple change to plum casting and amber cut edges, viewed obliquely in a wide frame.",
+      "links": []
+    },
+    {
+      "title": "目視と再レンダー",
+      "titleEn": "Visual review and rerender",
+      "body": "最近の赤い臓器塊と細い血管装飾を退けた。初回Blenderプレビューでは板面が暗すぎたため、折れ幅、材質の明度、照明、画角を修正して再レンダーした。三つの空洞、連続した縁、非対称の輪郭が小さなサムネイルでも識別できる完成Blenderアセットである。",
+      "bodyEn": "The recurring red organ mass and thin vessel decoration were rejected. The first Blender preview was too dark, so fold depth, material value, lighting, and camera were revised and rerendered. The three voids, continuous edge, and asymmetric silhouette remain identifiable at thumbnail scale in a finished Blender asset.",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "titleEn": "Remaining weakness",
+      "body": "素材の面はまだ比較的均一で、接近すると折れ目の造形情報が少ない。VJ素材としての動きはゆっくりした傾きに限られ、映像合成用のアルファ動画は未制作。",
+      "bodyEn": "The surface remains fairly uniform at close range. Motion is a slow tilt, and an alpha video for compositing has not yet been made.",
+      "links": []
+    }
+  ]
+}

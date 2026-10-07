@@ -46,6 +46,7 @@ const studies = {
   reliquary: "offline/generate_sixfold_reliquary_rotor.py",
   aperture: "offline/generate_processional_aperture_engine.py",
   canopy: "offline/generate_tidal_ossicle_canopy.py",
+  shutter: "offline/generate_umbra_slip_shutter.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];
