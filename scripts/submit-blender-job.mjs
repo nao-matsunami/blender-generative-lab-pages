@@ -47,6 +47,7 @@ const studies = {
   aperture: "offline/generate_processional_aperture_engine.py",
   canopy: "offline/generate_tidal_ossicle_canopy.py",
   shutter: "offline/generate_umbra_slip_shutter.py",
+  lantern: "offline/generate_cinder_pleat_lantern.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

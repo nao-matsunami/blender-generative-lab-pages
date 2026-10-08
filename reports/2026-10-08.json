@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-08",
+  "headline": "Cinder Pleat Lantern",
+  "headlineEn": "Cinder Pleat Lantern",
+  "summary": "プリント作品候補。傾いた一体シェルに不規則な縦ひだ、開いた口と底、二つの大きな窓を備えた照明用の器。",
+  "summaryEn": "Print object candidate: a leaning one-piece lantern shell with irregular vertical pleats, open mouth and underside, and two large cut-through windows.",
+  "links": [
+    {"label": "Interactive Blender GLB", "url": "../outputs/2026-10-08_cinder-pleat-lantern.html"},
+    {"label": "GLB", "url": "../exports/glb/cinder-pleat-lantern.glb"},
+    {"label": "STL", "url": "../exports/stl/cinder-pleat-lantern.stl"},
+    {"label": "Preview PNG", "url": "../renders/cinder-pleat-lantern-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/cinder-pleat-lantern.png"},
+    {"label": "Generator", "url": "../offline/generate_cinder_pleat_lantern.py"}
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた構造",
+      "body": "横長の板状VJフォームから、立ち上がる中空の照明シェルへ変更した。折れ板の三穴構造から、一定厚みの胴に楕円体ブーリアンで二つの窓を切る構造へ変更。暗いプラム色の鋳物から明るい焼成土色へ、横構図から斜め上の縦構図へ変えた。",
+      "links": []
+    },
+    {
+      "title": "目視と再レンダー",
+      "body": "赤い臓器塊、表面の細い血管、正面対称のプリミティブ配列を退けた。初回Blenderプレビューは暗く、穴の縁が階段状だったため、照明・材質・画角を調整し、窓を楕円体の実体カットに作り直して再レンダーした。完成したBlenderのプレビューで口、底、窓の抜けと非対称の輪郭を目視確認した。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "発光体の取付部、放熱、実機での光の広がりは未検証。STLは造形前にスライサーで壁厚と支持材を確認する必要がある。",
+      "links": []
+    }
+  ]
+}
