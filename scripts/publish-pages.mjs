@@ -147,10 +147,19 @@ async function main() {
   }
   const stamp = new Date().toISOString().slice(0, 16).replace("T", " ");
   await run("git", ["commit", "-m", `Publish Blender Generative Lab ${stamp}`], targetDir);
-  const token = await runCapture("gh", ["auth", "token"], targetDir);
-  const basic = Buffer.from(`x-access-token:${token}`).toString("base64");
-  const gitPushArgs = ["-c", `http.https://github.com/.extraheader=AUTHORIZATION: basic ${basic}`];
-  await run("git", [...gitPushArgs, "push", "-u", "origin", "main"], targetDir);
+  let token = null;
+  try {
+    token = await runCapture("gh", ["auth", "token"], targetDir);
+  } catch {
+    console.log("GitHub CLI token unavailable; using the configured Git credential helper.");
+  }
+  if (token) {
+    const basic = Buffer.from(`x-access-token:${token}`).toString("base64");
+    const gitPushArgs = ["-c", `http.https://github.com/.extraheader=AUTHORIZATION: basic ${basic}`];
+    await run("git", [...gitPushArgs, "push", "-u", "origin", "main"], targetDir);
+  } else {
+    await run("git", ["push", "-u", "origin", "main"], targetDir);
+  }
 }
 
 main().catch((error) => {
