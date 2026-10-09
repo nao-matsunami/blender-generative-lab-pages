@@ -138,15 +138,19 @@ async function copyProject() {
 async function main() {
   await copyProject();
   await run("git", ["add", "."], targetDir);
+  let hasChanges = true;
   try {
     await run("git", ["diff", "--cached", "--quiet"], targetDir, "ignore");
-    console.log("No changes to publish.");
-    return;
+    hasChanges = false;
   } catch {
     // Changes are staged.
   }
-  const stamp = new Date().toISOString().slice(0, 16).replace("T", " ");
-  await run("git", ["commit", "-m", `Publish Blender Generative Lab ${stamp}`], targetDir);
+  if (hasChanges) {
+    const stamp = new Date().toISOString().slice(0, 16).replace("T", " ");
+    await run("git", ["commit", "-m", `Publish Blender Generative Lab ${stamp}`], targetDir);
+  } else {
+    console.log("No new file changes; checking for an unpublished commit.");
+  }
   let token = null;
   try {
     token = await runCapture("gh", ["auth", "token"], targetDir);
