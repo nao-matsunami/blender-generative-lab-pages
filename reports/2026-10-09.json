@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-09",
+  "headline": "Faultline Ossicle Bridge",
+  "headlineEn": "Faultline Ossicle Bridge",
+  "summary": "鉱物／化石の試作。断層状の二本の桁とずれた骨板を一体化し、五つの貫通した空隙を持つ石化した橋。",
+  "summaryEn": "A fossil-like bridge with two swept keels, offset bone plates, a broken crest, and five connected negative spaces.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-10-09_faultline-ossicle-bridge.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/faultline-ossicle-bridge.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/faultline-ossicle-bridge.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/faultline-ossicle-bridge-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/faultline-ossicle-bridge.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_faultline_ossicle_bridge.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた構造",
+      "body": "縦長の中空ランタンから横へ伸びる骨格状の橋に変更。一定厚の殻と二つのブーリアン窓を、曲がった桁と幅の異なる骨板をボクセル融合した五つの自然な空隙へ変更。焼成土の橙色から明るい骨色と褐色の鉱物斑へ、縦の器物構図から斜めの横構図へ変更した。",
+      "links": []
+    },
+    {
+      "title": "目視と再レンダー",
+      "body": "赤い臓器塊、細い血管、放射状プリミティブの正面対称を退けた。初回のBlenderプレビューは輪郭が滑らかすぎたため、左上の破断隆起を加え、材質を明るくし、斜めの画角へ調整して再レンダー。最終プレビューで主要部の欠け、浮遊部品、塞がった空隙がないことを目視確認した。STLは93,036三角形で、境界辺と非多様体辺はゼロ。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "骨板の面はまだ滑らかで、実物の地層や微細な侵食の複雑さは控えめ。物理プリントと支持材の確認は未実施。",
+      "links": []
+    }
+  ]
+}
