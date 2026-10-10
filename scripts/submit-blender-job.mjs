@@ -49,6 +49,7 @@ const studies = {
   shutter: "offline/generate_umbra_slip_shutter.py",
   lantern: "offline/generate_cinder_pleat_lantern.py",
   fossilbridge: "offline/generate_faultline_ossicle_bridge.py",
+  biassail: "offline/generate_bias_tension_sail.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

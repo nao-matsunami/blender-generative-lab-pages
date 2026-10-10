@@ -92,6 +92,7 @@
     "job:shutter": "node scripts/submit-blender-job.mjs shutter",
     "job:lantern": "node scripts/submit-blender-job.mjs lantern",
     "job:fossilbridge": "node scripts/submit-blender-job.mjs fossilbridge",
+    "job:biassail": "node scripts/submit-blender-job.mjs biassail",
     "job:all": "node scripts/submit-blender-job.mjs all",
     "watcher:start": "bash scripts/start-gui-watcher.sh",
     "watcher:status": "node scripts/check-watcher-status.mjs",

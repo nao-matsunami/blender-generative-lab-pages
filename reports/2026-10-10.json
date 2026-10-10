@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-10",
+  "headline": "Bias Tension Sail",
+  "headlineEn": "Bias Tension Sail",
+  "summary": "斜めに張った一枚の膜。深い荷重ひだ、四辺の幅広い補強縁、連続するバイアス縫い目で構造を見せる。",
+  "summaryEn": "A sheared membrane with deep load folds, four reinforced edges, and a continuous bias seam.",
+  "links": [
+    { "label": "Interactive Blender GLB", "url": "../outputs/2026-10-10_bias-tension-sail.html" },
+    { "label": "GLB", "url": "../exports/glb/bias-tension-sail.glb" },
+    { "label": "STL", "url": "../exports/stl/bias-tension-sail.stl" },
+    { "label": "Preview PNG", "url": "../renders/bias-tension-sail-preview.png" },
+    { "label": "Transparent PNG", "url": "../renders/bias-tension-sail.png" },
+    { "label": "Generator", "url": "../offline/generate_bias_tension_sail.py" }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "横へ伸びる硬い化石橋から、斜めに張った面状の帆へ変更。曲線桁のボクセル融合を、格子メッシュの変形と厚み付けに変更。骨色の硬い面から、くすんだローズ色の膜と暗い補強縁へ変更し、横長の橋を見上げる画角から帆の奥行きが読める斜め上の画角へ移した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "赤い臓器塊、細い血管、放射状プリミティブの正面対称を退けた。初回のBlenderプレビューでは面が平板で開口が階段状だったため、輪郭、ひだ、材質、照明、画角を変更して再レンダー。二回目のプレビューでは開口が折り返しと干渉したため、連続した膜と荷重方向の縫い目に修正して三回目を目視した。主要部の欠け、浮遊部品、塞がった空洞はない。完成したBlenderのGLB、STL、透過PNG、背景付きプレビューを出力した。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "膜の表面はまだ滑らかで、繊維や縫製の細部は省略されている。物理的な布シミュレーション、素材試験、プリント検証は未実施。",
+      "links": []
+    }
+  ]
+}
