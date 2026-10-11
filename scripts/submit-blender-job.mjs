@@ -50,6 +50,7 @@ const studies = {
   lantern: "offline/generate_cinder_pleat_lantern.py",
   fossilbridge: "offline/generate_faultline_ossicle_bridge.py",
   biassail: "offline/generate_bias_tension_sail.py",
+  kelpstandard: "offline/generate_undertow_kelp_standard.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];
