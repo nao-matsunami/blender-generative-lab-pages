@@ -52,6 +52,7 @@ const studies = {
   biassail: "offline/generate_bias_tension_sail.py",
   kelpstandard: "offline/generate_undertow_kelp_standard.py",
   aperturegauge: "offline/generate_cantilever_aperture_gauge.py",
+  phasewake: "offline/generate_phase_wake_loop.py",
 };
 
 const selected = target === "all" ? Object.keys(studies) : [target];

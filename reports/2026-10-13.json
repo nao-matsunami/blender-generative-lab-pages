@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-13",
+  "headline": "Phase Wake Loop",
+  "headlineEn": "Phase Wake Loop",
+  "summary": "一枚の厚みを持つ帯が偏心した軌道をねじれながら巡る、回転上映のためのループ造形。",
+  "summaryEn": "A continuous twisted band follows an offset orbit, designed to change silhouette during a looping rotation.",
+  "links": [
+    { "label": "Animated Blender GLB", "url": "../outputs/2026-10-13_phase-wake-loop.html" },
+    { "label": "GLB", "url": "../exports/glb/phase-wake-loop.glb" },
+    { "label": "STL", "url": "../exports/stl/phase-wake-loop.stl" },
+    { "label": "Preview PNG", "url": "../renders/phase-wake-loop-preview.png" },
+    { "label": "Transparent PNG", "url": "../renders/phase-wake-loop.png" },
+    { "label": "Generator", "url": "../offline/generate_phase_wake_loop.py" }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "前作の横長の硬いC字計測フレームから、空間内で一周する非対称の連続帯へシルエットを変更。押し出しシャーシとブーリアンのスロットから、断面幅と捻りを変化させるパラメトリックな一体メッシュへ構造と制作方法を変更。黒銅・陶器からプラムのサテン面と一体の暗い琥珀色の縁へ材質を変更。静止した計器の斜め視点から、立体的な開口と交差を見せる上方視点と360度の回転アニメーションへ変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "単純プリミティブの放射対称、赤い臓器塊、細い血管装飾という反復を退け、ねじれた連続帯のVJ motion formを選んだ。前3作の帆、海藻、計測器と並べても閉じた軌道と回転時に変わる帯の姿で識別できる。Blender GUI監視で制作した初回プレビューは面の接続が崩れていたため頂点順を修正して再レンダーし、さらに暗い面の明度と帯幅を修正して最終プレビューを目視した。主開口は貫通し、部品の浮きや画面端の切れは見られない。GLB、STL、透過PNG、背景付きプレビューはすべてBlender出力で、Webだけのスケッチではない。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "静止画では手前の帯が奥の接続部を一部隠す。GLBの回転は確認したが、MP4やアルファ動画への書き出しと実機VJ環境でのループ検証は未実施。STLは境界・非多様体エッジが0だが、造形方向と支持材は未検証。",
+      "links": []
+    }
+  ]
+}
