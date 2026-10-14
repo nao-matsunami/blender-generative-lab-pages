@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-14",
+  "headline": "Silt Fold Catchall",
+  "headlineEn": "Silt Fold Catchall",
+  "summary": "低い前縁と波立つ背面の稜線を一体に成形した、開放的な卓上トレー。",
+  "summaryEn": "A one-piece desk catchall with a low front lip, a raised folded back, and an open basin.",
+  "links": [
+    { "label": "Blender GLB viewer", "url": "../outputs/2026-10-14_silt-fold-catchall.html" },
+    { "label": "GLB", "url": "../exports/glb/silt-fold-catchall.glb" },
+    { "label": "STL", "url": "../exports/stl/silt-fold-catchall.stl" },
+    { "label": "Preview PNG", "url": "../renders/silt-fold-catchall-preview.png" },
+    { "label": "Transparent PNG", "url": "../renders/silt-fold-catchall.png" },
+    { "label": "Generator", "url": "../offline/generate_silt_fold_catchall.py" }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "前作の空中に閉じた捻り帯から、机上に置ける横長の開放トレーへシルエットとトポロジーを変更。帯の局所断面を掃引する方法から、底・外壁・折り返し縁・内側の器面を連続した同心輪郭メッシュで作る方法へ変更。プラムのサテン面から、くすんだローズ陶器と暗いワイン色の内面、土色の一体縁に変更。高い回転帯の視点から、器面と低い前縁を見せる斜め俯瞰へ変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "単純プリミティブの放射対称、赤い臓器塊、細い血管装飾という反復を退け、print object/product candidateの折り畳まれた地形レリーフを選んだ。前3作の帆、海藻、計器、回転帯と並べても、低い開放器面と波打つ背面稜線で識別できる。Blender GUI監視で初回プレビューを見た後、均一な浅皿に見えた背面を高くし、外壁の折り目・材質・画角を修正して再レンダーした。修正版プレビューを目視し、器面が開き、主要部の切れ・部品の浮き・暗すぎる階層はないことを確認した。Web案だけではなくBlenderで生成したGLB、STL、透過PNG、プレビューPNGを用いる。STLは8,600三角形で、境界エッジと非多様体エッジは0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "表面の細部は意図的に穏やかで、背面の折り目は小さなサムネイルでは弱い。卓上での転倒・寸法感、陶器や3Dプリントの実製造、釉薬の再現性は未検証。",
+      "links": []
+    }
+  ]
+}
