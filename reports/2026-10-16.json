@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-16",
+  "headline": "Loomfall Veil",
+  "headlineEn": "Loomfall Veil",
+  "summary": "一本の留め具から三枚の不均等な襞布と影の膜を吊るした、層状のテキスタイル彫刻。",
+  "summaryEn": "Three unequal pleated rose skins and a shadow veil hang from one continuous plum clamp.",
+  "links": [
+    {
+      "label": "Blender GLB viewer",
+      "url": "../outputs/2026-10-16_loomfall-veil.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/loomfall-veil.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/loomfall-veil.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/loomfall-veil-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/loomfall-veil.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_loomfall_veil.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Rift Strata Archの縦長の立脚アーチから、横長で吊られた布スクリーンへシルエットを変更。閉じた石の一体メッシュと貫通孔から、四枚の厚みを持つ開放境界の襞膜と一本の連続クランプへトポロジーと構築法を変更。骨灰色の浸食石面から、ローズ色の透過性サテンと紫黒の裏膜へ材質を変更。高めの石像視点から、低い斜め視点で層間と裾丈を見る構図へ変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "赤い臓器塊、正面対称の放射配列、細い血管装飾の反復を退けた。transparent layered membraneの型として、三枚の独立した襞膜を影の膜の前に段違いで吊り、上端を一体の留め具が捕える。直近三作の回転帯、器、化石アーチの隣でも、横長の吊り布として縮小画像で識別できる。Blender GUI監視で初回PNGを確認し、暗い布面を明るくして留め具と視点を修正。さらに上端の突起と裾の色境界、前面パネルの干渉を直して再レンダーし、最終PNGを目視した。空洞に相当するパネル間の細い抜け、全体の画角、裾の連続性を確認。Web案ではなくBlenderのGLB、STL、透過PNG、プレビューPNGを掲載する。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "布の縫製、吊り下げ金具、実際の布の力学は未検証。STLは複数の薄い面と留め具からなり、一体造形の強度や印刷条件は未検証。",
+      "links": []
+    }
+  ]
+}
