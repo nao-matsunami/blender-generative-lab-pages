@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-17",
+  "headline": "Ebbhorn Carapace",
+  "headlineEn": "Ebbhorn Carapace",
+  "summary": "潮流で曲がりながら成長した、片側が大きく開く海生の硬い殻。",
+  "summaryEn": "A current-bent marine shell grows from a narrow tail to an open, fluted mouth.",
+  "links": [
+    {
+      "label": "Blender GLB viewer",
+      "url": "../outputs/2026-10-17_ebbhorn-carapace.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/ebbhorn-carapace.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/ebbhorn-carapace.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/ebbhorn-carapace-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/ebbhorn-carapace.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_ebbhorn_carapace.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Loomfall Veilの横長の吊り布から、左の細い尾が曲がりながら右の大きな開口へ成長する硬質の殻にシルエットを変更。四枚の開放境界の襞膜とクランプから、厚い壁と奥行きのある一体の中空メッシュへトポロジーと構築法を変更。布の縦襞から殻の長手方向の削り溝と波打つ口縁へ表面リズムを変更。透過ローズと紫黒から、石灰化した黄土色の外殻と鈍いローズ色の内面へ材質を変更。低い正面寄りの布視点から、開口を見通す斜めの三四分視点へ変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "赤い臓器塊、正面対称の放射配列、細い血管装飾を退け、nested shell / cutaway cavityの型を海生の殻に展開した。殻は先端から開口まで連続し、管状構造そのものが輪郭を決める。直近三作の布、化石アーチ、器の隣でも、曲がった尾と開いた口の非対称形が縮小画像で識別できる。Blender GUI監視で初回PNGを確認し、暗い内面、広い余白、弱い尾の曲がりを修正して再レンダー。最終Blenderプレビューを目視し、口の空洞、外殻の溝、先端、画面内の余白を確認した。Blender製GLB、STL、透過PNG、プレビューPNGを掲載する。STLは86,020三角形で、辺の共有数検査では境界辺と非多様体辺が各0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "内側の溝は奥で影に沈み、静止画だけでは空洞の深さがやや伝わりにくい。実物の殻としての安定性、最小肉厚、造形方向、サポート材は未検証。",
+      "links": []
+    }
+  ]
+}
