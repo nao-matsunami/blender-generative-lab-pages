@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-18",
+  "headline": "Oblique Tide Calibrator",
+  "headlineEn": "Oblique Tide Calibrator",
+  "summary": "傾いた鋳造フレームの貫通開口に、幅広の指針を差し込んだ架空の潮位計。",
+  "summaryEn": "A cast inclined arch, open aperture and seated ceramic pointer form an imagined tide instrument.",
+  "links": [
+    {
+      "label": "Blender GLB viewer",
+      "url": "../outputs/2026-10-18_oblique-tide-calibrator.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/oblique-tide-calibrator.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/oblique-tide-calibrator.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/oblique-tide-calibrator-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/oblique-tide-calibrator.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_oblique_tide_calibrator.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Ebbhorn Carapaceの曲線的な中空の海生殻から、接地する傾斜鋳造フレームへシルエットを変更。長手方向に成長する管状の殻から、前後面と内壁を持つ貫通開口の環状メッシュへトポロジーと構築法を変更。殻の削り溝から、太い脚、短い荷重帯、指針の直線的な面の切り替えへ表面リズムを変更。石灰色の外殻とローズの内面から、黒化ローズブロンズ、銅、骨色セラミックへ材質を変更。開口を覗く横長視点から、斜め上から器具の厚みと接地部を見せる縦寄りの構図に変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "赤い臓器塊、単純プリミティブの放射配列、細い血管装飾を退け、printable skeletal frameの型を機械的な架空器具に展開した。直近三作の海生殻、吊り布、化石アーチの隣でも、傾いた硬質フレームと片側の重い足が縮小画像で識別できる。初回Blenderプレビューは開口が塞がって見え、指針も浮いて見えたため公開せず、貫通する環状メッシュへ再構築。続くプレビューで右脚に黒い割れが現れたため、内外輪郭の頂点対応と指針の根元を修正して再レンダーした。最終Blenderプレビューを目視し、開口、重みのある接地部、画面余白、材質の階層を確認した。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "静止画ではセラミック指針の根元の嵌合がやや暗い。STLは重なり合う複数メッシュを含み、実際の組立公差、支持強度、造形方向、実物の安定性は未検証。",
+      "links": []
+    }
+  ]
+}
