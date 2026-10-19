@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-19",
+  "headline": "Cleft Fold Bookend",
+  "headlineEn": "Cleft Fold Bookend",
+  "summary": "広い接地板から背板と斜めの折り返しが一体で立ち上がる、2つの貫通孔を備えたブックエンド候補。",
+  "summaryEn": "A one-piece bookend candidate with an integral foot, folded upright and two offset through-windows.",
+  "links": [
+    {"label": "Blender GLB viewer", "url": "../outputs/2026-10-19_cleft-fold-bookend.html"},
+    {"label": "GLB", "url": "../exports/glb/cleft-fold-bookend.glb"},
+    {"label": "STL", "url": "../exports/stl/cleft-fold-bookend.stl"},
+    {"label": "Preview PNG", "url": "../renders/cleft-fold-bookend-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/cleft-fold-bookend.png"},
+    {"label": "Generator", "url": "../offline/generate_cleft_fold_bookend.py"}
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Oblique Tide Calibratorの斜めに接地する環状器具から、水平の足と垂直の背板を連続して折り上げたL字状のブックエンドへシルエットを変更。開いた環状フレームと差し込んだ指針から、単一の閉じた厚板に異なる大きさの2つの貫通孔をブーリアンで抜く構築法とトポロジーへ変更。鍛造帯と可動指針の面分割から、大きな平面、傾斜する上端、非対称の開口へ表面リズムを変更。暗い金属と骨色の組合せから、明るいチョークローズ陶材と暗い切断面へ変更。高い斜め器具視点から、低い製品の三四分角へ変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "赤い臓器塊、単純プリミティブの放射配列、細い血管装飾を退け、folded terrain reliefの型を実用品候補へ変えた。直近三作の器具、海生殻、吊り布と並んでも、水平の足と直立した穴あき背板のL字輪郭で識別できる。初回Blenderプレビューで足が広く材質が平板に見えたため、足を短縮し、陶材を明るくして画角を下げて再レンダーした。最終Blenderプレビューで開口、接地、画面余白、材質階層を目視した。Web案ではなくBlenderから書き出した完成アセットである。STLは1,172三角形で、辺の接続チェックでは境界辺・非多様体辺とも0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "窓の切断面は静止画でやや暗い。紙の重量と摩擦に対する倒れにくさ、実物の造形公差、支持材、プリント方向は未検証。",
+      "links": []
+    }
+  ]
+}
