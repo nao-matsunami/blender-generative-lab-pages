@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-20",
+  "headline": "Shear Cascade",
+  "headlineEn": "Shear Cascade",
+  "summary": "一枚の厚いプリーツ帯が上下にずれた折り返しを連ね、回転時に開いた空間の形を変えるVJ造形。",
+  "summaryEn": "A single thick pleated band climbs through offset turns, shifting its negative space during a seamless rotation.",
+  "links": [
+    {
+      "label": "Animated Blender GLB",
+      "url": "../outputs/2026-10-20_shear-cascade.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/shear-cascade.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/shear-cascade.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/shear-cascade-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/shear-cascade.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_shear_cascade.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Cleft Fold Bookendの水平な足と直立背板から、空中で上下に折り返す縦長の連続帯へシルエットを変更。ブーリアンで穴を抜いた厚板から、中心線・幅・捻り・プリーツをパラメトリックに変える一体の閉じたリボンメッシュへトポロジーと構法を変更。チョークローズの陶材から、プラムのサテン面・明るいローズの中間面・暗い裏面へ材質を変更。低い製品斜視から、空間の抜けを見せる縦構図と360度ループへ画角と動きを変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "正面対称の放射配列、赤い臓器塊、細い血管装飾を退け、一本の太い面が輪郭を作るVJ motion formとした。直近三作のブックエンド、計測器、海生殻と並んでも、縦方向の蛇行と両端の張り出しで識別できる。初回BlenderプレビューはC字状に重なり上部が暗かったため、カメラを正面寄りに移し、材質と前面照明を明るくして再レンダーした。最終Blender PNGを目視し、中央の抜け、連続性、余白、面の階層を確認した。GLB、STL、透過PNG、背景付きプレビューはBlender GUI監視からの出力である。STLは32,588三角形で、丸めた頂点座標による辺接続チェックでは境界辺・非多様体辺とも0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "静止画の上部はまだ暗く、下端のプリーツはやや鋭い。GLBには360度回転を含むが、MP4/アルファ動画と実機VJ環境でのループ再生、物理プリントの強度と支持材は未検証。",
+      "links": []
+    }
+  ]
+}
