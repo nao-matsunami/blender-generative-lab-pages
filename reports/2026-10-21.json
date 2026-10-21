@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-21",
+  "headline": "Siltwing Fossil",
+  "headlineEn": "Siltwing Fossil",
+  "summary": "片側へ伸びる翼状の石板に、三段の堆積層と方向の異なる二つの貫通孔を刻んだ化石造形。",
+  "summaryEn": "An asymmetric fossil plate joins three bedding levels into one weathered stone, pierced by two unequal openings.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-10-21_siltwing-fossil.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/siltwing-fossil.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/siltwing-fossil.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/siltwing-fossil-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/siltwing-fossil.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_siltwing_fossil.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Shear Cascadeの空中に立つ縦長の連続プリーツ帯から、床に置かれる横長で片側が尖る非対称の化石板へシルエットを変更。一枚の掃引リボンから、三つの不規則な堆積層を融合し、方向の異なる二つの孔を貫通させる構法とトポロジーに変更。サテン質のプラム／ローズ面から、粗い石灰・褐色の層状面へ材質と表面リズムを変更。回転を意識した縦構図から、孔と層を見下ろす横長の斜視構図へ変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "直近の正面対称の放射配列、赤い臓器塊、細い血管装飾を避け、perforated scaffoldを低い化石板として解釈した。直近三作の縦帯、L字ブックエンド、傾いた計測器と並べても、二孔のある幅広の翼形で識別できる。Blender GUI監視で初回PNGを出し、上部余白と平板な石面を確認。カメラを高く近づけ、明るい石灰色と露出を調整して再レンダーした。続いてSTLの非多様体辺5件を見つけ、孔の壁をボクセル再構成し、最終Blender PNGを目視した。完成したGLB、STL、透過PNG、背景付きプレビューはすべてBlender出力。STLは131,972三角形、丸めた頂点による辺接続検査で境界辺・非多様体辺とも0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "石層の細い帯はやや均一で、実際の化石の欠けや粒径変化ほど複雑ではない。物理造形の支持材、造形方向、最低肉厚と強度は未検証。",
+      "links": []
+    }
+  ]
+}
