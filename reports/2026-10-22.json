@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-22",
+  "headline": "Dusk Loom Aperture",
+  "headlineEn": "Dusk Loom Aperture",
+  "summary": "左右で高さと落ち方が異なる一枚の膜を弧状に張り、深いプリーツと開いた下部空間を持つ織物彫刻。",
+  "summaryEn": "A single pleated membrane spans an uneven arch, with weighted dark hems and a fully open space below.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-10-22_dusk-loom-aperture.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/dusk-loom-aperture.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/dusk-loom-aperture.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/dusk-loom-aperture-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/dusk-loom-aperture.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_dusk_loom_aperture.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Siltwing Fossilの低く横に広がる硬い石板から、左右の裾で支えられた背の高い膜のアーチへシルエットを変更。三層の融合と二つのブーリアン孔から、一枚の連続グリッド膜を厚み付けして開口を囲む構法とトポロジーへ変更。粗い石灰・褐色の堆積から、くすんだローズの織面、骨色の上縁、暗い厚い裾の面リズムへ変更。上からの横長構図から、下の空間とプリーツを見通す縦寄りの斜視へ変更。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "直近の正面対称放射配列、赤い臓器塊、細い血管装飾を退けた。昨日の化石板、前々日の縦リボン、その前のL字ブックエンドと並べても、下が開いた一枚布の弧で識別できる。Blender GUI監視で初回PNGを出し、膜面の暗さと均一な稜線を確認。稜線を片側へ寄せ、プリーツを深くし、材質と画角を調整して再レンダーした。最終Blender PNGで大きな開口、左右非対称の裾、切れない余白、見える面の階層を確認。表示用GLBと透過PNG、背景付きPNGはBlender出力。STLのみ折り目の接触部をボクセル再構成して閉じ、232,596三角形、丸めた頂点による辺接続検査で境界辺・非多様体辺とも0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "布の繊維や張力を物理シミュレーションしたものではなく、面の質感は滑らか。STLの実物出力、支持材、最低肉厚と安定性は未検証。",
+      "links": []
+    }
+  ]
+}
