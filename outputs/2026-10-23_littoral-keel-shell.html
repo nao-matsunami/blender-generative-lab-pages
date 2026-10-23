@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Littoral Keel Shell / Blender Generative Lab</title>
+  <style>
+    :root{color-scheme:dark;--ink:#f2e9db;--muted:#c4ad97;--accent:#d7a8ad}*{box-sizing:border-box}html,body{width:100%;height:100%}body{margin:0;overflow:hidden;background:radial-gradient(circle at 55% 40%,#302923,#0a0807 72%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}canvas{position:fixed;inset:0;width:100vw;height:100vh;display:block;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.hud{position:fixed;z-index:2;inset:20px 20px auto;display:flex;justify-content:space-between;gap:20px;pointer-events:none;text-shadow:0 2px 20px #000}.hud div{max-width:620px}h1{margin:0;font-size:clamp(24px,3.5vw,48px);line-height:1;text-transform:uppercase}p{margin:10px 0 0;color:var(--muted);font-size:clamp(12px,1.3vw,15px);line-height:1.55}.hud a{pointer-events:auto;flex:none;padding:10px 13px;border:1px solid rgba(241,230,214,.3);color:var(--ink);background:rgba(5,4,4,.72);font-size:12px;text-decoration:none}.label,.motion{position:fixed;z-index:2;bottom:20px;font-size:10px;text-transform:uppercase;pointer-events:none}.label{left:20px;color:var(--accent)}.motion{right:20px;color:#958574}.loading{position:fixed;inset:0;display:grid;place-items:center;color:#a69584;font-size:12px;text-transform:uppercase;transition:opacity .35s;pointer-events:none}.ready{opacity:0}@media(max-width:720px){.hud{display:block}.hud a{display:inline-block;margin-top:12px}.motion{display:none}}
+  </style>
+</head>
+<body>
+  <script>if(location.protocol==="file:")location.replace("https://nao-matsunami.github.io/blender-generative-lab-pages/outputs/2026-10-23_littoral-keel-shell.html");</script>
+  <canvas id="stage" aria-label="Littoral Keel Shell interactive Blender model"></canvas>
+  <div class="hud"><div><h1>Littoral Keel Shell</h1><p>An unequal marine shell grows from a ribbed keel into a pale open basin, with one lifted prow and a dark interior.</p></div><a href="../days/2026-10-23.html">Daily report</a></div>
+  <div class="label">Blender GLB / 2026.10.23</div><div class="motion">drag orbit / pinch zoom / two-finger pan</div><div class="loading" id="loading">Loading Blender asset</div>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
+  <script type="module">
+    import * as THREE from "three";import{GLTFLoader}from"three/addons/loaders/GLTFLoader.js";import{OrbitControls}from"three/addons/controls/OrbitControls.js";
+    const canvas=document.querySelector("#stage"),loading=document.querySelector("#loading"),renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:"high-performance"});renderer.setClearColor(0x161019);renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.27;
+    const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.1,2000),controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.065;controls.autoRotate=false;scene.add(new THREE.HemisphereLight(0xf2e6d5,0x2d231b,2.3));const key=new THREE.DirectionalLight(0xffd8d4,4.1);key.position.set(-4,7,6);scene.add(key);const rim=new THREE.DirectionalLight(0xc69bae,2.3);rim.position.set(5,3,-4);scene.add(rim);
+    new GLTFLoader().load("../exports/glb/littoral-keel-shell.glb",gltf=>{const root=gltf.scene;scene.add(root);const box=new THREE.Box3().setFromObject(root),center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3()),span=Math.max(size.x,size.y,size.z);root.position.sub(center);camera.position.set(span*.9,span*.9,span*1.7);controls.target.set(0,0,0);controls.minDistance=span*.6;controls.maxDistance=span*5;loading.classList.add("ready")},undefined,error=>{loading.textContent="Asset load failed";console.error(error)});
+    addEventListener("resize",resize);resize();renderer.setAnimationLoop(()=>{controls.update();renderer.render(scene,camera)});function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
+  </script>
+</body>
+</html>

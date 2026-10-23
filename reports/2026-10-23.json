@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-23",
+  "headline": "Littoral Keel Shell",
+  "headlineEn": "Littoral Keel Shell",
+  "summary": "潮流に削られた長い海生殻。片側の高い船首、波打つ開口、暗い内腔と積層した外殻を一体の形にした。",
+  "summaryEn": "A long marine shell rises from a ribbed keel into an uneven open lip and a recessed dark basin.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-10-23_littoral-keel-shell.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/littoral-keel-shell.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/littoral-keel-shell.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/littoral-keel-shell-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/littoral-keel-shell.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_littoral_keel_shell.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Dusk Loom Apertureの縦長に吊られた膜アーチから、低く横に伸びる海生殻へシルエットを変更。一枚の厚み付き開放膜から、外殻・波打つ縁・内壁・底が連続する閉じた殻メッシュへ構法とトポロジーを変更。深い縦プリーツから外殻の成長層と縦フルートへ面のリズムを変更。くすんだローズの織面から、褐色の外殻、骨色の縁、暗い梅色の内底へ材質を変更。縦寄りの前斜視から、内腔をのぞく横長の低い斜視へ画角を変更。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "直近の正面対称放射配列、赤い臓器塊、細い血管装飾を退けた。昨日の膜アーチ、前々日の化石板、その前の縦リボンと並べても、片側が高く先細る船形の開いた殻で識別できる。Blender GUI監視で初回PNGを確認し、浅い皿に見えた内腔を深めてカメラを下げた。再レンダーで内外面の交差を発見し、外殻断面を深く修正。縁のうねり、外殻の起伏、内側の材質階層も調整して再レンダーした。最終Blender PNGを目視し、開口、連続する輪郭、切れない余白、明暗の階層を確認した。表示用GLBとPNGはBlender出力。STL用の複製のみボクセル再構成し、386,416三角形、丸めた頂点による辺接続検査で境界辺・非多様体辺とも0。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "内面は意図的に滑らかで、近接すると素材境界の切り替わりが見える。実物出力、最低肉厚、支持材、設置安定性は未検証。",
+      "links": []
+    }
+  ]
+}
