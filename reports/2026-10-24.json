@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-24",
+  "headline": "Unequal Tine Oracle",
+  "headlineEn": "Unequal Tine Oracle",
+  "summary": "高さと角度の異なる二本の厚い叉が、深いV字の空間を挟む儀礼用の計測具。重い片側の踵と異材の接触面を一つの輪郭にまとめた。",
+  "summaryEn": "An asymmetric ritual fork: two broad unequal tines frame a deep V opening above a weighted offset heel.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-10-24_unequal-tine-oracle.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/unequal-tine-oracle.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/unequal-tine-oracle.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/unequal-tine-oracle-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/unequal-tine-oracle.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_unequal_tine_oracle.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Littoral Keel Shellの低く横長い海生殻から、二本の非対称な叉が立つ縦長の計測具へシルエットを変更。連続した内外殻と底を持つ開放容器から、輪郭内に深いV字の抜けを刻む厚い鋳造板と、根元に埋め込んだ接触靴へ構法とトポロジーを変更。成長フルートと波打つ縁から、幅広の平面、角の丸み、二本の異なる傾斜へ表面リズムを変更。黄土・骨色の殻から梅色の黒銅、ローズ銅、骨色の接点へ材質を変更。低い横構図からやや側面を見せる縦構図へ変えた。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "直近の正面対称の放射配列、赤い臓器塊、細い血管装飾を避け、printable skeletal frameを非対称の儀礼計測具に展開した。前3作の海生殻、膜アーチ、低い化石板と並べても二股の縦長輪郭で識別できる。Blender GUI監視で初回プレビューを目視し、胴体の暗さを確認。金属の明度、前面照明、カメラ角度を修正して再レンダーした。最終プレビューで二股の開口、接触靴の根元、余白、面の階層を確認した。GLB、STL、透過PNG、背景付きプレビューはBlenderで出力した。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "踵に設けた小さな貫通窓は静止画で読みにくい。STLは複製をボクセル融合したが、実物の強度、接触靴の耐久性、造形方向、支持材は未検証。",
+      "links": []
+    }
+  ]
+}
