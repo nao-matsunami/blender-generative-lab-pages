@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-31",
+  "headline": "Parallax Sluice",
+  "headlineEn": "Parallax Sluice",
+  "summary": "厚みのある一枚の折り面が、幅と捻りを変えながら斜めに折り返すVJ造形。回転すると面の重なりと抜けが変わる。",
+  "summaryEn": "One thick folded surface sweeps diagonally through alternating depths, changing its overlaps and open space in a rotation loop.",
+  "links": [
+    {"label": "Animated Blender GLB", "url": "../outputs/2026-10-31_parallax-sluice.html"},
+    {"label": "GLB", "url": "../exports/glb/parallax-sluice.glb"},
+    {"label": "STL", "url": "../exports/stl/parallax-sluice.stl"},
+    {"label": "Preview PNG", "url": "../renders/parallax-sluice-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/parallax-sluice.png"},
+    {"label": "Generator", "url": "../offline/generate_parallax_sluice.py"}
+  ],
+  "sections": [
+    {
+      "title": "前作から変えた形",
+      "body": "Unequal Tine Oracleの直立した二股の鋳造板から、斜めに折り返す横長の一枚面へシルエットを変更。厚板のV字開口と埋め込み接触面から、中心線、幅、面の捻り、厚みを連続的に変える閉じた帯メッシュへトポロジーと構法を変更。広い平面と二本の傾斜から、内側に刻んだ不均等な荷重プリーツへ表面リズムを変更。黒銅と接点から、くすんだローズ、骨色の面域、梅色の裏面へ材質を変更。縦長の道具の斜視から、横長の斜め構図と360度ループへ画角と動きを変更した。",
+      "links": []
+    },
+    {
+      "title": "制作と目視",
+      "body": "正面対称の放射配列、赤い臓器塊、細い血管装飾を退け、folded terrain reliefを一体のVJ motion formとして組み立てた。直近の二股計測具、低い海生殻、膜アーチと並んでも、斜めに折り返す幅広い帯の輪郭で識別できる。初回Blenderプレビューでは右下の主要部が画面外へ切れたため、カメラを高くし画角を広げて再レンダーした。最終プレビューで輪郭、連続性、余白、面の階層を目視した。GLB、STL、透過PNG、背景付きプレビューはBlender GUI監視から出力した。",
+      "links": []
+    },
+    {
+      "title": "残る弱点",
+      "body": "静止画では面の折り返しが一部重なり、奥の折り目はやや読みづらい。GLBには回転ループを含むが、MP4/アルファ動画、実機VJ環境、物理プリントは未検証。",
+      "links": []
+    }
+  ]
+}
