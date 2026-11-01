@@ -1,5 +1,11 @@
 # Creative Program
 
+## Current User Direction — 2026-11-01
+
+The current focus is a varied series of **nonfigurative algorithmic light objects for 3D printing**. Use [algorithmic-light-objects.md](algorithmic-light-objects.md) for the active design and fabrication rules. Phase Diagrid is the accepted reference; develop different generating algorithms and silhouettes rather than repeating its diagonal lattice. The user explicitly asked to leave the organ-series visual language behind. Keep shadow-picture work as a separate track for later.
+
+The historical lanes below remain background context. Their rotation rule does not override this focused series while the user's current preference remains active.
+
 This lab should not stay locked to the organ series.
 
 The organ/grotesque direction is useful, but it is now one lane inside a broader generative 3D program. Daily work should rotate between lanes unless the user explicitly asks to stay in one.

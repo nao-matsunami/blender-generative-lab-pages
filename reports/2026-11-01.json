@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-01",
+  "headline": "Bias Contour Lantern",
+  "headlineEn": "Bias Contour Lantern",
+  "summary": "高さとともに広がり、中心が偏る五角形の輪郭層を、四本の幅広い橋で一体化した非具象の照明シェード習作。光は層間の隙間と内面を通る。",
+  "summaryEn": "Offset pentagonal contours widen upward and join through four broad bridges. Open layers reveal the changing path of light.",
+  "links": [
+    {"label": "Interactive Blender GLB", "url": "../outputs/2026-11-01_bias-contour-lantern.html"},
+    {"label": "GLB", "url": "../exports/glb/bias-contour-lantern.glb"},
+    {"label": "STL", "url": "../exports/stl/bias-contour-lantern.stl"},
+    {"label": "Preview PNG", "url": "../renders/bias-contour-lantern-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/bias-contour-lantern.png"},
+    {"label": "Generator", "url": "../offline/generate_bias_contour_lantern.py"}
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "五角形の半径を高さ u に沿って 47.5 + 18.5u + 4.2sin(πu) mm のアポセムで拡大し、12u cos(θ−0.30) + 5u sin(θ+0.65) mm の偏心を与えた。輪郭層の中心高さは 23、36.5、51、66.6、83.4、101.3、120.5、141、155 mm。各層は厚さ 7.0〜7.8 mm、四本の縦橋は角度半幅 0.092〜0.105 rad（底側で概ね 8.7 mm 以上）で接続する。外形約 207 × 214 × 168 mm、名目シェード肉厚 2.8 mm。底部の高さ14 mmの連続リングを設置面とし、底と上の開口から別体LEDの出し入れと換気ができる想定。LED、台座固定、電源とケーブル経路は未設計。",
+      "links": []
+    },
+    {
+      "title": "前作からの変化と目視",
+      "body": "参照作Phase Diagridの捻れた八面柱から、中心をずらしながら上方へ広がる五角形の輪郭シルエットへ変更。斜交する二系統のダイヤ格子から、水平層と四本の連続橋による一体トポロジーへ変更。密度の変わる斜めの交点リズムから、間隔と幅が変わる輪郭段のリズムへ変更。暖かい内面から淡いグラファイト断面へ材質を変え、カメラも高い横斜視にした。旧来の肉色の臓器塊、正面の暗い穴、影絵は採用しない。初回Blender GUIレンダーで手前の橋が暗く読みにくかったため、カメラを横へ回し補助光と露出を修正して再レンダー。最終PNGで輪郭、開口、底部と余白を目視した。",
+      "links": []
+    },
+    {
+      "title": "検証と残る弱点",
+      "body": "STLは136,072三角形、単一連結、全エッジの面接続数2、正の符号付き体積。GLBは1メッシュ・2材質で解析可能。約214 mmの幅は一般的な小型造形機には大きく、造形方向・支持材・スライサー・試作・LED固定・電気安全・熱の評価が残る。現段階は造形デザイン習作であり、print-ready製品ではない。",
+      "links": []
+    }
+  ]
+}

@@ -2,6 +2,14 @@
 
 Use this when Blender GUI opens but command-line/background startup crashes.
 
+## On-demand lifecycle for Codex — 2026-11-01
+
+Blender makes the user's computer slow when left running. Start Blender **only for a job that needs it**, and close it after the queue, renders, and exports finish. A stale watcher heartbeat while Blender is closed is expected; start the GUI watcher again for the next job.
+
+From Codex desktop, use Computer Use to get or launch the Blender app, focus its main editor, press Shift+F4 for the Python Console, paste the `exec(open(...gui_job_watcher.py).read())` command below, and press Return. Verify a fresh heartbeat with `npm run watcher:status` before submitting jobs. The shell `npm run watcher:start` is a fallback and may fail when macOS denies AppleScript keyboard access. Never use Blender `--background` for this project.
+
+After work, confirm that there are no pending or running jobs and that the expected assets exist. Inspect the current Blender window before quitting. If it contains unsaved work, save that work to an appropriate project file or leave Blender open and request the user's decision; do not discard unsaved user state. Then quit Blender through the GUI and verify it is closed. This lifecycle is part of the daily automation, not a request for the user to keep Blender open.
+
 ## Start Watcher
 
 ## Current Symptom To Check
@@ -58,7 +66,7 @@ If `*.job.py` files are not moving, paste the same `exec(open(...).read())` comm
 ```
 
 5. Press `Run Script`.
-6. Leave Blender open.
+6. Leave Blender open while jobs are running, then save any unsaved work and close it.
 
 ## Submit Jobs From Terminal
 

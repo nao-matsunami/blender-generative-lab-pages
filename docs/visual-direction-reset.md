@@ -1,5 +1,9 @@
 # Visual Direction Reset - 2026-09-15
 
+## Current Override — 2026-11-01
+
+For the user's current algorithmic light-object series, follow [algorithmic-light-objects.md](algorithmic-light-objects.md). The organ motifs and crimson/rose palette discussed below are historical diagnosis and do not guide new lantern designs. Preserve the useful review gates: structural distinction, finished Blender output, and a legible silhouette.
+
 ## Diagnosis
 
 The recent organ-motif series has become too similar.
