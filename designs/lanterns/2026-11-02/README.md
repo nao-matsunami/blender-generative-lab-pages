@@ -1,6 +1,6 @@
 # Splayed Fold Beacon — 2026-11-02
 
-A nonfigurative algorithmic light-object shade study made on 2026-11-02. Generator: [`offline/generate_splayed_fold_beacon.py`](../../../../offline/generate_splayed_fold_beacon.py).
+A nonfigurative algorithmic light-object shade study made on 2026-11-02. Generator: [`offline/generate_splayed_fold_beacon.py`](../../../offline/generate_splayed_fold_beacon.py).
 
 ## Rule and dimensions
 

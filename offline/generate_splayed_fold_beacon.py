@@ -13,7 +13,7 @@ SLUG = "splayed-fold-beacon"
 HEIGHT = 172.0
 FACETS = 7
 TAU = 2 * math.pi
-REVISION = int(os.environ.get("SPLAYED_FOLD_REVISION", "0"))
+REVISION = int(os.environ.get("SPLAYED_FOLD_REVISION", "3"))
 
 
 def wrap(a):
