@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-02",
+  "headline": "Splayed Fold Beacon",
+  "headlineEn": "Splayed Fold Beacon",
+  "summary": "七面の折り稜を上方へ広げ、長さの異なる七つの開口で光と奥行きを見せる非具象のシェード習作。",
+  "summaryEn": "Seven splayed ruled folds frame graded vertical portals, exposing depth and light through a single connected shade.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-02_splayed-fold-beacon.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/splayed-fold-beacon.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/splayed-fold-beacon.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/splayed-fold-beacon-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/splayed-fold-beacon.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_splayed_fold_beacon.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "半径を七面体のアポセム 51.5 + 28u + 2.5sin(πu) mm（u=高さ/172）で広げ、各面に最大11.5 mmの三角波状の折り稜と最大9u mmの偏心を与えた。七つの縦開口は角度半幅 0.175 + 0.065sin(πt) + 0.018sin(2.1k) rad、下端約18–24 mm・上端約158–162 mmの範囲で段違いに生成。外形 171.53 × 173.76 × 172.00 mm、名目肉厚 2.8 mm、下部の連続リング高さ16 mm、開口間の予定最小ウェブ幅は約20 mm以上。水平な底リングで設置する。",
+      "links": []
+    },
+    {
+      "title": "光源と組立の仮説",
+      "body": "下と上を開放し、中心を揃えた底側の通過径は設計上少なくとも約97 mmを見込む。Eteviaの公称70 × 70 × 91 mmユニットは数値上通る見込みだが、実物の操作面・Type-C口・出し入れ・保持・換気・発熱は未確認。充電式E26電球は外径と全高が不明で適合未判定。固定方法と受けは現物測定後に設計し、LEDテープや裸基板は代替案とする。",
+      "links": []
+    },
+    {
+      "title": "前作からの変化と目視",
+      "body": "Bias Contour Lanternの偏心した輪郭段シルエットを、上へ開く七面折りシルエットに変更。水平ラメラと四本の縦橋から、連続した折り殻と七つの長い開口へトポロジーを変更。段の反復から広い面・稜線・長さの異なる縦開口へ表面リズムを変更。淡いチョーク／グラファイトから砂色の鉱物質と暗い断面へ材質を変更し、カメラも低い斜視へ。初回Blender GUIレンダーでは折り面が弱く筒状に見えたため、稜線と広がり、開口の長さ、カメラと補助光を修正して再レンダーした。最終PNGでは主要部のクリッピング、浮いた部品、暗すぎる階層を認めない。",
+      "links": []
+    },
+    {
+      "title": "メッシュ検証と残る弱点",
+      "body": "最終STLは137,408三角形、単一連結、全エッジの面接続数2、正の符号付き体積。GLBは1メッシュ・2材質。公称外形はPrusa MK4SとCORE Oneの造形領域内だが、長い開口の上部ブリッジの支持、スライサー判定、実物造形、LED受け、着脱と充電操作、連続点灯時の熱・電気安全は未検証。造形デザイン習作であり、print-ready製品ではない。",
+      "links": []
+    }
+  ]
+}

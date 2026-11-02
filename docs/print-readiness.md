@@ -8,7 +8,7 @@ Use these labels in study notes.
 - `exported`: STL/GLB exists
 - `slicer-check`: opened in slicer and inspected
 - `test-print`: small test printed
-- `print-ready`: dimensions and material assumptions are documented
+- `print-ready`: the intended printer/material, slicer result, and physical test are documented; light objects also require the electrical and thermal checks in [light-object-validation.md](light-object-validation.md)
 
 ## Checklist
 

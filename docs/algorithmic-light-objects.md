@@ -25,8 +25,11 @@ Phase Diagrid already uses crossing diagonal bands on a twisted faceted column. 
 
 ## Prototype and review gates
 
+The printer and LED assumptions, the current piece's open tasks, and the path to a physical validation are tracked in [light-object-validation.md](light-object-validation.md).
+
 - Work in millimetres. Document intended outer dimensions, nominal wall and narrowest structural member. Use a stable bottom or a documented base interface; leave access for the LED assembly and ventilation.
 - Prefer low-heat LED prototypes. A bulb/socket, power circuit, cable routing, thermal clearance, and structural base are separate engineering choices until specified and tested.
+- The user's current lighting reference is a removable, rechargeable LED core with its own battery and controls, housed in a designed printed shade/support. Design charging access and mechanical retention around the actual unit; a bare LED tape circuit is an alternative study rather than the default assumption. A cordless core does not itself require a cable grip. See the dated product and fit notes in [light-object-validation.md](light-object-validation.md).
 - Export STL and GLB. Check one connected component, manifold edge incidence, outward orientation, and a visually legible Blender preview. Run a slicer review and a physical test before calling the design print-ready.
 - For daily public work, start Blender GUI and its watcher only when a job requires them, then close Blender after the queue and exports finish, preserving any unsaved work. Follow [gui-job-watcher.md](gui-job-watcher.md). Keep the actual production date, preview inspection, revision render, build, quality, and publish gates. Do not add a second counted daily piece or backfill missed dates.
 - Record a remaining weakness in each report. Avoid calling a render-only shade a finished electrical lamp.
