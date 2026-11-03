@@ -8,7 +8,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const sourceDir = path.resolve(scriptDir, "..");
 const targetDir = path.join(sourceDir, "pages-work");
 const repo = "nao-matsunami/blender-generative-lab-pages";
-const excluded = new Set([".git", "__pycache__", "node_modules", "pages-work", "renders", "exports", "blender-jobs"]);
+const excluded = new Set([".git", "__pycache__", "node_modules", "pages-work", "renders", "exports", "blender-jobs", "character-3d-trial-2026-11-02"]);
 
 async function pathExists(targetPath) {
   try {
@@ -24,6 +24,7 @@ async function ensureDir(targetPath) {
 }
 
 async function copyRecursive(from, to) {
+  if (from.endsWith(".blend1")) return;
   const stat = await fs.lstat(from);
   if (stat.isDirectory()) {
     await ensureDir(to);

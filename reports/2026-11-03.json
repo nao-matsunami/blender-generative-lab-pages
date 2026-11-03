@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-03",
+  "headline": "Tessellated Drift Lantern",
+  "headlineEn": "Tessellated Drift Lantern",
+  "summary": "九面の先細りシェードに三段のずらした六角セルを刻み、非対称な光のリズムを生む照明オブジェクト習作。",
+  "summaryEn": "Thirty staggered hexagonal cells grade across a tapered nine-face shade, casting a changing light rhythm.",
+  "links": [
+    {"label": "Interactive Blender GLB", "url": "../outputs/2026-11-03_tessellated-drift-lantern.html"},
+    {"label": "GLB", "url": "../exports/glb/tessellated-drift-lantern.glb"},
+    {"label": "STL", "url": "../exports/stl/tessellated-drift-lantern.stl"},
+    {"label": "Preview PNG", "url": "../renders/tessellated-drift-lantern-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/tessellated-drift-lantern.png"},
+    {"label": "Generator", "url": "../offline/generate_tessellated_drift_lantern.py"}
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "九面体のアポセムを高さ158 mmで78→61 mmに縮め、最大2 mmの縦方向のふくらみと4 mmの一方向偏心を加えた。高さ40・79・118 mmの各段に10個の六角開口を置き、中段を0.25セル、段ごとに0.065セルずらす。セル寸法は12.5+1.1sin(0.9列+1.4段) mm。外形161.01 × 163.30 × 158.00 mm、名目肉厚2.8 mm、展開面上のセル間最狭部概算8.19 mm。底は高さ19 mmの連続リングで、下側通過径は設計上約150 mm以上。",
+      "links": []
+    },
+    {
+      "title": "光源と組立の仮説",
+      "body": "上下開口と側面セルを換気経路として残した。着脱式の市販充電LEDを内側に収める想定で、Eteviaの公称70 × 70 × 91 mm本体は底の通り道を寸法上通るが、操作面・Type-C口・保持力・着脱・光の分布・連続点灯時の熱は未確認。充電式E26電球は外形寸法未確認で適合未判定。固定方式は現物測定後に決める。LEDテープ／裸基板は代替案。",
+      "links": []
+    },
+    {
+      "title": "前作からの変化と目視",
+      "body": "Splayed Fold Beaconの上へ広がる七面折り殻から、底が広い九面の先細りシルエットへ変更。七つの長い縦開口から、三段にずれた30の閉じた六角セルへトポロジーと構成法を変更。大きな折り面から細かい段違いのセル反復へ表面リズムを変更し、砂色から淡い石灰色へ。初回Blender GUIレンダーで上部が暗く正面寄りだったため、カメラ・前面光・材質を修正して再レンダー。さらにセル間幅が約4.67 mmと概算されたため開口を縮小して三回目をレンダーし、最終PNGを目視した。主要部のクリッピング、浮いた部品、過度に暗い階層は認めない。",
+      "links": []
+    },
+    {
+      "title": "メッシュ検証と残る弱点",
+      "body": "最終STLは167,632三角形、単一連結、全エッジの面接続数2、正の符号付き体積。GLBは1メッシュ・2材質。公称外形はPrusa MK4SとCORE Oneの造形領域内だが、スライサーでの支持と最狭セル間の強度、実物造形と安定性、LEDの受け・着脱・充電操作、電気・熱は未検証。造形デザイン習作であり、print-ready製品ではない。",
+      "links": []
+    }
+  ]
+}
