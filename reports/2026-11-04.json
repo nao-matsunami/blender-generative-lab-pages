@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-04",
+  "headline": "Eccentric Horizon Lantern",
+  "headlineEn": "Eccentric Horizon Lantern",
+  "summary": "偏心したくびれ形シェードに、位相のずれた五つの水平開口を刻む照明オブジェクト習作。",
+  "summaryEn": "Five long horizon apertures shift in phase around an eccentric, waisted shade.",
+  "links": [
+    {"label": "Interactive Blender GLB", "url": "../outputs/2026-11-04_eccentric-horizon-lantern.html"},
+    {"label": "GLB", "url": "../exports/glb/eccentric-horizon-lantern.glb"},
+    {"label": "STL", "url": "../exports/stl/eccentric-horizon-lantern.stl"},
+    {"label": "Preview PNG", "url": "../renders/eccentric-horizon-lantern-preview.png"},
+    {"label": "Transparent PNG", "url": "../renders/eccentric-horizon-lantern.png"},
+    {"label": "Generator", "url": "../offline/generate_eccentric_horizon_lantern.py"}
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "高さ164 mmの連続したシェード。半径の主項を69+22u−22sin(πu)^1.7 mm（u=高さ/164）とし、中央を絞って上へ広げる。さらに最大4 mmの三周期波と、高さに比例する最大7 mmの偏心を加える。高さ37・63・89・115・139 mmに楕円端の水平開口を置き、中心角を−2.2+0.85sin(2.2k) radでずらす。開口の半角幅は1.12+0.16sin(1.9k+0.3) rad。外形182.17 × 182.36 × 164.00 mm、名目肉厚2.8 mm。開口間の高さ方向の最小予定ウェブは約8 mmで、底部に高さ19 mmの連続リングを残した。",
+      "links": []
+    },
+    {
+      "title": "光源と組立の仮説",
+      "body": "上下開口と五つの側面窓を残し、充電式コードレスLEDを下から着脱する構想。Eteviaの掲載値70 × 70 × 91 mmと比較すると下部開口は設計寸法上十分広いが、実物の突起・操作面・Type-C口、保持方法、充電時の取り外し、通気と発熱は未確認。充電式E26電球は外形未確認で適合未判定。現物確認前に固定方式を決めない。LEDテープや裸基板は代替案。",
+      "links": []
+    },
+    {
+      "title": "前作との差と目視修正",
+      "body": "Tessellated Drift Lanternの九面先細りから、くびれと偏心した広い上口へシルエットを変更。三段30個の六角セルから、五つの長い水平開口へトポロジーと面のリズムを変更。淡い石灰色から青灰色のマット鉱物色へ変え、反対側から低めの斜め視点とした。初回GUIレンダーでは上部が重く見え、窓が一部隠れたため、開口位相と高さ、材質、視点、前面光を修正して再レンダーした。最終PNGを目視し、主要部のクリッピング、独立した浮き部品、暗すぎる階層は認めなかった。",
+      "links": []
+    },
+    {
+      "title": "メッシュ検証と残る弱点",
+      "body": "最終STLは188,900三角形、単一連結、全エッジの面接続数2、正の符号付き体積。GLBは1メッシュ・2材質。外形はPrusa MK4SとCORE Oneの公称造形領域内。長い水平開口の上縁の支持、スライサーによる薄肉・強度、実物造形と安定性、LEDの保持・操作・充電、電気・熱の検証は未実施。造形デザイン習作であり、print-ready製品ではない。",
+      "links": []
+    }
+  ]
+}
