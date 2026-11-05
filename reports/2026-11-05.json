@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-05",
+  "headline": "Facet Fan Lantern",
+  "headlineEn": "Facet Fan Lantern",
+  "summary": "九枚の幅の異なる縦ブレードを上下の連続リングでつないだ、多面体状の照明シェード習作。",
+  "summaryEn": "Nine noncrossing vertical blades join two collars around a faceted drum.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-05_facet-fan-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/facet-fan-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/facet-fan-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/facet-fan-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/facet-fan-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_facet_fan_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "高さ166 mmを基準に、九面体の辺心距離を66+17sin(πu)^1.3 mm（u=z/166）で変え、中央を張り出させる。9周期の3.2 mmの稜線変位と最大4 mmの軸ずれを重ねる。九枚の縦ブレードの中心角は2π(k+0.06sin(1.8k))/9とし、高さ方向に最大0.07 radだけ揺らす。半角幅は0.17+0.025sin(2.1k+0.4)+0.025sin(πu)。上縁は最大±8 mmの傾きを持つ。外形169.62 × 171.05 × 174.00 mm、名目肉厚2.8 mm。最小予定ブレード幅は約19 mmで、底部に高さ19 mmの連続リングがある。",
+      "links": []
+    },
+    {
+      "title": "光源と通気の仮説",
+      "body": "底と上を開放し、九つの長い側面開口を設ける。掲載値70 × 70 × 91 mmのEtevia充電式タッチライトは、底の設計上の約φ126 mmの通路を通る余裕があるが、現物の突起、操作面、Type-C口、取り外し、保持、通気・発熱は未確認。充電式E26電球の外形は未確認。固定方法は未決定で、LEDテープや裸基板は代替案。レンダー内の点光源は見え方の説明用で、電気部品の設計ではない。",
+      "links": []
+    },
+    {
+      "title": "前作との差と目視修正",
+      "body": "Eccentric Horizon Lanternのくびれた連続面と五つの水平窓から、中央が張る九面ドラム、九枚の独立した縦ブレードと上下のカラーへ変更した。面のリズムは横方向の切欠きから幅の異なる縦方向の反復へ、青灰のマット材からサテン調の明るいピューターへ、視点も高めの斜め側面へ変更。初回GUIレンダーの暗い前面と重い水平上縁を見て、上縁を傾け、ブレード幅、材質、前面光、視点を修正して再レンダーした。最終PNGを目視し、主要部の切れ、浮いた部品、過度に暗い階層は認めなかった。",
+      "links": []
+    },
+    {
+      "title": "メッシュ検証と残る弱点",
+      "body": "最終STLは144,356三角形、単一連結、全216,534エッジの面接続数2、正の符号付き体積。GLBは1メッシュ・2材質。外形はPrusa MK4SとCORE Oneの公称領域内。長いブレードの層間強度と上部カラーの支持、スライサー、実物造形と安定性、LED保持・操作・充電、電気・熱の確認は未実施。造形デザイン習作であり、print-ready製品ではない。",
+      "links": []
+    }
+  ]
+}
