@@ -15,17 +15,17 @@
   <script>if(location.protocol==="file:")location.replace("https://nao-matsunami.github.io/blender-generative-lab-pages/outputs/2026-11-06_interference-basin.html");</script>
   <canvas id="stage" aria-label="Interference Basin interactive Blender model"></canvas>
   <div class="hud"><div><h1>Interference Basin</h1><p>Two connected screens offset elliptical and lateral apertures around a removable light-core space.</p></div><a href="../days/2026-11-06.html">Daily report</a></div>
-  <section class="panel" aria-label="光の見え方の操作">
-    <h2>光の見え方 / Light study</h2>
-    <button id="light-mode" type="button" aria-pressed="false">仮想光源を点灯</button>
-    <label for="light-height">光源の高さ <output id="height-value">55 mm</output></label>
+  <section class="panel" aria-label="Light study controls">
+    <h2>Light study</h2>
+    <button id="light-mode" type="button" aria-pressed="false">Turn on virtual light</button>
+    <label for="light-height">Light height <output id="height-value">55 mm</output></label>
     <input id="light-height" type="range" min="20" max="120" value="55">
-    <label for="light-power">相対光量 <output id="power-value">100%</output></label>
+    <label for="light-power">Relative brightness <output id="power-value">100%</output></label>
     <input id="light-power" type="range" min="20" max="180" value="100">
-    <label for="light-color">光の色</label>
-    <select id="light-color"><option value="2700">電球色 2700 K</option><option value="4000">中間色 4000 K</option><option value="6000">昼光色 6000 K</option></select>
-    <label for="turn"><span>オブジェクトを回転（約60秒／周）</span><input id="turn" type="checkbox"></label>
-    <p class="note">実際のGLB形状による影の表示です。仮想点光源を使用し、樹脂の透過・散乱、LEDの配光、照度・温度は再現しません。</p>
+    <label for="light-color">Light colour</label>
+    <select id="light-color"><option value="2700">Warm white 2700 K</option><option value="4000">Neutral white 4000 K</option><option value="6000">Daylight 6000 K</option></select>
+    <label for="turn"><span>Rotate object (~60 s/rev)</span><input id="turn" type="checkbox"></label>
+    <p class="note">Shadows use the actual GLB geometry and an idealized point source. Material transmission and scattering, the real LED beam, illuminance, and temperature are not simulated.</p>
   </section>
   <div class="label">Blender GLB / 2026.11.06</div><div class="motion">drag orbit / pinch zoom / two-finger pan</div><div class="loading" id="loading">Loading Blender asset</div>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
@@ -66,7 +66,7 @@
     lamp.castShadow=true;
     lamp.shadow.mapSize.set(1024,1024);
     lamp.shadow.camera.near=2;
-    lamp.shadow.camera.far=500;
+    lamp.shadow.camera.far=1000;
     lamp.shadow.bias=-.001;
     lamp.shadow.normalBias=.15;
     lamp.visible=false;
@@ -75,13 +75,13 @@
     emitter.visible=false;
     scene.add(emitter);
     const studyMaterial=new THREE.MeshStandardMaterial({color:0xd6d0c2,roughness:1,side:THREE.DoubleSide});
-    const floor=new THREE.Mesh(new THREE.PlaneGeometry(650,650),studyMaterial);
+    const floor=new THREE.Mesh(new THREE.PlaneGeometry(1800,1800),studyMaterial);
     floor.rotation.x=-Math.PI/2;
     floor.receiveShadow=true;
     floor.visible=false;
     scene.add(floor);
-    const wall=new THREE.Mesh(new THREE.PlaneGeometry(650,420),studyMaterial.clone());
-    wall.position.set(0,65,-245);
+    const wall=new THREE.Mesh(new THREE.PlaneGeometry(1800,900),studyMaterial.clone());
+    wall.position.z=-245;
     wall.receiveShadow=true;
     wall.visible=false;
     scene.add(wall);
@@ -109,7 +109,7 @@
       key.intensity=lit ? .85 : 1.8;
       rim.intensity=lit ? .45 : 1.15;
       button.setAttribute("aria-pressed",String(lit));
-      button.textContent=lit?"仮想光源を消灯":"仮想光源を点灯";
+      button.textContent=lit?"Turn off virtual light":"Turn on virtual light";
     }
     button.addEventListener("click",()=>{lit=!lit;updateMode()});
     for(const input of [heightInput,powerInput,colorInput])input.addEventListener("input",updateLamp);
@@ -124,6 +124,7 @@
       root.traverse(object=>{if(object.isMesh){object.castShadow=true;object.receiveShadow=true}});
       scene.add(root);
       floor.position.y=-halfHeight-2;
+      wall.position.y=floor.position.y+450;
       camera.position.set(span*1.08,span*1.18,span*1.86);
       controls.target.set(0,0,0);
       controls.minDistance=span*.6;

@@ -17,3 +17,5 @@ This is an **exported design study, not print-ready or a finished electrical pro
 ## Interactive light study — 2026-11-06 follow-up
 
 The public GLB viewer now has a point-light study. It casts shadows from the actual exported geometry onto a virtual floor and wall. Visitors can adjust the virtual light's height, relative power and colour, switch it off, and rotate the object at approximately one turn per minute. This shows how the aperture pattern may project and change with viewpoint. It is **not photometry**: the real LED beam, printed material transmission/scattering, illuminance and heat have not been measured or simulated. The turntable control is a visual preview, not a mechanically designed rotating assembly.
+
+Follow-up display refinement: the virtual floor and wall were enlarged so their edges no longer truncate the visible projection, and the light-study panel was translated fully into English. The shade mesh and exported assets did not change.
