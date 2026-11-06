@@ -25,6 +25,7 @@ async function ensureDir(targetPath) {
 
 async function copyRecursive(from, to) {
   if (from.endsWith(".blend1")) return;
+  if (path.dirname(from) === path.join(sourceDir, "outputs") && !from.endsWith(".html")) return;
   const stat = await fs.lstat(from);
   if (stat.isDirectory()) {
     await ensureDir(to);
