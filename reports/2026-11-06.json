@@ -5,12 +5,30 @@
   "summary": "傾いた楕円開口の外スクリーンと段違いの内スクリーンを、厚みのある環状フットで一体化した二重の照明シェード習作。",
   "summaryEn": "Two connected screens offset elliptical and lateral apertures around a removable light-core space.",
   "links": [
-    {"label": "Interactive Blender GLB", "url": "../outputs/2026-11-06_interference-basin.html"},
-    {"label": "GLB", "url": "../exports/glb/interference-basin.glb"},
-    {"label": "STL", "url": "../exports/stl/interference-basin.stl"},
-    {"label": "Preview PNG", "url": "../renders/interference-basin-preview.png"},
-    {"label": "Transparent PNG", "url": "../renders/interference-basin.png"},
-    {"label": "Generator", "url": "../offline/generate_interference_basin.py"}
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-06_interference-basin.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/interference-basin.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/interference-basin.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/interference-basin-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/interference-basin.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_interference_basin.py"
+    }
   ],
   "sections": [
     {
@@ -31,6 +49,11 @@
     {
       "title": "メッシュ検証と残る弱点",
       "body": "最終STLは201,468三角形、単一連結、全302,202エッジが各2面に接続し、正の符号付き体積。GLBは1メッシュ・3材質。底部で最初に発見した非多様体の辺は厚み7 mmの一体フットに直して解消した。Prusa MK4SとCORE Oneの公称造形領域には外形上収まる。二層間の狭い空間と上部リムの支持、スライサー判定、実物の強度・安定性、LEDの保持・操作・充電、電気・熱試験は未実施。これは造形デザイン習作であり、print-readyの電気製品ではない。",
+      "links": []
+    },
+    {
+      "title": "公開ビューアの光スタディ（11月6日追記）",
+      "body": "実際のGLB形状を通る仮想点光源の影を床と背面に投影。閲覧者は光源高さ、相対光量、色を変更し、オブジェクトを約60秒/周で回せる。これは開口パターンの参考表示で、樹脂の透過・散乱、実LEDの配光、照度・温度を再現するものではない。回転台は製品候補を調査した段階で、実機の滑り・偏心・安定性は未確認。",
       "links": []
     }
   ]

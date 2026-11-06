@@ -13,3 +13,7 @@ The first Blender GUI preview showed regular box-like windows. I changed apertur
 Compared with 2026-11-05 Facet Fan Lantern, silhouette, topology, construction method, surface rhythm, material and camera all change. The STL has **201,468 triangles**, one connected component, every **302,202 edges** incident to two faces, and positive signed volume. The GLB has one mesh and three materials. No anatomical motif, flesh or dark red palette, diagonal lattice or shadow picture appears.
 
 This is an **exported design study, not print-ready or a finished electrical product**. Slicer review, physical strength and stability, print support in the nested gap, real LED controls, charging, retention, ventilation and thermal/electrical tests remain.
+
+## Interactive light study — 2026-11-06 follow-up
+
+The public GLB viewer now has a point-light study. It casts shadows from the actual exported geometry onto a virtual floor and wall. Visitors can adjust the virtual light's height, relative power and colour, switch it off, and rotate the object at approximately one turn per minute. This shows how the aperture pattern may project and change with viewpoint. It is **not photometry**: the real LED beam, printed material transmission/scattering, illuminance and heat have not been measured or simulated. The turntable control is a visual preview, not a mechanically designed rotating assembly.
