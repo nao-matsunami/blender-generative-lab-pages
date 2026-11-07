@@ -2,7 +2,7 @@
 
 ## Current User Direction — 2026-11-01
 
-The current focus is a varied series of **nonfigurative algorithmic light objects for 3D printing**. Use [algorithmic-light-objects.md](algorithmic-light-objects.md) for the active design and fabrication rules. Phase Diagrid is the accepted reference; develop different generating algorithms and silhouettes rather than repeating its diagonal lattice. The user explicitly asked to leave the organ-series visual language behind. Keep shadow-picture work as a separate track for later.
+The current focus is a varied series of **nonfigurative algorithmic light objects for 3D printing** with public interactive light/shadow studies. On 2026-11-06 the user asked to continue this direction for a while and raised readable message shadows as a possible experiment. Use [algorithmic-light-objects.md](algorithmic-light-objects.md) for the active design, projection, and fabrication rules. Phase Diagrid is the accepted reference; develop different generating algorithms and silhouettes rather than repeating its diagonal lattice. The user explicitly asked to leave the organ-series visual language behind. Night Orchard's figurative shadow-picture work remains a separate track.
 
 The historical lanes below remain background context. Their rotation rule does not override this focused series while the user's current preference remains active.
 

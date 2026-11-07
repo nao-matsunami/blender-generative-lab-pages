@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-07",
+  "headline": "Pleat Drift Shade",
+  "headlineEn": "Pleat Drift Shade",
+  "summary": "12本の折れ面を上へずらしながら広げた、非具象の卓上照明シェード習作。",
+  "summaryEn": "Twelve drifting folded facets flare upward around six staggered light reveals.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-07_pleat-drift-shade.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/pleat-drift-shade.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/pleat-drift-shade.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/pleat-drift-shade-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/pleat-drift-shade.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_pleat_drift_shade.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "高さu=z/174、位相p=12θ/(2π)−0.48u、三角波t=1−4|fract(p)−0.5|。外半径r=65+24u+14t sin(π(0.14+0.72u))+9u cos(θ−0.7) mm。6本の交互に置いた縦開口は高さをずらした。外形190.56 × 190.32 × 174 mm、名目肉厚3 mm。開口間の予定最小幅は概算30 mm以上。連続した環状底面に接地し、上下開放と側面開口でLED出し入れと通気を想定する。",
+      "links": []
+    },
+    {
+      "title": "修正と前作との差",
+      "body": "初回GUIプレビューは折れ目が弱く、細い開口の輪郭が階段状だった。折りの振幅、上部の広がり、開口の幅と数、材質、画角を変更して再レンダーした。最終PNGでは主要部のクリッピング、浮いた部品、暗すぎる階層は見られなかった。前作Interference Basinの二重穿孔スクリーンから、単層の折れ面、上部へ広がる非対称シルエット、交互に配置した縦開口へ変更。トポロジー、構築方法、表面リズム、材質、画角も変えた。旧臓器パレットと斜交格子は使っていない。",
+      "links": []
+    },
+    {
+      "title": "検証と残る弱点",
+      "body": "STLは69,768三角形、単一連結、全104,652辺が2面に接続し、符号付き体積は正。Prusa MK4SとCORE Oneの公称造形領域内。掲載寸法70 × 70 × 91 mmのEtevia充電式タッチライトは中心通路を寸法上通る見込みだが、現物の突起、操作、充電、保持、換気、発熱を未確認。充電式E26電球の実寸も不明。固定方式は未決定。スライサー、実物造形、電気・熱試験も未実施。残る造形上の弱点は長い開口周りのブリッジと折り稜線の積層強度。造形習作であり、print-readyでも完成した電気製品でもない。",
+      "links": []
+    }
+  ]
+}
