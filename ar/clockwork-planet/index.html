@@ -4,11 +4,54 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>卓上のからくり惑星をARで見る</title>
 <meta name="description" content="iPhoneやAndroidで、回転するからくり惑星を机の上に置いてみよう。">
-<style>body{margin:24px auto;padding:0 20px;max-width:520px;background:#10181c;color:#eee9dd;font-family:system-ui,sans-serif}img{display:block;width:100%;border-radius:12px}p{line-height:1.7}.android{display:block;margin:20px 0 8px;padding:14px 18px;border-radius:8px;background:#d2b17d;color:#152528;font-weight:600;text-align:center;text-decoration:none}#android-help{display:none}#android-help:target{display:block}#android-help a{color:#e5bc80}</style>
+<style>body{margin:24px auto;padding:0 20px;max-width:520px;background:#10181c;color:#eee9dd;font-family:system-ui,sans-serif}img{display:block;width:100%;border-radius:12px}p{line-height:1.7}.android{display:block;margin:20px 0 8px;padding:14px 18px;border-radius:8px;background:#d2b17d;color:#152528;font-weight:600;text-align:center;text-decoration:none}[hidden]{display:none!important}#ar-help a{color:#e5bc80}</style>
 <h1>卓上のからくり惑星</h1>
 <p>iPhoneはSafariで画像をタップし、「AR」を選んでください。AndroidはChromeで画像の下のボタンをタップしてください。</p>
 <a rel="ar" href="./planet-ar-motion.usdz"><img src="./poster.png" alt="回転するからくり惑星をARで開く"></a>
-<a class="android" href="intent://arvr.google.com/scene-viewer/1.0?file=https%3A%2F%2Fnao-matsunami.github.io%2Fblender-generative-lab-pages%2Far%2Fclockwork-planet%2Fplanet-ar.glb&amp;mode=ar_only#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=https%3A%2F%2Fnao-matsunami.github.io%2Fblender-generative-lab-pages%2Far%2Fclockwork-planet%2F%23android-help;end;">Androidで机に置く（AR）</a>
-<p id="android-help">AndroidでARが開かない場合は、Chromeでこのページを開き、<a href="https://play.google.com/store/apps/details?id=com.google.ar.core">Google Play 開発者サービス（AR）</a>が最新版か確認してください。</p>
+<section id="android" hidden>
+  <model-viewer id="planet" src="./planet-ar.glb" poster="./poster.png"
+    alt="回転するからくり惑星" camera-controls autoplay ar
+    ar-modes="webxr scene-viewer" ar-placement="floor"
+    style="width:100%;height:360px;background:#19282a;border-radius:12px">
+    <button slot="ar-button" hidden></button>
+  </model-viewer>
+  <button class="android" id="open-ar" type="button" disabled>Androidで机に置く（AR）</button>
+  <p id="ar-status" role="status">モデルを読み込んでいます…</p>
+  <p id="ar-help" hidden>Chromeでこのページを開き、<a href="https://play.google.com/store/apps/details?id=com.google.ar.core">Google Play 開発者サービス（AR）</a>を確認してください。</p>
+</section>
+<script type="module">
+if (/Android/i.test(navigator.userAgent)) {
+  const section = document.querySelector('#android');
+  const model = document.querySelector('#planet');
+  const button = document.querySelector('#open-ar');
+  const status = document.querySelector('#ar-status');
+  const help = document.querySelector('#ar-help');
+  document.querySelector('a[rel="ar"]').hidden = true;
+  section.hidden = false;
+  function reportFailure(message) {
+    status.textContent = message;
+    help.hidden = false;
+  }
+  model.addEventListener('load', () => {
+    button.disabled = false;
+    status.textContent = 'ボタンをタップしてARを起動してください。';
+  });
+  model.addEventListener('error', () => reportFailure('3Dモデルを読み込めませんでした。'));
+  model.addEventListener('ar-status', ({ detail }) => {
+    if (detail.status === 'failed') reportFailure('このブラウザでARを起動できませんでした。');
+    if (detail.status === 'session-started') status.textContent = 'カメラを机に向けてください。';
+  });
+  button.addEventListener('click', () => {
+    if (!model.canActivateAR) {
+      reportFailure('このブラウザで使えるAR機能が見つかりませんでした。');
+      return;
+    }
+    status.textContent = 'ARを起動しています…';
+    model.activateAR().catch(() => reportFailure('ARを起動できませんでした。'));
+  });
+  import('https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js')
+    .catch(() => reportFailure('ARビューアを読み込めませんでした。ページを開き直してください。'));
+}
+</script>
 <p>カメラを机に向けて惑星を置き、リングや月の回転を眺めてみてください。</p>
 </html>
