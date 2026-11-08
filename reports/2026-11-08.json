@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-08",
+  "headline": "Orbit Terrace Lantern",
+  "headlineEn": "Orbit Terrace Lantern",
+  "summary": "5段の水平開口と位相をずらした幅広の支柱を持つ、非具象の卓上照明シェード習作。",
+  "summaryEn": "Five annular shadow gaps alternate their piers around an offset terraced shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-08_orbit-terrace-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/orbit-terrace-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/orbit-terrace-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/orbit-terrace-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/orbit-terrace-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_orbit_terrace_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "u=z/166、段番号floor(5u)。外半径r=64+s段+4cos(2θ+1.4u)+5u cos(θ−0.85) mm、s段=[0,7,16,11,4] mm。z=31+28k mm（k=0..4）を中心とする幅11 mmの水平開口を、各段3本の角幅0.4 radの支柱がつなぐ。支柱位相は段ごと0.31 radずれる。外形167.00 × 155.23 × 166.00 mm、名目肉厚3.2 mm。予定最小垂直帯幅は約17 mm、支柱円周幅は約25 mm。高さ19 mmの連続底リングで接地し、上下と側面からLEDを出し入れし通気する想定。",
+      "links": []
+    },
+    {
+      "title": "修正と前作との差",
+      "body": "初回GUIレンダーでは上部の無開口帯が重かった。開口を4段から5段へ増やし、位相、材質、画角、光量を修正して再レンダーした。最終PNGを目視し、主要部のクリッピング、浮いた部品、暗すぎる階層は見られなかった。前作Pleat Drift Shadeの縦方向に広がる単一折り面から、段状シルエット、水平環状開口、交互の支柱、砂色の材質、俯瞰寄りの画角へ変更した。斜交格子や旧臓器パレットは使わない。",
+      "links": []
+    },
+    {
+      "title": "検証と残る弱点",
+      "body": "STLは73,536三角形、単一連結、全110,304辺が2面に接続し、符号付き体積は正。MK4SとCORE Oneの公称造形領域内。Etevia充電式タッチライトの掲載幅70 mmは中心通路を寸法上通る見込みだが、現物の寸法・操作・充電・保持・換気・発熱は未確認。充電式E26電球の実寸も不明で、固定方式は決めていない。スライサー、実物造形、電気・熱試験は未実施。水平の長い帯のオーバーハング、支柱接合部の層間強度、底面の安定性が残る弱点。造形習作であり、print-readyまたは完成した電気製品とは呼ばない。",
+      "links": []
+    }
+  ]
+}

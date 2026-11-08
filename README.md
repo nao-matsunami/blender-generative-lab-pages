@@ -1,5 +1,7 @@
 # Blender Generative Lab
 
+このプロジェクトの新規公開ページには、外部からの流入を確認するためGA4を設定します。既存の測定ID、noteやSNSからのリンクの付け方、公開時の確認手順は [AGENTS.md](AGENTS.md) を参照してください。
+
 Algorithmic design studies for Blender, VJ visuals, and 3D printing.
 
 The main series is **Organic Motion Objects**: looping organic 3D forms for web previews, rendered VJ assets, GLB/STL packs, and future `.blend` source products.
