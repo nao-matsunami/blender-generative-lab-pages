@@ -3,7 +3,7 @@
   "headline": "Parallax Oculi Shade",
   "headlineEn": "Parallax Oculi Shade",
   "summary": "五角の緩い起伏と位相をずらした楕円開口を持つ、非具象の充電式LED向けシェード習作。",
-  "summaryEn": "Nine staggered elliptical apertures cut through a fivefold tapered shell.",
+  "summaryEn": "Nine staggered elliptical apertures cut through a fivefold tapered shell; explore its virtual light and shadow.",
   "links": [
     {
       "label": "Interactive Blender GLB",
@@ -44,6 +44,11 @@
     {
       "title": "検証と残る弱点",
       "body": "STLとGLBはBlender GUIから出力。Eteviaタッチライトの掲載幅70 mmは名目内径上は通る見込みだが、現物の寸法・操作・充電・保持・換気・発熱は未確認。充電式E26電球の実寸も不明で固定方式は未確定。楕円穴上端のオーバーハング、開口間の強度、底面の安定性はスライサーと実物試験が必要。電気・熱試験も未実施で、造形デザイン習作として扱う。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "公開GLBビューアに仮想点光源を内蔵。床と背面壁への光・影を、光源高さ20–120 mm、相対光量20–180%、色温度2700/4000/6000 K、オン・オフ、約60秒/周の回転で確認できる。Eteviaタッチライトと充電式E26電球は参照候補であり、実測配光ではない。透過・散乱、実際のLEDの広がり、照度、温度は未計算。",
       "links": []
     }
   ]
