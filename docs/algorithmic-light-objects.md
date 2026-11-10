@@ -4,6 +4,14 @@ The user wants an ongoing family of nonfigurative, algorithmically generated for
 
 ## Design boundary
 
+### Direction confirmed 2026-11-11
+
+The user approved Offset Contour Lantern and wants more works in this spirit, with a higher standard for each study. Keep the clear geometric construction and interactive light/shadow view, but do not repeat its stacked horizontal-channel grammar or Orbit Terrace Lantern's stepped annulus as the next default. Before building, compare the proposed geometry with the last three public works; a different colour or camera alone does not establish a new work. Record the particular new geometric idea, why its unlit form is compelling, and what projection question its apertures will test.
+
+For each preview, review the full silhouette, the close-up junctions, the underside/access route, and the projected light/shadow at two source heights or angles. Revise the weakest of these before publishing. Prefer one strong construction rule and resolved connections over extra decorative features. If the result remains too close to a recent work or hides its construction in the public view, continue revising rather than count it as the day's finished study.
+
+Keep a short evidence table for each new work: concern, design assumption, check performed, observation, and still-needed physical test. Seek an independent AI critique for unresolved risks when the specific external service and the material shared are authorized; record its objections separately from measured evidence. AI agreement does not establish printability, thermal safety, or real LED photometry.
+
 - Let a geometric rule create the body: changing lattice density, phase, curvature, fold angle, cell size, layer offset, or facet orientation. Explain the rule and expose meaningful parameters in the generator.
 - Do not carry forward the prior organ series' soft mass, anatomical associations, fleshy folds, dark crimson/rose palette, or frontally centered black cavity. A curved surface is acceptable only when its geometric construction is the clear subject.
 - The user now wants to continue this light-object and interactive light/shadow study direction for a while (2026-11-06). A typographic message cast as a shadow is an approved design experiment within this series. Keep **Night Orchard** as a separate historical shadow-picture track; do not adopt its figurative imagery or turn every new object into a repeated letter stencil.
