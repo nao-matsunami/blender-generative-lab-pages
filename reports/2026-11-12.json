@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-12",
+  "headline": "Spiral Eave Canopy",
+  "headlineEn": "Spiral Eave Canopy",
+  "summary": "広い庇状の殻に五つの螺旋開口を通した非具象の照明習作。",
+  "summaryEn": "Five swept openings in a broad, low canopy for a virtual light study.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-12_spiral-eave-canopy.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/spiral-eave-canopy.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/spiral-eave-canopy.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/spiral-eave-canopy-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/spiral-eave-canopy.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_spiral_eave_canopy.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "外半径 r=77+27sin(πu)−35u+3.5sin(5θ+1.3u)sin(πu) mm、u=z/148。五つの開口中心は θ=2πk/5+1.10(u−0.14)、角半幅0.30 rad。高さ21–125 mmの開口を上下の連続帯で結ぶ。名目肉厚3.8 mm。底から光源を着脱する設計仮説で、受けや固定具は未設計。 STL外接寸法179.00 × 175.42 × 148.00 mm。開口間の最小ウェブは角度差から概算27 mm以上。底面の内径は設計式で約146.4 mm。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月9日の楕円窓殻、10日の水平段、11日の縦折板に対し、広く低い庇形のシルエット、五本の回転する開口、連続した曲面の表面リズム、砂色と上から見下ろす構図へ変更。非点灯時にも周縁と開口の旋回が見える。初回レンダーでは開口端の階段状輪郭と弱い回転感を確認し、メッシュ分割、開口角、画角、材質明度を修正して再レンダー。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "独自のGLBを仮想点光源で照らし、床と背面壁への投影を高さ35 mmと95 mmで比較する。光源高さ、相対光量、色、回転を操作できる。これは形状検討であり、Eteviaまたは充電式E26の実測配光、照度、材料透過、温度ではない。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の連続帯21 mm、上の連続帯23 mm、名目肉厚3.8 mm。底の開口は大きいが、市販LEDの突起、操作、充電、保持、換気・温度の適合は未判定。【STL検査】649,420三角形、全辺の面接続数2、外接寸法179.00 × 175.42 × 148.00 mmを確認。連結性とスライサー結果は未確認。【未検証】実機プロファイルでのスライサー、実物印刷、LEDの挿抜と安定性、実影と温度。今回の独立AI送信は未実施。印刷候補はユーザー選択まで確定しない。",
+      "links": []
+    }
+  ]
+}
