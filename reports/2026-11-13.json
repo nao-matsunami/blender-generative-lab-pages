@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-13",
+  "headline": "Tripod Portal Lantern",
+  "headlineEn": "Tripod Portal Lantern",
+  "summary": "三つの門状開口と曲がる支柱を一体化した非具象の照明習作。",
+  "summaryEn": "Three curved portals in a continuous mineral-white shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-13_tripod-portal-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/tripod-portal-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/tripod-portal-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/tripod-portal-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/tripod-portal-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_tripod_portal_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "三つの支柱の中心角は2πk/3+0.14sin(πu)、u=z/172。支柱の角半幅は0.38+0.78[1−sin(πt)^0.65] rad、t=(z−22)/127。連続する底部22 mmと上部23 mmの間で三つの開口が広がる。外半径は73+9sin(πu)−13u+3cos(3θ+0.5u)sin(πu) mm。名目肉厚4.0 mm。STL外接寸法152.97 × 153.59 × 172.00 mm、432,960三角形。底面の中心通過径は設計式で約φ138 mm。最小構造幅はスライサー未確認。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月10日の水平段、11日の縦折板、12日の螺旋開口付き庇と比較し、縦長の三門シルエット、三つの大きな連続開口を囲む一体殻、支柱が合流する構造規則、白い鉱物色、二門が見える斜めの構図へ変更。非点灯時には柱の合流と負形が主役。初回は四角い開口と暗い支柱だったため開口幅を高さで連続変化させ、材質と画角を修正。透過設定も修正して再レンダーした。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "作品固有のGLBと仮想点光源を使う公開ビューアで床・壁への投影を操作できる。高さ35 mmと95 mm、相対光量、色、回転を比較する設計。低い光源では門の上部で光を遮り、高い光源では床方向の光路が広がる見込み。これは理想点光源の形状検討で、Eteviaタッチライトまたは充電式E26の実測配光、照度、樹脂透過、温度ではない。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】連続した底帯22 mm、上帯23 mm、名目肉厚4.0 mm。底から取り外すLEDコアを想定するが受け・固定方式は未確定。【STL確認】432,960三角形、外接寸法152.97 × 153.59 × 172.00 mmを確認。連結性、面接続、スライサー結果は未確認。【未検証】現物Etevia 70 × 70 × 91 mmの突起、操作、充電、保持、換気、温度、充電式E26の外形、実影、実物造形。上部開口の支えと開口縁の細かな階段が造形上の弱点。独立AIへの今回の送信は未実施。印刷候補は選定しない。",
+      "links": []
+    }
+  ]
+}
