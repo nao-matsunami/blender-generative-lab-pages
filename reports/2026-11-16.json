@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-16",
+  "headline": "Offset Cell Lantern",
+  "headlineEn": "Offset Cell Lantern",
+  "summary": "上下で位相をずらした多角形セルの開口を持つ非具象照明習作。",
+  "summaryEn": "Staggered polygonal cells cut an asymmetric mineral shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-16_offset-cell-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/offset-cell-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/offset-cell-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/offset-cell-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/offset-cell-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_offset_cell_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "周面を二列のセルで切り抜く。各列6セル、上列は下列からπ/6ずらし、中心角に0.08sin(πz/158)の微小な位相移動を加える。各開口は中心角半幅0.30 rad、中心高さ51/108 mm、上下半高25 mmで、端から14 mmの範囲で角幅を絞る。外半径は75+12sin(πu)+13cos(3θ+0.7u)sin(πu)−5u mm、u=z/158。名目肉厚4 mm。連続底帯20 mm、上帯18 mm。STL外接寸法174.91 × 180.85 × 158.00 mm。隣接セルの設計上の細い橋は約30 mmだが、局所最小構造幅はスライサー未確認。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月11日の縦折板、12日の螺旋庇、13日の三門を比較。今回は二段に千鳥配置した多角形セルの開口トポロジー、低めの樽状シルエット、三葉状の半径変調とセル縁の反復リズム、鉱物灰白色、やや上からの斜め構図へ変更した。非点灯時もセル列のずれと膨らみを見せる。初回は四角い開口と平坦な胴に見えたため、開口の角を拡げ、半径変調とメッシュ密度を増して再レンダーした。縁の微細な段は残る。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに仮想点光源を置き、床と背面壁への投影を操作できる。光源高さ35 mmでは下列の開口からの投影、95 mmでは上列の開口と床側の影の変化を比べる設定。相対光量、色、回転も操作できる。これは理想点光源と不透明なGLBによる形状検討であり、Eteviaタッチライトまたは充電式E26の実測配光・照度・樹脂透過・温度を表さない。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底面開口から着脱式LEDコアを出し入れする想定。現物寸法、タッチ面・USB-C端子、E26外径、保持機構、換気経路は未確定。【STL確認】1,377,168三角形、2,065,752辺すべてで面接続数2。連結性・法線方向・スライサーでの橋と上縁の支持は未確認。【未検証】実物プリント、安定性、操作・充電、連続点灯時の温度、実際の光と影。六角縁の微細な階段、端部の支持が弱点。独立AIへの今回の送信は未実施。印刷候補は選定しない。",
+      "links": []
+    }
+  ]
+}
