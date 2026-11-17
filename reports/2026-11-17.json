@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-17",
+  "headline": "Sine Gate Lantern",
+  "headlineEn": "Sine Gate Lantern",
+  "summary": "4本のうねる縦開口が、先細りの鉱物的なシェードを貫く非具象照明習作。",
+  "summaryEn": "Four winding vertical apertures reveal a tapered mineral shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-17_sine-gate-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/sine-gate-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/sine-gate-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/sine-gate-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/sine-gate-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_sine_gate_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "高さ172 mm、名目肉厚4 mmの中空シェード。外半径 r=72+9sin(πu)−11u+7cos(4θ+0.9u)sin(πu) mm、u=z/172。4本の縦開口の中心角は kπ/2+0.34sin(2π(z−19)/132+0.5)+0.22(z−19)/132。開口角半幅0.29 radを上下18 mmで絞る。底部19 mm、上部21 mmを連続帯とした。STL外接寸法165.03 × 165.03 × 172.00 mm。隣接開口間は設計上、最も狭い高さでも約60 mmの周面幅を残すが、実際の局所構造幅・積層方向の強度はスライサー未確認。LEDは底面から取り出す想定だが、固定方式は未確定。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月12日の低い螺旋庇、13日の三門、16日の二段セルと比較。今回は先細りの立筒シルエット、上下へ連続する4本の曲線開口トポロジー、波の位相を高さに結びつけた切り抜き、青灰色の鉱物材、低めの斜め構図に変えた。非点灯時も一続きの面と開口のねじれが読める。初回レンダーで上面が強すぎて開口縁が粗かったため、開口幅、メッシュ密度、画角と材質を修正して再レンダーした。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに仮想点光源を置き、床と背面壁への影を表示する。光源高さ、相対光量、色と回転を操作できる。少なくとも35 mmと95 mmで影の変化を確認する。理想点光源と不透明GLBの形状検討であり、Eteviaタッチライトまたは充電式E26の実測配光、照度、樹脂透過、温度とは区別する。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底面開口から着脱式LEDコアを出し入れする。Etevia掲載70 × 70 × 91 mmでも、現物の形状・操作面・USB-C端子とクリアランスを確認するまで適合としない。E26外径は未確認。【STL/スライサー】STLは1,898,768三角形、2,848,152辺すべてが2面に接続。連結性・法線方向・スライサーは未確認。【未検証】実物プリント、底面安定、保持、換気・発熱、実光源での影。独立AIへの送信は未実施。印刷候補は未選定。",
+      "links": []
+    }
+  ]
+}
