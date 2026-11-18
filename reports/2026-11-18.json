@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-18",
+  "headline": "Flare Fin Crown",
+  "headlineEn": "Flare Fin Crown",
+  "summary": "高さの異なる7枚の放射状フィンが開いた中央空間を囲む、非具象の照明習作。",
+  "summaryEn": "Seven staggered flaring fins rise from a continuous open foot.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-18_flare-fin-crown.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/flare-fin-crown.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/flare-fin-crown.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/flare-fin-crown-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/flare-fin-crown.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_flare_fin_crown.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "高さ145 mm、名目肉厚4.2 mm。外半径 r=55+31u²+6sin(7θ+1.1u)u+4cos(θ−0.35)u mm、u=z/145。z<24 mmは連続した中空の底帯。上部は7枚の角幅約0.5 radのフィンとし、中心角をuに応じて変位、先端高さを8+12(1+sin(1.7k)) mm切り下げた。底面の同心円通過径は設計上約101.6 mmだがLED現物の挿抜保証ではない。底帯とフィンの根元は同一メッシュとして接続。STL実外形166.74 × 159.57 × 136.14 mm。438,808三角形、658,212辺すべてが2面に接続。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月13日の三門、16日の二段セル、17日の縦曲線スリットと比較。上端を閉じない7枚の独立したフィン、中央が大きく開くフレア状のシルエット、連続底帯から分岐する構造、暖色の石質と側面からの構図に変更。初回プレビューの粗い開口縁を高密度化し、2回目でも先端の整列と正面性が強かったため、先端高さとカメラを変更して3回目を目視確認した。細かな階段状の縁は残る。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアで仮想点光源を内部に置き、床と壁への影を表示。高さ、相対光量、色、回転を操作できる。これは幾何形状と不透明GLBによる検討であり、Eteviaタッチライトまたは充電式E26の実測配光、照度、透過、温度を示さない。公開後に異なる高さの2条件を確認する。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底面から着脱式コードレスLEDを入れる想定だが、受けと固定方式は未決定。Etevia掲載70×70×91 mmの形状、タッチ操作、USB-C充電、保持、換気と熱を現物で確認する。E26の外径は未確認。【STL/スライサー】全辺2面接続を確認。連結性・法線方向、スライサーと材料・ノズル条件は未確認。【未検証】実物印刷、底面安定、フィンの積層強度、実LEDの光・影・温度。外部AIレビューは今回未実施。印刷候補は選定しない。",
+      "links": []
+    }
+  ]
+}
