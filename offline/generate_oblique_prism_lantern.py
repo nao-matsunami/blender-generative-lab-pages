@@ -82,6 +82,6 @@ def main():
         shade.modifiers.remove(mod)
         scene.render.film_transparent=True;scene.render.filepath=str(ROOT/'renders'/(SLUG+'.png'))
         bpy.ops.render.render(write_still=True)
-        target=ROOT/'designs/lanterns/2026-11-18'/(SLUG+'.blend');target.parent.mkdir(parents=True,exist_ok=True)
+        target=ROOT/'designs/lanterns/2026-11-19'/(SLUG+'.blend');target.parent.mkdir(parents=True,exist_ok=True)
         bpy.ops.wm.save_as_mainfile(filepath=str(target))
 if __name__=='__main__':main()
