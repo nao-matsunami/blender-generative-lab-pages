@@ -78,9 +78,10 @@ async function copyLatestGeneratedAssets() {
 function run(command, args, cwd, stdio = "inherit") {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, { cwd, stdio });
+    child.on("error", reject);
     child.on("exit", (code) => {
       if (code === 0) resolve();
-      else reject(new Error(`${command} ${args.join(" ")} failed with code ${code}`));
+      else reject(new Error(`${command} failed with code ${code}`));
     });
   });
 }
@@ -96,9 +97,10 @@ function runCapture(command, args, cwd) {
     child.stderr.on("data", (chunk) => {
       stderr += chunk.toString();
     });
+    child.on("error", reject);
     child.on("exit", (code) => {
       if (code === 0) resolve(stdout.trim());
-      else reject(new Error(stderr.trim() || `${command} ${args.join(" ")} failed with code ${code}`));
+      else reject(new Error(stderr.trim() || `${command} failed with code ${code}`));
     });
   });
 }
