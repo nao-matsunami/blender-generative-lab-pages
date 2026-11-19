@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-19",
+  "headline": "Oblique Prism Lantern",
+  "headlineEn": "Oblique Prism Lantern",
+  "summary": "9面体シェルに斜めの菱形開口を刻んだ、非具象の照明習作。",
+  "summaryEn": "Three diagonal diamond apertures cut a nine-facet shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-19_oblique-prism-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/oblique-prism-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/oblique-prism-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/oblique-prism-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/oblique-prism-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_oblique_prism_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "9面体の中空シェル。高さ162 mm、名目肉厚4 mm。外半径は (62+5u+7sin(πu))cos(π/9)/cos(θの面内偏角)、u=z/162。3つの菱形開口を120°間隔で設け、中心角を高さに応じて0.13u変位。下部24 mmと上部20 mmは連続帯。STL外形138.99 × 139.46 × 162 mm、469,512三角形、704,268辺すべて2面接続。底面は開口し、LED受けは未設計。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月16日の二段セル、17日の縦曲線スリット、18日の開放フィンと比較。閉じた上端帯を持つ9面体シルエット、斜め菱形の3開口、平面ファセットの面リズム、青灰色の鉱物質、単一開口を見せる斜め構図に変更。初回レンダーは開口が細く上面が大きすぎたため開口幅・カメラ高さを修正。二回目は左右対称に見えたため、視点を回して三回目を確認した。開口縁の段差は残る。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアで仮想点光源と床・壁を用いる。高さ35 mmと95 mm、相対光量、色、回転を操作可能。低い光源では開口の上縁から壁上方への投影が伸び、高い光源では床側への広がりが増すという幾何学的予想を検討する。実ページでの二条件の視覚確認は公開後に行う。Eteviaタッチライトと充電式E26の実測配光・照度・透過・温度ではない。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の内側開口は約108 mmだが、実LEDの形状・操作・充電・保持・換気・発熱と組付けは未確認。上部の連続帯と開口頂点の積層強度にも懸念。【STL】全辺2面接続を確認。連結性、法線向き、スライサー結果は未確認。【未検証】現物印刷、底面安定、実LEDの光・影・温度。独立AIレビューは未実施。印刷候補は選ばない。GA4の送信・Realtime受信は公開後に確認する。",
+      "links": []
+    }
+  ]
+}
