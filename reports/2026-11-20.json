@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-20",
+  "headline": "Crescent Vault Shade",
+  "headlineEn": "Crescent Vault Shade",
+  "summary": "六つの稜線を持つテーパーシェルに、位相をずらした曲線ヴォールト開口を設けた非具象照明習作。",
+  "summaryEn": "Curved vault openings cut a six-ridge tapered shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-20_crescent-vault-shade.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/crescent-vault-shade.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/crescent-vault-shade.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/crescent-vault-shade-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/crescent-vault-shade.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_crescent_vault_shade.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "外半径 r=67−14u+6cos(6θ+0.25u) mm、u=z/154。3つの曲線ヴォールト開口を120°ずつ配置し、中心角を0.22sin(πt)で偏位、半角を0.61sin(πt)^0.7で変える。外形146.00 × 131.70 × 154.00 mm、名目肉厚4.2 mm、下部連続帯25 mm、上部連続帯19 mm。STLは741,368三角形。底と上は開放し、平坦な下端の広い接地輪を設ける。LED受け・固定方法は未確定。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月17日の縦曲線スリット、18日の開放フィン、19日の斜め菱形窓と比較。六稜テーパーのシルエット、三つのヴォールト開口、連続シェルと稜線の面リズム、チョーク質の明るい色、二開口を見せる低い斜め視点へ変更。初回レンダーでは柔らかい塊と粗い三角窓に見えたため、半径場を直線テーパーと六稜へ変更し、開口幅・メッシュ密度・視点を修正して再レンダーした。細かな開口縁の段差は残る。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床・壁・仮想点光源を設置し、光源高さ、相対光量、色、回転を操作できる。高さ35 mmでは壁の上方へ開口の投影が伸び、95 mmでは床の開口由来の広がりが増すという二条件を検討する。これは理想点光源による幾何学的な参考表示で、Eteviaタッチライト／充電式E26電球の実測配光・照度・透過・温度ではない。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の中心通過径は約113.6 mm。Etevia公称70 × 70 × 91 mmは参考寸法であり、実物の突出部、操作、充電、保持、換気と熱を確認するまで適合も固定方法も確定しない。【STL】外形と三角形数を確認。連結性・法線・スライサー結果は未確認。【未検証】実印刷、自立安定性、実LEDの配光・照度・透過・温度。独立AIレビューは未実施。印刷候補は選ばない。",
+      "links": []
+    }
+  ]
+}
