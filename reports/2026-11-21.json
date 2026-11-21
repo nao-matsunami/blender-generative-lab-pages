@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-21",
+  "headline": "Torsion Ribbon Lantern",
+  "headlineEn": "Torsion Ribbon Lantern",
+  "summary": "四本のねじれる帯と連続した上下リングで構成する非具象照明習作。",
+  "summaryEn": "Four torsion ribs wind between continuous lower and upper rings.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-21_torsion-ribbon-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/torsion-ribbon-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/torsion-ribbon-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/torsion-ribbon-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/torsion-ribbon-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_torsion_ribbon_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "外半径 r=65+7sin(πu)−5u+3.5cos(4θ+0.8u) mm、u=z/166。4開口の中心角は90°間隔で、高さ23〜145 mmの間に0.72回転する。開口半角は最大0.53 rad、端で縮小。外形 145.95 × 145.95 × 166 mm。名目肉厚4 mm、下部連続帯23 mm、上部連続帯21 mm。STL 388,208三角形。底は開放し、連続した平坦な接地輪を持つ。LEDの受けは未確定。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月18日の開放フィン、19日の斜め菱形窓、20日の曲線ヴォールトと比較。四本の連続ねじり帯へ位相・開口トポロジーを変え、樽状の非対称な稜線、青灰色の石質表面、斜めのカメラ構図にした。初回の細い開口と粗い段差を確認し、ねじり量・開口幅・メッシュ密度・視点を修正して再レンダーした。開口縁の微細な階段状は残る。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床と壁、仮想点光源を設置。光源高さ、相対光量、色、回転を操作可能。35 mmと95 mmで投影面の広がりを比較する設計であり、仮想点光源の幾何学表示はEteviaタッチライト／充電式E26電球の実測配光、照度、透過、温度ではない。公開後の実表示確認を記録する。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の中心通過径は約115 mm。Etevia公称70 × 70 × 91 mmは参考値に留め、実物の断面と突起、操作、充電、保持、換気、熱を確認するまで固定方式や適合を確定しない。【STL】外形と面数を確認。【未検証】スライサー、印刷、構造強度、実LED光学・温度。接地リングとねじり帯の接合、開口縁の印刷品質が弱点。独立AIレビュー未実施。印刷候補は選ばない。",
+      "links": []
+    }
+  ]
+}
