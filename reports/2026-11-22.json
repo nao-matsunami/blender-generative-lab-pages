@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-22",
+  "headline": "Eccentric Gate Monolith",
+  "headlineEn": "Eccentric Gate Monolith",
+  "summary": "偏心した八面体に一つの大きなゲートを切り込む非具象照明習作。",
+  "summaryEn": "A single off-axis threshold cuts an eccentric faceted shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-22_eccentric-gate-monolith.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/eccentric-gate-monolith.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/eccentric-gate-monolith.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/eccentric-gate-monolith-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/eccentric-gate-monolith.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_eccentric_gate_monolith.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "八面体近似の外半径は (62+16sin(πu)−13u+10u cos(θ−0.7))×cos(π/8)/cos(mod(θ+π/8,π/4)−π/8) mm、u=z/158。片側のゲート中心角0.18+0.22u rad、半角0.58+0.16sin(πu)−0.13u rad。外形133.20×135.63×158 mm、名目肉厚4.2 mm。底部22 mmと上部20 mmは連続し、底面は開放する。STL 386,084三角形。LED受け・固定方法は未決定。",
+      "links": []
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月19日の三つの斜め菱形窓、20日の三つのヴォールト、21日の四本のねじり帯と比較。単一の偏心ゲートへ開口トポロジーを変え、八面の膨らむ輪郭、面の大小によるリズム、淡いグラファイト色、斜めのカメラを採用。初回の複数菱形窓は19日作に近いため不採用。ゲートを一つに変更後、肩の形と視点を修正して再レンダーした。非点灯時は大きな負形を持つ塊として見せる。",
+      "links": []
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアで床と壁、仮想点光源を表示し、高さ、相対光量、色、回転を操作可能。高さ35 mmと95 mmの二条件を公開表示で確認する。単一の片側開口は影の左右差を検討するための設計仮説。これはEteviaタッチライト／充電式E26電球の実測配光、照度、透過、温度ではない。",
+      "links": []
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の内側開口は光源を下から入れる経路として残す。Etevia公称70×70×91 mmだけでは断面・突起・操作面・充電口が不明で適合未確定。【STL】外形と面数を確認。【未検証】連結性、法線、スライサー、印刷、接地安定性、LEDの保持・換気・温度、実配光。開口縁の階段状と片側へ寄る質量が弱点。独立AIレビュー未実施。印刷候補は選ばない。",
+      "links": []
+    }
+  ]
+}
