@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-23",
+  "headline": "Drift Pinhole Lantern",
+  "headlineEn": "Drift Pinhole Lantern",
+  "summary": "3段20個の斜め菱形開口を位相をずらして配置した非具象照明習作。",
+  "summaryEn": "Twenty slanted rhombus openings drift across three offset orbits of a five-lobed shell.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-23_drift-pinhole-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/drift-pinhole-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/drift-pinhole-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/drift-pinhole-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/drift-pinhole-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_drift_pinhole_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "半径 r=62+10sin(πu)−8u+4.5cos(5θ+1.7u) mm、u=z/152。高さ42/82/119 mmの3段に7/6/7個の斜め菱形開口を配置。開口中心は段ごとに位相をずらし、zに応じて角度も傾ける。STL外形140.48×140.85×152 mm、名目肉厚4 mm、底部連続帯23 mm、上部連続帯20 mm。STL 621,496三角形。底面は開放し、着脱式LED受けの固定方式は現物確認まで未定。"
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月20日の曲面ヴォールト、21日の連続ねじり帯、22日の単一ゲートと比較。多数の独立菱形開口、5葉の浅い膨らみ、3段で位相がずれるリズム、淡いセラドン色、低い斜め視点に変更。初回の丸穴は顔を連想させたため廃棄し、開口形状・配置・画角・材質を修正して再レンダーした。非点灯時の開口リズムは確認できるが、縁の階段状が弱点。"
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床・壁と仮想点光源を設置。高さ35 mmと95 mm、相対光量、色、回転を操作できる。菱形の開口からの投影と高さによる床・壁の変化を検討するための理想化表示であり、Eteviaタッチライト／充電式E26電球の実測配光・照度・透過・温度ではない。"
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底部の開放経路と連続帯を確保。実LEDの公称寸法だけで出し入れや保持は保証できない。【STL】外形と三角形数を確認。【未検証】連結性、法線、スライサー、実物印刷、接地安定性、LEDの操作・充電・保持・換気・温度、実配光。細かな開口縁の階段状と印刷時の開口上面の支持が弱点。印刷候補は未選定。外部AIレビューは実施していない。"
+    }
+  ]
+}
