@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-24",
+  "headline": "Folded Meridian Lantern",
+  "headlineEn": "Folded Meridian Lantern",
+  "summary": "六つの折り面を構造柱にして、上縁と底帯をつないだ非具象照明習作。",
+  "summaryEn": "Six faceted meridians link an open foot and crown around tall unequal apertures.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-24_folded-meridian-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/folded-meridian-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/folded-meridian-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/folded-meridian-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/folded-meridian-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_folded_meridian_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "六分割した角度セクタの折り面半径 r=(60+10sin(πu)+7u)/cos(θsector)+2.5cos(6θ+0.4)sin²(πu) mm、u=z/160。六本の柱幅を角度で変え、上下の連続帯（底24 mm、上19 mm）で結ぶ。高さ160 mm、名目肉厚4.2 mm。底面と上面は開放。LED受けの固定方式は現物確認まで未定。 STL外形156.85×158.26×160 mm、269,528三角形。柱の予定最小角幅は約0.43 radで、半径約60 mmの位置では約26 mm。"
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月21日の連続ねじり帯、22日の単一ゲート、23日の小孔群と比較。六本の直立した折り面柱、床まで通る大きな開口、六角断面、石灰色の材質、横からの斜め視点へ変更。初回レンダーでは開口縁に小さな段差が出たため、柱幅の高さ方向変調を外し、メッシュ密度・柱幅・材質・画角を修正して再レンダーした。"
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床・壁と仮想点光源を設置。高さ35 mmと95 mm、相対光量、色、回転を操作できる。理想化表示であり、Eteviaタッチライト／充電式E26電球の実測配光・照度・透過・温度ではない。"
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の開放経路、連続帯、上開口を確保。六本の柱と上下帯の接合強度・底の接地は実物で確認が必要。【STL】269,528三角形、全エッジが二面接続することを確認。連結性、法線の向きは未検証。【未検証】スライサー、実物印刷、LEDの挿抜・操作・充電・保持・換気・温度、実配光。印刷候補は未選定。外部AIレビューは未実施。"
+    }
+  ]
+}
