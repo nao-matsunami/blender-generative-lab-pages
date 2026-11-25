@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-25",
+  "headline": "Split Delta Lantern",
+  "headlineEn": "Split Delta Lantern",
+  "summary": "交互に上昇・下降する四つの三角開口を、低い八面体シェードに刻んだ非具象照明習作。",
+  "summaryEn": "Four alternating triangular apertures cut through a low eight-facet shade.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-25_split-delta-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/split-delta-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/split-delta-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/split-delta-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/split-delta-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_split_delta_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "八分割した角度セクタの折り面半径 r=(69+8sin(πu)−8u)/cos(θsector) mm、u=z/136。高さ136 mm、名目肉厚4.2 mm。四方向の三角開口は角度半幅0.07+0.48v radと0.07+0.48(1−v) radを交互に用いる。底25 mm、上20 mmの連続帯。底と上は開放し、着脱式LEDの固定方法は現物確認まで保留。 STL外形146.82×146.82×136 mm、584,080三角形。八面の継ぎ目付近の設計上の最小ウェブは角度約0.46 rad、半径約65 mmで約30 mmと推定。"
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月22日の単一ゲート、23日の小さな菱形孔、24日の六本の直立柱と比較。低い八面体の閉じた外形、交互の三角開口、逆向きの斜辺リズム、陶器色、低い斜め視点へ変えた。初回レンダーで斜辺の階段状エッジと暗い正面を確認し、密度・明度・画角を修正して再レンダー。 二回目も正面の面積が大きかったため、カメラを側面へ回し、メッシュ密度をさらに上げて三回目のPNGを目視確認。細かな斜辺階段は残る。"
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床・壁と仮想点光源を設置。高さ35 mmと95 mm、相対光量、色、回転を操作できる。理想化表示であり、Eteviaタッチライト／充電式E26電球の実測配光・照度・透過・温度ではない。"
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の開放経路と上下連続帯を確保。最小ウェブ約30 mmは角度式からの推定であり、接合強度・接地と底からのLED挿入を保証しない。【STL】外形146.82×146.82×136 mm、584,080三角形。連結性・法線方向は未検証。【未検証】スライサー、実物印刷、Etevia/E26の挿抜・操作・充電・保持・換気・温度、実配光。斜辺の階段状輪郭と広い無孔面が残る弱点。印刷候補は未選定。外部AIレビューは未実施。"
+    }
+  ]
+}
