@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-26",
+  "headline": "Staggered Arcade Lantern",
+  "headlineEn": "Staggered Arcade Lantern",
+  "summary": "偏心した楕円胴に高さの異なる三つのヴォールト開口を設けた非具象照明習作。",
+  "summaryEn": "Three unequal vaulted openings in an eccentric oval shade.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-26_staggered-arcade-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/staggered-arcade-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/staggered-arcade-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/staggered-arcade-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/staggered-arcade-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_staggered_arcade_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "楕円半径 r=(67+11sin(πu)−5u)/sqrt((cosθ/1.14)²+(sinθ/0.88)²)+5u cosθ mm、u=z/174。三つのアーチは中心角0.12/2.02/4.28 rad、冠高さ145/128/153 mm、角度半幅0.52/0.56/0.45 radで、冠下27 mmを平方根状に絞る。STL外形166.57×133.17×174 mm、名目肉厚4.0 mm。底25 mm、上19 mmは連続帯。開口間の設計上の最小角度ウェブは約0.82 radで、半径約60 mmなら約49 mmと推定。底と上は開放し、着脱LEDの受けは現物確認まで未確定。"
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月23日の小菱形孔、24日の六本の直立柱、25日の低い八面体と三角孔と比較。楕円の偏心シルエット、三つの大アーチという開口トポロジー、冠高さのずれによるリズム、石灰色、斜め上からの画角を変更。初回レンダーでは暗い正面柱が太く、開口が狭かった。開口幅、材質明度、露出、カメラ方位を変更して再レンダーし、PNGを目視確認。開口縁の細かな階段状輪郭は残る。"
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床・背面壁と仮想点光源を設置。光源高さ35/95 mm、相対光量、色、回転を操作できる。理想点光源と不透明GLBによる投影であり、Eteviaタッチライト／充電式E26電球の配光・照度・透過・温度の実測ではない。"
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】連続した接地帯と底面からの開放経路を設けたが、挿抜と安定性は保証しない。【STL】外形166.57×133.17×174 mm、585,252三角形。連結性・面方向は未検証。【未検証】スライサー、実物印刷、Etevia/E26の寸法・操作・充電・保持・換気・温度・実配光。アーチ上縁の段差と上端への支持条件が弱点。固定方法・印刷候補は未決定。外部AIレビュー未実施。"
+    }
+  ]
+}
