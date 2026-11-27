@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-27",
+  "headline": "Current Channel Lantern",
+  "headlineEn": "Current Channel Lantern",
+  "summary": "三つの蛇行する縦開口を持つ非具象の照明シェード習作。",
+  "summaryEn": "Three sinuous channels in a tapered nonfigurative light shade.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-27_current-channel-lantern.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/current-channel-lantern.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/current-channel-lantern.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/current-channel-lantern-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/current-channel-lantern.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_current_channel_lantern.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "r=72+9sin(πu)−13u+5cos(3θ+1.1u)+4u cos(θ−0.6) mm、u=z/182。三つの縦開口は中心角0.15/2.22/4.34 radを基点に、振幅0.52/−0.48/0.46 radで高さ方向に蛇行。角度半幅0.43 radと高さ依存の0.10 radの脈動。外形151.42×153.63×182 mm、名目肉厚4.2 mm。底25 mm、上22 mmは連続帯。底からLEDを出し入れする想定だが現物の通路、受け、保持は未確定。"
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月24日の直立柱、25日の三角孔、26日のアーチ開口と比較。先細りの三葉断面、連続した蛇行開口、位相差による面の流れ、青緑の陶器色、低い斜め画角へ変更。初回プレビューで中央の無地帯が強かったため、開口の曲率と幅、カメラ高さと材質を修正して再レンダーし目視確認。非点灯時には曲線の流れが見えるが、正面の面積がなお広く、開口縁に階段状の細部が残る。"
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアに床・背面壁と仮想点光源を設置。光源高さ35/95 mm、相対光量、色、回転を操作できる。低い光源は上側の影を、高い光源は床方向の広がりを重点的に確認する設計。仮想点光源と不透明GLBによる投影であり、Eteviaタッチライト／充電式E26電球の配光・照度・透過・温度の実測ではない。"
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】連続した底帯は接地に寄与するが転倒安定性は未測定。開口ウェブの局所幅と上縁の支持が弱点。【STL】外形151.42×153.63×182 mm、564,564三角形。連結性・面方向は未検証。【未検証】スライサー、実物印刷、Etevia/E26の寸法・操作・充電・保持・換気・温度・実配光。固定方式と印刷候補は未決定。外部AIレビュー未実施。"
+    }
+  ]
+}
