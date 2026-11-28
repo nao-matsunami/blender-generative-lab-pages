@@ -5,7 +5,7 @@
       <p class="date">2026.11.16</p>
       <h1>Offset Cell Lantern</h1>
       <p>上下で位相をずらした多角形セルの開口を持つ非具象照明習作。</p>
-      <div class="actions"><a href="../index.html">Back</a></div>
+      <div class="actions"><a href="../pages/2.html">Back</a></div>
     </section>
     <section class="content"><h2>この日のサンプル / Samples</h2><ul><li><a href="../outputs/2026-11-16_offset-cell-lantern.html">Offset Cell Lantern / Blender Generative Lab</a> <span class="status ready">Blender assets ready</span><p>Two staggered rings of polygonal apertures cut an asymmetric mineral shell.</p></li></ul></section>
     <section class="content"><h2>生成規則と寸法</h2><p>周面を二列のセルで切り抜く。各列6セル、上列は下列からπ/6ずらし、中心角に0.08sin(πz/158)の微小な位相移動を加える。各開口は中心角半幅0.30 rad、中心高さ51/108 mm、上下半高25 mmで、端から14 mmの範囲で角幅を絞る。外半径は75+12sin(πu)+13cos(3θ+0.7u)sin(πu)−5u mm、u=z/158。名目肉厚4 mm。連続底帯20 mm、上帯18 mm。STL外接寸法174.91 × 180.85 × 158.00 mm。隣接セルの設計上の細い橋は約30 mmだが、局所最小構造幅はスライサー未確認。</p></section><section class="content"><h2>直近3作との差と修正</h2><p>11月11日の縦折板、12日の螺旋庇、13日の三門を比較。今回は二段に千鳥配置した多角形セルの開口トポロジー、低めの樽状シルエット、三葉状の半径変調とセル縁の反復リズム、鉱物灰白色、やや上からの斜め構図へ変更した。非点灯時もセル列のずれと膨らみを見せる。初回は四角い開口と平坦な胴に見えたため、開口の角を拡げ、半径変調とメッシュ密度を増して再レンダーした。縁の微細な段は残る。</p></section><section class="content"><h2>光と影の検討</h2><p>専用GLBビューアに仮想点光源を置き、床と背面壁への投影を操作できる。本番ブラウザで35 mmでは壁の暗部が上側に大きく伸び、95 mmでは壁の多角形の影が下がり、床の放射状の暗部が広がることを確認した。相対光量、色、回転も操作できる。これは理想点光源と不透明なGLBによる形状検討であり、Eteviaタッチライトまたは充電式E26の実測配光・照度・樹脂透過・温度を表さない。</p></section><section class="content"><h2>懸念と証拠</h2><p>【設計推定】底面開口から着脱式LEDコアを出し入れする想定。現物寸法、タッチ面・USB-C端子、E26外径、保持機構、換気経路は未確定。【STL確認】1,377,168三角形、2,065,752辺すべてで面接続数2。連結性・法線方向・スライサーでの橋と上縁の支持は未確認。【未検証】実物プリント、安定性、操作・充電、連続点灯時の温度、実際の光と影。六角縁の微細な階段、端部の支持が弱点。独立AIへの今回の送信は未実施。印刷候補は選定しない。</p></section>

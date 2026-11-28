@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-28",
+  "headline": "Splayed Fin Beacon",
+  "headlineEn": "Splayed Fin Beacon",
+  "summary": "開いた底帯から高さの異なる五枚の放射フィンが立ち上がる非具象照明習作。",
+  "summaryEn": "Five unequal radial fins rise from an open base ring.",
+  "links": [
+    {
+      "label": "Interactive Blender GLB",
+      "url": "../outputs/2026-11-28_splayed-fin-beacon.html"
+    },
+    {
+      "label": "GLB",
+      "url": "../exports/glb/splayed-fin-beacon.glb"
+    },
+    {
+      "label": "STL",
+      "url": "../exports/stl/splayed-fin-beacon.stl"
+    },
+    {
+      "label": "Preview PNG",
+      "url": "../renders/splayed-fin-beacon-preview.png"
+    },
+    {
+      "label": "Transparent PNG",
+      "url": "../renders/splayed-fin-beacon.png"
+    },
+    {
+      "label": "Generator",
+      "url": "../offline/generate_splayed_fin_beacon.py"
+    }
+  ],
+  "sections": [
+    {
+      "title": "生成規則と寸法",
+      "body": "r=59+18u²+3cos(5θ+0.35u)+3sin(πu) mm、u=z/150。底24 mmの連続帯から等角度配置の五枚の幅0.54 radのフィンを立ち上げ、頂点高さを0.79/0.95/0.86/1.00/0.91倍に変える。名目肉厚4.2 mm。LEDは底から出し入れする設計想定だが、現物の寸法・受け・保持方式は未確定。 STL外形148.62×152.63×151.0 mm。"
+    },
+    {
+      "title": "直近3作との差と修正",
+      "body": "11月25日の三角孔、26日のアーチ、27日の蛇行開口に対し、開放された上部、五枚の放射フィン、上へ広がるシルエット、石灰色の材質と低い斜め画角に変更。初回の縁に階段状の乱れが目立ったため、角度幅と方向を一定にし、解像度・材質・画角を修正して再レンダー。"
+    },
+    {
+      "title": "光と影の検討",
+      "body": "専用GLBビューアで床・壁へ理想点光源による影を投影し、光源高さ、相対光量、色、回転を操作できる。35 mmと95 mmの二条件を比較する。仮想点光源と不透明GLBによる参考投影であり、Eteviaタッチライト／充電式E26の実測配光・照度・透過・温度を表さない。"
+    },
+    {
+      "title": "懸念と証拠",
+      "body": "【設計推定】底の連続帯は接地面を作るが、上部の独立フィンの層間強度と転倒安定性は未確定。【STL】外形148.62×152.63×151.0 mm、264,820三角形。連結性・面方向は未検証。【未検証】スライサー、実物印刷、Etevia/E26の挿抜・操作・充電・保持・換気・発熱・実配光。固定方式、印刷候補は未決定。外部AIレビューは未実施。"
+    }
+  ]
+}
